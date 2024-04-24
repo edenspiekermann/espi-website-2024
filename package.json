@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "next lint --fix && prettier --write \"src/**/*.{js,ts,jsx,tsx,scss,md,mdx}\""
+    "format": "next lint --fix && prettier --write \"src/**/*.{js,ts,jsx,tsx,scss,md,mdx}\"",
+    "prettier-check": "prettier --check \"src/**/*.{js,ts,jsx,tsx,scss,md,mdx}\"",
+    "precommit": "next lint && npm run prettier-check"
   },
   "dependencies": {
     "next": "14.2.3",
