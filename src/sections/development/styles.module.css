@@ -1,0 +1,11 @@
+.development {
+  padding: 80px;
+  background: #f7f7f7;
+}
+
+.development__message {
+  color: #fb263b;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
