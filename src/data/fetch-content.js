@@ -1,21 +1,25 @@
 const { DATO_ENDPOINT, DATO_TOKEN } = process.env;
 
-export const fetchContent = ({ query, variables = {}, preview = false }) => {
-  return fetch(DATO_ENDPOINT, {
-    method: "post",
+export const fetchContent = async ({
+  query,
+  variables = {},
+  preview = false,
+}) => {
+  const response = await fetch(DATO_ENDPOINT, {
     headers: {
-      "Content-Type": "application/json",
-      Authorization: DATO_TOKEN,
+      Authorization: `Bearer ${DATO_TOKEN}`,
     },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  })
-    .then((response) => response.json())
-    .then((response) => {
-      if (response.errors)
-        throw new Error(JSON.stringify(response, undefined, 4));
-      return { data: response.data };
-    });
+    method: "POST",
+    body: JSON.stringify({ query, variables }),
+  });
+
+  const responseBody = await response.json();
+
+  if (!response.ok) {
+    throw new Error(
+      `${response.status} ${response.statusText}: ${JSON.stringify(responseBody)}`,
+    );
+  }
+
+  return responseBody;
 };

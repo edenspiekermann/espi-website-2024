@@ -1,0 +1,13 @@
+export const pageQuery = `
+  query pageQuery($slug: String) {
+    page(filter: {slug: {eq: $slug}}) {
+      seo: _seoMetaTags {
+        attributes
+        content
+        tag
+      }
+      title
+      sections
+    }
+  }
+`;
