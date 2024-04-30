@@ -1,8 +1,8 @@
 import Head from "next/head.js";
 
-import { fetchContent } from "../../data/fetch-content";
-import { allPagesQuery } from "../../data/all-pages.query.js";
-import { pageQuery } from "../../data/page.query.js";
+import { fetchContent } from "../../graphql/fetch-content";
+import { allPagesQuery } from "../../graphql/all-pages.query.js";
+import { pageQuery } from "../../graphql/page.query.js";
 import { SectionConductor } from "../../sections/conductor";
 
 export async function generateStaticParams() {
