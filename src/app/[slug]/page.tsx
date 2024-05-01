@@ -1,7 +1,5 @@
 import Head from "next/head.js";
-import { GetStaticProps } from "next";
 import { PageDocument } from "@/graphql/types/generated";
-import { fetchContent } from "../../graphql/fetch-content";
 import { SectionConductor } from "../../sections/conductor";
 import { request } from "../../lib/request";
 
