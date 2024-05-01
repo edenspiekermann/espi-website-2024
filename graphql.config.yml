@@ -2,7 +2,8 @@ schema:
   - https://graphql.datocms.com:
       headers:
         Authorization: "Bearer 8c26f616b1965debce4db87545425c"
-documents: ["src/**/*.tsx", "./src/graphql/**/*.graphql"]
+        X-Exclude-Invalid: "true"
+documents: ["src/**/*.tsx", "./src/graphql/*.graphql"]
 generates:
   src/graphql/types/generated.ts:
     plugins:

@@ -2408,18 +2408,18 @@ export type FocalPoint = {
   y: Scalars["FloatType"]["output"];
 };
 
-export type AllPagesQueryQueryVariables = Exact<{ [key: string]: never }>;
+export type AllPagesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type AllPagesQueryQuery = {
+export type AllPagesQuery = {
   __typename?: "Query";
   allPages: Array<{ __typename?: "PageRecord"; slug?: string | null }>;
 };
 
-export type PageQueryQueryVariables = Exact<{
+export type PageQueryVariables = Exact<{
   slug?: InputMaybe<Scalars["String"]["input"]>;
 }>;
 
-export type PageQueryQuery = {
+export type PageQuery = {
   __typename?: "Query";
   page?: {
     __typename?: "PageRecord";
@@ -2434,13 +2434,13 @@ export type PageQueryQuery = {
   } | null;
 };
 
-export const AllPagesQueryDocument = {
+export const AllPagesDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "AllPagesQuery" },
+      name: { kind: "Name", value: "AllPages" },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -2465,14 +2465,14 @@ export const AllPagesQueryDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<AllPagesQueryQuery, AllPagesQueryQueryVariables>;
-export const PageQueryDocument = {
+} as unknown as DocumentNode<AllPagesQuery, AllPagesQueryVariables>;
+export const PageDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "pageQuery" },
+      name: { kind: "Name", value: "Page" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -2545,4 +2545,4 @@ export const PageQueryDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<PageQueryQuery, PageQueryQueryVariables>;
+} as unknown as DocumentNode<PageQuery, PageQueryVariables>;
