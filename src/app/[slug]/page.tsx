@@ -1,5 +1,3 @@
-import Head from "next/head.js";
-
 import { fetchContent } from "../../data/fetch-content";
 import { allPagesQuery } from "../../data/all-pages.query.js";
 import { pageQuery } from "../../data/page.query.js";
@@ -9,6 +7,18 @@ export async function generateStaticParams() {
   const { data } = await fetchContent({ query: allPagesQuery });
 
   return data.allPages;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const capitalizedSlug =
+    params.slug.charAt(0).toUpperCase() + params.slug.slice(1);
+  return {
+    title: capitalizedSlug,
+  };
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -22,9 +32,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <Head>
-        <title>{title} | Edenspiekermann</title>
-      </Head>
       <SectionConductor sections={sections} />
     </>
   );
