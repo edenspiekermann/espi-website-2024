@@ -1,5 +1,8 @@
-import { request as graphqlRequest, Variables } from "graphql-request";
-import { RequestDocument } from "graphql-request/dist/types";
+import {
+  request as graphqlRequest,
+  Variables,
+  RequestDocument,
+} from "graphql-request";
 import { TypedDocumentNode } from "@graphql-typed-document-node/core";
 
 export function request<TDocument = any, TVariables = Record<string, any>>(

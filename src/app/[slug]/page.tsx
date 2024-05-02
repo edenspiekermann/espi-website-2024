@@ -10,13 +10,14 @@ export default async function Page({ params }: PageProps) {
     slug: params.slug,
   });
 
-  const { title, sections } = page;
+  const { title, sections } = page!;
 
   return (
     <>
       <Head>
         <title>{title} | Edenspiekermann</title>
       </Head>
+      {title}
       <SectionConductor sections={sections} />
     </>
   );
