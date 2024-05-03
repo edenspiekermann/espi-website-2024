@@ -1849,7 +1849,7 @@ export type PageRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
-  sections: Array<Scalars["String"]["output"]>;
+  sections: Array<SectionRecord>;
   slug: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
 };
@@ -1884,8 +1884,6 @@ export type Query = {
   _allFootersMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allPagesMeta: CollectionMetadata;
-  /** Returns meta information regarding a record collection */
-  _allTestSectionsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
   /** Returns the single instance record */
@@ -1894,16 +1892,12 @@ export type Query = {
   allFooters: Array<FooterRecord>;
   /** Returns a collection of records */
   allPages: Array<PageRecord>;
-  /** Returns a collection of records */
-  allTestSections: Array<TestSectionRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
   /** Returns a specific record */
   footer?: Maybe<FooterRecord>;
   /** Returns a specific record */
   page?: Maybe<PageRecord>;
-  /** Returns a specific record */
-  testSection?: Maybe<TestSectionRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
 };
@@ -1917,12 +1911,6 @@ export type Query_AllFootersMetaArgs = {
 /** The query root for this schema */
 export type Query_AllPagesMetaArgs = {
   filter?: InputMaybe<PageModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-/** The query root for this schema */
-export type Query_AllTestSectionsMetaArgs = {
-  filter?: InputMaybe<TestSectionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -1959,16 +1947,6 @@ export type QueryAllPagesArgs = {
 };
 
 /** The query root for this schema */
-export type QueryAllTestSectionsArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<TestSectionModelFilter>;
-  first?: InputMaybe<Scalars["IntType"]["input"]>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<TestSectionModelOrderBy>>>;
-  skip?: InputMaybe<Scalars["IntType"]["input"]>;
-};
-
-/** The query root for this schema */
 export type QueryAllUploadsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<UploadFilter>;
@@ -1992,14 +1970,6 @@ export type QueryPageArgs = {
   filter?: InputMaybe<PageModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<PageModelOrderBy>>>;
-};
-
-/** The query root for this schema */
-export type QueryTestSectionArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<TestSectionModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<TestSectionModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -2063,6 +2033,32 @@ export type ResponsiveImage = {
   title?: Maybe<Scalars["String"]["output"]>;
   webpSrcSet: Scalars["String"]["output"];
   width: Scalars["IntType"]["output"];
+};
+
+/** Block of type Section (section) */
+export type SectionRecord = RecordInterface & {
+  __typename?: "SectionRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  bodyText?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ItemId"]["output"];
+  title: Scalars["String"]["output"];
+};
+
+/** Block of type Section (section) */
+export type SectionRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 export type SeoField = {
@@ -2153,69 +2149,6 @@ export type Tag = {
   attributes?: Maybe<Scalars["MetaTagAttributes"]["output"]>;
   content?: Maybe<Scalars["String"]["output"]>;
   tag: Scalars["String"]["output"];
-};
-
-export type TestSectionModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<TestSectionModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<TestSectionModelFilter>>>;
-  _createdAt?: InputMaybe<CreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
-  _isValid?: InputMaybe<BooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _publishedAt?: InputMaybe<PublishedAtFilter>;
-  _status?: InputMaybe<StatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  id?: InputMaybe<ItemIdFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export enum TestSectionModelOrderBy {
-  CreatedAtAsc = "_createdAt_ASC",
-  CreatedAtDesc = "_createdAt_DESC",
-  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
-  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
-  IsValidAsc = "_isValid_ASC",
-  IsValidDesc = "_isValid_DESC",
-  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
-  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
-  PublishedAtAsc = "_publishedAt_ASC",
-  PublishedAtDesc = "_publishedAt_DESC",
-  StatusAsc = "_status_ASC",
-  StatusDesc = "_status_DESC",
-  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
-  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
-  UpdatedAtAsc = "_updatedAt_ASC",
-  UpdatedAtDesc = "_updatedAt_DESC",
-  IdAsc = "id_ASC",
-  IdDesc = "id_DESC",
-  TitleAsc = "title_ASC",
-  TitleDesc = "title_DESC",
-}
-
-/** Record of type Test Section (test_section) */
-export type TestSectionRecord = RecordInterface & {
-  __typename?: "TestSectionRecord";
-  _createdAt: Scalars["DateTime"]["output"];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars["String"]["output"]>;
-  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
-  _isValid: Scalars["BooleanType"]["output"];
-  _modelApiKey: Scalars["String"]["output"];
-  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
-  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
-  _updatedAt: Scalars["DateTime"]["output"];
-  id: Scalars["ItemId"]["output"];
-  title?: Maybe<Scalars["String"]["output"]>;
-};
-
-/** Record of type Test Section (test_section) */
-export type TestSectionRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter by upload type */
@@ -2628,12 +2561,16 @@ export type PageQuery = {
   page?: {
     __typename?: "PageRecord";
     title: string;
-    sections: Array<string>;
     seo: Array<{
       __typename?: "Tag";
       attributes?: Record<string, string> | null;
       content?: string | null;
       tag: string;
+    }>;
+    sections: Array<{
+      __typename: "SectionRecord";
+      title: string;
+      bodyText?: string | null;
     }>;
   } | null;
 };
@@ -2741,7 +2678,24 @@ export const PageDocument = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "sections" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sections" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "bodyText" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },

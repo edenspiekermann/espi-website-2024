@@ -6,6 +6,8 @@ query Page($slug: String) {
       tag
     }
     title
-    sections
+    sections {
+      __typename
+    }
   }
 }

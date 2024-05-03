@@ -3,7 +3,7 @@ schema:
       headers:
         Authorization: "Bearer 8c26f616b1965debce4db87545425c"
         X-Exclude-Invalid: "true"
-documents: ["src/**/*.tsx", "./src/graphql/*.graphql"]
+documents: ["src/**/*.graphql", "./src/graphql/*.graphql"]
 generates:
   src/graphql/types/generated.ts:
     plugins:
