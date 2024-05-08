@@ -5,7 +5,10 @@ import "./styles/global.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Edenspiekermann",
+  title: {
+    template: "%s | Edenspiekermann",
+    default: "Edenspiekermann",
+  },
   description: "",
 };
 

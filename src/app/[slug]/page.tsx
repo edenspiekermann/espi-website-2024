@@ -1,9 +1,16 @@
-import Head from "next/head.js";
 import { PageDocument } from "@/graphql/types/generated";
 import { SectionConductor } from "../../sections/conductor";
 import { request } from "../../lib/request";
 
 type PageProps = { params: { slug: string } };
+
+export async function generateMetadata({ params }: PageProps) {
+  const capitalizedSlug =
+    params.slug.charAt(0).toUpperCase() + params.slug.slice(1);
+  return {
+    title: capitalizedSlug,
+  };
+}
 
 export default async function Page({ params }: PageProps) {
   const { page } = await request(PageDocument, {
@@ -14,10 +21,6 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <Head>
-        <title>{title} | Edenspiekermann</title>
-      </Head>
-      {title}
       <SectionConductor sections={sections} />
     </>
   );
