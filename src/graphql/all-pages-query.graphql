@@ -1,0 +1,5 @@
+query AllPages {
+  allPages(first: 100) {
+    slug
+  }
+}

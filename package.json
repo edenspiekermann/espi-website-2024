@@ -9,14 +9,22 @@
     "lint": "next lint",
     "format": "next lint --fix && prettier --write \"src/**/*.{js,ts,jsx,tsx,scss,md,mdx}\"",
     "prettier-check": "prettier --check \"src/**/*.{js,ts,jsx,tsx,scss,md,mdx}\"",
-    "precommit": "next lint && npm run prettier-check"
+    "precommit": "next lint && npm run prettier-check",
+    "generate-ts-types": "graphql-codegen --config graphql.config.js"
   },
   "dependencies": {
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typed-document-node": "^5.0.6",
+    "@graphql-codegen/typescript": "^4.0.6",
+    "@graphql-codegen/typescript-operations": "^4.2.0",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

@@ -1,19 +1,10 @@
-import { fetchContent } from "../../data/fetch-content";
-import { allPagesQuery } from "../../data/all-pages.query.js";
-import { pageQuery } from "../../data/page.query.js";
+import { PageDocument } from "@/graphql/types/generated";
 import { SectionConductor } from "../../sections/conductor";
+import { request } from "../../lib/request";
 
-export async function generateStaticParams() {
-  const { data } = await fetchContent({ query: allPagesQuery });
+type PageProps = { params: { slug: string } };
 
-  return data.allPages;
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export async function generateMetadata({ params }: PageProps) {
   const capitalizedSlug =
     params.slug.charAt(0).toUpperCase() + params.slug.slice(1);
   return {
@@ -21,14 +12,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const { data } = await fetchContent({
-    query: pageQuery,
-    variables: { slug: params.slug },
-    preview: false,
+export default async function Page({ params }: PageProps) {
+  const { page } = await request(PageDocument, {
+    slug: params.slug,
   });
 
-  const { sections, title } = data.page;
+  const { title, sections } = page!;
 
   return (
     <>
