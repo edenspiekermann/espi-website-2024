@@ -1,8 +1,13 @@
 import React from "react";
-import { FooterProperties } from "./interfaces";
 import styles from "./styles.module.css";
+import { request } from "../../lib/request";
+import { FooterDocument } from "@/graphql/types/generated";
 
-export function Footer({ title, pageLinks, socialLinks }: FooterProperties) {
+export async function Footer() {
+  const { footer } = await request(FooterDocument);
+
+  const { title, pageLinks, socialLinks } = footer!;
+
   return (
     <div className={styles.footer}>
       <div>{title}</div>
@@ -10,7 +15,7 @@ export function Footer({ title, pageLinks, socialLinks }: FooterProperties) {
         <p>Company</p>
         <ul>
           {pageLinks.map((pageLink) => (
-            <li key={pageLink.id}>{pageLink.label}</li>
+            <li key={pageLink.id}>{pageLink.title}</li>
           ))}
         </ul>
       </div>
@@ -18,7 +23,7 @@ export function Footer({ title, pageLinks, socialLinks }: FooterProperties) {
         <p>Follow</p>
         <ul>
           {socialLinks.map((socialLink) => (
-            <li key={socialLink.id}>{socialLink.label}</li>
+            <li key={socialLink.id}>{socialLink.title}</li>
           ))}
         </ul>
       </div>

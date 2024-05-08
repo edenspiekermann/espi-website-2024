@@ -1,4 +1,4 @@
-import { Footer } from "@/components/footer";
+import { Footer } from "@/sections/footer";
 import React from "react";
 
 export default function DashboardLayout({
@@ -9,7 +9,7 @@ export default function DashboardLayout({
   return (
     <>
       {children}
-      <Footer title="Let's Innovate" pageLinks={[]} socialLinks={[]} />
+      <Footer />
     </>
   );
 }

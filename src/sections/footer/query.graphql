@@ -1,0 +1,22 @@
+query Footer {
+  footer {
+    pageLinks {
+      id
+      slug
+      title
+    }
+    socialLinks {
+      id
+      title
+      url
+      image {
+        responsiveImage {
+          src
+          height
+          width
+        }
+      }
+    }
+    title
+  }
+}
