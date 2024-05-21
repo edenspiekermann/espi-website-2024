@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     template: "%s | Edenspiekermann",
     default: "Edenspiekermann",
   },
-  description: "",
+  description:
+    "We are an independent global creative agency. We solve business problems with design.",
 };
 
 export default function RootLayout({
