@@ -6,7 +6,7 @@
 @mixin as-xl-serif {
   font-weight: 450;
   line-height: 100%;
-  letter-spacing: -2%;
+  letter-spacing: -0.02em;
   font-family: "ff-meta-serif-web-pro", serif;
 
   @include mqHelper(
@@ -21,7 +21,7 @@
 @mixin as-xl-sans {
   font-weight: 400;
   line-height: 100%;
-  letter-spacing: -2%;
+  letter-spacing: -0.02em;
   font-family: "ff-real-text-pro", sans-serif;
 
   @include mqHelper(
@@ -36,7 +36,7 @@
 @mixin as-xl-sans-bold {
   font-weight: 450;
   line-height: 100%;
-  letter-spacing: -2%;
+  letter-spacing: -0.02em;
   font-weight: 500;
   font-family: "ff-real-text-pro", sans-serif;
 
@@ -52,7 +52,7 @@
 @mixin as-l-serif {
   font-weight: 450;
   font-family: "ff-meta-serif-web-pro", serif;
-  letter-spacing: -1%;
+  letter-spacing: -0.01em;
   line-height: 110%;
 
   @include mqHelper(
@@ -67,7 +67,7 @@
 @mixin as-l-sans {
   font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -3%;
+  letter-spacing: -0.03em;
   line-height: 110%;
 
   @include mqHelper(
@@ -82,7 +82,7 @@
 @mixin as-l-sans-bold {
   font-weight: 500;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -3%;
+  letter-spacing: -0.03em;
   line-height: 110%;
 
   @include mqHelper(
@@ -97,7 +97,7 @@
 @mixin as-m-serif {
   font-weight: 450;
   font-family: "ff-meta-serif-web-pro", serif;
-  letter-spacing: -1%;
+  letter-spacing: -0.01em;
   line-height: 120%;
 
   @include mqHelper("font-size", 28px, 31px, 32px);
@@ -107,7 +107,7 @@
 @mixin as-m-sans {
   font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -3%;
+  letter-spacing: -0.03em;
   line-height: 120%;
 
   @include mqHelper("font-size", 28px, 31px, 32px);
@@ -117,7 +117,7 @@
 @mixin as-m-sans-bold {
   font-weight: 500;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -3%;
+  letter-spacing: -0.03em;
   line-height: 120%;
 
   @include mqHelper("font-size", 28px, 31px, 32px);
@@ -127,7 +127,7 @@
 @mixin as-s-serif {
   font-weight: 450;
   font-family: "ff-meta-serif-web-pro", serif;
-  letter-spacing: -1%;
+  letter-spacing: -0.01em;
   line-height: 125%;
 
   @include mqHelper("font-size", 24px, 26px, 28px);
@@ -137,7 +137,7 @@
 @mixin as-s-serif {
   font-weight: 450;
   font-family: "ff-meta-serif-web-pro", serif;
-  letter-spacing: -1%;
+  letter-spacing: -0.01em;
   line-height: 125%;
 
   @include mqHelper("font-size", 24px, 26px, 28px);
@@ -147,7 +147,7 @@
 @mixin as-s-sans {
   font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -2%;
+  letter-spacing: -0.02em;
   line-height: 125%;
 
   @include mqHelper("font-size", 24px, 26px, 28px);
@@ -157,7 +157,7 @@
 @mixin as-s-sans-bold {
   font-weight: 500;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -2%;
+  letter-spacing: -0.02em;
   line-height: 125%;
 
   @include mqHelper("font-size", 24px, 26px, 28px);
@@ -167,7 +167,7 @@
 @mixin as-xs-sans {
   font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -1%;
+  letter-spacing: -0.01em;
   line-height: 125%;
 
   @include mqHelper("font-size", 22px, 20px, 24px);
@@ -177,7 +177,7 @@
 @mixin as-xxs-sans {
   font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: 0%;
+  letter-spacing: normal;
   line-height: 130%;
 
   @include mqHelper("font-size", 16px, 14px, 16px);
@@ -189,7 +189,7 @@
 @mixin as-xl-text {
   font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -3%;
+  letter-spacing: -0.03em;
   line-height: 130%;
 
   @include mqHelper("font-size", 32px, 34px, 36px);
@@ -199,7 +199,7 @@
 @mixin as-l-text {
   font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -2%;
+  letter-spacing: -0.02em;
   line-height: 140%;
 
   @include mqHelper("font-size", 20px, 20px, 24px);
@@ -209,7 +209,7 @@
 @mixin as-m-text {
   font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -1%;
+  letter-spacing: -0.01em;
   line-height: 150%;
   font-size: 18px;
 }
@@ -218,7 +218,7 @@
 @mixin as-m-text-bold {
   font-weight: 500;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -1%;
+  letter-spacing: -0.01em;
   line-height: 150%;
   font-size: 18px;
 }
@@ -227,7 +227,7 @@
 @mixin as-s-text {
   font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: 0%;
+  letter-spacing: normal;
   line-height: 140%;
   font-size: 16px;
 }
@@ -236,7 +236,7 @@
 @mixin as-xs-text {
   font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: 0%;
+  letter-spacing: normal;
   line-height: 130%;
   font-size: 12px;
 }
@@ -247,7 +247,7 @@
 @mixin as-m-element {
   font-weight: 450;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -1%;
+  letter-spacing: -0.01em;
   line-height: 100%;
   font-size: 18px;
 }
@@ -256,7 +256,7 @@
 @mixin as-s-element {
   font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
-  letter-spacing: -1%;
+  letter-spacing: -0.01em;
   line-height: 100%;
   font-size: 14px;
 }
