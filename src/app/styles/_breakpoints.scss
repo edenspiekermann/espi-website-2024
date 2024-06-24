@@ -2,9 +2,8 @@
 
 $breakpoints: (
   mobile: 0px,
-  tablet: 800px,
-  desktop: 1440px,
-  desktop-xl: 1920px,
+  tablet: 680px,
+  desktop: 1024px,
 );
 
 @mixin mq($breakpoint) {
