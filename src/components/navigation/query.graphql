@@ -1,0 +1,10 @@
+query Navigation {
+  navigation {
+    __typename
+    links {
+      id
+      label
+      slug
+    }
+  }
+}
