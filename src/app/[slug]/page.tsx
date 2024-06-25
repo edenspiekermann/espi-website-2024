@@ -1,6 +1,7 @@
 import { PageDocument } from "@/graphql/types/generated";
 import { SectionConductor } from "../../sections/conductor";
 import { request } from "../../lib/request";
+import UpdateNavState from "@/components/navigation/update-nav-state";
 
 type PageProps = { params: { slug: string } };
 
@@ -17,10 +18,11 @@ export default async function Page({ params }: PageProps) {
     slug: params.slug,
   });
 
-  const { title, sections } = page!;
+  const { title, sections, invertNavColor } = page!;
 
   return (
     <>
+      <UpdateNavState isInverted={invertNavColor} />
       <SectionConductor sections={sections} />
     </>
   );

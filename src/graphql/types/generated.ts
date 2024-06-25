@@ -222,6 +222,7 @@ export type CaseStudyModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  invertNav?: InputMaybe<BooleanFilter>;
   slug?: InputMaybe<SlugFilter>;
   subtitle?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
@@ -246,6 +247,8 @@ export enum CaseStudyModelOrderBy {
   UpdatedAtDesc = "_updatedAt_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  InvertNavAsc = "invertNav_ASC",
+  InvertNavDesc = "invertNav_DESC",
   SubtitleAsc = "subtitle_ASC",
   SubtitleDesc = "subtitle_DESC",
   TitleAsc = "title_ASC",
@@ -269,6 +272,7 @@ export type CaseStudyRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
+  invertNav: Scalars["BooleanType"]["output"];
   slug: Scalars["String"]["output"];
   subtitle: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
@@ -2856,6 +2860,7 @@ export type PageModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  invertNavColor?: InputMaybe<BooleanFilter>;
   sections?: InputMaybe<LinksFilter>;
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
@@ -2880,6 +2885,8 @@ export enum PageModelOrderBy {
   UpdatedAtDesc = "_updatedAt_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  InvertNavColorAsc = "invertNavColor_ASC",
+  InvertNavColorDesc = "invertNavColor_DESC",
   TitleAsc = "title_ASC",
   TitleDesc = "title_DESC",
 }
@@ -2907,6 +2914,7 @@ export type PageRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
+  invertNavColor: Scalars["BooleanType"]["output"];
   sections: Array<PageModelSectionsField>;
   slug: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
@@ -4416,6 +4424,7 @@ export type PageQuery = {
   page?: {
     __typename?: "PageRecord";
     title: string;
+    invertNavColor: boolean;
     seo: Array<{
       __typename?: "Tag";
       attributes?: Record<string, string> | null;
@@ -4600,6 +4609,10 @@ export const PageDocument = {
                       },
                     ],
                   },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "invertNavColor" },
                 },
               ],
             },
