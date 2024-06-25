@@ -2733,7 +2733,10 @@ export type NavigationModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  alternativeLogoText?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  showLogo?: InputMaybe<BooleanFilter>;
+  socialLinks?: InputMaybe<LinksFilter>;
 };
 
 export enum NavigationModelOrderBy {
@@ -2753,8 +2756,12 @@ export enum NavigationModelOrderBy {
   UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
   UpdatedAtAsc = "_updatedAt_ASC",
   UpdatedAtDesc = "_updatedAt_DESC",
+  AlternativeLogoTextAsc = "alternativeLogoText_ASC",
+  AlternativeLogoTextDesc = "alternativeLogoText_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  ShowLogoAsc = "showLogo_ASC",
+  ShowLogoDesc = "showLogo_DESC",
 }
 
 /** Record of type Navigation (navigation) */
@@ -2773,8 +2780,11 @@ export type NavigationRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  alternativeLogoText?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ItemId"]["output"];
   links: Array<NavLinkRecord>;
+  showLogo: Scalars["BooleanType"]["output"];
+  socialLinks: Array<SocialLinkRecord>;
 };
 
 /** Record of type Navigation (navigation) */
@@ -4437,11 +4447,19 @@ export type NavigationQuery = {
   __typename?: "Query";
   navigation?: {
     __typename: "NavigationRecord";
+    alternativeLogoText?: string | null;
+    showLogo: boolean;
     links: Array<{
       __typename?: "NavLinkRecord";
       id: string;
       label: string;
       slug: string;
+    }>;
+    socialLinks: Array<{
+      __typename?: "SocialLinkRecord";
+      id: string;
+      title: string;
+      url: string;
     }>;
   } | null;
 };
@@ -4503,6 +4521,23 @@ export const NavigationDocument = {
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "label" } },
                       { kind: "Field", name: { kind: "Name", value: "slug" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "alternativeLogoText" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "showLogo" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "socialLinks" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
                     ],
                   },
                 },

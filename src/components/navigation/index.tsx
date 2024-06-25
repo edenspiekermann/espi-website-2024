@@ -9,10 +9,15 @@ import "./styles.scss";
 import Link from "next/link";
 import classNames from "classnames";
 import Image from "next/image";
-import { Hamburger } from "./hamburger";
+import { MenuToggle } from "./menu-toggle";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
-export const Navigation: React.FC<NavigationProperties> = ({ links }) => {
+export const Navigation: React.FC<NavigationProperties> = ({
+  links,
+  alternativeLogoText,
+  showLogo,
+  socialLinks,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -43,16 +48,24 @@ export const Navigation: React.FC<NavigationProperties> = ({ links }) => {
     <header className={classNameList}>
       <div className="container">
         <div className="navigation__wrapper">
-          <Link href="/" title="home">
-            <Image src={EspiLogo} alt={"edenspiekermann"} />
-          </Link>
-          <div className="navigation__hamburger">
-            <Hamburger isOpen={isOpen} onClick={toggle} />
+          {showLogo ? (
+            <Link href="/" title="home">
+              <Image src={EspiLogo} alt={"edenspiekermann"} />
+            </Link>
+          ) : (
+            <span className="navigation__alt-text">{alternativeLogoText}</span>
+          )}
+          <div className="navigation__menu">
+            <MenuToggle isOpen={isOpen} onClick={toggle} />
           </div>
           <div className="navigation__nav">
             <DesktopNavigation links={links} />
           </div>
-          <MobileNavigation links={links} isOpen={isOpen} />
+          <MobileNavigation
+            links={links}
+            isOpen={isOpen}
+            socialLinks={socialLinks}
+          />
         </div>
       </div>
     </header>

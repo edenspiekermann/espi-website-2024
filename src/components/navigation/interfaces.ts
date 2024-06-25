@@ -1,11 +1,24 @@
 export interface NavigationProperties {
-  links: LinkProperties[];
+  links: NavLinkProperties[];
+  showLogo: boolean;
+  alternativeLogoText: string;
+  socialLinks: NavSocialLinkProperties[];
 }
 
-export interface LinkProperties {
+export interface DesktopNavigationProperties {
+  links: NavLinkProperties[];
+}
+
+export interface NavLinkProperties {
   id: string;
   label: string;
   slug: string;
+}
+
+export interface NavSocialLinkProperties {
+  id: string;
+  title: string;
+  url: string;
 }
 
 export interface HamburgerProperties {
@@ -15,5 +28,6 @@ export interface HamburgerProperties {
 
 export interface MobileNavigationProperties {
   isOpen: boolean;
-  links: LinkProperties[];
+  links: NavLinkProperties[];
+  socialLinks: NavSocialLinkProperties[];
 }

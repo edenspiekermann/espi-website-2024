@@ -22,12 +22,17 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const { navigation } = await request(NavigationDocument);
-  const { links } = navigation!;
+  const { links, alternativeLogoText, showLogo, socialLinks } = navigation!;
 
   return (
     <html lang="en" className={inter.className}>
       <body>
-        <Navigation links={links} />
+        <Navigation
+          links={links}
+          alternativeLogoText={alternativeLogoText || "Let's Innovate"}
+          showLogo={showLogo}
+          socialLinks={socialLinks}
+        />
         {children}
       </body>
     </html>

@@ -6,5 +6,12 @@ query Navigation {
       label
       slug
     }
+    alternativeLogoText
+    showLogo
+    socialLinks {
+      id
+      title
+      url
+    }
   }
 }

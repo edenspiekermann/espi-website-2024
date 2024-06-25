@@ -1,9 +1,9 @@
 import React from "react";
-import { NavigationProperties } from "./interfaces";
+import { DesktopNavigationProperties } from "./interfaces";
 import Link from "next/link";
 import classNames from "classnames";
 
-export const DesktopNavigation: React.FC<NavigationProperties> = ({
+export const DesktopNavigation: React.FC<DesktopNavigationProperties> = ({
   links,
 }) => {
   const classNameList = classNames({
@@ -12,18 +12,20 @@ export const DesktopNavigation: React.FC<NavigationProperties> = ({
 
   return (
     <div className={classNameList}>
-      <ul className="navigation__links">
-        {links &&
-          links.map((link) => {
-            return (
-              <li key={link.id}>
-                <Link href={link.slug} className="navigation__link">
-                  {link.label}
-                </Link>
-              </li>
-            );
-          })}
-      </ul>
+      <nav>
+        <ul className="navigation__links">
+          {links &&
+            links.map((link) => {
+              return (
+                <li key={link.id}>
+                  <Link href={link.slug} className="navigation__link">
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+      </nav>
     </div>
   );
 };

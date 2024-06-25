@@ -2,13 +2,13 @@ import React from "react";
 import { HamburgerProperties } from "./interfaces";
 import classnames from "classnames";
 
-export const Hamburger: React.FC<HamburgerProperties> = ({
+export const MenuToggle: React.FC<HamburgerProperties> = ({
   isOpen,
   onClick,
 }) => {
   const classNamesList = classnames({
-    hamburger: true,
-    "hamburger--open": isOpen,
+    "mobile-nav__menu-toggle": true,
+    "mobile-nav__menu-toggle--open": isOpen,
   });
   return (
     <button
@@ -17,9 +17,7 @@ export const Hamburger: React.FC<HamburgerProperties> = ({
       title={isOpen ? "Close navigation" : "Open navigation"}
       onClick={onClick}
     >
-      <span />
-      <span />
-      <span />
+      {isOpen ? "Close" : "Menu"}
     </button>
   );
 };

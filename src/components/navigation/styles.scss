@@ -7,7 +7,7 @@
   left: 0;
   width: 100%;
   background-color: var(--color-white);
-  padding-top: 20px;
+  padding: 23px 0px;
   transition: transform 1.2s ease-in-out;
 
   img {
@@ -40,6 +40,12 @@
   }
 }
 
+.navigation__alt-text {
+  @include as-m-element;
+  color: var(--color-espi-black);
+  text-decoration: none;
+}
+
 .desktop-navigation {
   width: 100%;
   align-items: flex-start;
@@ -51,7 +57,7 @@
 }
 
 .mobile-navigation {
-  z-index: var(--layer-below);
+  z-index: var(--layer-header);
   position: fixed;
   top: 0;
   left: 0;
@@ -70,6 +76,11 @@
 
   @include mq("tablet") {
     display: none;
+  }
+
+  > nav {
+    position: relative;
+    height: 80vh;
   }
 }
 
@@ -93,6 +104,15 @@
   padding-left: 10px;
 }
 
+.navigation__social-links {
+  list-style: none;
+  display: flex;
+  padding-left: 10px;
+  position: absolute;
+  bottom: 24px;
+  gap: 16px;
+}
+
 .navigation__link {
   @include as-xl-sans;
   color: var(--color-white);
@@ -107,29 +127,37 @@
     @include as-m-element;
     margin-right: 50px;
     color: var(--color-espi-black);
+
+    &:active,
+    &:hover {
+      color: var(--color-espi-red);
+    }
   }
 
   @include mq("desktop") {
     margin-right: 70px;
   }
 }
-.navigation__hamburger {
+.navigation__social-link {
+  @include as-s-text;
+}
+.navigation__menu {
   grid-column: 4 / 5;
   display: flex;
   justify-content: flex-end;
 }
 
-.hamburger {
+.mobile-nav__menu-toggle {
+  @include as-s-element;
   display: flex;
-  z-index: var(--layer-above);
-  flex-direction: column;
-  justify-content: space-between;
-  width: 40px;
-  height: 36px;
+  z-index: calc(var(--layer-header) + 1);
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--color-espi-black);
+  border-radius: 80px;
   margin: 0;
-  padding: 10px;
+  padding: 11px 16px;
   background: transparent;
-  border: none;
   cursor: pointer;
   appearance: none;
 
@@ -137,31 +165,7 @@
     display: none;
   }
 }
-
-.hamburger span {
-  width: 100%;
-  border-top: 2px solid;
-  transition:
-    transform 0.2s,
-    opacity 0.2s;
-}
-
-.hamburger--open {
-  transform: scale(1.5);
-
-  span {
-    color: var(--color-white);
-  }
-
-  span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg) scaleY(0.75);
-  }
-
-  span:nth-child(2) {
-    opacity: 0;
-  }
-
-  span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg) scaleY(0.75);
-  }
+.mobile-nav__menu-toggle--open {
+  color: var(--color-white);
+  border-color: var(--color-white);
 }
