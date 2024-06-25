@@ -1,0 +1,44 @@
+@use "../../app/styles/base.scss" as *;
+
+.button {
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  max-width: fit-content;
+  display: flex;
+  text-decoration: none;
+  background: none;
+  padding: 0;
+
+  > svg {
+    background: none !important;
+    height: 48px;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: none;
+    overflow: visible;
+  }
+}
+
+.button__text {
+  @include as-m-element;
+  padding: 15px 20px;
+  border-radius: 80px;
+  background-color: var(--color-espi-black);
+  color: var(--color-white);
+}
+
+.button--inverted {
+  > * {
+    background-color: var(--color-white) !important;
+    color: var(--color-espi-black) !important;
+  }
+
+  path {
+    fill: var(--color-white) !important;
+  }
+  circle {
+    stroke: var(--color-white) !important;
+  }
+}
