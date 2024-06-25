@@ -1,5 +1,10 @@
 @use "./breakpoints" as *;
 
+:root {
+  --scaling-font-size-xl-desktop: calc(4rem + ((1vw - 10.24px) * 6.25));
+  --scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
+}
+
 // HEADLINE FONTS
 
 // XL Serif
@@ -13,7 +18,7 @@
     "font-size",
     48px,
     64px,
-    calc(4rem + ((1vw - 10.24px) * 6.25))
+    var(--scaling-font-size-xl-desktop)
   );
 }
 
@@ -28,7 +33,7 @@
     "font-size",
     48px,
     64px,
-    calc(4rem + ((1vw - 10.24px) * 6.25))
+    var(--scaling-font-size-xl-desktop)
   );
 }
 
@@ -44,7 +49,7 @@
     "font-size",
     48px,
     64px,
-    calc(4rem + ((1vw - 10.24px) * 6.25))
+    var(--scaling-font-size-xl-desktop)
   );
 }
 
@@ -59,7 +64,7 @@
     "font-size",
     36px,
     40px,
-    calc(2.25rem + ((1vw - 10.24px) * 3.6058))
+    var(--scaling-font-size-l-desktop)
   );
 }
 
@@ -74,7 +79,7 @@
     "font-size",
     36px,
     40px,
-    calc(2.25rem + ((1vw - 10.24px) * 3.6058))
+    var(--scaling-font-size-l-desktop)
   );
 }
 
@@ -89,7 +94,7 @@
     "font-size",
     36px,
     40px,
-    calc(2.25rem + ((1vw - 10.24px) * 3.6058))
+    var(--scaling-font-size-l-desktop)
   );
 }
 
