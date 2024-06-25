@@ -2722,48 +2722,6 @@ export type NavLinkRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-export type NavigationModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<NavigationModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<NavigationModelFilter>>>;
-  _createdAt?: InputMaybe<CreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
-  _isValid?: InputMaybe<BooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _publishedAt?: InputMaybe<PublishedAtFilter>;
-  _status?: InputMaybe<StatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  alternativeLogoText?: InputMaybe<StringFilter>;
-  id?: InputMaybe<ItemIdFilter>;
-  showLogo?: InputMaybe<BooleanFilter>;
-  socialLinks?: InputMaybe<LinksFilter>;
-};
-
-export enum NavigationModelOrderBy {
-  CreatedAtAsc = "_createdAt_ASC",
-  CreatedAtDesc = "_createdAt_DESC",
-  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
-  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
-  IsValidAsc = "_isValid_ASC",
-  IsValidDesc = "_isValid_DESC",
-  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
-  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
-  PublishedAtAsc = "_publishedAt_ASC",
-  PublishedAtDesc = "_publishedAt_DESC",
-  StatusAsc = "_status_ASC",
-  StatusDesc = "_status_DESC",
-  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
-  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
-  UpdatedAtAsc = "_updatedAt_ASC",
-  UpdatedAtDesc = "_updatedAt_DESC",
-  AlternativeLogoTextAsc = "alternativeLogoText_ASC",
-  AlternativeLogoTextDesc = "alternativeLogoText_DESC",
-  IdAsc = "id_ASC",
-  IdDesc = "id_DESC",
-  ShowLogoAsc = "showLogo_ASC",
-  ShowLogoDesc = "showLogo_DESC",
-}
-
 /** Record of type Navigation (navigation) */
 export type NavigationRecord = RecordInterface & {
   __typename?: "NavigationRecord";
@@ -3129,8 +3087,6 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allLogoGridsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allNavigationsMeta: CollectionMetadata;
-  /** Returns meta information regarding a record collection */
   _allNumberedStatementsModelsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allPagesMeta: CollectionMetadata;
@@ -3167,8 +3123,6 @@ export type Query = {
   /** Returns a collection of records */
   allLogoGrids: Array<LogoGridRecord>;
   /** Returns a collection of records */
-  allNavigations: Array<NavigationRecord>;
-  /** Returns a collection of records */
   allNumberedStatementsModels: Array<NumberedStatementsModelRecord>;
   /** Returns a collection of records */
   allPages: Array<PageRecord>;
@@ -3202,7 +3156,7 @@ export type Query = {
   leadershipCardsModel?: Maybe<LeadershipCardsModelRecord>;
   /** Returns a specific record */
   logoGrid?: Maybe<LogoGridRecord>;
-  /** Returns a specific record */
+  /** Returns the single instance record */
   navigation?: Maybe<NavigationRecord>;
   /** Returns a specific record */
   numberedStatementsModel?: Maybe<NumberedStatementsModelRecord>;
@@ -3273,12 +3227,6 @@ export type Query_AllLeadershipCardsModelsMetaArgs = {
 /** The query root for this schema */
 export type Query_AllLogoGridsMetaArgs = {
   filter?: InputMaybe<LogoGridModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-/** The query root for this schema */
-export type Query_AllNavigationsMetaArgs = {
-  filter?: InputMaybe<NavigationModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3423,16 +3371,6 @@ export type QueryAllLogoGridsArgs = {
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<LogoGridModelOrderBy>>>;
-  skip?: InputMaybe<Scalars["IntType"]["input"]>;
-};
-
-/** The query root for this schema */
-export type QueryAllNavigationsArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<NavigationModelFilter>;
-  first?: InputMaybe<Scalars["IntType"]["input"]>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<NavigationModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -3591,9 +3529,7 @@ export type QueryLogoGridArgs = {
 /** The query root for this schema */
 export type QueryNavigationArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<NavigationModelFilter>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<NavigationModelOrderBy>>>;
 };
 
 /** The query root for this schema */

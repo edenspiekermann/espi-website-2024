@@ -1,8 +1,19 @@
+import React from "react";
+
 export interface NavigationProperties {
   links: NavLinkProperties[];
   showLogo: boolean;
   alternativeLogoText: string;
   socialLinks: NavSocialLinkProperties[];
+  isInverted?: boolean;
+}
+
+export interface NavigationWrapperProperties {
+  links: NavLinkProperties[];
+  showLogo: boolean;
+  alternativeLogoText: string;
+  socialLinks: NavSocialLinkProperties[];
+  children: React.ReactNode;
 }
 
 export interface DesktopNavigationProperties {

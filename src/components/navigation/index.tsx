@@ -4,11 +4,10 @@ import React, { useEffect, useState } from "react";
 import { DesktopNavigation } from "./desktop-navigation";
 import { NavigationProperties } from "./interfaces";
 import { MobileNavigation } from "./mobile-navigation";
-import EspiLogo from "./espi-logo.svg";
+import { EspiLogo } from "./espi-logo";
 import "./styles.scss";
 import Link from "next/link";
 import classNames from "classnames";
-import Image from "next/image";
 import { MenuToggle } from "./menu-toggle";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
@@ -17,6 +16,7 @@ export const Navigation: React.FC<NavigationProperties> = ({
   alternativeLogoText,
   showLogo,
   socialLinks,
+  isInverted = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(true);
@@ -27,6 +27,7 @@ export const Navigation: React.FC<NavigationProperties> = ({
   const classNameList = classNames({
     navigation: true,
     "navigation--hidden": !show,
+    "navigation--inverted": isInverted,
   });
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -50,7 +51,7 @@ export const Navigation: React.FC<NavigationProperties> = ({
         <div className="navigation__wrapper">
           {showLogo ? (
             <Link href="/" title="home">
-              <Image src={EspiLogo} alt={"edenspiekermann"} />
+              <EspiLogo />
             </Link>
           ) : (
             <span className="navigation__alt-text">{alternativeLogoText}</span>

@@ -6,16 +6,16 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--color-white);
+  background-color: transparent;
   padding: 23px 0px;
   transition: transform 1.2s ease-in-out;
 
-  img {
+  svg {
     width: 152px;
     height: auto;
 
     @include mq("desktop") {
-      width: 223px;
+      width: auto;
       padding-left: 0;
     }
   }
@@ -23,6 +23,14 @@
   &--hidden {
     @include mq("tablet") {
       transform: translateY(-500px);
+    }
+  }
+
+  &--inverted {
+    color: var(--color-white);
+
+    svg path {
+      fill: var(--color-white);
     }
   }
 }
@@ -128,6 +136,10 @@
     margin-right: 50px;
     color: var(--color-espi-black);
 
+    .navigation--inverted & {
+      color: var(--color-white);
+    }
+
     &:active,
     &:hover {
       color: var(--color-espi-red);
@@ -138,9 +150,11 @@
     margin-right: 70px;
   }
 }
+
 .navigation__social-link {
   @include as-s-text;
 }
+
 .navigation__menu {
   grid-column: 4 / 5;
   display: flex;
@@ -160,6 +174,11 @@
   background: transparent;
   cursor: pointer;
   appearance: none;
+
+  .navigation--inverted & {
+    border-color: var(--color-white);
+    color: var(--color-white);
+  }
 
   @include mq("tablet") {
     display: none;

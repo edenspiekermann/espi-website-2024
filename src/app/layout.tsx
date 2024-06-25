@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./styles/global.scss";
-import { Navigation } from "@/components/navigation";
 import { NavigationDocument } from "@/graphql/types/generated";
 import { request } from "@/lib/request";
+import { NavigationProvider } from "@/context/navigation-context";
+import { NavigationWrapper } from "@/components/navigation/navigation-wrapper";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -27,13 +28,16 @@ export default async function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body>
-        <Navigation
-          links={links}
-          alternativeLogoText={alternativeLogoText || "Let's Innovate"}
-          showLogo={showLogo}
-          socialLinks={socialLinks}
-        />
-        {children}
+        <NavigationProvider>
+          <NavigationWrapper
+            links={links}
+            alternativeLogoText={alternativeLogoText || "Let's Innovate"}
+            showLogo={showLogo}
+            socialLinks={socialLinks}
+          >
+            {children}
+          </NavigationWrapper>
+        </NavigationProvider>
       </body>
     </html>
   );
