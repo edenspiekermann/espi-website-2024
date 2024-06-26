@@ -1,0 +1,17 @@
+fragment HomepageHero on HomepageHeroRecord {
+  __typename
+  id
+  media {
+    video {
+      streamingUrl
+      mp4Url
+    }
+    responsiveImage {
+      src
+      height
+      width
+      alt
+      title
+    }
+  }
+}

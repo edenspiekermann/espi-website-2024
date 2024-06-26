@@ -28,6 +28,16 @@ const nextConfig = {
       },
     ]
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.datocms-assets.com',
+        port: '',
+        // pathname: '/account123/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
