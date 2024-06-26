@@ -1,0 +1,30 @@
+@use "./breakpoints" as *;
+
+.container {
+  display: grid;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+
+  @include mqHelper(
+    "max-width",
+    calc(100% - 48px),
+    calc(100% - 80px),
+    calc(100% - 140px)
+  );
+
+  // mobile uses a 4 column grid
+  grid-template-columns: repeat(4, 1fr);
+
+  // desktop+ uses a 12 column grid
+  @include mq("tablet") {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  // let row size be auto determined
+  grid-template-rows: minmax(0, auto);
+
+  // Gaps per breakpoint
+  @include mqHelper("gap", 16px, 20px, 32px);
+  @include mqHelper("row-gap", 0, 0, 0);
+}

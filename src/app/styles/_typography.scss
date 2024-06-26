@@ -1,0 +1,268 @@
+@use "./breakpoints" as *;
+
+:root {
+  // responsive font sizes with no upper limit calculated from: https://websemantics.uk/tools/responsive-font-calculator/
+  --scaling-font-size-xl-desktop: calc(4rem + ((1vw - 10.24px) * 6.25));
+  --scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
+}
+
+// HEADLINE FONTS
+
+// XL Serif
+@mixin as-xl-serif {
+  font-weight: 450;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  font-family: "ff-meta-serif-web-pro", serif;
+
+  @include mqHelper(
+    "font-size",
+    48px,
+    64px,
+    var(--scaling-font-size-xl-desktop)
+  );
+}
+
+// XL Sans
+@mixin as-xl-sans {
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  font-family: "ff-real-text-pro", sans-serif;
+
+  @include mqHelper(
+    "font-size",
+    48px,
+    64px,
+    var(--scaling-font-size-xl-desktop)
+  );
+}
+
+// XL Sans - Bold
+@mixin as-xl-sans-bold {
+  font-weight: 450;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  font-family: "ff-real-text-pro", sans-serif;
+
+  @include mqHelper(
+    "font-size",
+    48px,
+    64px,
+    var(--scaling-font-size-xl-desktop)
+  );
+}
+
+// L Serif
+@mixin as-l-serif {
+  font-weight: 450;
+  font-family: "ff-meta-serif-web-pro", serif;
+  letter-spacing: -0.01em;
+  line-height: 110%;
+
+  @include mqHelper(
+    "font-size",
+    36px,
+    40px,
+    var(--scaling-font-size-l-desktop)
+  );
+}
+
+// L Sans
+@mixin as-l-sans {
+  font-weight: 400;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 110%;
+
+  @include mqHelper(
+    "font-size",
+    36px,
+    40px,
+    var(--scaling-font-size-l-desktop)
+  );
+}
+
+// L Sans - Bold
+@mixin as-l-sans-bold {
+  font-weight: 500;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 110%;
+
+  @include mqHelper(
+    "font-size",
+    36px,
+    40px,
+    var(--scaling-font-size-l-desktop)
+  );
+}
+
+// M Serif
+@mixin as-m-serif {
+  font-weight: 450;
+  font-family: "ff-meta-serif-web-pro", serif;
+  letter-spacing: -0.01em;
+  line-height: 120%;
+
+  @include mqHelper("font-size", 28px, 31px, 32px);
+}
+
+// M Sans
+@mixin as-m-sans {
+  font-weight: 400;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 120%;
+
+  @include mqHelper("font-size", 28px, 31px, 32px);
+}
+
+// M Sans Bold
+@mixin as-m-sans-bold {
+  font-weight: 500;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 120%;
+
+  @include mqHelper("font-size", 28px, 31px, 32px);
+}
+
+// S Serif
+@mixin as-s-serif {
+  font-weight: 450;
+  font-family: "ff-meta-serif-web-pro", serif;
+  letter-spacing: -0.01em;
+  line-height: 125%;
+
+  @include mqHelper("font-size", 24px, 26px, 28px);
+}
+
+// S Serif
+@mixin as-s-serif {
+  font-weight: 450;
+  font-family: "ff-meta-serif-web-pro", serif;
+  letter-spacing: -0.01em;
+  line-height: 125%;
+
+  @include mqHelper("font-size", 24px, 26px, 28px);
+}
+
+// S Sans
+@mixin as-s-sans {
+  font-weight: 400;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 125%;
+
+  @include mqHelper("font-size", 24px, 26px, 28px);
+}
+
+// S Sans - Bold
+@mixin as-s-sans-bold {
+  font-weight: 500;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 125%;
+
+  @include mqHelper("font-size", 24px, 26px, 28px);
+}
+
+// XS Sans
+@mixin as-xs-sans {
+  font-weight: 400;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 125%;
+
+  @include mqHelper("font-size", 22px, 20px, 24px);
+}
+
+// XXS Sans
+@mixin as-xxs-sans {
+  font-weight: 400;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: normal;
+  line-height: 130%;
+
+  @include mqHelper("font-size", 16px, 14px, 16px);
+}
+
+// TEXT
+
+// XL Text
+@mixin as-xl-text {
+  font-weight: 400;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 130%;
+
+  @include mqHelper("font-size", 32px, 34px, 36px);
+}
+
+// L Text
+@mixin as-l-text {
+  font-weight: 400;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 140%;
+
+  @include mqHelper("font-size", 20px, 20px, 24px);
+}
+
+// M Text
+@mixin as-m-text {
+  font-weight: 400;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 150%;
+  font-size: 18px;
+}
+
+// M Text - Bold
+@mixin as-m-text-bold {
+  font-weight: 500;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 150%;
+  font-size: 18px;
+}
+
+// S Text
+@mixin as-s-text {
+  font-weight: 400;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: normal;
+  line-height: 140%;
+  font-size: 16px;
+}
+
+// XS Text
+@mixin as-xs-text {
+  font-weight: 400;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: normal;
+  line-height: 130%;
+  font-size: 12px;
+}
+
+// ELEMENTS
+
+// M Element (Used for Navigation, Buttons, Filters, Large tags, etc.)
+@mixin as-m-element {
+  font-weight: 450;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 100%;
+  font-size: 18px;
+}
+
+// S Element (Used for small tags, mobile menus, etc.)
+@mixin as-s-element {
+  font-weight: 400;
+  font-family: "ff-real-text-pro", sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 100%;
+  font-size: 14px;
+}

@@ -1,0 +1,18 @@
+@import "colors";
+@import "z-indexes";
+@import "fonts";
+
+//default heading a paragraph tags to have 0 margin
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
