@@ -1,8 +1,11 @@
 import { nanoid } from "nanoid";
 import { SectionDevelopment } from "./development";
+import { StatementSimple } from "./statement-simple";
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
+    case "StatementSimpleRecord":
+      return <StatementSimple key={section.id} {...section} />;
     default: {
       return <SectionDevelopment key={nanoid()} {...section} />;
     }

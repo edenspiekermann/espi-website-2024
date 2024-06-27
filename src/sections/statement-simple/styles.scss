@@ -1,0 +1,18 @@
+@use "../../app/styles/base.scss" as *;
+
+.statement-simple {
+  text-align: center;
+}
+
+.statement-simple__content {
+  grid-column: 1/-1;
+  @include as-xl-serif;
+
+  @include mq("desktop") {
+    grid-column: 3/11;
+  }
+
+  strong {
+    @include as-xl-sans-bold;
+  }
+}
