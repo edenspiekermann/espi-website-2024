@@ -3915,7 +3915,7 @@ export type StatementSimpleModelFilter = {
   id?: InputMaybe<ItemIdFilter>;
   invertColor?: InputMaybe<BooleanFilter>;
   text?: InputMaybe<TextFilter>;
-  textSize?: InputMaybe<BooleanFilter>;
+  textSize?: InputMaybe<StringFilter>;
 };
 
 export enum StatementSimpleModelOrderBy {
@@ -3962,7 +3962,7 @@ export type StatementSimpleRecord = RecordInterface & {
   id: Scalars["ItemId"]["output"];
   invertColor: Scalars["BooleanType"]["output"];
   text: Scalars["String"]["output"];
-  textSize: Scalars["BooleanType"]["output"];
+  textSize?: Maybe<Scalars["String"]["output"]>;
 };
 
 /** Record of type Statement Simple (statement_simple) */
@@ -4536,7 +4536,7 @@ export type PageQuery = {
           id: string;
           text: string;
           invertColor: boolean;
-          textSize: boolean;
+          textSize?: string | null;
         }
     >;
   } | null;
@@ -4547,7 +4547,7 @@ export type StatementSimpleFragment = {
   id: string;
   text: string;
   invertColor: boolean;
-  textSize: boolean;
+  textSize?: string | null;
 };
 
 export const StatementSimpleFragmentDoc = {
