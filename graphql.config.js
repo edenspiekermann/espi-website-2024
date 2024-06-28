@@ -11,7 +11,11 @@ module.exports = {
       }
     }
   ],
-  documents: ["src/**/*.graphql", "./src/graphql/*.graphql"],
+  documents: [
+    "src/sections/**/*.graphql",
+    "src/components/**/*.graphql",
+    "./src/graphql/*.graphql",
+  ],
   generates: {
     "src/graphql/types/generated.ts": {
       plugins: [

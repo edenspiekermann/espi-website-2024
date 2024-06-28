@@ -43,6 +43,141 @@ export type Scalars = {
   UploadId: { input: string; output: string };
 };
 
+/** Block of type Article Image (article_image) */
+export type ArticleImageRecord = RecordInterface & {
+  __typename?: "ArticleImageRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  asset: FileField;
+  id: Scalars["ItemId"]["output"];
+};
+
+/** Block of type Article Image (article_image) */
+export type ArticleImageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type ArticleModelContentBlocksField =
+  | ArticleImageRecord
+  | ArticleQuoteRecord;
+
+export type ArticleModelContentField = {
+  __typename?: "ArticleModelContentField";
+  blocks: Array<ArticleModelContentBlocksField>;
+  links: Array<Scalars["String"]["output"]>;
+  value: Scalars["JsonField"]["output"];
+};
+
+export type ArticleModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ArticleModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ArticleModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  author?: InputMaybe<StringFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
+  headerImage?: InputMaybe<FileFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export enum ArticleModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  AuthorAsc = "author_ASC",
+  AuthorDesc = "author_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+}
+
+/** Block of type Article Quote (article_quote) */
+export type ArticleQuoteRecord = RecordInterface & {
+  __typename?: "ArticleQuoteRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  author?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ItemId"]["output"];
+  quote: Scalars["String"]["output"];
+};
+
+/** Block of type Article Quote (article_quote) */
+export type ArticleQuoteRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Article (article) */
+export type ArticleRecord = RecordInterface & {
+  __typename?: "ArticleRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  author: Scalars["String"]["output"];
+  content: ArticleModelContentField;
+  headerImage?: Maybe<FileField>;
+  id: Scalars["ItemId"]["output"];
+  slug: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
+};
+
+/** Record of type Article (article) */
+export type ArticleRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter Boolean fields */
 export type BooleanFilter = {
   /** Search for records with an exact match */
@@ -87,6 +222,7 @@ export type CaseStudyModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  invertNav?: InputMaybe<BooleanFilter>;
   slug?: InputMaybe<SlugFilter>;
   subtitle?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
@@ -111,6 +247,8 @@ export enum CaseStudyModelOrderBy {
   UpdatedAtDesc = "_updatedAt_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  InvertNavAsc = "invertNav_ASC",
+  InvertNavDesc = "invertNav_DESC",
   SubtitleAsc = "subtitle_ASC",
   SubtitleDesc = "subtitle_DESC",
   TitleAsc = "title_ASC",
@@ -134,6 +272,7 @@ export type CaseStudyRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
+  invertNav: Scalars["BooleanType"]["output"];
   slug: Scalars["String"]["output"];
   subtitle: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
@@ -192,7 +331,48 @@ export type CreatedAtFilter = {
   neq?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
 
-/** Block of type Divider Title (divider_title) */
+export type DividerTitleModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<DividerTitleModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<DividerTitleModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  invertedColor?: InputMaybe<BooleanFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export enum DividerTitleModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  InvertedColorAsc = "invertedColor_ASC",
+  InvertedColorDesc = "invertedColor_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+}
+
+/** Record of type Divider Title (divider_title) */
 export type DividerTitleRecord = RecordInterface & {
   __typename?: "DividerTitleRecord";
   _createdAt: Scalars["DateTime"]["output"];
@@ -209,11 +389,109 @@ export type DividerTitleRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
+  invertedColor: Scalars["BooleanType"]["output"];
   title: Scalars["String"]["output"];
 };
 
-/** Block of type Divider Title (divider_title) */
+/** Record of type Divider Title (divider_title) */
 export type DividerTitleRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Drawer Item (drawer_item) */
+export type DrawerItemRecord = RecordInterface & {
+  __typename?: "DrawerItemRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  body: Scalars["String"]["output"];
+  id: Scalars["ItemId"]["output"];
+  title: Scalars["String"]["output"];
+};
+
+/** Block of type Drawer Item (drawer_item) */
+export type DrawerItemRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Drawer Item (drawer_item) */
+export type DrawerItemRecordBodyArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type DrawerModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<DrawerModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<DrawerModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  media?: InputMaybe<FileFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export enum DrawerModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+}
+
+/** Record of type Drawer (drawer) */
+export type DrawerRecord = RecordInterface & {
+  __typename?: "DrawerRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  items: Array<DrawerItemRecord>;
+  media: FileField;
+  title: Scalars["String"]["output"];
+};
+
+/** Record of type Drawer (drawer) */
+export type DrawerRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -438,13 +716,88 @@ export type FooterRecord = RecordInterface & {
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
   pageLinks: Array<PageRecord>;
-  socialLinks: Array<Scalars["String"]["output"]>;
+  socialLinks: Array<SocialLinkRecord>;
   title: Scalars["String"]["output"];
 };
 
 /** Record of type Footer (footer) */
 export type FooterRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
+};
+
+export type FullWidthImageModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<FullWidthImageModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<FullWidthImageModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+};
+
+export enum FullWidthImageModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+}
+
+/** Record of type Full Width Image (full_width_image) */
+export type FullWidthImageRecord = RecordInterface & {
+  __typename?: "FullWidthImageRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  image: FileField;
+};
+
+/** Record of type Full Width Image (full_width_image) */
+export type FullWidthImageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Specifies how to filter Multiple files/images field */
+export type GalleryFilter = {
+  /** Filter records that have all of the specified uploads. The specified values must be Upload IDs */
+  allIn?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]["input"]>>>;
+  /** Filter records that have one of the specified uploads. The specified values must be Upload IDs */
+  anyIn?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]["input"]>>>;
+  /** Search for records with an exact match. The specified values must be Upload IDs */
+  eq?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]["input"]>>>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records that do not have any of the specified uploads. The specified values must be Upload IDs */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]["input"]>>>;
 };
 
 export type GlobalSeoField = {
@@ -549,9 +902,41 @@ export type ImgixParams = {
    *
    * Removes background from image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background-removal/bg-remove)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-remove)
    */
   bgRemove?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /**
+   * Background Removal Fallback
+   *
+   * Overrides default fallback behavior for bg-remove failures.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-remove)
+   */
+  bgRemoveFallback?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /**
+   * Background Replacement
+   *
+   * Replaces background from image using a string based prompt.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-replace)
+   */
+  bgReplace?: InputMaybe<Scalars["String"]["input"]>;
+  /**
+   * Background Removal Fallback
+   *
+   * Overrides default fallback behavior for bg-replace failures.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-replace)
+   */
+  bgReplaceFallback?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /**
+   * Background Replacement Negative Prompt
+   *
+   * Provides a negative text suggestion for background replacement.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-replace-neg-prompt)
+   */
+  bgReplaceNegPrompt?: InputMaybe<Scalars["String"]["input"]>;
   /**
    * Blend
    *
@@ -941,6 +1326,138 @@ export type ImgixParams = {
    */
   fillColor?: InputMaybe<Scalars["String"]["input"]>;
   /**
+   * Fill Generative Fallback
+   *
+   * Sets the fallback behavior for generative fill.
+   *
+   * Depends on: `fit=fill`, `fill=gen`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-fallback)
+   */
+  fillGenFallback?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /**
+   * Fill Generative Negative Prompt
+   *
+   * Provides a negative text suggestion to the generative fill parameter. Used to reduce the probability of a subject, detail, or object appearing in generative output.
+   *
+   * Depends on: `fit=fill`, `fill=gen`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-neg-prompt)
+   */
+  fillGenNegPrompt?: InputMaybe<Scalars["String"]["input"]>;
+  /**
+   * Fill Generative Position
+   *
+   * Sets the position of the Origin Image in relation to the generative fill.
+   *
+   * Depends on: `fit=fill`, `fill=gen`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-pos)
+   */
+  fillGenPos?: InputMaybe<Array<ImgixParamsFillGenPos>>;
+  /**
+   * Fill Generative Prompt
+   *
+   * Provides a text suggestion to the generative fill parameter.
+   *
+   * Depends on: `fit=fill`, `fill=gen`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-prompt)
+   */
+  fillGenPrompt?: InputMaybe<Scalars["String"]["input"]>;
+  /**
+   * Fill Generative Seed
+   *
+   * Sets the generative seed value. Used to generate similar outputs from different prompts.
+   *
+   * Depends on: `fit=fill`, `fill=gen`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-seed)
+   */
+  fillGenSeed?: InputMaybe<Scalars["IntType"]["input"]>;
+  /**
+   * Fill Gradient Color Space
+   *
+   * Defines the color space as linear, sRGB, Oklab, HSL, or LCH for gradient color interpolation
+   *
+   * Depends on: `fit=fill`, `fill=gradient`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-cs)
+   */
+  fillGradientCs?: InputMaybe<ImgixParamsFillGradientCs>;
+  /**
+   * Fill Gradient Linear
+   *
+   * Blends a gradient between two colors, {color1} and {color2}, along a straight path
+   *
+   * Depends on: `fit=fill`, `fill=gradient`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-linear)
+   */
+  fillGradientLinear?: InputMaybe<Scalars["String"]["input"]>;
+  /**
+   * Fill Gradient Linear Direction
+   *
+   * The fill-gradient-linear-direction specifies the gradient's direction, flowing towards the bottom, top, right, or left
+   *
+   * Depends on: `fit=fill`, `fill=gen`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-linear-direction)
+   */
+  fillGradientLinearDirection?: InputMaybe<
+    Array<ImgixParamsFillGradientLinearDirection>
+  >;
+  /**
+   * Fill Gradient Radial
+   *
+   * The fill-gradient-radial parameter creates a circular gradient transitioning from a central color (Color1) to an outer color (Color2)
+   *
+   * Depends on: `fit=fill`, `fill=gradient`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial)
+   */
+  fillGradientRadial?: InputMaybe<Scalars["String"]["input"]>;
+  /**
+   * Fill Gradient Radial Radius
+   *
+   * Parameter defines the radial gradient's radius as pixels or a percentage (0.0-1.0) of the image's smallest dimension
+   *
+   * Depends on: `fit=fill`, `fill=gradient`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial-radius)
+   */
+  fillGradientRadialRadius?: InputMaybe<Scalars["String"]["input"]>;
+  /**
+   * Fill Gradient Radial X
+   *
+   * Specifies the location of the radial gradient's center along the x-axis, using either a pixel value or a floating point percentage (ranging from 0.0 to 1.0) of the image's width
+   *
+   * Depends on: `fit=fill`, `fill=gradient`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial-x)
+   */
+  fillGradientRadialX?: InputMaybe<Scalars["FloatType"]["input"]>;
+  /**
+   * Fill Gradient Radial Y
+   *
+   * Parameter sets the radial gradient's center on the y-axis, using pixels or a 0.0 to 1.0 percentage of the image's height
+   *
+   * Depends on: `fit=fill`, `fill=gradient`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial-y)
+   */
+  fillGradientRadialY?: InputMaybe<Scalars["FloatType"]["input"]>;
+  /**
+   * Fill Gradient Type
+   *
+   * Specifies if a gradient is radial (circular) or linear (straight)
+   *
+   * Depends on: `fit=fill`, `fill=gradient`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-type)
+   */
+  fillGradientType?: InputMaybe<ImgixParamsFillGradientType>;
+  /**
    * Resize Fit Mode
    *
    * Specifies how to map the source image to the output image dimensions.
@@ -1027,6 +1544,8 @@ export type ImgixParams = {
   /**
    * Animated Gif Quality
    *
+   * Specifies the quality of the animated gif. The higher the value, the better more compression is applied.
+   *
    * Depends on: `fm=gif`
    */
   gifQ?: InputMaybe<Scalars["IntType"]["input"]>;
@@ -1098,6 +1617,12 @@ export type ImgixParams = {
    * Determine if IPTC data should be passed for JPEG images.
    */
   iptc?: InputMaybe<ImgixParamsIptc>;
+  /**
+   * Jpg Progressive
+   *
+   * Specifies whether or not a jpg/jpeg uses progressive (true) or baseline (false)
+   */
+  jpgProgressive?: InputMaybe<Scalars["BooleanType"]["input"]>;
   /**
    * Animation Loop Count
    *
@@ -1489,6 +2014,12 @@ export type ImgixParams = {
    */
   skipDefaultOptimizations?: InputMaybe<Scalars["BooleanType"]["input"]>;
   /**
+   * Sanitize Svg
+   *
+   * Specifies whether to sanitize an SVG.
+   */
+  svgSanitize?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /**
    * Transparency
    *
    * Adds checkerboard behind images which support transparency.
@@ -1623,16 +2154,6 @@ export type ImgixParams = {
    */
   txtLead?: InputMaybe<Scalars["IntType"]["input"]>;
   /**
-   * Text Ligatures
-   *
-   * Controls the level of ligature substitution
-   *
-   * Depends on: `txt`
-   *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-lig)
-   */
-  txtLig?: InputMaybe<Scalars["IntType"]["input"]>;
-  /**
    * Text Outline
    *
    * Outlines the rendered text with a specified color.
@@ -1722,6 +2243,22 @@ export type ImgixParams = {
    * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-y)
    */
   txtY?: InputMaybe<Scalars["IntType"]["input"]>;
+  /**
+   * Super Resolution
+   *
+   * Uses generative AI fill to upscale low resolution images.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/super-resolution/upscale)
+   */
+  upscale?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /**
+   * Super Resolution Fallback
+   *
+   * Overrides default fallback behavior for super resolution failures
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/super-resolution/upscale-fallback)
+   */
+  upscaleFallback?: InputMaybe<Scalars["BooleanType"]["input"]>;
   /**
    * Unsharp Mask
    *
@@ -1839,7 +2376,39 @@ export enum ImgixParamsCs {
 
 export enum ImgixParamsFill {
   Blur = "blur",
+  Gen = "gen",
+  Generative = "generative",
+  Gradient = "gradient",
   Solid = "solid",
+}
+
+export enum ImgixParamsFillGenPos {
+  Bottom = "bottom",
+  Center = "center",
+  Left = "left",
+  Middle = "middle",
+  Right = "right",
+  Top = "top",
+}
+
+export enum ImgixParamsFillGradientCs {
+  Hsl = "hsl",
+  Lch = "lch",
+  Linear = "linear",
+  Oklab = "oklab",
+  Srgb = "srgb",
+}
+
+export enum ImgixParamsFillGradientLinearDirection {
+  Bottom = "bottom",
+  Left = "left",
+  Right = "right",
+  Top = "top",
+}
+
+export enum ImgixParamsFillGradientType {
+  Linear = "linear",
+  Radial = "radial",
 }
 
 export enum ImgixParamsFit {
@@ -1961,6 +2530,67 @@ export enum ItemStatus {
   Updated = "updated",
 }
 
+export type LeadershipCardsModelModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<LeadershipCardsModelModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<LeadershipCardsModelModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  people?: InputMaybe<LinksFilter>;
+};
+
+export enum LeadershipCardsModelModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+}
+
+/** Record of type Leadership Cards (leadership_cards_model) */
+export type LeadershipCardsModelRecord = RecordInterface & {
+  __typename?: "LeadershipCardsModelRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  people: Array<PersonRecord>;
+};
+
+/** Record of type Leadership Cards (leadership_cards_model) */
+export type LeadershipCardsModelRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter Multiple-links fields */
 export type LinksFilter = {
   /** Filter records linked to all of the specified records. The specified values must be Record IDs */
@@ -2070,6 +2700,60 @@ export enum MuxThumbnailFormatType {
   Png = "png",
 }
 
+/** Block of type Nav Link (nav_link) */
+export type NavLinkRecord = RecordInterface & {
+  __typename?: "NavLinkRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  label: Scalars["String"]["output"];
+  slug: Scalars["String"]["output"];
+};
+
+/** Block of type Nav Link (nav_link) */
+export type NavLinkRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Navigation (navigation) */
+export type NavigationRecord = RecordInterface & {
+  __typename?: "NavigationRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  alternativeLogoText?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ItemId"]["output"];
+  links: Array<NavLinkRecord>;
+  showLogo: Scalars["BooleanType"]["output"];
+  socialLinks: Array<SocialLinkRecord>;
+};
+
+/** Record of type Navigation (navigation) */
+export type NavigationRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Block of type Numbered Statement (numbered_statement) */
 export type NumberedStatementRecord = RecordInterface & {
   __typename?: "NumberedStatementRecord";
@@ -2176,6 +2860,7 @@ export type PageModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  invertNavColor?: InputMaybe<BooleanFilter>;
   sections?: InputMaybe<LinksFilter>;
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
@@ -2200,6 +2885,8 @@ export enum PageModelOrderBy {
   UpdatedAtDesc = "_updatedAt_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  InvertNavColorAsc = "invertNavColor_ASC",
+  InvertNavColorDesc = "invertNavColor_DESC",
   TitleAsc = "title_ASC",
   TitleDesc = "title_DESC",
 }
@@ -2208,7 +2895,8 @@ export type PageModelSectionsField =
   | HomepageHeroRecord
   | LogoGridRecord
   | NumberedStatementsModelRecord
-  | StatementRecord;
+  | StatementLargeRecord
+  | StatementSimpleRecord;
 
 /** Record of type Page (page) */
 export type PageRecord = RecordInterface & {
@@ -2227,6 +2915,7 @@ export type PageRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
+  invertNavColor: Scalars["BooleanType"]["output"];
   sections: Array<PageModelSectionsField>;
   slug: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
@@ -2234,6 +2923,136 @@ export type PageRecord = RecordInterface & {
 
 /** Record of type Page (page) */
 export type PageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type PersonModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<PersonModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<PersonModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+  name?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+};
+
+export enum PersonModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  NameAsc = "name_ASC",
+  NameDesc = "name_DESC",
+  RoleAsc = "role_ASC",
+  RoleDesc = "role_DESC",
+}
+
+/** Record of type Person (person) */
+export type PersonRecord = RecordInterface & {
+  __typename?: "PersonRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  image: FileField;
+  name: Scalars["String"]["output"];
+  role: Scalars["String"]["output"];
+};
+
+/** Record of type Person (person) */
+export type PersonRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type PhotoCarouselModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<PhotoCarouselModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<PhotoCarouselModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  photos?: InputMaybe<GalleryFilter>;
+};
+
+export enum PhotoCarouselModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+}
+
+/** Record of type Photo Carousel (photo_carousel) */
+export type PhotoCarouselRecord = RecordInterface & {
+  __typename?: "PhotoCarouselRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  photos: Array<FileField>;
+};
+
+/** Record of type Photo Carousel (photo_carousel) */
+export type PhotoCarouselRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2259,11 +3078,21 @@ export type PublishedAtFilter = {
 export type Query = {
   __typename?: "Query";
   /** Returns meta information regarding a record collection */
+  _allArticlesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allCaseStudiesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allDividerTitlesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allDrawersMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allFootersMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allFullWidthImagesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allHomepageHerosMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allLeadershipCardsModelsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allLogoGridsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -2271,17 +3100,37 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allPagesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allStatementsMeta: CollectionMetadata;
+  _allPeopleMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allPhotoCarouselsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allSocialLinksMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allStatementLargesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allStatementSimplesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allStatsModelsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
   /** Returns the single instance record */
   _site: Site;
   /** Returns a collection of records */
+  allArticles: Array<ArticleRecord>;
+  /** Returns a collection of records */
   allCaseStudies: Array<CaseStudyRecord>;
+  /** Returns a collection of records */
+  allDividerTitles: Array<DividerTitleRecord>;
+  /** Returns a collection of records */
+  allDrawers: Array<DrawerRecord>;
   /** Returns a collection of records */
   allFooters: Array<FooterRecord>;
   /** Returns a collection of records */
+  allFullWidthImages: Array<FullWidthImageRecord>;
+  /** Returns a collection of records */
   allHomepageHeros: Array<HomepageHeroRecord>;
+  /** Returns a collection of records */
+  allLeadershipCardsModels: Array<LeadershipCardsModelRecord>;
   /** Returns a collection of records */
   allLogoGrids: Array<LogoGridRecord>;
   /** Returns a collection of records */
@@ -2289,30 +3138,80 @@ export type Query = {
   /** Returns a collection of records */
   allPages: Array<PageRecord>;
   /** Returns a collection of records */
-  allStatements: Array<StatementRecord>;
+  allPeople: Array<PersonRecord>;
+  /** Returns a collection of records */
+  allPhotoCarousels: Array<PhotoCarouselRecord>;
+  /** Returns a collection of records */
+  allSocialLinks: Array<SocialLinkRecord>;
+  /** Returns a collection of records */
+  allStatementLarges: Array<StatementLargeRecord>;
+  /** Returns a collection of records */
+  allStatementSimples: Array<StatementSimpleRecord>;
+  /** Returns a collection of records */
+  allStatsModels: Array<StatsModelRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
   /** Returns a specific record */
+  article?: Maybe<ArticleRecord>;
+  /** Returns a specific record */
   caseStudy?: Maybe<CaseStudyRecord>;
+  /** Returns a specific record */
+  dividerTitle?: Maybe<DividerTitleRecord>;
+  /** Returns a specific record */
+  drawer?: Maybe<DrawerRecord>;
   /** Returns a specific record */
   footer?: Maybe<FooterRecord>;
   /** Returns a specific record */
+  fullWidthImage?: Maybe<FullWidthImageRecord>;
+  /** Returns a specific record */
   homepageHero?: Maybe<HomepageHeroRecord>;
   /** Returns a specific record */
+  leadershipCardsModel?: Maybe<LeadershipCardsModelRecord>;
+  /** Returns a specific record */
   logoGrid?: Maybe<LogoGridRecord>;
+  /** Returns the single instance record */
+  navigation?: Maybe<NavigationRecord>;
   /** Returns a specific record */
   numberedStatementsModel?: Maybe<NumberedStatementsModelRecord>;
   /** Returns a specific record */
   page?: Maybe<PageRecord>;
   /** Returns a specific record */
-  statement?: Maybe<StatementRecord>;
+  person?: Maybe<PersonRecord>;
+  /** Returns a specific record */
+  photoCarousel?: Maybe<PhotoCarouselRecord>;
+  /** Returns a specific record */
+  socialLink?: Maybe<SocialLinkRecord>;
+  /** Returns a specific record */
+  statementLarge?: Maybe<StatementLargeRecord>;
+  /** Returns a specific record */
+  statementSimple?: Maybe<StatementSimpleRecord>;
+  /** Returns a specific record */
+  statsModel?: Maybe<StatsModelRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
 };
 
 /** The query root for this schema */
+export type Query_AllArticlesMetaArgs = {
+  filter?: InputMaybe<ArticleModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
 export type Query_AllCaseStudiesMetaArgs = {
   filter?: InputMaybe<CaseStudyModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllDividerTitlesMetaArgs = {
+  filter?: InputMaybe<DividerTitleModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllDrawersMetaArgs = {
+  filter?: InputMaybe<DrawerModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2323,8 +3222,20 @@ export type Query_AllFootersMetaArgs = {
 };
 
 /** The query root for this schema */
+export type Query_AllFullWidthImagesMetaArgs = {
+  filter?: InputMaybe<FullWidthImageModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
 export type Query_AllHomepageHerosMetaArgs = {
   filter?: InputMaybe<HomepageHeroModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllLeadershipCardsModelsMetaArgs = {
+  filter?: InputMaybe<LeadershipCardsModelModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2347,8 +3258,38 @@ export type Query_AllPagesMetaArgs = {
 };
 
 /** The query root for this schema */
-export type Query_AllStatementsMetaArgs = {
-  filter?: InputMaybe<StatementModelFilter>;
+export type Query_AllPeopleMetaArgs = {
+  filter?: InputMaybe<PersonModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllPhotoCarouselsMetaArgs = {
+  filter?: InputMaybe<PhotoCarouselModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllSocialLinksMetaArgs = {
+  filter?: InputMaybe<SocialLinkModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllStatementLargesMetaArgs = {
+  filter?: InputMaybe<StatementLargeModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllStatementSimplesMetaArgs = {
+  filter?: InputMaybe<StatementSimpleModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllStatsModelsMetaArgs = {
+  filter?: InputMaybe<StatsModelModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2365,12 +3306,42 @@ export type Query_SiteArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllArticlesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ArticleModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ArticleModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllCaseStudiesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<CaseStudyModelFilter>;
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<CaseStudyModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllDividerTitlesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<DividerTitleModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<DividerTitleModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllDrawersArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<DrawerModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<DrawerModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -2385,12 +3356,32 @@ export type QueryAllFootersArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllFullWidthImagesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<FullWidthImageModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<FullWidthImageModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllHomepageHerosArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<HomepageHeroModelFilter>;
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<HomepageHeroModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllLeadershipCardsModelsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<LeadershipCardsModelModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<LeadershipCardsModelModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -2425,12 +3416,62 @@ export type QueryAllPagesArgs = {
 };
 
 /** The query root for this schema */
-export type QueryAllStatementsArgs = {
+export type QueryAllPeopleArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<StatementModelFilter>;
+  filter?: InputMaybe<PersonModelFilter>;
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<StatementModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<PersonModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllPhotoCarouselsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PhotoCarouselModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PhotoCarouselModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllSocialLinksArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SocialLinkModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SocialLinkModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllStatementLargesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<StatementLargeModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<StatementLargeModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllStatementSimplesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<StatementSimpleModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<StatementSimpleModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllStatsModelsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<StatsModelModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<StatsModelModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -2445,11 +3486,35 @@ export type QueryAllUploadsArgs = {
 };
 
 /** The query root for this schema */
+export type QueryArticleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ArticleModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ArticleModelOrderBy>>>;
+};
+
+/** The query root for this schema */
 export type QueryCaseStudyArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<CaseStudyModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<CaseStudyModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryDividerTitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<DividerTitleModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<DividerTitleModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryDrawerArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<DrawerModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<DrawerModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -2461,6 +3526,14 @@ export type QueryFooterArgs = {
 };
 
 /** The query root for this schema */
+export type QueryFullWidthImageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<FullWidthImageModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<FullWidthImageModelOrderBy>>>;
+};
+
+/** The query root for this schema */
 export type QueryHomepageHeroArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<HomepageHeroModelFilter>;
@@ -2469,11 +3542,25 @@ export type QueryHomepageHeroArgs = {
 };
 
 /** The query root for this schema */
+export type QueryLeadershipCardsModelArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<LeadershipCardsModelModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<LeadershipCardsModelModelOrderBy>>>;
+};
+
+/** The query root for this schema */
 export type QueryLogoGridArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<LogoGridModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<LogoGridModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryNavigationArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** The query root for this schema */
@@ -2493,11 +3580,51 @@ export type QueryPageArgs = {
 };
 
 /** The query root for this schema */
-export type QueryStatementArgs = {
+export type QueryPersonArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<StatementModelFilter>;
+  filter?: InputMaybe<PersonModelFilter>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<StatementModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<PersonModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryPhotoCarouselArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PhotoCarouselModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PhotoCarouselModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QuerySocialLinkArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SocialLinkModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SocialLinkModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryStatementLargeArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<StatementLargeModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<StatementLargeModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryStatementSimpleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<StatementSimpleModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<StatementSimpleModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryStatsModelArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<StatsModelModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<StatsModelModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -2606,9 +3733,104 @@ export type SlugFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };
 
-export type StatementModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<StatementModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<StatementModelFilter>>>;
+export type SocialLinkModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SocialLinkModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SocialLinkModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+  title?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export enum SocialLinkModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+  UrlAsc = "url_ASC",
+  UrlDesc = "url_DESC",
+}
+
+/** Record of type Social Link (social_link) */
+export type SocialLinkRecord = RecordInterface & {
+  __typename?: "SocialLinkRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  image?: Maybe<FileField>;
+  title: Scalars["String"]["output"];
+  url: Scalars["String"]["output"];
+};
+
+/** Record of type Social Link (social_link) */
+export type SocialLinkRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Stat (stat) */
+export type StatRecord = RecordInterface & {
+  __typename?: "StatRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  context: Scalars["String"]["output"];
+  id: Scalars["ItemId"]["output"];
+  statistic: Scalars["String"]["output"];
+};
+
+/** Block of type Stat (stat) */
+export type StatRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type StatementLargeModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<StatementLargeModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<StatementLargeModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
   _isValid?: InputMaybe<BooleanFilter>;
@@ -2622,7 +3844,7 @@ export type StatementModelFilter = {
   text?: InputMaybe<StructuredTextFilter>;
 };
 
-export enum StatementModelOrderBy {
+export enum StatementLargeModelOrderBy {
   CreatedAtAsc = "_createdAt_ASC",
   CreatedAtDesc = "_createdAt_DESC",
   FirstPublishedAtAsc = "_firstPublishedAt_ASC",
@@ -2645,16 +3867,16 @@ export enum StatementModelOrderBy {
   IdDesc = "id_DESC",
 }
 
-export type StatementModelTextField = {
-  __typename?: "StatementModelTextField";
+export type StatementLargeModelTextField = {
+  __typename?: "StatementLargeModelTextField";
   blocks: Array<Scalars["String"]["output"]>;
   links: Array<Scalars["String"]["output"]>;
   value: Scalars["JsonField"]["output"];
 };
 
-/** Record of type Statement (statement) */
-export type StatementRecord = RecordInterface & {
-  __typename?: "StatementRecord";
+/** Record of type Statement Large (statement_large) */
+export type StatementLargeRecord = RecordInterface & {
+  __typename?: "StatementLargeRecord";
   _createdAt: Scalars["DateTime"]["output"];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars["String"]["output"]>;
@@ -2671,11 +3893,145 @@ export type StatementRecord = RecordInterface & {
   addCallToAction: Scalars["BooleanType"]["output"];
   callToAction?: Maybe<CallToActionRecord>;
   id: Scalars["ItemId"]["output"];
-  text: StatementModelTextField;
+  text: StatementLargeModelTextField;
 };
 
-/** Record of type Statement (statement) */
-export type StatementRecord_SeoMetaTagsArgs = {
+/** Record of type Statement Large (statement_large) */
+export type StatementLargeRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type StatementSimpleModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<StatementSimpleModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<StatementSimpleModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  invertColor?: InputMaybe<BooleanFilter>;
+  text?: InputMaybe<TextFilter>;
+  textSize?: InputMaybe<StringFilter>;
+};
+
+export enum StatementSimpleModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  InvertColorAsc = "invertColor_ASC",
+  InvertColorDesc = "invertColor_DESC",
+  TextSizeAsc = "textSize_ASC",
+  TextSizeDesc = "textSize_DESC",
+}
+
+/** Record of type Statement Simple (statement_simple) */
+export type StatementSimpleRecord = RecordInterface & {
+  __typename?: "StatementSimpleRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  invertColor: Scalars["BooleanType"]["output"];
+  text: Scalars["String"]["output"];
+  textSize?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Record of type Statement Simple (statement_simple) */
+export type StatementSimpleRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Statement Simple (statement_simple) */
+export type StatementSimpleRecordTextArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type StatsModelModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<StatsModelModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<StatsModelModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+};
+
+export enum StatsModelModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+}
+
+/** Record of type Stats (stats_model) */
+export type StatsModelRecord = RecordInterface & {
+  __typename?: "StatsModelRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  stats: Array<StatRecord>;
+};
+
+/** Record of type Stats (stats_model) */
+export type StatsModelRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2738,6 +4094,20 @@ export type Tag = {
   attributes?: Maybe<Scalars["MetaTagAttributes"]["output"]>;
   content?: Maybe<Scalars["String"]["output"]>;
   tag: Scalars["String"]["output"];
+};
+
+/** Specifies how to filter text fields */
+export type TextFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records with the specified field set as blank (null or empty string) */
+  isBlank?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records based on a regular expression */
+  matches?: InputMaybe<StringMatchesFilter>;
+  /** Exclude records based on a regular expression */
+  notMatches?: InputMaybe<StringMatchesFilter>;
 };
 
 /** Specifies how to filter by upload type */
@@ -3134,6 +4504,29 @@ export type FocalPoint = {
   y: Scalars["FloatType"]["output"];
 };
 
+export type NavigationQueryVariables = Exact<{ [key: string]: never }>;
+
+export type NavigationQuery = {
+  __typename?: "Query";
+  navigation?: {
+    __typename: "NavigationRecord";
+    alternativeLogoText?: string | null;
+    showLogo: boolean;
+    links: Array<{
+      __typename?: "NavLinkRecord";
+      id: string;
+      label: string;
+      slug: string;
+    }>;
+    socialLinks: Array<{
+      __typename?: "SocialLinkRecord";
+      id: string;
+      title: string;
+      url: string;
+    }>;
+  } | null;
+};
+
 export type AllPagesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type AllPagesQuery = {
@@ -3150,6 +4543,7 @@ export type PageQuery = {
   page?: {
     __typename?: "PageRecord";
     title: string;
+    invertNavColor: boolean;
     seo: Array<{
       __typename?: "Tag";
       attributes?: Record<string, string> | null;
@@ -3157,14 +4551,219 @@ export type PageQuery = {
       tag: string;
     }>;
     sections: Array<
-      | { __typename: "HomepageHeroRecord" }
+      | {
+          __typename: "HomepageHeroRecord";
+          id: string;
+          media: {
+            __typename?: "FileField";
+            video?: {
+              __typename?: "UploadVideoField";
+              streamingUrl: string;
+              mp4Url?: string | null;
+            } | null;
+            responsiveImage?: {
+              __typename?: "ResponsiveImage";
+              src: string;
+              height: number;
+              width: number;
+              alt?: string | null;
+              title?: string | null;
+            } | null;
+          };
+        }
       | { __typename: "LogoGridRecord" }
       | { __typename: "NumberedStatementsModelRecord" }
-      | { __typename: "StatementRecord" }
+      | { __typename: "StatementLargeRecord" }
+      | {
+          __typename: "StatementSimpleRecord";
+          id: string;
+          text: string;
+          invertColor: boolean;
+          textSize?: string | null;
+        }
     >;
   } | null;
 };
 
+export type HomepageHeroFragment = {
+  __typename: "HomepageHeroRecord";
+  id: string;
+  media: {
+    __typename?: "FileField";
+    video?: {
+      __typename?: "UploadVideoField";
+      streamingUrl: string;
+      mp4Url?: string | null;
+    } | null;
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      height: number;
+      width: number;
+      alt?: string | null;
+      title?: string | null;
+    } | null;
+  };
+};
+
+export type StatementSimpleFragment = {
+  __typename: "StatementSimpleRecord";
+  id: string;
+  text: string;
+  invertColor: boolean;
+  textSize?: string | null;
+};
+
+export const HomepageHeroFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HomepageHero" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HomepageHeroRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "streamingUrl" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HomepageHeroFragment, unknown>;
+export const StatementSimpleFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementSimple" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementSimpleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StatementSimpleFragment, unknown>;
+export const NavigationDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Navigation" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "navigation" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "links" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "alternativeLogoText" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "showLogo" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "socialLinks" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<NavigationQuery, NavigationQueryVariables>;
 export const AllPagesDocument = {
   kind: "Document",
   definitions: [
@@ -3278,12 +4877,110 @@ export const PageDocument = {
                         kind: "Field",
                         name: { kind: "Name", value: "__typename" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "HomepageHero" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "StatementSimple" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "invertNavColor" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HomepageHero" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HomepageHeroRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "streamingUrl" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
                     ],
                   },
                 },
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementSimple" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementSimpleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textSize" } },
         ],
       },
     },

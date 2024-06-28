@@ -1,0 +1,38 @@
+@use "../../app/styles/base.scss" as *;
+
+.statementSimple {
+  text-align: center;
+  padding: 24px 0px;
+  margin: 0;
+
+  @include mq("desktop") {
+    padding: 32px 0px;
+  }
+}
+
+.inverted {
+  background-color: var(--color-espi-black);
+  color: var(--color-white);
+}
+
+.xl {
+  @include as-xl-serif;
+  strong {
+    @include as-xl-sans-bold;
+  }
+}
+
+.l {
+  @include as-l-serif;
+  strong {
+    @include as-l-sans-bold;
+  }
+}
+
+.content {
+  grid-column: 1/-1;
+
+  @include mq("desktop") {
+    grid-column: 3/11;
+  }
+}

@@ -8,6 +8,9 @@ query Page($slug: String) {
     title
     sections {
       __typename
+      ...HomepageHero
+      ...StatementSimple
     }
+    invertNavColor
   }
 }

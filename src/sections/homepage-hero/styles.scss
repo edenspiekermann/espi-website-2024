@@ -1,0 +1,32 @@
+@use "../../app//styles/base.scss" as *;
+
+.homepage-hero {
+  height: 100vh;
+  position: relative;
+
+  img,
+  video {
+    width: 100%;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  img {
+    object-position: center top;
+  }
+
+  svg {
+    position: absolute;
+    height: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include mqHelper("bottom", 31px, 31px, 39px);
+    @include mqHelper(
+      "width",
+      calc(100% - 48px),
+      calc(100% - 80px),
+      calc(100% - 140px)
+    );
+  }
+}
