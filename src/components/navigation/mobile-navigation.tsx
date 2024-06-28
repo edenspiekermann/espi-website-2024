@@ -2,6 +2,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import React from "react";
 import { MobileNavigationProperties } from "./interfaces";
+import styles from "./styles.module.scss";
 
 export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
   isOpen,
@@ -9,21 +10,21 @@ export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
   socialLinks,
 }) => {
   const classNameList = classNames({
-    "mobile-navigation": true,
-    "mobile-navigation--open": isOpen,
+    [styles.mobileNav]: true,
+    [styles.open]: isOpen,
   });
 
   return (
     <div className={classNameList}>
       <nav>
-        <ul className="mobile-navigation__list navigation__links">
+        <ul className={`${styles.mobileNavList} ${styles.navLinks}`}>
           {links &&
             links.map((link) => {
               return (
                 <li key={link.id}>
                   <Link
                     href={link.slug}
-                    className="navigation__links navigation__link"
+                    className={`${styles.navLinks} ${styles.navLink}`}
                   >
                     {link.label}
                   </Link>
@@ -31,7 +32,9 @@ export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
               );
             })}
         </ul>
-        <ul className="mobile-navigation__list navigation__links navigation__social-links">
+        <ul
+          className={`${styles.mobileNavList} ${styles.navLinks} ${styles.socialLinks}`}
+        >
           {socialLinks &&
             socialLinks.map((socialLink) => {
               return (
@@ -39,7 +42,7 @@ export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
                   <a
                     href={socialLink.url}
                     title={socialLink.title}
-                    className="navigation__links navigation__link navigation__social-link"
+                    className={`${styles.navLinks} ${styles.navLink} ${styles.socialLink}`}
                   >
                     {socialLink.title}
                   </a>

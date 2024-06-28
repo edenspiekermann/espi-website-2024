@@ -1,14 +1,15 @@
 import React from "react";
 import { HamburgerProperties } from "./interfaces";
 import classnames from "classnames";
+import styles from "./styles.module.scss";
 
 export const MenuToggle: React.FC<HamburgerProperties> = ({
   isOpen,
   onClick,
 }) => {
   const classNamesList = classnames({
-    "mobile-nav__menu-toggle": true,
-    "mobile-nav__menu-toggle--open": isOpen,
+    [styles.mobileNavMenuToggle]: true,
+    [styles.mobileNavMenuToggleOpen]: isOpen,
   });
   return (
     <button

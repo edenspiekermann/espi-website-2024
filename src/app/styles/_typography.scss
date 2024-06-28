@@ -1,10 +1,8 @@
 @use "./breakpoints" as *;
 
-:root {
-  // responsive font sizes with no upper limit calculated from: https://websemantics.uk/tools/responsive-font-calculator/
-  --scaling-font-size-xl-desktop: calc(4rem + ((1vw - 10.24px) * 6.25));
-  --scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
-}
+// responsive font sizes with no upper limit calculated from: https://websemantics.uk/tools/responsive-font-calculator/
+$scaling-font-size-xl-desktop: calc(4rem + ((1vw - 10.24px) * 6.25));
+$scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // HEADLINE FONTS
 
@@ -15,12 +13,7 @@
   letter-spacing: -0.02em;
   font-family: "ff-meta-serif-web-pro", serif;
 
-  @include mqHelper(
-    "font-size",
-    48px,
-    64px,
-    var(--scaling-font-size-xl-desktop)
-  );
+  @include mqHelper("font-size", 48px, 64px, $scaling-font-size-xl-desktop);
 }
 
 // XL Sans
@@ -30,12 +23,7 @@
   letter-spacing: -0.02em;
   font-family: "ff-real-text-pro", sans-serif;
 
-  @include mqHelper(
-    "font-size",
-    48px,
-    64px,
-    var(--scaling-font-size-xl-desktop)
-  );
+  @include mqHelper("font-size", 48px, 64px, $scaling-font-size-xl-desktop);
 }
 
 // XL Sans - Bold
@@ -46,12 +34,7 @@
   font-weight: 500;
   font-family: "ff-real-text-pro", sans-serif;
 
-  @include mqHelper(
-    "font-size",
-    48px,
-    64px,
-    var(--scaling-font-size-xl-desktop)
-  );
+  @include mqHelper("font-size", 48px, 64px, $scaling-font-size-xl-desktop);
 }
 
 // L Serif
@@ -61,12 +44,7 @@
   letter-spacing: -0.01em;
   line-height: 110%;
 
-  @include mqHelper(
-    "font-size",
-    36px,
-    40px,
-    var(--scaling-font-size-l-desktop)
-  );
+  @include mqHelper("font-size", 36px, 40px, $scaling-font-size-l-desktop);
 }
 
 // L Sans
@@ -76,12 +54,7 @@
   letter-spacing: -0.03em;
   line-height: 110%;
 
-  @include mqHelper(
-    "font-size",
-    36px,
-    40px,
-    var(--scaling-font-size-l-desktop)
-  );
+  @include mqHelper("font-size", 36px, 40px, $scaling-font-size-l-desktop);
 }
 
 // L Sans - Bold
@@ -91,12 +64,7 @@
   letter-spacing: -0.03em;
   line-height: 110%;
 
-  @include mqHelper(
-    "font-size",
-    36px,
-    40px,
-    var(--scaling-font-size-l-desktop)
-  );
+  @include mqHelper("font-size", 36px, 40px, $scaling-font-size-l-desktop);
 }
 
 // M Serif

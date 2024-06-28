@@ -2,7 +2,7 @@
 
 import { NavigationContext } from "@/context/navigation-context";
 import React, { useContext } from "react";
-import { Navigation } from ".";
+import { Navigation } from "./navigation";
 import { NavigationWrapperProperties } from "./interfaces";
 
 export const NavigationWrapper = ({

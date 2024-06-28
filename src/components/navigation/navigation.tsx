@@ -5,7 +5,7 @@ import { DesktopNavigation } from "./desktop-navigation";
 import { NavigationProperties } from "./interfaces";
 import { MobileNavigation } from "./mobile-navigation";
 import { EspiLogo } from "./espi-logo";
-import "./styles.scss";
+import styles from "./styles.module.scss";
 import Link from "next/link";
 import classNames from "classnames";
 import { MenuToggle } from "./menu-toggle";
@@ -25,9 +25,9 @@ export const Navigation: React.FC<NavigationProperties> = ({
   const { scrollY } = useScroll();
 
   const classNameList = classNames({
-    navigation: true,
-    "navigation--hidden": !show,
-    "navigation--inverted": isInverted,
+    [styles.navigation]: true,
+    [styles.hidden]: !show,
+    [styles.inverted]: isInverted,
   });
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -48,18 +48,18 @@ export const Navigation: React.FC<NavigationProperties> = ({
   return (
     <header className={classNameList}>
       <div className="container">
-        <div className="navigation__wrapper">
+        <div className={styles.wrapper}>
           {showLogo ? (
             <Link href="/" title="home">
               <EspiLogo />
             </Link>
           ) : (
-            <span className="navigation__alt-text">{alternativeLogoText}</span>
+            <span className={styles.navAltText}>{alternativeLogoText}</span>
           )}
-          <div className="navigation__menu">
+          <div className={styles.menu}>
             <MenuToggle isOpen={isOpen} onClick={toggle} />
           </div>
-          <div className="navigation__nav">
+          <div className={styles.nav}>
             <DesktopNavigation links={links} />
           </div>
           <MobileNavigation
