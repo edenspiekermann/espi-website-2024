@@ -4551,7 +4551,13 @@ export type PageQuery = {
       | { __typename: "LogoGridRecord" }
       | { __typename: "NumberedStatementsModelRecord" }
       | { __typename: "StatementLargeRecord" }
-      | { __typename: "StatementSimpleRecord" }
+      | {
+          __typename: "StatementSimpleRecord";
+          id: string;
+          text: string;
+          invertColor: boolean;
+          textSize?: string | null;
+        }
     >;
   } | null;
 };
@@ -4575,6 +4581,14 @@ export type HomepageHeroFragment = {
       title?: string | null;
     } | null;
   };
+};
+
+export type StatementSimpleFragment = {
+  __typename: "StatementSimpleRecord";
+  id: string;
+  text: string;
+  invertColor: boolean;
+  textSize?: string | null;
 };
 
 export const HomepageHeroFragmentDoc = {
@@ -4640,6 +4654,39 @@ export const HomepageHeroFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<HomepageHeroFragment, unknown>;
+export const StatementSimpleFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementSimple" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementSimpleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StatementSimpleFragment, unknown>;
 export const AllPagesDocument = {
   kind: "Document",
   definitions: [
@@ -4757,6 +4804,10 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "HomepageHero" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "StatementSimple" },
+                      },
                     ],
                   },
                 },
@@ -4825,6 +4876,34 @@ export const PageDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementSimple" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementSimpleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textSize" } },
         ],
       },
     },

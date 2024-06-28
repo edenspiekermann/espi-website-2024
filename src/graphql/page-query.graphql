@@ -9,6 +9,7 @@ query Page($slug: String) {
     sections {
       __typename
       ...HomepageHero
+      ...StatementSimple
     }
     invertNavColor
   }

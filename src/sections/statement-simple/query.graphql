@@ -1,0 +1,7 @@
+fragment StatementSimple on StatementSimpleRecord {
+  __typename
+  id
+  text(markdown: true)
+  invertColor
+  textSize
+}
