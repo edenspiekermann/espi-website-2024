@@ -4527,7 +4527,26 @@ export type PageQuery = {
       tag: string;
     }>;
     sections: Array<
-      | { __typename: "HomepageHeroRecord" }
+      | {
+          __typename: "HomepageHeroRecord";
+          id: string;
+          media: {
+            __typename?: "FileField";
+            video?: {
+              __typename?: "UploadVideoField";
+              streamingUrl: string;
+              mp4Url?: string | null;
+            } | null;
+            responsiveImage?: {
+              __typename?: "ResponsiveImage";
+              src: string;
+              height: number;
+              width: number;
+              alt?: string | null;
+              title?: string | null;
+            } | null;
+          };
+        }
       | { __typename: "LogoGridRecord" }
       | { __typename: "NumberedStatementsModelRecord" }
       | { __typename: "StatementLargeRecord" }
@@ -4542,6 +4561,27 @@ export type PageQuery = {
   } | null;
 };
 
+export type HomepageHeroFragment = {
+  __typename: "HomepageHeroRecord";
+  id: string;
+  media: {
+    __typename?: "FileField";
+    video?: {
+      __typename?: "UploadVideoField";
+      streamingUrl: string;
+      mp4Url?: string | null;
+    } | null;
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      height: number;
+      width: number;
+      alt?: string | null;
+      title?: string | null;
+    } | null;
+  };
+};
+
 export type StatementSimpleFragment = {
   __typename: "StatementSimpleRecord";
   id: string;
@@ -4550,6 +4590,69 @@ export type StatementSimpleFragment = {
   textSize?: string | null;
 };
 
+export const HomepageHeroFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HomepageHero" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HomepageHeroRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "streamingUrl" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HomepageHeroFragment, unknown>;
 export const StatementSimpleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -4698,8 +4801,70 @@ export const PageDocument = {
                       },
                       {
                         kind: "FragmentSpread",
+                        name: { kind: "Name", value: "HomepageHero" },
+                      },
+                      {
+                        kind: "FragmentSpread",
                         name: { kind: "Name", value: "StatementSimple" },
                       },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HomepageHero" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HomepageHeroRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "streamingUrl" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
                     ],
                   },
                 },

@@ -1,0 +1,14 @@
+@use "../../app/styles/base.scss" as *;
+
+.tag {
+  @include as-s-element;
+  padding: 8px 12px;
+  background-color: var(--color-light-grey);
+  width: fit-content;
+  border-radius: 80px;
+
+  &--large {
+    @include as-m-element;
+    padding: 15px 20px;
+  }
+}
