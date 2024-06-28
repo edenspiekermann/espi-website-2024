@@ -4520,6 +4520,7 @@ export type PageQuery = {
   page?: {
     __typename?: "PageRecord";
     title: string;
+    invertNavColor: boolean;
     seo: Array<{
       __typename?: "Tag";
       attributes?: Record<string, string> | null;
@@ -4809,6 +4810,10 @@ export const PageDocument = {
                       },
                     ],
                   },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "invertNavColor" },
                 },
               ],
             },

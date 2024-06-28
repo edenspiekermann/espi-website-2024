@@ -1,0 +1,17 @@
+query Navigation {
+  navigation {
+    __typename
+    links {
+      id
+      label
+      slug
+    }
+    alternativeLogoText
+    showLogo
+    socialLinks {
+      id
+      title
+      url
+    }
+  }
+}
