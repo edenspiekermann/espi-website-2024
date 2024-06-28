@@ -13,6 +13,7 @@ module.exports = {
   ],
   documents: [
     "src/sections/**/*.graphql",
+    "src/components/**/*.graphql",
     "./src/graphql/*.graphql",
   ],
   generates: {

@@ -4504,6 +4504,29 @@ export type FocalPoint = {
   y: Scalars["FloatType"]["output"];
 };
 
+export type NavigationQueryVariables = Exact<{ [key: string]: never }>;
+
+export type NavigationQuery = {
+  __typename?: "Query";
+  navigation?: {
+    __typename: "NavigationRecord";
+    alternativeLogoText?: string | null;
+    showLogo: boolean;
+    links: Array<{
+      __typename?: "NavLinkRecord";
+      id: string;
+      label: string;
+      slug: string;
+    }>;
+    socialLinks: Array<{
+      __typename?: "SocialLinkRecord";
+      id: string;
+      title: string;
+      url: string;
+    }>;
+  } | null;
+};
+
 export type AllPagesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type AllPagesQuery = {
@@ -4687,6 +4710,60 @@ export const StatementSimpleFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<StatementSimpleFragment, unknown>;
+export const NavigationDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Navigation" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "navigation" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "links" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "alternativeLogoText" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "showLogo" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "socialLinks" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<NavigationQuery, NavigationQueryVariables>;
 export const AllPagesDocument = {
   kind: "Document",
   definitions: [
