@@ -3,6 +3,4 @@ export interface ButtonProperties {
   onClick?: () => void;
   isInverted?: boolean;
   url?: string;
-  isScrollButton?: boolean;
-  isRevealButton?: boolean;
 }
