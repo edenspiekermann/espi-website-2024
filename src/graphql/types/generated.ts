@@ -2895,7 +2895,8 @@ export type PageModelSectionsField =
   | HomepageHeroRecord
   | LogoGridRecord
   | NumberedStatementsModelRecord
-  | StatementRecord;
+  | StatementLargeRecord
+  | StatementSimpleRecord;
 
 /** Record of type Page (page) */
 export type PageRecord = RecordInterface & {
@@ -3105,7 +3106,9 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allSocialLinksMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allStatementsMeta: CollectionMetadata;
+  _allStatementLargesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allStatementSimplesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allStatsModelsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
@@ -3141,7 +3144,9 @@ export type Query = {
   /** Returns a collection of records */
   allSocialLinks: Array<SocialLinkRecord>;
   /** Returns a collection of records */
-  allStatements: Array<StatementRecord>;
+  allStatementLarges: Array<StatementLargeRecord>;
+  /** Returns a collection of records */
+  allStatementSimples: Array<StatementSimpleRecord>;
   /** Returns a collection of records */
   allStatsModels: Array<StatsModelRecord>;
   /** Returns a collection of assets */
@@ -3177,7 +3182,9 @@ export type Query = {
   /** Returns a specific record */
   socialLink?: Maybe<SocialLinkRecord>;
   /** Returns a specific record */
-  statement?: Maybe<StatementRecord>;
+  statementLarge?: Maybe<StatementLargeRecord>;
+  /** Returns a specific record */
+  statementSimple?: Maybe<StatementSimpleRecord>;
   /** Returns a specific record */
   statsModel?: Maybe<StatsModelRecord>;
   /** Returns a specific asset */
@@ -3269,8 +3276,14 @@ export type Query_AllSocialLinksMetaArgs = {
 };
 
 /** The query root for this schema */
-export type Query_AllStatementsMetaArgs = {
-  filter?: InputMaybe<StatementModelFilter>;
+export type Query_AllStatementLargesMetaArgs = {
+  filter?: InputMaybe<StatementLargeModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllStatementSimplesMetaArgs = {
+  filter?: InputMaybe<StatementSimpleModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3433,12 +3446,22 @@ export type QueryAllSocialLinksArgs = {
 };
 
 /** The query root for this schema */
-export type QueryAllStatementsArgs = {
+export type QueryAllStatementLargesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<StatementModelFilter>;
+  filter?: InputMaybe<StatementLargeModelFilter>;
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<StatementModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<StatementLargeModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllStatementSimplesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<StatementSimpleModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<StatementSimpleModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -3581,11 +3604,19 @@ export type QuerySocialLinkArgs = {
 };
 
 /** The query root for this schema */
-export type QueryStatementArgs = {
+export type QueryStatementLargeArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<StatementModelFilter>;
+  filter?: InputMaybe<StatementLargeModelFilter>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<StatementModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<StatementLargeModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryStatementSimpleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<StatementSimpleModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<StatementSimpleModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -3797,9 +3828,9 @@ export type StatRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-export type StatementModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<StatementModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<StatementModelFilter>>>;
+export type StatementLargeModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<StatementLargeModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<StatementLargeModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
   _isValid?: InputMaybe<BooleanFilter>;
@@ -3813,7 +3844,7 @@ export type StatementModelFilter = {
   text?: InputMaybe<StructuredTextFilter>;
 };
 
-export enum StatementModelOrderBy {
+export enum StatementLargeModelOrderBy {
   CreatedAtAsc = "_createdAt_ASC",
   CreatedAtDesc = "_createdAt_DESC",
   FirstPublishedAtAsc = "_firstPublishedAt_ASC",
@@ -3836,16 +3867,16 @@ export enum StatementModelOrderBy {
   IdDesc = "id_DESC",
 }
 
-export type StatementModelTextField = {
-  __typename?: "StatementModelTextField";
+export type StatementLargeModelTextField = {
+  __typename?: "StatementLargeModelTextField";
   blocks: Array<Scalars["String"]["output"]>;
   links: Array<Scalars["String"]["output"]>;
   value: Scalars["JsonField"]["output"];
 };
 
-/** Record of type Statement (statement) */
-export type StatementRecord = RecordInterface & {
-  __typename?: "StatementRecord";
+/** Record of type Statement Large (statement_large) */
+export type StatementLargeRecord = RecordInterface & {
+  __typename?: "StatementLargeRecord";
   _createdAt: Scalars["DateTime"]["output"];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars["String"]["output"]>;
@@ -3862,12 +3893,86 @@ export type StatementRecord = RecordInterface & {
   addCallToAction: Scalars["BooleanType"]["output"];
   callToAction?: Maybe<CallToActionRecord>;
   id: Scalars["ItemId"]["output"];
-  text: StatementModelTextField;
+  text: StatementLargeModelTextField;
 };
 
-/** Record of type Statement (statement) */
-export type StatementRecord_SeoMetaTagsArgs = {
+/** Record of type Statement Large (statement_large) */
+export type StatementLargeRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
+};
+
+export type StatementSimpleModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<StatementSimpleModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<StatementSimpleModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  invertColor?: InputMaybe<BooleanFilter>;
+  text?: InputMaybe<TextFilter>;
+  textSize?: InputMaybe<StringFilter>;
+};
+
+export enum StatementSimpleModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  InvertColorAsc = "invertColor_ASC",
+  InvertColorDesc = "invertColor_DESC",
+  TextSizeAsc = "textSize_ASC",
+  TextSizeDesc = "textSize_DESC",
+}
+
+/** Record of type Statement Simple (statement_simple) */
+export type StatementSimpleRecord = RecordInterface & {
+  __typename?: "StatementSimpleRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  invertColor: Scalars["BooleanType"]["output"];
+  text: Scalars["String"]["output"];
+  textSize?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Record of type Statement Simple (statement_simple) */
+export type StatementSimpleRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Statement Simple (statement_simple) */
+export type StatementSimpleRecordTextArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 export type StatsModelModelFilter = {
@@ -3989,6 +4094,20 @@ export type Tag = {
   attributes?: Maybe<Scalars["MetaTagAttributes"]["output"]>;
   content?: Maybe<Scalars["String"]["output"]>;
   tag: Scalars["String"]["output"];
+};
+
+/** Specifies how to filter text fields */
+export type TextFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records with the specified field set as blank (null or empty string) */
+  isBlank?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records based on a regular expression */
+  matches?: InputMaybe<StringMatchesFilter>;
+  /** Exclude records based on a regular expression */
+  notMatches?: InputMaybe<StringMatchesFilter>;
 };
 
 /** Specifies how to filter by upload type */
@@ -4401,6 +4520,7 @@ export type PageQuery = {
   page?: {
     __typename?: "PageRecord";
     title: string;
+    invertNavColor: boolean;
     seo: Array<{
       __typename?: "Tag";
       attributes?: Record<string, string> | null;
@@ -4430,7 +4550,8 @@ export type PageQuery = {
         }
       | { __typename: "LogoGridRecord" }
       | { __typename: "NumberedStatementsModelRecord" }
-      | { __typename: "StatementRecord" }
+      | { __typename: "StatementLargeRecord" }
+      | { __typename: "StatementSimpleRecord" }
     >;
   } | null;
 };
@@ -4638,6 +4759,10 @@ export const PageDocument = {
                       },
                     ],
                   },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "invertNavColor" },
                 },
               ],
             },
