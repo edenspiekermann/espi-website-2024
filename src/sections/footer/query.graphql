@@ -1,9 +1,11 @@
 query Footer {
   footer {
+    id
+    title
     pageLinks {
       id
-      slug
       title
+      slug
     }
     socialLinks {
       id
@@ -12,11 +14,16 @@ query Footer {
       image {
         responsiveImage {
           src
-          height
           width
+          height
         }
       }
     }
-    title
+    legalLinks {
+      id
+      text
+      url
+    }
+    copyrightText
   }
 }

@@ -1,4 +1,9 @@
-import { PageDocument } from "@/graphql/types/generated";
+import {
+  FooterDocument,
+  PageDocument,
+  PageRecord,
+  SocialLinkRecord,
+} from "@/graphql/types/generated";
 import { SectionConductor } from "../../sections/conductor";
 import { request } from "../../lib/request";
 import UpdateNavState from "@/components/navigation/update-nav-state";
@@ -17,7 +22,6 @@ export default async function Page({ params }: PageProps) {
   const { page } = await request(PageDocument, {
     slug: params.slug,
   });
-
   const { title, sections, invertNavColor } = page!;
 
   return (
