@@ -5,6 +5,7 @@ import { FormSubmitButton } from "./form-submit-button";
 export const NewsLetterSignupForm = () => {
   async function handleFormSubmit(formData: FormData) {
     "use server";
+    //TODO: Implement form submission
     console.log(formData);
   }
 
