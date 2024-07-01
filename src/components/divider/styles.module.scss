@@ -1,0 +1,39 @@
+@use "../../app/styles/base.scss" as *;
+
+.divider {
+  @include as-s-sans-bold;
+  @include mqHelper("padding", 32px 24px 16px, 32px 40px 16px, 40px 70px 24px);
+
+  p {
+    grid-column: 1/-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: 32px;
+    @include mq("desktop") {
+      padding-top: 40px;
+    }
+
+    &::before {
+      content: "";
+      width: 100%;
+      background-color: var(--color-espi-black);
+      height: 1px;
+      grid-column: 1/-1;
+      opacity: 0.2;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+.inverted {
+  background-color: var(--color-espi-black);
+  color: var(--color-white);
+
+  p::before {
+    background-color: var(--color-white);
+  }
+}

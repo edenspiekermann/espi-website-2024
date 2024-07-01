@@ -1,0 +1,4 @@
+fragment Divider on DividerRecord {
+  text
+  invertColor
+}
