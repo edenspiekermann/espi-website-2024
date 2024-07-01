@@ -723,6 +723,7 @@ export type FooterRecord = RecordInterface & {
   pageLinks: Array<PageRecord>;
   socialLinks: Array<SocialLinkRecord>;
   title: Scalars["String"]["output"];
+  titleCta?: Maybe<LinkRecord>;
 };
 
 /** Record of type Footer (footer) */
@@ -4625,6 +4626,12 @@ export type FooterQuery = {
     id: string;
     title: string;
     copyrightText?: string | null;
+    titleCta?: {
+      __typename?: "LinkRecord";
+      id: string;
+      url: string;
+      text: string;
+    } | null;
     pageLinks: Array<{
       __typename?: "PageRecord";
       id: string;
@@ -5074,6 +5081,18 @@ export const FooterDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "titleCta" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "pageLinks" },

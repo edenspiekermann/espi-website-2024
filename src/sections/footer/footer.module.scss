@@ -15,8 +15,14 @@
 }
 
 .title {
-  @include as-xl-sans;
-  grid-column: 1/4;
+  p {
+    @include as-xl-sans;
+    grid-column: 1/4;
+    margin-bottom: 32px;
+  }
+  a {
+    grid-column: span 1/2;
+  }
 }
 
 .linkSection {

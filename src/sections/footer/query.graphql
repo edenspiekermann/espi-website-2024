@@ -2,6 +2,11 @@ query Footer {
   footer {
     id
     title
+    titleCta {
+      id
+      url
+      text
+    }
     pageLinks {
       id
       title

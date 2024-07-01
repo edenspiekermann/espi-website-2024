@@ -47,6 +47,7 @@ export default async function RootLayout({
             {children}
             <Footer
               title={footer?.title || "Let's Innovate"}
+              titleCta={footer?.titleCta as LinkRecord}
               pageLinks={footer?.pageLinks as PageRecord[]}
               socialLinks={footer?.socialLinks as SocialLinkRecord[]}
               legalLinks={footer?.legalLinks as LinkRecord[]}
