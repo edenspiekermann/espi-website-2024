@@ -669,6 +669,7 @@ export type FooterModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  copyrightText?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
   pageLinks?: InputMaybe<LinksFilter>;
   socialLinks?: InputMaybe<LinksFilter>;
@@ -692,6 +693,8 @@ export enum FooterModelOrderBy {
   UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
   UpdatedAtAsc = "_updatedAt_ASC",
   UpdatedAtDesc = "_updatedAt_DESC",
+  CopyrightTextAsc = "copyrightText_ASC",
+  CopyrightTextDesc = "copyrightText_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
   TitleAsc = "title_ASC",
@@ -714,10 +717,13 @@ export type FooterRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  copyrightText?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ItemId"]["output"];
+  legalLinks: Array<LinkRecord>;
   pageLinks: Array<PageRecord>;
   socialLinks: Array<SocialLinkRecord>;
   title: Scalars["String"]["output"];
+  titleCta?: Maybe<LinkRecord>;
 };
 
 /** Record of type Footer (footer) */
@@ -2591,6 +2597,32 @@ export type LeadershipCardsModelRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Block of type Link (link) */
+export type LinkRecord = RecordInterface & {
+  __typename?: "LinkRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  text: Scalars["String"]["output"];
+  url: Scalars["String"]["output"];
+};
+
+/** Block of type Link (link) */
+export type LinkRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter Multiple-links fields */
 export type LinksFilter = {
   /** Filter records linked to all of the specified records. The specified values must be Record IDs */
@@ -2743,6 +2775,7 @@ export type NavigationRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   alternativeLogoText?: Maybe<Scalars["String"]["output"]>;
+  cta?: Maybe<CallToActionRecord>;
   id: Scalars["ItemId"]["output"];
   links: Array<NavLinkRecord>;
   showLogo: Scalars["BooleanType"]["output"];
@@ -2846,6 +2879,32 @@ export type OrientationFilter = {
   eq?: InputMaybe<UploadOrientation>;
   /** Exclude uploads with the specified orientation */
   neq?: InputMaybe<UploadOrientation>;
+};
+
+/** Block of type Page Link (page_link) */
+export type PageLinkRecord = RecordInterface & {
+  __typename?: "PageLinkRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  slug: Scalars["String"]["output"];
+  text: Scalars["String"]["output"];
+};
+
+/** Block of type Page Link (page_link) */
+export type PageLinkRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 export type PageModelFilter = {
@@ -3841,7 +3900,8 @@ export type StatementLargeModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   addCallToAction?: InputMaybe<BooleanFilter>;
   id?: InputMaybe<ItemIdFilter>;
-  text?: InputMaybe<StructuredTextFilter>;
+  invertColor?: InputMaybe<BooleanFilter>;
+  text?: InputMaybe<TextFilter>;
 };
 
 export enum StatementLargeModelOrderBy {
@@ -3865,14 +3925,9 @@ export enum StatementLargeModelOrderBy {
   AddCallToActionDesc = "addCallToAction_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  InvertColorAsc = "invertColor_ASC",
+  InvertColorDesc = "invertColor_DESC",
 }
-
-export type StatementLargeModelTextField = {
-  __typename?: "StatementLargeModelTextField";
-  blocks: Array<Scalars["String"]["output"]>;
-  links: Array<Scalars["String"]["output"]>;
-  value: Scalars["JsonField"]["output"];
-};
 
 /** Record of type Statement Large (statement_large) */
 export type StatementLargeRecord = RecordInterface & {
@@ -3891,14 +3946,20 @@ export type StatementLargeRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   addCallToAction: Scalars["BooleanType"]["output"];
-  callToAction?: Maybe<CallToActionRecord>;
+  cta?: Maybe<PageLinkRecord>;
   id: Scalars["ItemId"]["output"];
-  text: StatementLargeModelTextField;
+  invertColor: Scalars["BooleanType"]["output"];
+  text: Scalars["String"]["output"];
 };
 
 /** Record of type Statement Large (statement_large) */
 export type StatementLargeRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Statement Large (statement_large) */
+export type StatementLargeRecordTextArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 export type StatementSimpleModelFilter = {
@@ -4573,7 +4634,18 @@ export type PageQuery = {
         }
       | { __typename: "LogoGridRecord" }
       | { __typename: "NumberedStatementsModelRecord" }
-      | { __typename: "StatementLargeRecord" }
+      | {
+          __typename: "StatementLargeRecord";
+          id: string;
+          text: string;
+          invertColor: boolean;
+          addCallToAction: boolean;
+          cta?: {
+            __typename: "PageLinkRecord";
+            text: string;
+            slug: string;
+          } | null;
+        }
       | {
           __typename: "StatementSimpleRecord";
           id: string;
@@ -4604,6 +4676,15 @@ export type HomepageHeroFragment = {
       title?: string | null;
     } | null;
   };
+};
+
+export type StatementLargeFragment = {
+  __typename: "StatementLargeRecord";
+  id: string;
+  text: string;
+  invertColor: boolean;
+  addCallToAction: boolean;
+  cta?: { __typename: "PageLinkRecord"; text: string; slug: string } | null;
 };
 
 export type StatementSimpleFragment = {
@@ -4677,6 +4758,63 @@ export const HomepageHeroFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<HomepageHeroFragment, unknown>;
+export const StatementLargeFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementLarge" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementLargeRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "addCallToAction" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cta" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "PageLinkRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StatementLargeFragment, unknown>;
 export const StatementSimpleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -4885,6 +5023,10 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "StatementSimple" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "StatementLarge" },
+                      },
                     ],
                   },
                 },
@@ -4981,6 +5123,58 @@ export const PageDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
           { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementLarge" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementLargeRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "addCallToAction" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cta" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "PageLinkRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
