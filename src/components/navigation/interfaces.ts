@@ -1,8 +1,10 @@
 import React from "react";
+import { ButtonProperties } from "../button/interfaces";
 
 export interface NavigationProperties {
   links: NavLinkProperties[];
   showLogo: boolean;
+  cta: ButtonProperties;
   alternativeLogoText: string;
   socialLinks: NavSocialLinkProperties[];
   isInverted?: boolean;
@@ -14,10 +16,12 @@ export interface NavigationWrapperProperties {
   alternativeLogoText: string;
   socialLinks: NavSocialLinkProperties[];
   children: React.ReactNode;
+  cta: ButtonProperties;
 }
 
 export interface DesktopNavigationProperties {
   links: NavLinkProperties[];
+  cta: ButtonProperties;
 }
 
 export interface NavLinkProperties {
@@ -41,4 +45,5 @@ export interface MobileNavigationProperties {
   isOpen: boolean;
   links: NavLinkProperties[];
   socialLinks: NavSocialLinkProperties[];
+  cta: ButtonProperties;
 }

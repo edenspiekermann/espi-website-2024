@@ -3,9 +3,11 @@ import { DesktopNavigationProperties } from "./interfaces";
 import Link from "next/link";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
+import { Button } from "../button/button";
 
 export const DesktopNavigation: React.FC<DesktopNavigationProperties> = ({
   links,
+  cta,
 }) => {
   const classNameList = classNames({
     [styles.desktop]: true,
@@ -25,6 +27,9 @@ export const DesktopNavigation: React.FC<DesktopNavigationProperties> = ({
                 </li>
               );
             })}
+          <li>
+            <Button text={cta.text} isInverted />
+          </li>
         </ul>
       </nav>
     </div>

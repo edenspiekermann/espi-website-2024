@@ -13,5 +13,9 @@ query Navigation {
       title
       url
     }
+    cta {
+      text
+      url
+    }
   }
 }
