@@ -4685,6 +4685,12 @@ export type FocalPoint = {
   y: Scalars["FloatType"]["output"];
 };
 
+export type DividerFragment = {
+  __typename?: "DividerRecord";
+  text?: string | null;
+  invertColor: boolean;
+};
+
 export type NavigationQueryVariables = Exact<{ [key: string]: never }>;
 
 export type NavigationQuery = {
@@ -4719,6 +4725,8 @@ export type StatementNumberedFragment = {
       __typename?: "ResponsiveImage";
       src: string;
       alt?: string | null;
+      width: number;
+      height: number;
     } | null;
   };
 };
@@ -4747,7 +4755,14 @@ export type PageQuery = {
       tag: string;
     }>;
     sections: Array<
-      | { __typename: "HeaderSimpleRecord" }
+      | {
+          __typename: "HeaderSimpleRecord";
+          id: string;
+          featuredText: string;
+          subtext?: string | null;
+          showCta: boolean;
+          showInquiryInfo: boolean;
+        }
       | {
           __typename: "HomepageHeroRecord";
           id: string;
@@ -4781,6 +4796,15 @@ export type PageQuery = {
   } | null;
 };
 
+export type HeaderSimpleFragment = {
+  __typename: "HeaderSimpleRecord";
+  id: string;
+  featuredText: string;
+  subtext?: string | null;
+  showCta: boolean;
+  showInquiryInfo: boolean;
+};
+
 export type HomepageHeroFragment = {
   __typename: "HomepageHeroRecord";
   id: string;
@@ -4810,6 +4834,26 @@ export type StatementSimpleFragment = {
   textSize?: string | null;
 };
 
+export const DividerFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DividerFragment, unknown>;
 export const StatementNumberedFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -4838,6 +4882,11 @@ export const StatementNumberedFragmentDoc = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "src" } },
                       { kind: "Field", name: { kind: "Name", value: "alt" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
                     ],
                   },
                 },
@@ -4851,6 +4900,40 @@ export const StatementNumberedFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<StatementNumberedFragment, unknown>;
+export const HeaderSimpleFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeaderSimple" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HeaderSimpleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "featuredText" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "subtext" } },
+          { kind: "Field", name: { kind: "Name", value: "showCta" } },
+          { kind: "Field", name: { kind: "Name", value: "showInquiryInfo" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HeaderSimpleFragment, unknown>;
 export const HomepageHeroFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -5122,6 +5205,10 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "StatementSimple" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "HeaderSimple" },
+                      },
                     ],
                   },
                 },
@@ -5218,6 +5305,35 @@ export const PageDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
           { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeaderSimple" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HeaderSimpleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "featuredText" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "subtext" } },
+          { kind: "Field", name: { kind: "Name", value: "showCta" } },
+          { kind: "Field", name: { kind: "Name", value: "showInquiryInfo" } },
         ],
       },
     },
