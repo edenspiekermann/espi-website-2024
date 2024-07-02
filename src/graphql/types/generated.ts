@@ -2827,8 +2827,8 @@ export type LogoGridModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  format?: InputMaybe<BooleanFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  invertColor?: InputMaybe<BooleanFilter>;
 };
 
 export enum LogoGridModelOrderBy {
@@ -2848,10 +2848,10 @@ export enum LogoGridModelOrderBy {
   UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
   UpdatedAtAsc = "_updatedAt_ASC",
   UpdatedAtDesc = "_updatedAt_DESC",
-  FormatAsc = "format_ASC",
-  FormatDesc = "format_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  InvertColorAsc = "invertColor_ASC",
+  InvertColorDesc = "invertColor_DESC",
 }
 
 /** Record of type Logo Grid (logo_grid) */
@@ -2870,8 +2870,9 @@ export type LogoGridRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
-  format: Scalars["BooleanType"]["output"];
+  divider?: Maybe<DividerRecord>;
   id: Scalars["ItemId"]["output"];
+  invertColor: Scalars["BooleanType"]["output"];
   logos: Array<LogoRecord>;
 };
 
@@ -4783,7 +4784,20 @@ export type PageQuery = {
             } | null;
           };
         }
-      | { __typename: "LogoGridRecord" }
+      | {
+          __typename: "LogoGridRecord";
+          id: string;
+          invertColor: boolean;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+          } | null;
+          logos: Array<{
+            __typename?: "LogoRecord";
+            id: string;
+            logoImage: { __typename?: "FileField"; url: string };
+          }>;
+        }
       | {
           __typename: "StatementLargeRecord";
           id: string;
@@ -4835,6 +4849,18 @@ export type HomepageHeroFragment = {
       title?: string | null;
     } | null;
   };
+};
+
+export type LogoGridFragment = {
+  __typename: "LogoGridRecord";
+  id: string;
+  invertColor: boolean;
+  divider?: { __typename?: "DividerRecord"; text?: string | null } | null;
+  logos: Array<{
+    __typename?: "LogoRecord";
+    id: string;
+    logoImage: { __typename?: "FileField"; url: string };
+  }>;
 };
 
 export type StatementLargeFragment = {
@@ -5017,6 +5043,57 @@ export const HomepageHeroFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<HomepageHeroFragment, unknown>;
+export const LogoGridFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "LogoGrid" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "LogoGridRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "logos" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logoImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<LogoGridFragment, unknown>;
 export const StatementLargeFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -5290,6 +5367,10 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "HeaderSimple" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "LogoGrid" },
+                      },
                     ],
                   },
                 },
@@ -5467,6 +5548,52 @@ export const PageDocument = {
           { kind: "Field", name: { kind: "Name", value: "subtext" } },
           { kind: "Field", name: { kind: "Name", value: "showCta" } },
           { kind: "Field", name: { kind: "Name", value: "showInquiryInfo" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "LogoGrid" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "LogoGridRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "logos" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "logoImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
         ],
       },
     },

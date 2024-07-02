@@ -4,6 +4,7 @@ import { StatementSimple } from "./statement-simple";
 import { HomePageHero } from "./homepage-hero";
 import { StatementLarge } from "./statement-large";
 import { HeaderSimple } from "./header-simple";
+import { LogoGrid } from "./logo-grid";
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
@@ -15,6 +16,8 @@ const sectionSwitch = (section: any) => {
       return <StatementLarge key={section.id} {...section} />;
     case "HeaderSimpleRecord":
       return <HeaderSimple key={section.id} {...section} />;
+    case "LogoGridRecord":
+      return <LogoGrid key={section.id} {...section} />;
     default:
       return <SectionDevelopment key={nanoid()} {...section} />;
   }
