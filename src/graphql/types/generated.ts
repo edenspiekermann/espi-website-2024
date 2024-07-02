@@ -4784,7 +4784,18 @@ export type PageQuery = {
           };
         }
       | { __typename: "LogoGridRecord" }
-      | { __typename: "StatementLargeRecord" }
+      | {
+          __typename: "StatementLargeRecord";
+          id: string;
+          text: string;
+          invertColor: boolean;
+          addCallToAction: boolean;
+          cta?: {
+            __typename: "PageLinkRecord";
+            text: string;
+            slug: string;
+          } | null;
+        }
       | {
           __typename: "StatementSimpleRecord";
           id: string;
@@ -4824,6 +4835,15 @@ export type HomepageHeroFragment = {
       title?: string | null;
     } | null;
   };
+};
+
+export type StatementLargeFragment = {
+  __typename: "StatementLargeRecord";
+  id: string;
+  text: string;
+  invertColor: boolean;
+  addCallToAction: boolean;
+  cta?: { __typename: "PageLinkRecord"; text: string; slug: string } | null;
 };
 
 export type StatementSimpleFragment = {
@@ -4997,6 +5017,63 @@ export const HomepageHeroFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<HomepageHeroFragment, unknown>;
+export const StatementLargeFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementLarge" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementLargeRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "addCallToAction" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cta" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "PageLinkRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StatementLargeFragment, unknown>;
 export const StatementSimpleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -5207,6 +5284,10 @@ export const PageDocument = {
                       },
                       {
                         kind: "FragmentSpread",
+                        name: { kind: "Name", value: "StatementLarge" },
+                      },
+                      {
+                        kind: "FragmentSpread",
                         name: { kind: "Name", value: "HeaderSimple" },
                       },
                     ],
@@ -5305,6 +5386,58 @@ export const PageDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
           { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementLarge" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementLargeRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "addCallToAction" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cta" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "PageLinkRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },

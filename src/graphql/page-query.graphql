@@ -10,6 +10,7 @@ query Page($slug: String) {
       __typename
       ...HomepageHero
       ...StatementSimple
+      ...StatementLarge
       ...HeaderSimple
     }
     invertNavColor

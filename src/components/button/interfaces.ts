@@ -3,4 +3,5 @@ export interface ButtonProperties {
   onClick?: () => void;
   isInverted?: boolean;
   url?: string;
+  slug?: string;
 }
