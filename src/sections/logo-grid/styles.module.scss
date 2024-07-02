@@ -26,10 +26,10 @@
   list-style: none;
   background-color: var(--color-extra-light-grey);
   @include mqHelper("border-radius", 24px, 13px, 19px);
-  // border-radius: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+
   // 2 tiles per row on mobile, 6 tiles per row on tablet +
   @include mqHelper(
     "width",
