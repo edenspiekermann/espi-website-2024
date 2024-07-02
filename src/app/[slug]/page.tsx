@@ -2,6 +2,7 @@ import { PageDocument } from "@/graphql/types/generated";
 import { SectionConductor } from "../../sections/conductor";
 import { request } from "../../lib/request";
 import UpdateNavState from "@/components/navigation/update-nav-state";
+import { Divider } from "@/components/divider/divider";
 
 type PageProps = { params: { slug: string } };
 
@@ -24,6 +25,7 @@ export default async function Page({ params }: PageProps) {
     <>
       <UpdateNavState isInverted={invertNavColor} />
       <SectionConductor sections={sections} />
+      <Divider text={""} invertColor={true} />
     </>
   );
 }

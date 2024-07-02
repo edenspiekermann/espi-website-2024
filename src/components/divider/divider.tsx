@@ -7,6 +7,7 @@ export const Divider = ({ text, invertColor = false }: DividerFragment) => {
   const dividerClass = classNames({
     [styles.divider]: true,
     [styles.inverted]: invertColor,
+    [styles.noText]: !text,
   });
   return (
     <div className={dividerClass}>
