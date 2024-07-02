@@ -1,11 +1,11 @@
 import React from "react";
-import { DesktopNavigationProperties } from "./interfaces";
+import { NavigationBaseProperties } from "./interfaces";
 import Link from "next/link";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
 import { Button } from "../button/button";
 
-export const DesktopNavigation: React.FC<DesktopNavigationProperties> = ({
+export const DesktopNavigation: React.FC<NavigationBaseProperties> = ({
   links,
   cta,
 }) => {

@@ -1,27 +1,23 @@
 import React from "react";
 import { ButtonProperties } from "../button/interfaces";
 
-export interface NavigationProperties {
+export interface NavigationBaseProperties {
   links: NavLinkProperties[];
-  showLogo: boolean;
   cta: ButtonProperties;
+}
+
+export interface NavigationProperties extends NavigationBaseProperties {
+  showLogo: boolean;
   alternativeLogoText: string;
   socialLinks: NavSocialLinkProperties[];
   isInverted?: boolean;
 }
 
-export interface NavigationWrapperProperties {
-  links: NavLinkProperties[];
+export interface NavigationWrapperProperties extends NavigationBaseProperties {
   showLogo: boolean;
   alternativeLogoText: string;
   socialLinks: NavSocialLinkProperties[];
   children: React.ReactNode;
-  cta: ButtonProperties;
-}
-
-export interface DesktopNavigationProperties {
-  links: NavLinkProperties[];
-  cta: ButtonProperties;
 }
 
 export interface NavLinkProperties {
@@ -41,9 +37,7 @@ export interface HamburgerProperties {
   onClick: any;
 }
 
-export interface MobileNavigationProperties {
+export interface MobileNavigationProperties extends NavigationBaseProperties {
   isOpen: boolean;
-  links: NavLinkProperties[];
   socialLinks: NavSocialLinkProperties[];
-  cta: ButtonProperties;
 }
