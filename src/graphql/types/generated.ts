@@ -4714,6 +4714,23 @@ export type NavigationQuery = {
   } | null;
 };
 
+export type StatementNumberedFragment = {
+  __typename?: "StatementNumberedRecord";
+  id: string;
+  title: string;
+  subtitle?: string | null;
+  numberImage: {
+    __typename?: "AltFileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+      width: number;
+      height: number;
+    } | null;
+  };
+};
+
 export type AllPagesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type AllPagesQuery = {
@@ -4837,6 +4854,52 @@ export const DividerFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<DividerFragment, unknown>;
+export const StatementNumberedFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementNumbered" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementNumberedRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "numberImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StatementNumberedFragment, unknown>;
 export const HeaderSimpleFragmentDoc = {
   kind: "Document",
   definitions: [

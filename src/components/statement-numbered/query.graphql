@@ -1,0 +1,13 @@
+fragment StatementNumbered on StatementNumberedRecord {
+  id
+  numberImage {
+    responsiveImage {
+      src
+      alt
+      width
+      height
+    }
+  }
+  title
+  subtitle
+}
