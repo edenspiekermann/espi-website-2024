@@ -11,6 +11,7 @@ query Page($slug: String) {
       ...HomepageHero
       ...StatementSimple
       ...StatementLarge
+      ...HeaderSimple
     }
     invertNavColor
   }
