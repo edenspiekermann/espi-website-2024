@@ -15,8 +15,6 @@ export const StatementLarge = ({
     [styles.inverted]: invertColor,
   });
 
-  console.log(addCallToAction);
-
   return (
     <div className={`${styles.statementLarge} container`}>
       <div
