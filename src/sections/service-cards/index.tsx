@@ -20,7 +20,7 @@ export const ServiceCards = ({
   return (
     <div className={serviceCardsClass}>
       {showDivider && divider && (
-        <Divider text={divider.title} invertColor={invertColor} />
+        <Divider {...divider} invertColor={invertColor} />
       )}
       {statement && (
         <StatementSimple {...statement} invertColor={invertColor} />

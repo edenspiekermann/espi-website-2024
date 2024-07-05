@@ -3,7 +3,7 @@ fragment ServiceCards on ServiceCardsSectionRecord {
   id
   showDivider
   divider {
-    title
+    ...Divider
   }
   statement {
     ...StatementSimple
