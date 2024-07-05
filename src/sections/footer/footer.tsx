@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./footer.module.scss";
 import Link from "next/link";
 import { NewsLetterSignupForm } from "./newsletter-signup";
-import { EspiLogo } from "../../../public/espi-logo";
+import { EspiLogo } from "../../assets/icons/espi-logo";
 import { FooterProperties } from "./interfaces";
 import { Button } from "@/components/button/button";
 

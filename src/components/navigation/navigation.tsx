@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { DesktopNavigation } from "./desktop-navigation";
 import { NavigationProperties } from "./interfaces";
 import { MobileNavigation } from "./mobile-navigation";
-import { EspiLogo } from "../../../public/espi-logo";
+import { EspiLogo } from "../../assets/icons/espi-logo";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import classNames from "classnames";
