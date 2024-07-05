@@ -1,0 +1,10 @@
+fragment ManifestoCard on ManifestoCardRecord {
+  image {
+    responsiveImage {
+      src
+      alt
+    }
+  }
+  title
+  subtext
+}

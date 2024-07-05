@@ -1,4 +1,4 @@
-fragment Divider on DividerRecord {
-  text
+fragment Divider on DividerTitleRecord {
+  title
   invertColor
 }
