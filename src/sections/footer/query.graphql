@@ -1,0 +1,34 @@
+query Footer {
+  footer {
+    id
+    title
+    titleCta {
+      id
+      url
+      text
+    }
+    pageLinks {
+      id
+      title
+      slug
+    }
+    socialLinks {
+      id
+      title
+      url
+      image {
+        responsiveImage {
+          src
+          width
+          height
+        }
+      }
+    }
+    legalLinks {
+      id
+      text
+      url
+    }
+    copyrightText
+  }
+}

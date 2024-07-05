@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./styles/global.scss";
-import { NavigationDocument } from "@/graphql/types/generated";
+import {
+  FooterDocument,
+  LinkRecord,
+  NavigationDocument,
+  PageRecord,
+  SocialLinkRecord,
+} from "@/graphql/types/generated";
 import { request } from "@/lib/request";
 import { NavigationProvider } from "@/context/navigation-context";
 import { NavigationWrapper } from "@/components/navigation/navigation-wrapper";
+import { Footer } from "@/sections/footer/footer";
 import { ButtonProperties } from "@/components/button/interfaces";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -27,6 +34,8 @@ export default async function RootLayout({
   const { links, alternativeLogoText, showLogo, socialLinks, cta } =
     navigation!;
 
+  const { footer } = await request(FooterDocument);
+
   return (
     <html lang="en" className={inter.className}>
       <body>
@@ -39,6 +48,14 @@ export default async function RootLayout({
             cta={cta as ButtonProperties}
           >
             {children}
+            <Footer
+              title={footer?.title || "Let's Innovate"}
+              titleCta={footer?.titleCta as LinkRecord}
+              pageLinks={footer?.pageLinks as PageRecord[]}
+              socialLinks={footer?.socialLinks as SocialLinkRecord[]}
+              legalLinks={footer?.legalLinks as LinkRecord[]}
+              copyrightText={footer?.copyrightText || ""}
+            />
           </NavigationWrapper>
         </NavigationProvider>
       </body>

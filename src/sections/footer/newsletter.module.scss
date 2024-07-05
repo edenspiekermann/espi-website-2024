@@ -1,0 +1,61 @@
+@use "../../app/styles/base.scss" as *;
+
+.newsLetter {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-white);
+  grid-column: span 4;
+  @include mq("tablet") {
+    grid-column: span 6;
+  }
+  @include mq("desktop") {
+    grid-column: span 4;
+  }
+
+  > p {
+    @include as-s-text;
+    margin-bottom: 16px;
+  }
+
+  form {
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  input {
+    background-color: var(--color-white);
+    border-radius: 40px;
+    border: none;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 22px;
+    width: -webkit-fill-available;
+    &::placeholder {
+      @include as-s-text;
+    }
+  }
+
+  button {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    bottom: 3px;
+    appearance: none;
+    background: none;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+    svg {
+      width: 42px;
+      height: 42px;
+      overflow: visible;
+    }
+  }
+
+  p:last-child {
+    @include as-xs-text;
+    opacity: 0.5;
+  }
+}

@@ -4826,6 +4826,51 @@ export type PageQuery = {
   } | null;
 };
 
+export type FooterQueryVariables = Exact<{ [key: string]: never }>;
+
+export type FooterQuery = {
+  __typename?: "Query";
+  footer?: {
+    __typename?: "FooterRecord";
+    id: string;
+    title: string;
+    copyrightText?: string | null;
+    titleCta?: {
+      __typename?: "LinkRecord";
+      id: string;
+      url: string;
+      text: string;
+    } | null;
+    pageLinks: Array<{
+      __typename?: "PageRecord";
+      id: string;
+      title: string;
+      slug: string;
+    }>;
+    socialLinks: Array<{
+      __typename?: "SocialLinkRecord";
+      id: string;
+      title: string;
+      url: string;
+      image?: {
+        __typename?: "FileField";
+        responsiveImage?: {
+          __typename?: "ResponsiveImage";
+          src: string;
+          width: number;
+          height: number;
+        } | null;
+      } | null;
+    }>;
+    legalLinks: Array<{
+      __typename?: "LinkRecord";
+      id: string;
+      text: string;
+      url: string;
+    }>;
+  } | null;
+};
+
 export type HeaderSimpleFragment = {
   __typename: "HeaderSimpleRecord";
   id: string;
@@ -5615,3 +5660,111 @@ export const PageDocument = {
     },
   ],
 } as unknown as DocumentNode<PageQuery, PageQueryVariables>;
+export const FooterDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Footer" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "footer" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "titleCta" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "pageLinks" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "socialLinks" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "responsiveImage" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "src" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "width" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "height" },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "legalLinks" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "copyrightText" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<FooterQuery, FooterQueryVariables>;
