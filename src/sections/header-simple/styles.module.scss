@@ -1,0 +1,59 @@
+@use "../../app/styles/base.scss" as *;
+
+.headerSimple {
+  @include mqHelper("padding", 40px 24px 24px, 40px 40px 32px, 80px 70px 32px);
+
+  button {
+    grid-column: 1/-1;
+    @include mq("desktop") {
+      grid-column: 1/4;
+    }
+  }
+}
+
+.featuredText {
+  grid-column: 1/-1;
+  margin-bottom: 56px;
+  @include as-xl-serif;
+  strong {
+    @include as-xl-sans-bold;
+  }
+
+  @include mq("desktop") {
+    grid-column: span 10;
+    margin-bottom: 96px;
+  }
+}
+
+.subtext {
+  grid-column: 1/-1;
+  margin-bottom: 24px;
+  @include as-m-text;
+  @include mq("tablet") {
+    grid-column: span 10;
+  }
+  @include mq("desktop") {
+    grid-column: span 6;
+  }
+}
+
+.inquiryInfo {
+  grid-column: 1/-1;
+  > p {
+    @include as-l-serif;
+    margin-bottom: 24px;
+  }
+
+  @include mq("desktop") {
+    grid-column: 1/7;
+  }
+}
+
+.inquiryInfoBottom {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    color: var(--color-espi-black);
+  }
+}

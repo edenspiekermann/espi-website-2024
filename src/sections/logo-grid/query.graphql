@@ -1,0 +1,14 @@
+fragment LogoGrid on LogoGridRecord {
+  __typename
+  id
+  divider {
+    text
+  }
+  logos {
+    id
+    logoImage {
+      url
+    }
+  }
+  invertColor
+}

@@ -11,6 +11,7 @@ export const NavigationWrapper = ({
   alternativeLogoText,
   socialLinks,
   children,
+  cta,
 }: NavigationWrapperProperties) => {
   const { navState } = useContext(NavigationContext);
 
@@ -22,6 +23,7 @@ export const NavigationWrapper = ({
         showLogo={showLogo}
         alternativeLogoText={alternativeLogoText}
         socialLinks={socialLinks}
+        cta={cta}
       />
       {children}
     </>

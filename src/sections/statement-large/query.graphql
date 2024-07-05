@@ -1,0 +1,14 @@
+fragment StatementLarge on StatementLargeRecord {
+  __typename
+  id
+  text(markdown: true)
+  invertColor
+  addCallToAction
+  cta {
+    __typename
+    ... on PageLinkRecord {
+      text
+      slug
+    }
+  }
+}

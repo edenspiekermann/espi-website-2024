@@ -43,7 +43,7 @@
 }
 
 .nav {
-  @include mqMax("tablet") {
+  @include mqMax("desktop") {
     display: none;
   }
 }
@@ -55,12 +55,13 @@
 }
 
 .desktop {
+  display: none;
   width: 100%;
   align-items: flex-start;
   justify-content: space-between;
 
-  @include mqMax("tablet") {
-    display: none;
+  @include mq("desktop") {
+    display: block;
   }
 }
 
@@ -77,7 +78,7 @@
   transition: opacity 300ms cubic-bezier(0.25, 0, 0.19, 1);
   pointer-events: none;
 
-  @include mq("tablet") {
+  @include mq("desktop") {
     display: none;
   }
 
@@ -104,12 +105,22 @@
     transform: translate(0);
     overflow-y: scroll;
   }
+
+  li {
+    a > svg {
+      width: auto;
+    }
+  }
 }
 
 .navLinks {
   list-style: none;
   display: flex;
   padding-left: 10px;
+  align-items: flex-start;
+  @include mq("desktop") {
+    align-items: center;
+  }
 }
 
 .socialLinks {
@@ -131,9 +142,9 @@
     color: var(--color-espi-black);
   }
 
-  @include mq("tablet") {
+  @include mq("desktop") {
     @include as-m-element;
-    margin-right: 50px;
+    margin-right: 70px;
     color: var(--color-espi-black);
 
     .inverted & {
@@ -144,10 +155,6 @@
     &:hover {
       color: var(--color-espi-red);
     }
-  }
-
-  @include mq("desktop") {
-    margin-right: 70px;
   }
 }
 
@@ -180,7 +187,7 @@
     color: var(--color-white);
   }
 
-  @include mq("tablet") {
+  @include mq("desktop") {
     display: none;
   }
 }

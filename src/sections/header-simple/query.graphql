@@ -1,0 +1,8 @@
+fragment HeaderSimple on HeaderSimpleRecord {
+  __typename
+  id
+  featuredText(markdown: true)
+  subtext
+  showCta
+  showInquiryInfo
+}
