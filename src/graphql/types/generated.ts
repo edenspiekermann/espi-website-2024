@@ -2776,6 +2776,20 @@ export type LeadershipCardsModelRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Specifies how to filter Single-link fields */
+export type LinkFilter = {
+  /** Search for records with an exact match. The specified value must be a Record ID */
+  eq?: InputMaybe<Scalars["ItemId"]["input"]>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records linked to one of the specified records */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ItemId"]["input"]>>>;
+  /** Exclude records with an exact match. The specified value must be a Record ID */
+  neq?: InputMaybe<Scalars["ItemId"]["input"]>;
+  /** Filter records not linked to one of the specified records */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ItemId"]["input"]>>>;
+};
+
 /** Block of type Link (link) */
 export type LinkRecord = RecordInterface & {
   __typename?: "LinkRecord";
@@ -3048,6 +3062,7 @@ export type PageModelSectionsField =
   | HeaderSimpleRecord
   | HomepageHeroRecord
   | LogoGridRecord
+  | ServiceCardsSectionRecord
   | StatementLargeRecord
   | StatementSimpleRecord;
 
@@ -3257,6 +3272,10 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allPhotoCarouselsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allServiceCardsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allServiceCardsSectionsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSocialLinksMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allStatementLargesMeta: CollectionMetadata;
@@ -3295,6 +3314,10 @@ export type Query = {
   /** Returns a collection of records */
   allPhotoCarousels: Array<PhotoCarouselRecord>;
   /** Returns a collection of records */
+  allServiceCards: Array<ServiceCardRecord>;
+  /** Returns a collection of records */
+  allServiceCardsSections: Array<ServiceCardsSectionRecord>;
+  /** Returns a collection of records */
   allSocialLinks: Array<SocialLinkRecord>;
   /** Returns a collection of records */
   allStatementLarges: Array<StatementLargeRecord>;
@@ -3332,6 +3355,10 @@ export type Query = {
   person?: Maybe<PersonRecord>;
   /** Returns a specific record */
   photoCarousel?: Maybe<PhotoCarouselRecord>;
+  /** Returns a specific record */
+  serviceCard?: Maybe<ServiceCardRecord>;
+  /** Returns a specific record */
+  serviceCardsSection?: Maybe<ServiceCardsSectionRecord>;
   /** Returns a specific record */
   socialLink?: Maybe<SocialLinkRecord>;
   /** Returns a specific record */
@@ -3419,6 +3446,18 @@ export type Query_AllPeopleMetaArgs = {
 /** The query root for this schema */
 export type Query_AllPhotoCarouselsMetaArgs = {
   filter?: InputMaybe<PhotoCarouselModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllServiceCardsMetaArgs = {
+  filter?: InputMaybe<ServiceCardModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllServiceCardsSectionsMetaArgs = {
+  filter?: InputMaybe<ServiceCardsSectionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3589,6 +3628,26 @@ export type QueryAllPhotoCarouselsArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllServiceCardsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ServiceCardModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ServiceCardModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllServiceCardsSectionsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ServiceCardsSectionModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ServiceCardsSectionModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllSocialLinksArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<SocialLinkModelFilter>;
@@ -3749,6 +3808,22 @@ export type QueryPhotoCarouselArgs = {
 };
 
 /** The query root for this schema */
+export type QueryServiceCardArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ServiceCardModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ServiceCardModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryServiceCardsSectionArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ServiceCardsSectionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ServiceCardsSectionModelOrderBy>>>;
+};
+
+/** The query root for this schema */
 export type QuerySocialLinkArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<SocialLinkModelFilter>;
@@ -3850,6 +3925,155 @@ export type SeoField = {
   noIndex?: Maybe<Scalars["BooleanType"]["output"]>;
   title?: Maybe<Scalars["String"]["output"]>;
   twitterCard?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type ServiceCardModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ServiceCardModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ServiceCardModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  bodyText?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+  listItems?: InputMaybe<TextFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export enum ServiceCardModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  BodyTextAsc = "bodyText_ASC",
+  BodyTextDesc = "bodyText_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+}
+
+/** Record of type Service Card (service_card) */
+export type ServiceCardRecord = RecordInterface & {
+  __typename?: "ServiceCardRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  bodyText: Scalars["String"]["output"];
+  id: Scalars["ItemId"]["output"];
+  image: FileField;
+  listItems: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
+};
+
+/** Record of type Service Card (service_card) */
+export type ServiceCardRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Service Card (service_card) */
+export type ServiceCardRecordListItemsArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type ServiceCardsSectionModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ServiceCardsSectionModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ServiceCardsSectionModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  divider?: InputMaybe<LinkFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  invertColor?: InputMaybe<BooleanFilter>;
+  serviceCards?: InputMaybe<LinksFilter>;
+  showDivider?: InputMaybe<BooleanFilter>;
+  statement?: InputMaybe<LinkFilter>;
+};
+
+export enum ServiceCardsSectionModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  InvertColorAsc = "invertColor_ASC",
+  InvertColorDesc = "invertColor_DESC",
+  ShowDividerAsc = "showDivider_ASC",
+  ShowDividerDesc = "showDivider_DESC",
+}
+
+/** Record of type Service Cards (service_cards_section) */
+export type ServiceCardsSectionRecord = RecordInterface & {
+  __typename?: "ServiceCardsSectionRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  divider?: Maybe<DividerTitleRecord>;
+  id: Scalars["ItemId"]["output"];
+  invertColor: Scalars["BooleanType"]["output"];
+  serviceCards: Array<ServiceCardRecord>;
+  showDivider: Scalars["BooleanType"]["output"];
+  statement?: Maybe<StatementSimpleRecord>;
+};
+
+/** Record of type Service Cards (service_cards_section) */
+export type ServiceCardsSectionRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 export type Site = {
@@ -4720,6 +4944,18 @@ export type NavigationQuery = {
   } | null;
 };
 
+export type ServiceCardFragment = {
+  __typename?: "ServiceCardRecord";
+  id: string;
+  title: string;
+  bodyText: string;
+  listItems: string;
+  image: {
+    __typename?: "FileField";
+    responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
+  };
+};
+
 export type StatementNumberedFragment = {
   __typename?: "StatementNumberedRecord";
   id: string;
@@ -4801,6 +5037,34 @@ export type PageQuery = {
             __typename?: "LogoRecord";
             id: string;
             logoImage: { __typename?: "FileField"; url: string };
+          }>;
+        }
+      | {
+          __typename: "ServiceCardsSectionRecord";
+          id: string;
+          showDivider: boolean;
+          invertColor: boolean;
+          divider?: { __typename?: "DividerTitleRecord"; title: string } | null;
+          statement?: {
+            __typename: "StatementSimpleRecord";
+            id: string;
+            text: string;
+            invertColor: boolean;
+            textSize?: string | null;
+          } | null;
+          serviceCards: Array<{
+            __typename?: "ServiceCardRecord";
+            id: string;
+            title: string;
+            bodyText: string;
+            listItems: string;
+            image: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+              } | null;
+            };
           }>;
         }
       | {
@@ -4910,6 +5174,32 @@ export type LogoGridFragment = {
     __typename?: "LogoRecord";
     id: string;
     logoImage: { __typename?: "FileField"; url: string };
+  }>;
+};
+
+export type ServiceCardsFragment = {
+  __typename: "ServiceCardsSectionRecord";
+  id: string;
+  showDivider: boolean;
+  invertColor: boolean;
+  divider?: { __typename?: "DividerTitleRecord"; title: string } | null;
+  statement?: {
+    __typename: "StatementSimpleRecord";
+    id: string;
+    text: string;
+    invertColor: boolean;
+    textSize?: string | null;
+  } | null;
+  serviceCards: Array<{
+    __typename?: "ServiceCardRecord";
+    id: string;
+    title: string;
+    bodyText: string;
+    listItems: string;
+    image: {
+      __typename?: "FileField";
+      responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
+    };
   }>;
 };
 
@@ -5144,6 +5434,222 @@ export const LogoGridFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<LogoGridFragment, unknown>;
+export const StatementSimpleFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementSimple" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementSimpleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StatementSimpleFragment, unknown>;
+export const ServiceCardFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ServiceCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ServiceCardRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "bodyText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "listItems" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ServiceCardFragment, unknown>;
+export const ServiceCardsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ServiceCards" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ServiceCardsSectionRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "statement" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "StatementSimple" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "serviceCards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ServiceCard" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementSimple" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementSimpleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ServiceCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ServiceCardRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "bodyText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "listItems" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ServiceCardsFragment, unknown>;
 export const StatementLargeFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -5201,39 +5707,6 @@ export const StatementLargeFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<StatementLargeFragment, unknown>;
-export const StatementSimpleFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "StatementSimple" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "StatementSimpleRecord" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "text" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "markdown" },
-                value: { kind: "BooleanValue", value: true },
-              },
-            ],
-          },
-          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
-          { kind: "Field", name: { kind: "Name", value: "textSize" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<StatementSimpleFragment, unknown>;
 export const NavigationDocument = {
   kind: "Document",
   definitions: [
@@ -5432,12 +5905,90 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "LogoGrid" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ServiceCards" },
+                      },
                     ],
                   },
                 },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "invertNavColor" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementSimple" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementSimpleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ServiceCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ServiceCardRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "bodyText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "listItems" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
                 },
               ],
             },
@@ -5500,34 +6051,6 @@ export const PageDocument = {
               ],
             },
           },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "StatementSimple" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "StatementSimpleRecord" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "text" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "markdown" },
-                value: { kind: "BooleanValue", value: true },
-              },
-            ],
-          },
-          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
-          { kind: "Field", name: { kind: "Name", value: "textSize" } },
         ],
       },
     },
@@ -5650,6 +6173,59 @@ export const PageDocument = {
                       { kind: "Field", name: { kind: "Name", value: "url" } },
                     ],
                   },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ServiceCards" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ServiceCardsSectionRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "statement" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "StatementSimple" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "serviceCards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ServiceCard" },
                 },
               ],
             },

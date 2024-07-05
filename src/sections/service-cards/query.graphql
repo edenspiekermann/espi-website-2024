@@ -1,0 +1,15 @@
+fragment ServiceCards on ServiceCardsSectionRecord {
+  __typename
+  id
+  showDivider
+  divider {
+    title
+  }
+  statement {
+    ...StatementSimple
+  }
+  serviceCards {
+    ...ServiceCard
+  }
+  invertColor
+}
