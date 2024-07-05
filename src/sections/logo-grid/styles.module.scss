@@ -1,0 +1,67 @@
+@use "../../app/styles/base.scss" as *;
+
+.logoGrid {
+  background-color: var(--color-white);
+}
+
+.inverted {
+  background-color: var(--color-espi-black);
+}
+
+.logosContainer {
+  @include mqHelper("padding", 24px, 20px 40px, 32px 70px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1/-1;
+  @include mqHelper("gap", 16px, 20px, 32px);
+
+  ul {
+    padding: 0;
+  }
+}
+
+.logo {
+  list-style: none;
+  background-color: var(--color-extra-light-grey);
+  @include mqHelper("border-radius", 24px, 13px, 19px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // 2 tiles per row on mobile, 6 tiles per row on tablet +
+  @include mqHelper(
+    "width",
+    calc(50% - 8px),
+    calc((100% - (5 * 20px)) / 6),
+    calc((100% - (5 * 32px)) / 6)
+  );
+
+  .inverted & {
+    background-color: #161616;
+  }
+}
+
+.svg {
+  @include mqHelper("padding", 10px, 5px, 10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+  path {
+    fill: var(--color-espi-black);
+  }
+
+  .inverted & {
+    path {
+      fill: var(--color-white);
+    }
+  }
+}
