@@ -13,6 +13,7 @@ import { useScroll, useMotionValueEvent } from "framer-motion";
 
 export const Navigation: React.FC<NavigationProperties> = ({
   links,
+  cta,
   alternativeLogoText,
   showLogo,
   socialLinks,
@@ -60,12 +61,13 @@ export const Navigation: React.FC<NavigationProperties> = ({
             <MenuToggle isOpen={isOpen} onClick={toggle} />
           </div>
           <div className={styles.nav}>
-            <DesktopNavigation links={links} />
+            <DesktopNavigation links={links} cta={cta} />
           </div>
           <MobileNavigation
             links={links}
             isOpen={isOpen}
             socialLinks={socialLinks}
+            cta={cta}
           />
         </div>
       </div>

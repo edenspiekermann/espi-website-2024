@@ -3,11 +3,13 @@ import Link from "next/link";
 import React from "react";
 import { MobileNavigationProperties } from "./interfaces";
 import styles from "./styles.module.scss";
+import { Button } from "../button/button";
 
 export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
   isOpen,
   links,
   socialLinks,
+  cta,
 }) => {
   const classNameList = classNames({
     [styles.mobileNav]: true,
@@ -31,6 +33,9 @@ export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
                 </li>
               );
             })}
+          <li>
+            <Button text={cta.text} url={cta.url} isInverted />
+          </li>
         </ul>
         <ul
           className={`${styles.mobileNavList} ${styles.navLinks} ${styles.socialLinks}`}

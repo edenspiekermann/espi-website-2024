@@ -4712,6 +4712,11 @@ export type NavigationQuery = {
       title: string;
       url: string;
     }>;
+    cta?: {
+      __typename?: "CallToActionRecord";
+      text: string;
+      url: string;
+    } | null;
   } | null;
 };
 
@@ -5226,6 +5231,17 @@ export const NavigationDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "cta" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
                       { kind: "Field", name: { kind: "Name", value: "url" } },
                     ],
                   },
