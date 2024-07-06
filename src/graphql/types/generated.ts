@@ -429,73 +429,6 @@ export type DividerRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-export type DividerTitleModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<DividerTitleModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<DividerTitleModelFilter>>>;
-  _createdAt?: InputMaybe<CreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
-  _isValid?: InputMaybe<BooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _publishedAt?: InputMaybe<PublishedAtFilter>;
-  _status?: InputMaybe<StatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  id?: InputMaybe<ItemIdFilter>;
-  invertColor?: InputMaybe<BooleanFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export enum DividerTitleModelOrderBy {
-  CreatedAtAsc = "_createdAt_ASC",
-  CreatedAtDesc = "_createdAt_DESC",
-  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
-  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
-  IsValidAsc = "_isValid_ASC",
-  IsValidDesc = "_isValid_DESC",
-  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
-  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
-  PublishedAtAsc = "_publishedAt_ASC",
-  PublishedAtDesc = "_publishedAt_DESC",
-  StatusAsc = "_status_ASC",
-  StatusDesc = "_status_DESC",
-  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
-  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
-  UpdatedAtAsc = "_updatedAt_ASC",
-  UpdatedAtDesc = "_updatedAt_DESC",
-  IdAsc = "id_ASC",
-  IdDesc = "id_DESC",
-  InvertColorAsc = "invertColor_ASC",
-  InvertColorDesc = "invertColor_DESC",
-  TitleAsc = "title_ASC",
-  TitleDesc = "title_DESC",
-}
-
-/** Record of type Divider Title (divider_title) */
-export type DividerTitleRecord = RecordInterface & {
-  __typename?: "DividerTitleRecord";
-  _createdAt: Scalars["DateTime"]["output"];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars["String"]["output"]>;
-  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
-  _isValid: Scalars["BooleanType"]["output"];
-  _modelApiKey: Scalars["String"]["output"];
-  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
-  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
-  _updatedAt: Scalars["DateTime"]["output"];
-  id: Scalars["ItemId"]["output"];
-  invertColor: Scalars["BooleanType"]["output"];
-  title: Scalars["String"]["output"];
-};
-
-/** Record of type Divider Title (divider_title) */
-export type DividerTitleRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
 /** Block of type Drawer Item (drawer_item) */
 export type DrawerItemRecord = RecordInterface & {
   __typename?: "DrawerItemRecord";
@@ -3001,7 +2934,6 @@ export type ManifestoModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   cards?: InputMaybe<LinksFilter>;
-  divider?: InputMaybe<LinkFilter>;
   id?: InputMaybe<ItemIdFilter>;
   invertColor?: InputMaybe<BooleanFilter>;
   showDivider?: InputMaybe<BooleanFilter>;
@@ -3050,7 +2982,7 @@ export type ManifestoRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   cards: Array<ManifestoCardRecord>;
-  divider?: Maybe<DividerTitleRecord>;
+  divider?: Maybe<DividerRecord>;
   id: Scalars["ItemId"]["output"];
   invertColor: Scalars["BooleanType"]["output"];
   showDivider: Scalars["BooleanType"]["output"];
@@ -3205,6 +3137,7 @@ export type PageModelSectionsField =
   | HomepageHeroRecord
   | LogoGridRecord
   | ManifestoRecord
+  | PurposeRecord
   | ServiceCardsSectionRecord
   | StatementLargeRecord
   | StatementSimpleRecord;
@@ -3385,6 +3318,90 @@ export type PublishedAtFilter = {
   neq?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
 
+export type PurposeModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<PurposeModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<PurposeModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  cmsTitle?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  invertColor?: InputMaybe<BooleanFilter>;
+  media?: InputMaybe<FileFilter>;
+  showDivider?: InputMaybe<BooleanFilter>;
+  statement?: InputMaybe<LinkFilter>;
+  text?: InputMaybe<TextFilter>;
+};
+
+export enum PurposeModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  CmsTitleAsc = "cmsTitle_ASC",
+  CmsTitleDesc = "cmsTitle_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  InvertColorAsc = "invertColor_ASC",
+  InvertColorDesc = "invertColor_DESC",
+  ShowDividerAsc = "showDivider_ASC",
+  ShowDividerDesc = "showDivider_DESC",
+}
+
+/** Record of type Purpose (purpose) */
+export type PurposeRecord = RecordInterface & {
+  __typename?: "PurposeRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  cmsTitle?: Maybe<Scalars["String"]["output"]>;
+  divider?: Maybe<DividerRecord>;
+  id: Scalars["ItemId"]["output"];
+  invertColor: Scalars["BooleanType"]["output"];
+  media: FileField;
+  showDivider: Scalars["BooleanType"]["output"];
+  statement?: Maybe<StatementSimpleRecord>;
+  stats: Array<StatRecord>;
+  text: Scalars["String"]["output"];
+};
+
+/** Record of type Purpose (purpose) */
+export type PurposeRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Purpose (purpose) */
+export type PurposeRecordTextArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
 /** The query root for this schema */
 export type Query = {
   __typename?: "Query";
@@ -3392,8 +3409,6 @@ export type Query = {
   _allArticlesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allCaseStudiesMeta: CollectionMetadata;
-  /** Returns meta information regarding a record collection */
-  _allDividerTitlesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allDrawersMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -3419,6 +3434,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allPhotoCarouselsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allPurposesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allServiceCardsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allServiceCardsSectionsMeta: CollectionMetadata;
@@ -3438,8 +3455,6 @@ export type Query = {
   allArticles: Array<ArticleRecord>;
   /** Returns a collection of records */
   allCaseStudies: Array<CaseStudyRecord>;
-  /** Returns a collection of records */
-  allDividerTitles: Array<DividerTitleRecord>;
   /** Returns a collection of records */
   allDrawers: Array<DrawerRecord>;
   /** Returns a collection of records */
@@ -3465,6 +3480,8 @@ export type Query = {
   /** Returns a collection of records */
   allPhotoCarousels: Array<PhotoCarouselRecord>;
   /** Returns a collection of records */
+  allPurposes: Array<PurposeRecord>;
+  /** Returns a collection of records */
   allServiceCards: Array<ServiceCardRecord>;
   /** Returns a collection of records */
   allServiceCardsSections: Array<ServiceCardsSectionRecord>;
@@ -3482,8 +3499,6 @@ export type Query = {
   article?: Maybe<ArticleRecord>;
   /** Returns a specific record */
   caseStudy?: Maybe<CaseStudyRecord>;
-  /** Returns a specific record */
-  dividerTitle?: Maybe<DividerTitleRecord>;
   /** Returns a specific record */
   drawer?: Maybe<DrawerRecord>;
   /** Returns a specific record */
@@ -3511,6 +3526,8 @@ export type Query = {
   /** Returns a specific record */
   photoCarousel?: Maybe<PhotoCarouselRecord>;
   /** Returns a specific record */
+  purpose?: Maybe<PurposeRecord>;
+  /** Returns a specific record */
   serviceCard?: Maybe<ServiceCardRecord>;
   /** Returns a specific record */
   serviceCardsSection?: Maybe<ServiceCardsSectionRecord>;
@@ -3535,12 +3552,6 @@ export type Query_AllArticlesMetaArgs = {
 /** The query root for this schema */
 export type Query_AllCaseStudiesMetaArgs = {
   filter?: InputMaybe<CaseStudyModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-/** The query root for this schema */
-export type Query_AllDividerTitlesMetaArgs = {
-  filter?: InputMaybe<DividerTitleModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3617,6 +3628,12 @@ export type Query_AllPhotoCarouselsMetaArgs = {
 };
 
 /** The query root for this schema */
+export type Query_AllPurposesMetaArgs = {
+  filter?: InputMaybe<PurposeModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
 export type Query_AllServiceCardsMetaArgs = {
   filter?: InputMaybe<ServiceCardModelFilter>;
   locale?: InputMaybe<SiteLocale>;
@@ -3681,16 +3698,6 @@ export type QueryAllCaseStudiesArgs = {
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<CaseStudyModelOrderBy>>>;
-  skip?: InputMaybe<Scalars["IntType"]["input"]>;
-};
-
-/** The query root for this schema */
-export type QueryAllDividerTitlesArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<DividerTitleModelFilter>;
-  first?: InputMaybe<Scalars["IntType"]["input"]>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<DividerTitleModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -3815,6 +3822,16 @@ export type QueryAllPhotoCarouselsArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllPurposesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PurposeModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PurposeModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllServiceCardsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ServiceCardModelFilter>;
@@ -3898,14 +3915,6 @@ export type QueryCaseStudyArgs = {
   filter?: InputMaybe<CaseStudyModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<CaseStudyModelOrderBy>>>;
-};
-
-/** The query root for this schema */
-export type QueryDividerTitleArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<DividerTitleModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<DividerTitleModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -4008,6 +4017,14 @@ export type QueryPhotoCarouselArgs = {
   filter?: InputMaybe<PhotoCarouselModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<PhotoCarouselModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryPurposeArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<PurposeModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<PurposeModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -4217,7 +4234,6 @@ export type ServiceCardsSectionModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  divider?: InputMaybe<LinkFilter>;
   id?: InputMaybe<ItemIdFilter>;
   invertColor?: InputMaybe<BooleanFilter>;
   serviceCards?: InputMaybe<LinksFilter>;
@@ -4266,7 +4282,7 @@ export type ServiceCardsSectionRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
-  divider?: Maybe<DividerTitleRecord>;
+  divider?: Maybe<DividerRecord>;
   id: Scalars["ItemId"]["output"];
   invertColor: Scalars["BooleanType"]["output"];
   serviceCards: Array<ServiceCardRecord>;
@@ -5114,8 +5130,8 @@ export type FocalPoint = {
 };
 
 export type DividerFragment = {
-  __typename?: "DividerTitleRecord";
-  title: string;
+  __typename?: "DividerRecord";
+  text?: string | null;
   invertColor: boolean;
 };
 
@@ -5243,14 +5259,15 @@ export type PageQuery = {
           }>;
         }
       | { __typename: "ManifestoRecord" }
+      | { __typename: "PurposeRecord" }
       | {
           __typename: "ServiceCardsSectionRecord";
           id: string;
           showDivider: boolean;
           invertColor: boolean;
           divider?: {
-            __typename?: "DividerTitleRecord";
-            title: string;
+            __typename?: "DividerRecord";
+            text?: string | null;
             invertColor: boolean;
           } | null;
           statement?: {
@@ -5391,8 +5408,8 @@ export type ServiceCardsFragment = {
   showDivider: boolean;
   invertColor: boolean;
   divider?: {
-    __typename?: "DividerTitleRecord";
-    title: string;
+    __typename?: "DividerRecord";
+    text?: string | null;
     invertColor: boolean;
   } | null;
   statement?: {
@@ -5634,12 +5651,12 @@ export const DividerFragmentDoc = {
       name: { kind: "Name", value: "Divider" },
       typeCondition: {
         kind: "NamedType",
-        name: { kind: "Name", value: "DividerTitleRecord" },
+        name: { kind: "Name", value: "DividerRecord" },
       },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
         ],
       },
@@ -5794,12 +5811,12 @@ export const ServiceCardsFragmentDoc = {
       name: { kind: "Name", value: "Divider" },
       typeCondition: {
         kind: "NamedType",
-        name: { kind: "Name", value: "DividerTitleRecord" },
+        name: { kind: "Name", value: "DividerRecord" },
       },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
         ],
       },
@@ -6157,12 +6174,12 @@ export const PageDocument = {
       name: { kind: "Name", value: "Divider" },
       typeCondition: {
         kind: "NamedType",
-        name: { kind: "Name", value: "DividerTitleRecord" },
+        name: { kind: "Name", value: "DividerRecord" },
       },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
         ],
       },
