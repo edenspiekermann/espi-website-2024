@@ -1,0 +1,62 @@
+@use "../../app/styles/base.scss" as *;
+
+.locationTeaser {
+  @include mqHelper("padding", 24px 0px, 20px 0px, 32px 0px);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 37px;
+  grid-column: 1/-1;
+  @include mqHelper("gap", 16px, 16px, 24px);
+  @include mq("tablet") {
+    margin-bottom: 0;
+    margin-right: 37px;
+    grid-column: span 4;
+  }
+  @include mq("desktop") {
+    margin-right: 51px;
+  }
+}
+
+.title {
+  @include as-l-serif;
+}
+
+.subtext {
+  @include as-m-text;
+}
+
+.locations {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  grid-column: 1/-1;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  @include mq("tablet") {
+    grid-column: span 7;
+  }
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+
+  @include as-m-sans;
+  @include mqHelper("border-radius", 20px, 20px, 40px);
+  @include mqHelper("padding", 24px, 24px, 40px);
+  background-color: var(--color-extra-light-grey);
+
+  @include mq("tablet") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.time {
+  color: var(--color-medium-grey);
+}

@@ -1,0 +1,71 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import styles from "./styles.module.scss";
+import { LocationTeaserFragment } from "@/graphql/types/generated";
+
+export const Locations = ({
+  locations,
+}: {
+  locations: LocationTeaserFragment["locations"];
+}) => {
+  const formatTime = (date: Date, timeZone: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      timeZone,
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    };
+    const timeString = date.toLocaleTimeString("en-US", options);
+    const [time, period] = timeString.split(" ");
+    const [hour, minute] = time.split(":");
+    const formattedHour = hour.startsWith("0") ? hour.slice(1) : hour;
+    return { hour: formattedHour, minute, period };
+  };
+
+  const [locationsWithCurrentTimes, setLocationsCurrentTimes] = useState(
+    locations.map((location) => ({
+      ...location,
+      time: formatTime(new Date(), location.timeZone),
+    })),
+  );
+
+  const [colonVisible, setColonVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLocationsCurrentTimes((locations) =>
+        locations.map((location) => ({
+          ...location,
+          time: formatTime(new Date(), location.timeZone),
+        })),
+      );
+    }, 60000); // Update the time every minute
+
+    const colonVisibilityInterval = setInterval(() => {
+      setColonVisible((prev) => !prev);
+    }, 1000); // Toggle colon visibility every second
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(colonVisibilityInterval);
+    };
+  }, []);
+
+  return (
+    <ul className={styles.locations}>
+      {locationsWithCurrentTimes?.map((location, index) => (
+        <li key={location.id} className={styles.location}>
+          <span>{location.city}</span>
+          <span className={styles.time}>
+            {location.time.hour}
+            <span style={{ visibility: colonVisible ? "visible" : "hidden" }}>
+              :
+            </span>
+            {location.time.minute} {location.time.period}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+};
