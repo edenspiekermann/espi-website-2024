@@ -1,0 +1,66 @@
+@use "../../app/styles/base.scss" as *;
+
+.location {
+  display: flex;
+  position: relative;
+  padding: 40px 0px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-espi-black);
+    opacity: 0.2;
+  }
+}
+
+.left {
+  grid-column: 1/-1;
+  display: flex;
+  @include mq("tablet") {
+    grid-column: span 5;
+    flex-direction: column;
+  }
+  @include mq("desktop") {
+    grid-column: span 4;
+  }
+}
+
+.decorativeImage {
+  position: relative;
+  @include mqHelper("width", 82px, 154px, 217px);
+  @include mqHelper("height", 72px, 135px, 191px);
+  object-fit: contain;
+}
+
+.center {
+  @include as-m-text;
+
+  @include mq("desktop") {
+    grid-column: 5/8;
+  }
+}
+
+.city {
+  @include as-l-sans;
+}
+
+.address {
+}
+
+.right {
+  position: relative;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+  grid-column: 1/-1;
+  @include mq("tablet") {
+    display: none;
+  }
+  @include mq("desktop") {
+    display: block;
+    grid-column: 9/13;
+  }
+}
