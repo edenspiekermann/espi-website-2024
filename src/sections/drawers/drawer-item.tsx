@@ -35,7 +35,7 @@ export const DrawerItem = ({
           <DrawerOpenButton />
         </div>
       </div>
-      <p className={bodyClass}>{body}</p>
+      <div className={bodyClass} dangerouslySetInnerHTML={{ __html: body }} />
     </li>
   );
 };

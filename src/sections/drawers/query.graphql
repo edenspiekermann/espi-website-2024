@@ -6,7 +6,7 @@ fragment Drawers on DrawerRecord {
     ... on DrawerItemRecord {
       id
       title
-      body
+      body(markdown: true)
     }
   }
   media {

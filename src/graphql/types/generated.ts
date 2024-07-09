@@ -5904,7 +5904,17 @@ export const DrawersFragmentDoc = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "body" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "body" },
+                        arguments: [
+                          {
+                            kind: "Argument",
+                            name: { kind: "Name", value: "markdown" },
+                            value: { kind: "BooleanValue", value: true },
+                          },
+                        ],
+                      },
                     ],
                   },
                 },
@@ -6645,7 +6655,17 @@ export const PageDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "body" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "body" },
+                        arguments: [
+                          {
+                            kind: "Argument",
+                            name: { kind: "Name", value: "markdown" },
+                            value: { kind: "BooleanValue", value: true },
+                          },
+                        ],
+                      },
                     ],
                   },
                 },
