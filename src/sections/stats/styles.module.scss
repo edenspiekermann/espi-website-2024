@@ -1,0 +1,27 @@
+@use "../../app/styles/base.scss" as *;
+
+.stats {
+  @include mqHelper("padding", 16px 0px 64px, 16px 0px 80px, 32px 0px 112px);
+}
+
+.statistic {
+  @include as-xl-sans;
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
+  margin-bottom: 32px;
+
+  @include mq(tablet) {
+    grid-column: span 4;
+    margin-bottom: 0;
+  }
+  @include mq(desktop) {
+    gap: 16px;
+  }
+}
+
+.context {
+  @include as-xs-sans;
+}
