@@ -1,0 +1,27 @@
+@use "../../app/styles/base.scss" as *;
+
+.statementCta {
+  padding: 24px 0px;
+  @include mq("desktop") {
+    padding: 32px 0px;
+  }
+}
+
+.text {
+  @include as-l-serif;
+}
+
+.content {
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+
+  @include mq("desktop") {
+    grid-column: 2/12;
+    gap: 32px;
+  }
+}
