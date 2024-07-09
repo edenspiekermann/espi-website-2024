@@ -5,6 +5,7 @@ import { HomePageHero } from "./homepage-hero";
 import { StatementLarge } from "./statement-large";
 import { HeaderSimple } from "./header-simple";
 import { LogoGrid } from "./logo-grid";
+import { FullImage } from "./full-image";
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
@@ -18,6 +19,8 @@ const sectionSwitch = (section: any) => {
       return <HeaderSimple key={section.id} {...section} />;
     case "LogoGridRecord":
       return <LogoGrid key={section.id} {...section} />;
+    case "FullWidthImageRecord":
+      return <FullImage key={section.id} {...section} />;
     default:
       return <SectionDevelopment key={nanoid()} {...section} />;
   }

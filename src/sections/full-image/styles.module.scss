@@ -1,0 +1,9 @@
+@use "../../app/styles/base.scss" as *;
+
+.fullImage {
+  position: relative;
+  aspect-ratio: 2/1;
+  height: auto;
+  width: 100vw;
+  object-fit: contain;
+}
