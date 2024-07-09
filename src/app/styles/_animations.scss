@@ -1,0 +1,6 @@
+// Global animation variables
+:root {
+  --animation-soft-curve-200ms: 0.2s cubic-bezier(0, 0, 0.58, 1);
+  --animation-soft-curve-400ms: 0.4s cubic-bezier(0, 0, 0.58, 1);
+  --animation-strong-curve-800ms: 0.8s cubic-bezier(0, 0.9, 0.1, 1);
+}

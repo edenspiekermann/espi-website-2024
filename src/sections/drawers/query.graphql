@@ -1,0 +1,21 @@
+fragment Drawers on DrawerRecord {
+  __typename
+  id
+  title
+  items {
+    ... on DrawerItemRecord {
+      id
+      title
+      body
+    }
+  }
+  media {
+    responsiveImage {
+      src
+      alt
+    }
+    video {
+      mp4Url
+    }
+  }
+}
