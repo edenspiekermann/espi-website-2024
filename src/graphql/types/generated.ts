@@ -5878,7 +5878,29 @@ export type PageQuery = {
       tag: string;
     }>;
     sections: Array<
-      | { __typename: "DrawerRecord" }
+      | {
+          __typename: "DrawerRecord";
+          id: string;
+          title: string;
+          items: Array<{
+            __typename?: "DrawerItemRecord";
+            id: string;
+            title: string;
+            body: string;
+          }>;
+          media: {
+            __typename?: "FileField";
+            responsiveImage?: {
+              __typename?: "ResponsiveImage";
+              src: string;
+              alt?: string | null;
+            } | null;
+            video?: {
+              __typename?: "UploadVideoField";
+              mp4Url?: string | null;
+            } | null;
+          };
+        }
       | { __typename: "FullWidthImageRecord" }
       | {
           __typename: "HeaderSimpleRecord";
@@ -6101,6 +6123,27 @@ export type PageQuery = {
       | { __typename: "StatsSectionRecord" }
     >;
   } | null;
+};
+
+export type DrawersFragment = {
+  __typename: "DrawerRecord";
+  id: string;
+  title: string;
+  items: Array<{
+    __typename?: "DrawerItemRecord";
+    id: string;
+    title: string;
+    body: string;
+  }>;
+  media: {
+    __typename?: "FileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+    } | null;
+    video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
+  };
 };
 
 export type FooterQueryVariables = Exact<{ [key: string]: never }>;
@@ -6411,6 +6454,94 @@ export const StatementNumberedFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<StatementNumberedFragment, unknown>;
+export const DrawersFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Drawers" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DrawerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "DrawerItemRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "body" },
+                        arguments: [
+                          {
+                            kind: "Argument",
+                            name: { kind: "Name", value: "markdown" },
+                            value: { kind: "BooleanValue", value: true },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DrawersFragment, unknown>;
 export const HeaderSimpleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -7784,6 +7915,10 @@ export const PageDocument = {
                       },
                       {
                         kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Drawers" },
+                      },
+                      {
+                        kind: "FragmentSpread",
                         name: { kind: "Name", value: "StatementCta" },
                       },
                       {
@@ -8144,6 +8279,89 @@ export const PageDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Drawers" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DrawerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "DrawerItemRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "body" },
+                        arguments: [
+                          {
+                            kind: "Argument",
+                            name: { kind: "Name", value: "markdown" },
+                            value: { kind: "BooleanValue", value: true },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
