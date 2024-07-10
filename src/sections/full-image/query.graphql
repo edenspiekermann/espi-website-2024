@@ -1,0 +1,13 @@
+fragment FullImage on FullWidthImageRecord {
+  __typename
+  id
+  media {
+    responsiveImage {
+      src
+      alt
+    }
+    video {
+      mp4Url
+    }
+  }
+}
