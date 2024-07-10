@@ -1,0 +1,36 @@
+fragment Locations on LocationsSectionRecord {
+  __typename
+  id
+  locations {
+    ...Location
+  }
+}
+
+fragment Location on LocationRecord {
+  id
+  city
+  timeZone
+  decorativeImage {
+    responsiveImage {
+      src
+      alt
+    }
+  }
+  address(markdown: false)
+  email
+  phoneNumber
+  contactPerson {
+    name
+    role
+    email
+  }
+  media {
+    responsiveImage {
+      src
+      alt
+    }
+    video {
+      mp4Url
+    }
+  }
+}
