@@ -1,0 +1,15 @@
+fragment Manifesto on ManifestoRecord {
+  __typename
+  id
+  showDivider
+  divider {
+    ...Divider
+  }
+  statement {
+    ...StatementSimple
+  }
+  cards {
+    ...ManifestoCard
+  }
+  invertColor
+}
