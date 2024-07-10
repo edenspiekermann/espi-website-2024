@@ -1,0 +1,75 @@
+@use "../../app/styles/base.scss" as *;
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.openPositions {
+  display: flex;
+  flex-wrap: wrap;
+  @include mqHelper("padding", 48px 24px 64px, 64px 40px, 80px 70px);
+
+  svg {
+    width: 93px;
+    height: 93px;
+    margin-bottom: 24px;
+    animation: spin 5s linear infinite;
+
+    @include mq("tablet") {
+      margin-bottom: 0;
+      margin-right: 62px;
+    }
+
+    @include mq("desktop") {
+      width: 181px;
+      height: 181px;
+    }
+  }
+}
+
+.jobContent {
+  grid-column: 1/-1;
+
+  @include mq("tablet") {
+    grid-column: 4/13;
+  }
+}
+
+.title {
+  @include as-l-serif;
+  margin-bottom: 32px;
+}
+
+.jobs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.job {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+  background-color: var(--color-extra-light-grey);
+  @include mqHelper("padding", 24px, 24px, 40px);
+  @include mqHelper("border-radius", 20px, 20px, 40px);
+  @include as-m-sans;
+
+  @include mq("tablet") {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.office {
+  color: var(--color-medium-grey);
+}

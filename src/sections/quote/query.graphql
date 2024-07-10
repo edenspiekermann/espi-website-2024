@@ -1,0 +1,14 @@
+fragment Quote on QuoteRecord {
+  __typename
+  id
+  quoteText
+  author
+  image {
+    responsiveImage {
+      src
+      alt
+      height
+      width
+    }
+  }
+}

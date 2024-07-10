@@ -1,0 +1,48 @@
+@use "../../app/styles/base.scss" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  grid-column: 1/-1;
+  border-radius: 40px;
+  background-color: var(--color-white);
+  margin-bottom: 24px;
+
+  @include mq("tablet") {
+    grid-column: span 6;
+    margin-bottom: 20px;
+  }
+
+  @include mq("desktop") {
+    grid-column: span 3;
+    margin-bottom: 32px;
+  }
+}
+
+.title {
+  @include as-m-serif;
+  margin-bottom: 20px;
+}
+
+.subtext {
+  @include as-m-text;
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: 151px;
+  margin-bottom: 16px;
+
+  @include mq("tablet") {
+    height: 137px;
+  }
+
+  img {
+    object-fit: contain;
+    object-position: center center;
+  }
+}

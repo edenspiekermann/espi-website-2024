@@ -1,0 +1,48 @@
+@use "../../app/styles/base.scss" as *;
+
+.quote {
+  padding: 24px 0px 64px;
+  text-align: center;
+
+  p {
+    grid-column: 1/-1;
+  }
+
+  @include mq("desktop") {
+    padding: 32px 0px 80px;
+
+    p {
+      grid-column: 2/12;
+    }
+  }
+}
+
+.quoteText,
+.author,
+.media {
+  grid-column: 1/-1;
+
+  @include mq("desktop") {
+    grid-column: 2/12;
+  }
+}
+
+.quoteText {
+  @include as-xl-text;
+  margin-bottom: 16px;
+
+  @include mq("desktop") {
+    margin-bottom: 24px;
+  }
+}
+
+.author {
+  @include as-m-text;
+  margin-bottom: 32px;
+  @include mq("desktop") {
+    margin-bottom: 40px;
+  }
+}
+
+.media {
+}

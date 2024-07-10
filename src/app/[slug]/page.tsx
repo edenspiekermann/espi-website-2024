@@ -1,9 +1,4 @@
-import {
-  FooterDocument,
-  PageDocument,
-  PageRecord,
-  SocialLinkRecord,
-} from "@/graphql/types/generated";
+import { PageDocument } from "@/graphql/types/generated";
 import { SectionConductor } from "../../sections/conductor";
 import { request } from "../../lib/request";
 import UpdateNavState from "@/components/navigation/update-nav-state";

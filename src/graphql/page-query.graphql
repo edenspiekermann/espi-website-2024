@@ -14,6 +14,15 @@ query Page($slug: String) {
       ...HeaderSimple
       ...LogoGrid
       ...ImageWithStat
+      ...Stats
+      ...Drawers
+      ...StatementCta
+      ...Quote
+      ...OpenPosition
+      ...LocationTeaser
+      ...Purpose
+      ...Manifesto
+      ...ServiceCards
     }
     invertNavColor
   }

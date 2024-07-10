@@ -1,0 +1,58 @@
+@use "../../app/styles/base.scss" as *;
+
+.serviceCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  border-radius: 20px;
+  padding: 32px;
+  background-color: var(--color-white);
+  grid-column: 1/-1;
+  margin-bottom: 24px;
+
+  @include mq("desktop") {
+    padding: 40px;
+    border-radius: 40px;
+    grid-column: span 6;
+    margin-bottom: 32px;
+  }
+}
+
+.title {
+  @include as-l-sans;
+}
+
+.body {
+  @include as-l-text;
+}
+
+.listItems {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  li {
+    color: var(--color-dark-grey);
+  }
+}
+
+.image {
+  position: relative;
+  width: 89px;
+  height: 89px;
+
+  @include mq("tablet") {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+  }
+
+  @include mq("desktop") {
+    width: 134px;
+    height: 134px;
+    bottom: 40px;
+    right: 40px;
+  }
+}

@@ -44,7 +44,7 @@ export const LogoGrid = ({
   }, [logos]);
 
   return (
-    <div className={logoGridClass}>
+    <section className={logoGridClass}>
       <Divider text={divider?.text} invertColor={invertColor} />
       <div className="container">
         <ul className={styles.logosContainer}>
@@ -62,6 +62,6 @@ export const LogoGrid = ({
             ))}
         </ul>
       </div>
-    </div>
+    </section>
   );
 };

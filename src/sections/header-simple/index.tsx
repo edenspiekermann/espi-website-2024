@@ -14,7 +14,7 @@ export const HeaderSimple = ({
     [styles.headerSimple]: true,
   });
   return (
-    <div className={headerSimpleClass}>
+    <section className={headerSimpleClass}>
       <div className="container">
         <h2
           dangerouslySetInnerHTML={{ __html: featuredText }}
@@ -35,6 +35,6 @@ export const HeaderSimple = ({
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
