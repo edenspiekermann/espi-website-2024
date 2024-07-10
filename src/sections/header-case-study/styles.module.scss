@@ -1,0 +1,35 @@
+@use "../../app/styles/base.scss" as *;
+
+.headerCaseStudy {
+  color: var(--color-espi-black);
+  text-align: center;
+  width: 100%;
+  height: fit-content;
+  @include mqHelper("padding", 76px 0px 24px, 146px 0px 40px, 190px 0px 64px);
+  display: block;
+}
+
+.inverted {
+  color: var(--color-white);
+}
+
+.title {
+  @include as-xl-sans;
+  grid-column: 1/-1;
+  @include mqHelper("margin-bottom", 16px, 16px, 24px);
+}
+
+.subtitle {
+  @include as-m-serif;
+  grid-column: 1/-1;
+  @include mqHelper("margin-bottom", 56px, 88px, 124px);
+}
+
+.media {
+  grid-column: 1/-1;
+  aspect-ratio: 16/9;
+  @include mqHelper("border-radius", 10px, 18px, 27px);
+  object-fit: contain;
+  overflow: hidden;
+  position: relative;
+}
