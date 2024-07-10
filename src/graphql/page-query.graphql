@@ -13,6 +13,9 @@ query Page($slug: String) {
       ...StatementLarge
       ...HeaderSimple
       ...LogoGrid
+      ...Purpose
+      ...Manifesto
+      ...ServiceCards
     }
     invertNavColor
   }

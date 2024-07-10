@@ -1,0 +1,13 @@
+@use "../../app/styles/base.scss" as *;
+
+.serviceCards {
+  background-color: var(--color-white);
+}
+
+.inverted {
+  background-color: var(--color-espi-black);
+}
+
+.cards {
+  padding: 32px 0px;
+}
