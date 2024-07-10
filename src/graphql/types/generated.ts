@@ -5909,7 +5909,24 @@ export type PageQuery = {
           };
         }
       | { __typename: "ImageWithStatRecord" }
-      | { __typename: "LocationTeaserRecord" }
+      | {
+          __typename: "LocationTeaserRecord";
+          id: string;
+          showDivider: boolean;
+          title: string;
+          subtext?: string | null;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
+          locations: Array<{
+            __typename?: "LocationRecord";
+            id: string;
+            city: string;
+            timeZone: string;
+          }>;
+        }
       | { __typename: "LocationsSectionRecord" }
       | {
           __typename: "LogoGridRecord";
@@ -6129,6 +6146,25 @@ export type HomepageHeroFragment = {
       title?: string | null;
     } | null;
   };
+};
+
+export type LocationTeaserFragment = {
+  __typename: "LocationTeaserRecord";
+  id: string;
+  showDivider: boolean;
+  title: string;
+  subtext?: string | null;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
+  locations: Array<{
+    __typename?: "LocationRecord";
+    id: string;
+    city: string;
+    timeZone: string;
+  }>;
 };
 
 export type LogoGridFragment = {
@@ -6406,6 +6442,89 @@ export const HomepageHeroFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<HomepageHeroFragment, unknown>;
+export const DividerFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DividerFragment, unknown>;
+export const LocationTeaserFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "LocationTeaser" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "LocationTeaserRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtext" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "locations" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "city" } },
+                { kind: "Field", name: { kind: "Name", value: "timeZone" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<LocationTeaserFragment, unknown>;
 export const LogoGridFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -6457,26 +6576,6 @@ export const LogoGridFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<LogoGridFragment, unknown>;
-export const DividerFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "Divider" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "DividerRecord" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "text" } },
-          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<DividerFragment, unknown>;
 export const StatementSimpleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -7478,6 +7577,10 @@ export const PageDocument = {
                       },
                       {
                         kind: "FragmentSpread",
+                        name: { kind: "Name", value: "LocationTeaser" },
+                      },
+                      {
+                        kind: "FragmentSpread",
                         name: { kind: "Name", value: "Purpose" },
                       },
                       {
@@ -7822,6 +7925,49 @@ export const PageDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "LocationTeaser" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "LocationTeaserRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtext" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "locations" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "city" } },
+                { kind: "Field", name: { kind: "Name", value: "timeZone" } },
+              ],
+            },
+          },
         ],
       },
     },
