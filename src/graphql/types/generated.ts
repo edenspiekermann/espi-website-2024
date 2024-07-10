@@ -294,6 +294,7 @@ export type CaseStudyModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   backgroundColor?: InputMaybe<ColorFilter>;
+  cardMedia?: InputMaybe<FileFilter>;
   featuredMedia?: InputMaybe<FileFilter>;
   id?: InputMaybe<ItemIdFilter>;
   invertNav?: InputMaybe<BooleanFilter>;
@@ -347,6 +348,7 @@ export type CaseStudyRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   backgroundColor: ColorField;
+  cardMedia: FileField;
   featuredMedia: FileField;
   id: Scalars["ItemId"]["output"];
   invertNav: Scalars["BooleanType"]["output"];
@@ -3438,7 +3440,8 @@ export type PageModelSectionsField =
   | StatementCtaRecord
   | StatementLargeRecord
   | StatementSimpleRecord
-  | StatsSectionRecord;
+  | StatsSectionRecord
+  | TeaserCaseStaggeredRecord;
 
 /** Record of type Page (page) */
 export type PageRecord = RecordInterface & {
@@ -3760,6 +3763,8 @@ export type Query = {
   _allStatementSimplesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allStatsSectionsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allTeaserCaseStaggeredsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
   /** Returns the single instance record */
@@ -3816,6 +3821,8 @@ export type Query = {
   allStatementSimples: Array<StatementSimpleRecord>;
   /** Returns a collection of records */
   allStatsSections: Array<StatsSectionRecord>;
+  /** Returns a collection of records */
+  allTeaserCaseStaggereds: Array<TeaserCaseStaggeredRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
   /** Returns a specific record */
@@ -3876,6 +3883,8 @@ export type Query = {
   statementSimple?: Maybe<StatementSimpleRecord>;
   /** Returns a specific record */
   statsSection?: Maybe<StatsSectionRecord>;
+  /** Returns a specific record */
+  teaserCaseStaggered?: Maybe<TeaserCaseStaggeredRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
 };
@@ -4033,6 +4042,12 @@ export type Query_AllStatementSimplesMetaArgs = {
 /** The query root for this schema */
 export type Query_AllStatsSectionsMetaArgs = {
   filter?: InputMaybe<StatsSectionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllTeaserCaseStaggeredsMetaArgs = {
+  filter?: InputMaybe<TeaserCaseStaggeredModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4309,6 +4324,16 @@ export type QueryAllStatsSectionsArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllTeaserCaseStaggeredsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TeaserCaseStaggeredModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<TeaserCaseStaggeredModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllUploadsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<UploadFilter>;
@@ -4542,6 +4567,14 @@ export type QueryStatsSectionArgs = {
   filter?: InputMaybe<StatsSectionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<StatsSectionModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryTeaserCaseStaggeredArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TeaserCaseStaggeredModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<TeaserCaseStaggeredModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -5331,6 +5364,67 @@ export type Tag = {
   attributes?: Maybe<Scalars["MetaTagAttributes"]["output"]>;
   content?: Maybe<Scalars["String"]["output"]>;
   tag: Scalars["String"]["output"];
+};
+
+export type TeaserCaseStaggeredModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<TeaserCaseStaggeredModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<TeaserCaseStaggeredModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  caseStudies?: InputMaybe<LinksFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+};
+
+export enum TeaserCaseStaggeredModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+}
+
+/** Record of type Teaser Case Staggered (teaser_case_staggered) */
+export type TeaserCaseStaggeredRecord = RecordInterface & {
+  __typename?: "TeaserCaseStaggeredRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  caseStudies: Array<CaseStudyRecord>;
+  id: Scalars["ItemId"]["output"];
+};
+
+/** Record of type Teaser Case Staggered (teaser_case_staggered) */
+export type TeaserCaseStaggeredRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter text fields */
@@ -6210,6 +6304,31 @@ export type PageQuery = {
             context: string;
           }>;
         }
+      | {
+          __typename: "TeaserCaseStaggeredRecord";
+          id: string;
+          caseStudies: Array<{
+            __typename?: "CaseStudyRecord";
+            id: string;
+            title: string;
+            subtitle: string;
+            invertNav: boolean;
+            slug: string;
+            backgroundColor: { __typename?: "ColorField"; hex: string };
+            cardMedia: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+              video?: {
+                __typename?: "UploadVideoField";
+                mp4Url?: string | null;
+              } | null;
+            };
+          }>;
+        }
     >;
   } | null;
 };
@@ -6619,6 +6738,51 @@ export type StatsFragment = {
     statistic: string;
     context: string;
   }>;
+};
+
+export type TeaserCaseStaggeredFragment = {
+  __typename: "TeaserCaseStaggeredRecord";
+  id: string;
+  caseStudies: Array<{
+    __typename?: "CaseStudyRecord";
+    id: string;
+    title: string;
+    subtitle: string;
+    invertNav: boolean;
+    slug: string;
+    backgroundColor: { __typename?: "ColorField"; hex: string };
+    cardMedia: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+      video?: {
+        __typename?: "UploadVideoField";
+        mp4Url?: string | null;
+      } | null;
+    };
+  }>;
+};
+
+export type CaseStudyCardFragment = {
+  __typename?: "CaseStudyRecord";
+  id: string;
+  title: string;
+  subtitle: string;
+  invertNav: boolean;
+  slug: string;
+  backgroundColor: { __typename?: "ColorField"; hex: string };
+  cardMedia: {
+    __typename?: "FileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+    } | null;
+    video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
+  };
 };
 
 export const StatementNumberedFragmentDoc = {
@@ -8204,6 +8368,166 @@ export const StatsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<StatsFragment, unknown>;
+export const CaseStudyCardFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "invertNav" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundColor" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hex" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CaseStudyCardFragment, unknown>;
+export const TeaserCaseStaggeredFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserCaseStaggered" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserCaseStaggeredRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "caseStudies" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CaseStudyCard" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "invertNav" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundColor" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hex" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TeaserCaseStaggeredFragment, unknown>;
 export const NavigationDocument = {
   kind: "Document",
   definitions: [
@@ -8597,6 +8921,10 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "ServiceCards" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TeaserCaseStaggered" },
+                      },
                     ],
                   },
                 },
@@ -8834,6 +9162,67 @@ export const PageDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "invertNav" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundColor" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hex" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
                     ],
                   },
                 },
@@ -9670,6 +10059,34 @@ export const PageDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserCaseStaggered" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserCaseStaggeredRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "caseStudies" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CaseStudyCard" },
+                },
+              ],
+            },
+          },
         ],
       },
     },
