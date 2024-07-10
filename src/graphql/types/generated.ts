@@ -6063,7 +6063,22 @@ export type PageQuery = {
             };
           }>;
         }
-      | { __typename: "StatementCtaRecord" }
+      | {
+          __typename: "StatementCtaRecord";
+          id: string;
+          showDivider: boolean;
+          text: string;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
+          callToAction: {
+            __typename?: "PageLinkRecord";
+            text: string;
+            slug: string;
+          };
+        }
       | {
           __typename: "StatementLargeRecord";
           id: string;
@@ -6318,6 +6333,19 @@ export type ServiceCardsFragment = {
       responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
     };
   }>;
+};
+
+export type StatementCtaFragment = {
+  __typename: "StatementCtaRecord";
+  id: string;
+  showDivider: boolean;
+  text: string;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
+  callToAction: { __typename?: "PageLinkRecord"; text: string; slug: string };
 };
 
 export type StatementLargeFragment = {
@@ -7279,6 +7307,79 @@ export const ServiceCardsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ServiceCardsFragment, unknown>;
+export const StatementCtaFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementCta" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementCtaRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "callToAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "PageLinkRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StatementCtaFragment, unknown>;
 export const StatementLargeFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -7683,6 +7784,10 @@ export const PageDocument = {
                       },
                       {
                         kind: "FragmentSpread",
+                        name: { kind: "Name", value: "StatementCta" },
+                      },
+                      {
+                        kind: "FragmentSpread",
                         name: { kind: "Name", value: "Quote" },
                       },
                       {
@@ -8039,6 +8144,59 @@ export const PageDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementCta" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementCtaRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "callToAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "PageLinkRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
