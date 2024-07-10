@@ -2937,6 +2937,7 @@ export type LocationTeaserModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  locations?: InputMaybe<LinksFilter>;
   showDivider?: InputMaybe<BooleanFilter>;
   subtext?: InputMaybe<TextFilter>;
   title?: InputMaybe<StringFilter>;
@@ -2985,6 +2986,7 @@ export type LocationTeaserRecord = RecordInterface & {
   _updatedAt: Scalars["DateTime"]["output"];
   divider?: Maybe<DividerRecord>;
   id: Scalars["ItemId"]["output"];
+  locations: Array<LocationRecord>;
   showDivider: Scalars["BooleanType"]["output"];
   subtext?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
@@ -3477,6 +3479,7 @@ export type PersonModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  email?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
   name?: InputMaybe<StringFilter>;
@@ -3500,6 +3503,8 @@ export enum PersonModelOrderBy {
   UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
   UpdatedAtAsc = "_updatedAt_ASC",
   UpdatedAtDesc = "_updatedAt_DESC",
+  EmailAsc = "email_ASC",
+  EmailDesc = "email_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
   NameAsc = "name_ASC",
@@ -3524,8 +3529,9 @@ export type PersonRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  email?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ItemId"]["output"];
-  image: FileField;
+  image?: Maybe<FileField>;
   name: Scalars["String"]["output"];
   role: Scalars["String"]["output"];
 };
@@ -5865,6 +5871,7 @@ export type PageQuery = {
               __typename?: "PersonRecord";
               name: string;
               role: string;
+              email?: string | null;
             } | null;
             media: {
               __typename?: "FileField";
@@ -6022,6 +6029,7 @@ export type LocationsFragment = {
       __typename?: "PersonRecord";
       name: string;
       role: string;
+      email?: string | null;
     } | null;
     media: {
       __typename?: "FileField";
@@ -6058,6 +6066,7 @@ export type LocationFragment = {
     __typename?: "PersonRecord";
     name: string;
     role: string;
+    email?: string | null;
   } | null;
   media: {
     __typename?: "FileField";
@@ -6319,6 +6328,7 @@ export const LocationFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "email" } },
               ],
             },
           },
@@ -6445,6 +6455,7 @@ export const LocationsFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "email" } },
               ],
             },
           },
@@ -6896,6 +6907,7 @@ export const PageDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "email" } },
               ],
             },
           },

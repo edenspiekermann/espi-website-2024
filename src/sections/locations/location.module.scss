@@ -1,7 +1,6 @@
 @use "../../app/styles/base.scss" as *;
 
 .location {
-  display: flex;
   position: relative;
   padding: 40px 0px;
 
@@ -17,9 +16,21 @@
   }
 }
 
+.left,
+.center {
+  margin-bottom: 24px;
+  @include mq("tablet") {
+    margin-bottom: 0;
+  }
+}
+
 .left {
   grid-column: 1/-1;
   display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+
+  @include as-l-sans;
   @include mq("tablet") {
     grid-column: span 5;
     flex-direction: column;
@@ -27,6 +38,10 @@
   @include mq("desktop") {
     grid-column: span 4;
   }
+}
+
+.time {
+  color: var(--color-medium-grey);
 }
 
 .decorativeImage {
@@ -38,6 +53,13 @@
 
 .center {
   @include as-m-text;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  a {
+    color: var(--color-espi-black);
+  }
 
   @include mq("desktop") {
     grid-column: 5/8;
@@ -48,14 +70,13 @@
   @include as-l-sans;
 }
 
-.address {
-}
-
 .right {
   position: relative;
   object-fit: contain;
   aspect-ratio: 1/1;
   grid-column: 1/-1;
+  border-radius: 40px;
+  overflow: hidden;
   @include mq("tablet") {
     display: none;
   }
