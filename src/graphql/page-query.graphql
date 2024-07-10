@@ -14,6 +14,8 @@ query Page($slug: String) {
       ...HeaderSimple
       ...LogoGrid
       ...Purpose
+      ...Manifesto
+      ...ServiceCards
     }
     invertNavColor
   }
