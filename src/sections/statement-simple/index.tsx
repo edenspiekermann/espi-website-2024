@@ -15,13 +15,13 @@ export const StatementSimple = ({
   });
 
   return (
-    <div className={statementSimpleClass}>
+    <section className={statementSimpleClass}>
       <div className="container">
         <div
           className={styles.content}
           dangerouslySetInnerHTML={{ __html: text }}
         />
       </div>
-    </div>
+    </section>
   );
 };

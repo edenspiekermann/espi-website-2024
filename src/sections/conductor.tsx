@@ -6,6 +6,7 @@ import { StatementLarge } from "./statement-large";
 import { HeaderSimple } from "./header-simple";
 import { LogoGrid } from "./logo-grid";
 import { Manifesto } from "./manifesto";
+import { ServiceCards } from "./service-cards";
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
@@ -21,6 +22,8 @@ const sectionSwitch = (section: any) => {
       return <LogoGrid key={section.id} {...section} />;
     case "ManifestoRecord":
       return <Manifesto key={section.id} {...section} />;
+    case "ServiceCardsSectionRecord":
+      return <ServiceCards key={section.id} {...section} />;
     default:
       return <SectionDevelopment key={nanoid()} {...section} />;
   }
