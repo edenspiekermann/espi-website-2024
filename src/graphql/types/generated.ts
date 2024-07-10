@@ -6120,7 +6120,22 @@ export type PageQuery = {
           invertColor: boolean;
           textSize?: string | null;
         }
-      | { __typename: "StatsSectionRecord" }
+      | {
+          __typename: "StatsSectionRecord";
+          id: string;
+          showDivider: boolean;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
+          stats: Array<{
+            __typename?: "StatRecord";
+            id: string;
+            statistic: string;
+            context: string;
+          }>;
+        }
     >;
   } | null;
 };
@@ -6406,6 +6421,23 @@ export type StatementSimpleFragment = {
   text: string;
   invertColor: boolean;
   textSize?: string | null;
+};
+
+export type StatsFragment = {
+  __typename: "StatsSectionRecord";
+  id: string;
+  showDivider: boolean;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
+  stats: Array<{
+    __typename?: "StatRecord";
+    id: string;
+    statistic: string;
+    context: string;
+  }>;
 };
 
 export const StatementNumberedFragmentDoc = {
@@ -7568,6 +7600,67 @@ export const StatementLargeFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<StatementLargeFragment, unknown>;
+export const StatsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Stats" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatsSectionRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "stats" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "statistic" } },
+                { kind: "Field", name: { kind: "Name", value: "context" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StatsFragment, unknown>;
 export const NavigationDocument = {
   kind: "Document",
   definitions: [
@@ -7912,6 +8005,10 @@ export const PageDocument = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "LogoGrid" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Stats" },
                       },
                       {
                         kind: "FragmentSpread",
@@ -8279,6 +8376,47 @@ export const PageDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Stats" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatsSectionRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "stats" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "statistic" } },
+                { kind: "Field", name: { kind: "Name", value: "context" } },
+              ],
+            },
+          },
         ],
       },
     },
