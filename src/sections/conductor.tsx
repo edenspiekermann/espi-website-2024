@@ -5,6 +5,7 @@ import { HomePageHero } from "./homepage-hero";
 import { StatementLarge } from "./statement-large";
 import { HeaderSimple } from "./header-simple";
 import { LogoGrid } from "./logo-grid";
+import { ImageWithStat } from "./image-with-stat";
 import { Stats } from "./stats";
 import { Drawers } from "./drawers";
 import { StatementCta } from "./statement-cta";
@@ -27,6 +28,8 @@ const sectionSwitch = (section: any) => {
       return <HeaderSimple key={section.id} {...section} />;
     case "LogoGridRecord":
       return <LogoGrid key={section.id} {...section} />;
+    case "ImageWithStatRecord":
+      return <ImageWithStat key={section.id} {...section} />;
     case "StatsSectionRecord":
       return <Stats key={section.id} {...section} />;
     case "DrawerRecord":
