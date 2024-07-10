@@ -1,0 +1,11 @@
+fragment ServiceCard on ServiceCardRecord {
+  id
+  title
+  bodyText
+  listItems(markdown: true)
+  image {
+    responsiveImage {
+      src
+    }
+  }
+}

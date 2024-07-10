@@ -1,0 +1,15 @@
+fragment LocationTeaser on LocationTeaserRecord {
+  __typename
+  id
+  showDivider
+  divider {
+    ...Divider
+  }
+  title
+  subtext
+  locations {
+    id
+    city
+    timeZone
+  }
+}

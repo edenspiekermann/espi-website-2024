@@ -1,0 +1,34 @@
+fragment Purpose on PurposeRecord {
+  __typename
+  id
+  showDivider
+  divider {
+    ...Divider
+  }
+  statement {
+    ...StatementSimple
+  }
+  text
+  button {
+    text
+    slug
+  }
+  media {
+    responsiveImage {
+      src
+      alt
+    }
+    video {
+      mp4Url
+    }
+  }
+  stats {
+    ...Stat
+  }
+  invertColor
+}
+
+fragment Stat on StatRecord {
+  statistic
+  context
+}
