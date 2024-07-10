@@ -6015,7 +6015,22 @@ export type PageQuery = {
             context: string;
           }>;
         }
-      | { __typename: "QuoteRecord" }
+      | {
+          __typename: "QuoteRecord";
+          id: string;
+          quoteText: string;
+          author: string;
+          image?: {
+            __typename?: "FileField";
+            responsiveImage?: {
+              __typename?: "ResponsiveImage";
+              src: string;
+              alt?: string | null;
+              height: number;
+              width: number;
+            } | null;
+          } | null;
+        }
       | {
           __typename: "ServiceCardsSectionRecord";
           id: string;
@@ -6256,6 +6271,23 @@ export type StatFragment = {
   __typename?: "StatRecord";
   statistic: string;
   context: string;
+};
+
+export type QuoteFragment = {
+  __typename: "QuoteRecord";
+  id: string;
+  quoteText: string;
+  author: string;
+  image?: {
+    __typename?: "FileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+      height: number;
+      width: number;
+    } | null;
+  } | null;
 };
 
 export type ServiceCardsFragment = {
@@ -6999,6 +7031,53 @@ export const PurposeFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<PurposeFragment, unknown>;
+export const QuoteFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Quote" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "QuoteRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "quoteText" } },
+          { kind: "Field", name: { kind: "Name", value: "author" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<QuoteFragment, unknown>;
 export const ServiceCardFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -7604,6 +7683,10 @@ export const PageDocument = {
                       },
                       {
                         kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Quote" },
+                      },
+                      {
+                        kind: "FragmentSpread",
                         name: { kind: "Name", value: "OpenPosition" },
                       },
                       {
@@ -7956,6 +8039,48 @@ export const PageDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Quote" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "QuoteRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "quoteText" } },
+          { kind: "Field", name: { kind: "Name", value: "author" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
