@@ -1,0 +1,5 @@
+fragment OpenPosition on OpenPositionRecord {
+  __typename
+  id
+  title
+}

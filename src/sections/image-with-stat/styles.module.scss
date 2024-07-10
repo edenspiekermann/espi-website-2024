@@ -1,0 +1,40 @@
+@use "../../app/styles/base.scss" as *;
+
+.imageWithStat {
+  @include mqHelper("padding", 48px 0px, 64px 0px, 80px 0px);
+}
+
+.media {
+  position: relative;
+  object-fit: contain;
+  aspect-ratio: 2/1;
+  grid-column: 1/-1;
+  overflow: hidden;
+  @include mqHelper("border-radius", 10px, 18px, 27px);
+  @include mqHelper("margin-bottom", 32px, 40px, 64px);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 8px;
+  grid-column: 1/-1;
+  margin-bottom: 32px;
+
+  @include mq(tablet) {
+    grid-column: span 4;
+    margin-bottom: 0;
+  }
+  @include mq(desktop) {
+    gap: 16px;
+  }
+}
+
+.statistic {
+  @include as-xl-sans;
+}
+
+.context {
+  @include as-xs-sans;
+}

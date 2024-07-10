@@ -1,0 +1,84 @@
+@use "../../app/styles/base.scss" as *;
+
+.item {
+  &:hover {
+    cursor: pointer;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-white);
+    opacity: 0.2;
+    margin: 24px 0px;
+  }
+
+  &:last-child::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-white);
+    opacity: 0.2;
+    margin-top: 24px;
+  }
+}
+
+.title {
+  @include as-xs-sans;
+}
+
+.outer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.body {
+  max-height: 0;
+  overflow: hidden;
+  @include as-s-text;
+  color: var(--color-medium-grey);
+  margin-top: 24px;
+  transition: max-height var(--animation-soft-curve-400ms);
+}
+
+.active {
+  max-height: 1000px; // arbitrary value to allow for transition
+  opacity: 1;
+}
+
+.button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+
+  svg {
+    transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  > svg {
+    opacity: 0;
+  }
+  > svg:nth-child(2) {
+    opacity: 1;
+  }
+}
+
+.buttonActive {
+  > svg {
+    opacity: 1;
+  }
+  > svg:nth-child(2) {
+    opacity: 0;
+  }
+}

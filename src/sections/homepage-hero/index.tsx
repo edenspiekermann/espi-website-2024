@@ -8,7 +8,7 @@ export const HomePageHero = ({ media }: HomepageHeroFragment) => {
   const { responsiveImage, video } = media;
 
   return (
-    <div className="homepage-hero">
+    <section className="homepage-hero">
       {video?.mp4Url && (
         <video src={video.mp4Url} autoPlay controls={false} loop muted />
       )}
@@ -22,6 +22,6 @@ export const HomePageHero = ({ media }: HomepageHeroFragment) => {
         />
       )}
       <HomepageHeroLogo />
-    </div>
+    </section>
   );
 };

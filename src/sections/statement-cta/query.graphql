@@ -1,0 +1,15 @@
+fragment StatementCta on StatementCtaRecord {
+  __typename
+  id
+  showDivider
+  divider {
+    ...Divider
+  }
+  text
+  callToAction {
+    ... on PageLinkRecord {
+      text
+      slug
+    }
+  }
+}

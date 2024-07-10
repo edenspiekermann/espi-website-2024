@@ -1,0 +1,48 @@
+@use "../../app/styles/base.scss" as *;
+
+.drawers {
+  @include mqHelper("padding", 48px 0px, 64px 0px, 80px 0px);
+  background-color: var(--color-espi-black);
+  color: var(--color-white);
+}
+
+.left {
+  grid-column: 1/-1;
+  @include mq("tablet") {
+    grid-column: span 8;
+    margin-right: 42px;
+  }
+  @include mq("desktop") {
+    grid-column: span 6;
+    margin-right: 62px;
+  }
+}
+
+.title {
+  @include as-l-serif;
+  margin-bottom: 32px;
+  @include mq("desktop") {
+    margin-bottom: 48px;
+  }
+}
+
+.drawerItems {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.media {
+  position: relative;
+  object-fit: contain;
+  aspect-ratio: 3/4;
+  grid-column: 1/-1;
+  @include mq("tablet") {
+    grid-column: 9/13;
+  }
+  @include mq("desktop") {
+    grid-column: 7/13;
+  }
+}

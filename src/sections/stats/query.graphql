@@ -1,0 +1,13 @@
+fragment Stats on StatsSectionRecord {
+  __typename
+  id
+  showDivider
+  divider {
+    ...Divider
+  }
+  stats {
+    id
+    statistic
+    context
+  }
+}
