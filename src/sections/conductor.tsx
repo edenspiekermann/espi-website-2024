@@ -5,6 +5,7 @@ import { HomePageHero } from "./homepage-hero";
 import { StatementLarge } from "./statement-large";
 import { HeaderSimple } from "./header-simple";
 import { LogoGrid } from "./logo-grid";
+import { OpenPositions } from "./open-positions";
 import { LocationTeaser } from "./location-teaser";
 import { Purpose } from "./purpose";
 import { Manifesto } from "./manifesto";
@@ -22,6 +23,8 @@ const sectionSwitch = (section: any) => {
       return <HeaderSimple key={section.id} {...section} />;
     case "LogoGridRecord":
       return <LogoGrid key={section.id} {...section} />;
+    case "OpenPositionRecord":
+      return <OpenPositions key={section.id} {...section} />;
     case "LocationTeaserRecord":
       return <LocationTeaser key={section.id} {...section} />;
     case "PurposeRecord":

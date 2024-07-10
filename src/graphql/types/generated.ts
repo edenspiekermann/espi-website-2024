@@ -5973,7 +5973,7 @@ export type PageQuery = {
             };
           }>;
         }
-      | { __typename: "OpenPositionRecord" }
+      | { __typename: "OpenPositionRecord"; id: string; title: string }
       | {
           __typename: "PurposeRecord";
           id: string;
@@ -6209,6 +6209,12 @@ export type ManifestoFragment = {
       } | null;
     };
   }>;
+};
+
+export type OpenPositionFragment = {
+  __typename: "OpenPositionRecord";
+  id: string;
+  title: string;
 };
 
 export type PurposeFragment = {
@@ -6788,6 +6794,27 @@ export const ManifestoFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ManifestoFragment, unknown>;
+export const OpenPositionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "OpenPosition" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "OpenPositionRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<OpenPositionFragment, unknown>;
 export const StatFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -7577,6 +7604,10 @@ export const PageDocument = {
                       },
                       {
                         kind: "FragmentSpread",
+                        name: { kind: "Name", value: "OpenPosition" },
+                      },
+                      {
+                        kind: "FragmentSpread",
                         name: { kind: "Name", value: "LocationTeaser" },
                       },
                       {
@@ -7925,6 +7956,22 @@ export const PageDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "OpenPosition" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "OpenPositionRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
         ],
       },
     },
