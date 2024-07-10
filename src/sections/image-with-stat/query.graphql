@@ -1,0 +1,20 @@
+fragment ImageWithStat on ImageWithStatRecord {
+  __typename
+  id
+  media {
+    responsiveImage {
+      src
+      alt
+    }
+    video {
+      mp4Url
+    }
+  }
+  stats {
+    ... on StatRecord {
+      id
+      statistic
+      context
+    }
+  }
+}

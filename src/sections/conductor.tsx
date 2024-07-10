@@ -6,6 +6,16 @@ import { StatementLarge } from "./statement-large";
 import { HeaderSimple } from "./header-simple";
 import { LogoGrid } from "./logo-grid";
 import { FullImage } from "./full-image";
+import { ImageWithStat } from "./image-with-stat";
+import { Stats } from "./stats";
+import { Drawers } from "./drawers";
+import { StatementCta } from "./statement-cta";
+import { Quote } from "./quote";
+import { OpenPositions } from "./open-positions";
+import { LocationTeaser } from "./location-teaser";
+import { Purpose } from "./purpose";
+import { Manifesto } from "./manifesto";
+import { ServiceCards } from "./service-cards";
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
@@ -21,6 +31,26 @@ const sectionSwitch = (section: any) => {
       return <LogoGrid key={section.id} {...section} />;
     case "FullWidthImageRecord":
       return <FullImage key={section.id} {...section} />;
+    case "ImageWithStatRecord":
+      return <ImageWithStat key={section.id} {...section} />;
+    case "StatsSectionRecord":
+      return <Stats key={section.id} {...section} />;
+    case "DrawerRecord":
+      return <Drawers key={section.id} {...section} />;
+    case "StatementCtaRecord":
+      return <StatementCta key={section.id} {...section} />;
+    case "QuoteRecord":
+      return <Quote key={section.id} {...section} />;
+    case "OpenPositionRecord":
+      return <OpenPositions key={section.id} {...section} />;
+    case "LocationTeaserRecord":
+      return <LocationTeaser key={section.id} {...section} />;
+    case "PurposeRecord":
+      return <Purpose key={nanoid()} {...section} />;
+    case "ManifestoRecord":
+      return <Manifesto key={section.id} {...section} />;
+    case "ServiceCardsSectionRecord":
+      return <ServiceCards key={section.id} {...section} />;
     default:
       return <SectionDevelopment key={nanoid()} {...section} />;
   }
