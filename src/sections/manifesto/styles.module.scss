@@ -1,0 +1,13 @@
+@use "../../app/styles/base.scss" as *;
+
+.manifesto {
+  background-color: var(--color-extra-light-grey);
+}
+
+.inverted {
+  background-color: var(--color-espi-black);
+}
+
+.cards {
+  @include mqHelper("padding", 24px, 20px, 32px);
+}

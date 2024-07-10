@@ -1,0 +1,31 @@
+query CaseStudy($slug: String) {
+  caseStudy(filter: { slug: { eq: $slug } }) {
+    seo: _seoMetaTags {
+      attributes
+      content
+      tag
+    }
+    __typename
+    id
+    invertNav
+    slug
+    title
+    subtitle
+    featuredMedia {
+      responsiveImage {
+        src
+        alt
+      }
+      video {
+        mp4Url
+      }
+    }
+    backgroundColor {
+      hex
+    }
+    sections {
+      __typename
+      id
+    }
+  }
+}

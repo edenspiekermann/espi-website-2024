@@ -16,7 +16,7 @@ export const StatementLarge = ({
   });
 
   return (
-    <div className={`${styles.statementLarge} container`}>
+    <section className={`${styles.statementLarge} container`}>
       <div
         className={styles.content}
         dangerouslySetInnerHTML={{ __html: text }}
@@ -24,6 +24,6 @@ export const StatementLarge = ({
       {addCallToAction && cta && (
         <Button text={cta.text} slug={cta.slug} isInverted={invertColor} />
       )}
-    </div>
+    </section>
   );
 };
