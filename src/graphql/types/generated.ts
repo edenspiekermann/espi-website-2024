@@ -5921,7 +5921,47 @@ export type PageQuery = {
           }>;
         }
       | { __typename: "OpenPositionRecord" }
-      | { __typename: "PurposeRecord" }
+      | {
+          __typename: "PurposeRecord";
+          id: string;
+          showDivider: boolean;
+          text: string;
+          invertColor: boolean;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
+          statement?: {
+            __typename: "StatementSimpleRecord";
+            id: string;
+            text: string;
+            invertColor: boolean;
+            textSize?: string | null;
+          } | null;
+          button?: {
+            __typename?: "PageLinkRecord";
+            text: string;
+            slug: string;
+          } | null;
+          media: {
+            __typename?: "FileField";
+            responsiveImage?: {
+              __typename?: "ResponsiveImage";
+              src: string;
+              alt?: string | null;
+            } | null;
+            video?: {
+              __typename?: "UploadVideoField";
+              mp4Url?: string | null;
+            } | null;
+          };
+          stats: Array<{
+            __typename?: "StatRecord";
+            statistic: string;
+            context: string;
+          }>;
+        }
       | { __typename: "QuoteRecord" }
       | {
           __typename: "ServiceCardsSectionRecord";
@@ -6097,6 +6137,47 @@ export type ManifestoFragment = {
       } | null;
     };
   }>;
+};
+
+export type PurposeFragment = {
+  __typename: "PurposeRecord";
+  id: string;
+  showDivider: boolean;
+  text: string;
+  invertColor: boolean;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
+  statement?: {
+    __typename: "StatementSimpleRecord";
+    id: string;
+    text: string;
+    invertColor: boolean;
+    textSize?: string | null;
+  } | null;
+  button?: { __typename?: "PageLinkRecord"; text: string; slug: string } | null;
+  media: {
+    __typename?: "FileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+    } | null;
+    video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
+  };
+  stats: Array<{
+    __typename?: "StatRecord";
+    statistic: string;
+    context: string;
+  }>;
+};
+
+export type StatFragment = {
+  __typename?: "StatRecord";
+  statistic: string;
+  context: string;
 };
 
 export type ServiceCardsFragment = {
@@ -6572,6 +6653,190 @@ export const ManifestoFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ManifestoFragment, unknown>;
+export const StatFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Stat" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "statistic" } },
+          { kind: "Field", name: { kind: "Name", value: "context" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StatFragment, unknown>;
+export const PurposeFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Purpose" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PurposeRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "statement" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "StatementSimple" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "button" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "stats" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Stat" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementSimple" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementSimpleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Stat" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "statistic" } },
+          { kind: "Field", name: { kind: "Name", value: "context" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PurposeFragment, unknown>;
 export const ServiceCardFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -7030,6 +7295,10 @@ export const PageDocument = {
                       },
                       {
                         kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Purpose" },
+                      },
+                      {
+                        kind: "FragmentSpread",
                         name: { kind: "Name", value: "Manifesto" },
                       },
                       {
@@ -7089,6 +7358,21 @@ export const PageDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
           { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Stat" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "statistic" } },
+          { kind: "Field", name: { kind: "Name", value: "context" } },
         ],
       },
     },
@@ -7350,6 +7634,107 @@ export const PageDocument = {
                       { kind: "Field", name: { kind: "Name", value: "url" } },
                     ],
                   },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Purpose" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PurposeRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "statement" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "StatementSimple" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "button" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "stats" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Stat" },
                 },
               ],
             },

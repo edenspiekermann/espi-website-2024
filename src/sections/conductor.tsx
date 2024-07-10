@@ -5,6 +5,7 @@ import { HomePageHero } from "./homepage-hero";
 import { StatementLarge } from "./statement-large";
 import { HeaderSimple } from "./header-simple";
 import { LogoGrid } from "./logo-grid";
+import { Purpose } from "./purpose";
 import { Manifesto } from "./manifesto";
 import { ServiceCards } from "./service-cards";
 
@@ -20,6 +21,8 @@ const sectionSwitch = (section: any) => {
       return <HeaderSimple key={section.id} {...section} />;
     case "LogoGridRecord":
       return <LogoGrid key={section.id} {...section} />;
+    case "PurposeRecord":
+      return <Purpose key={nanoid()} {...section} />;
     case "ManifestoRecord":
       return <Manifesto key={section.id} {...section} />;
     case "ServiceCardsSectionRecord":
