@@ -17,6 +17,7 @@ import { LocationTeaser } from "./location-teaser";
 import { Purpose } from "./purpose";
 import { Manifesto } from "./manifesto";
 import { ServiceCards } from "./service-cards";
+import { TeaserRelatedCase } from "./teaser-related-case";
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
@@ -54,6 +55,8 @@ const sectionSwitch = (section: any) => {
       return <Manifesto key={section.id} {...section} />;
     case "ServiceCardsSectionRecord":
       return <ServiceCards key={section.id} {...section} />;
+    case "TeaserRelatedCaseRecord":
+      return <TeaserRelatedCase key={section.id} {...section} />;
     default:
       return <SectionDevelopment key={nanoid()} {...section} />;
   }
