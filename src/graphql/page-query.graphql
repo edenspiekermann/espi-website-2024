@@ -25,6 +25,7 @@ query Page($slug: String) {
       ...Purpose
       ...Manifesto
       ...ServiceCards
+      ...TeaserRelatedNews
     }
     invertNavColor
   }
