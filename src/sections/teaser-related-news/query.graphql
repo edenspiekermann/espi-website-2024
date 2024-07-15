@@ -1,0 +1,24 @@
+fragment TeaserRelatedNews on TeaserRelatedNewsRecord {
+  __typename
+  id
+  showDivider
+  divider {
+    ...Divider
+  }
+  newsArticles {
+    ...NewsArticle
+  }
+}
+
+fragment NewsArticle on NewsArticleRecord {
+  id
+  typeOfArticle
+  title
+  slug
+  cardImage {
+    responsiveImage {
+      src
+      alt
+    }
+  }
+}
