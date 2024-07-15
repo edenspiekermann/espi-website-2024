@@ -1,0 +1,27 @@
+fragment TeaserCaseStaggered on TeaserCaseStaggeredRecord {
+  __typename
+  id
+  caseStudies {
+    ...CaseStudyCard
+  }
+}
+
+fragment CaseStudyCard on CaseStudyRecord {
+  id
+  title
+  subtitle
+  invertNav
+  backgroundColor {
+    hex
+  }
+  slug
+  cardMedia {
+    responsiveImage {
+      src
+      alt
+    }
+    video {
+      mp4Url
+    }
+  }
+}
