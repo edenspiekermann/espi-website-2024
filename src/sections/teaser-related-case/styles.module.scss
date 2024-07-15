@@ -1,0 +1,58 @@
+@use "../../app/styles/base.scss" as *;
+
+.teaserRelatedCase {
+  @include mqHelper("padding", 24px, 20px 40px, 32px 70px);
+}
+
+.card {
+  @include mqHelper("margin-bottom", 24px, 20px, 32px);
+  flex-direction: column;
+  grid-column: 1/-1;
+  overflow: hidden;
+  border-radius: 20px;
+  color: var(--color-espi-black);
+  text-decoration: none;
+  height: fit-content;
+
+  @include mq("tablet") {
+    grid-column: span 6;
+  }
+  @include mq("desktop") {
+    border-radius: 40px;
+  }
+}
+
+.inverted {
+  color: var(--color-white);
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  object-fit: contain;
+  aspect-ratio: 3/2;
+
+  .gridCard:nth-child(1) &,
+  .gridCard:nth-child(3n + 1) & {
+    aspect-ratio: 2/1;
+  }
+}
+
+.cardContent {
+  padding: 16px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @include mq("desktop") {
+    padding: 24px 32px 28px;
+  }
+}
+
+.title {
+  @include as-xs-sans;
+}
+
+.subtitle {
+  @include as-xxs-sans;
+}

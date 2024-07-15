@@ -17,6 +17,7 @@ import { LocationTeaser } from "./location-teaser";
 import { Purpose } from "./purpose";
 import { Manifesto } from "./manifesto";
 import { ServiceCards } from "./service-cards";
+import { TeaserRelatedCase } from "./teaser-related-case";
 import { TeaserCaseGrid } from "./teaser-case-grid";
 import { TeaserCaseStaggered } from "./teaser-case-staggered";
 
@@ -56,6 +57,8 @@ const sectionSwitch = (section: any) => {
       return <Manifesto key={section.id} {...section} />;
     case "ServiceCardsSectionRecord":
       return <ServiceCards key={section.id} {...section} />;
+    case "TeaserRelatedCaseRecord":
+      return <TeaserRelatedCase key={section.id} {...section} />;
     case "TeaserCaseGridRecord":
       return <TeaserCaseGrid key={section.id} {...section} />;
     case "TeaserCaseStaggeredRecord":

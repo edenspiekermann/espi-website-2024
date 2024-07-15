@@ -1,0 +1,31 @@
+fragment TeaserRelatedCase on TeaserRelatedCaseRecord {
+  __typename
+  id
+  showDivider
+  divider {
+    ...Divider
+  }
+  caseStudies {
+    ...CaseStudyGridCard
+  }
+}
+
+fragment CaseStudyGridCard on CaseStudyRecord {
+  id
+  title
+  subtitle
+  slug
+  invertNav
+  backgroundColor {
+    hex
+  }
+  cardMedia {
+    responsiveImage {
+      src
+      alt
+    }
+    video {
+      mp4Url
+    }
+  }
+}
