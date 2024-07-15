@@ -1,0 +1,20 @@
+fragment TeaserNewsGrid on TeaserNewsGridRecord {
+  __typename
+  id
+  newsCards {
+    ...NewsArticle
+  }
+}
+
+fragment NewsArticle on NewsArticleRecord {
+  id
+  typeOfArticle
+  title
+  slug
+  cardImage {
+    responsiveImage {
+      src
+      alt
+    }
+  }
+}

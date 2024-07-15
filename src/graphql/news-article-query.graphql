@@ -1,0 +1,17 @@
+query NewsArticle($slug: String) {
+  newsArticle(filter: { slug: { eq: $slug } }) {
+    seo: _seoMetaTags {
+      attributes
+      content
+      tag
+    }
+    __typename
+    id
+    slug
+    title
+    sections {
+      __typename
+      ...TeaserNewsGrid
+    }
+  }
+}

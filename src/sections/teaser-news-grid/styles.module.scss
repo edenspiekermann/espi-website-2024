@@ -1,0 +1,45 @@
+@use "../../app/styles/base.scss" as *;
+
+.teaserNewsGrid {
+  @include mqHelper("padding", 24px, 20px 40px, 32px 70px);
+  background-color: var(--color-extra-light-grey);
+}
+
+.card {
+  grid-column: 1/-1;
+  text-decoration: none;
+  color: var(--color-espi-black);
+  margin-bottom: 32px;
+
+  @include mq("tablet") {
+    grid-column: span 4;
+  }
+}
+
+.media {
+  position: relative;
+  object-fit: contain;
+  aspect-ratio: 3/2;
+  @include mqHelper("border-radius", 23px, 13px, 40px);
+  overflow: hidden;
+}
+
+.content {
+  @include mqHelper("border-radius", 20px, 20px, 40px);
+  @include mqHelper("padding", 16px, 16px, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: var(--color-white);
+}
+
+.title {
+  @include as-xs-sans;
+}
+
+.button {
+  grid-column: 1/-1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

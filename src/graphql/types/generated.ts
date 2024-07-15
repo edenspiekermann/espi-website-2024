@@ -6440,6 +6440,48 @@ export type CaseStudyQuery = {
   } | null;
 };
 
+export type NewsArticleQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type NewsArticleQuery = {
+  __typename?: "Query";
+  newsArticle?: {
+    __typename: "NewsArticleRecord";
+    id: string;
+    slug: string;
+    title: string;
+    seo: Array<{
+      __typename?: "Tag";
+      attributes?: Record<string, string> | null;
+      content?: string | null;
+      tag: string;
+    }>;
+    sections: Array<
+      | {
+          __typename: "TeaserNewsGridRecord";
+          id: string;
+          newsCards: Array<{
+            __typename?: "NewsArticleRecord";
+            id: string;
+            typeOfArticle: string;
+            title: string;
+            slug: string;
+            cardImage: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+            };
+          }>;
+        }
+      | { __typename: "TeaserRelatedNewsRecord" }
+    >;
+  } | null;
+};
+
 export type PageQueryVariables = Exact<{
   slug?: InputMaybe<Scalars["String"]["input"]>;
 }>;
@@ -6839,7 +6881,25 @@ export type PageQuery = {
             };
           }>;
         }
-      | { __typename: "TeaserNewsGridRecord" }
+      | {
+          __typename: "TeaserNewsGridRecord";
+          id: string;
+          newsCards: Array<{
+            __typename?: "NewsArticleRecord";
+            id: string;
+            typeOfArticle: string;
+            title: string;
+            slug: string;
+            cardImage: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+            };
+          }>;
+        }
       | {
           __typename: "TeaserRelatedCaseRecord";
           id: string;
@@ -7370,6 +7430,42 @@ export type CaseStudyCardFragment = {
       alt?: string | null;
     } | null;
     video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
+  };
+};
+
+export type TeaserNewsGridFragment = {
+  __typename: "TeaserNewsGridRecord";
+  id: string;
+  newsCards: Array<{
+    __typename?: "NewsArticleRecord";
+    id: string;
+    typeOfArticle: string;
+    title: string;
+    slug: string;
+    cardImage: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+    };
+  }>;
+};
+
+export type NewsArticleFragment = {
+  __typename?: "NewsArticleRecord";
+  id: string;
+  typeOfArticle: string;
+  title: string;
+  slug: string;
+  cardImage: {
+    __typename?: "FileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+    } | null;
   };
 };
 
@@ -9308,6 +9404,118 @@ export const TeaserCaseStaggeredFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<TeaserCaseStaggeredFragment, unknown>;
+export const NewsArticleFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "NewsArticle" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "NewsArticleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "typeOfArticle" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<NewsArticleFragment, unknown>;
+export const TeaserNewsGridFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserNewsGrid" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserNewsGridRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "newsCards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "NewsArticle" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "NewsArticle" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "NewsArticleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "typeOfArticle" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TeaserNewsGridFragment, unknown>;
 export const TeaserRelatedCaseFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -9675,6 +9883,170 @@ export const CaseStudyDocument = {
     },
   ],
 } as unknown as DocumentNode<CaseStudyQuery, CaseStudyQueryVariables>;
+export const NewsArticleDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "NewsArticle" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "slug" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "newsArticle" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filter" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "slug" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "seo" },
+                  name: { kind: "Name", value: "_seoMetaTags" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "attributes" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "content" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "tag" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sections" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TeaserNewsGrid" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "NewsArticle" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "NewsArticleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "typeOfArticle" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserNewsGrid" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserNewsGridRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "newsCards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "NewsArticle" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<NewsArticleQuery, NewsArticleQueryVariables>;
 export const PageDocument = {
   kind: "Document",
   definitions: [
@@ -9823,6 +10195,10 @@ export const PageDocument = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "ServiceCards" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TeaserNewsGrid" },
                       },
                       {
                         kind: "FragmentSpread",
@@ -10073,6 +10449,43 @@ export const PageDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "NewsArticle" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "NewsArticleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "typeOfArticle" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
                     ],
                   },
                 },
@@ -11031,6 +11444,34 @@ export const PageDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserNewsGrid" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserNewsGridRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "newsCards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "NewsArticle" },
+                },
+              ],
+            },
+          },
         ],
       },
     },
