@@ -1,0 +1,74 @@
+@use "../../app/styles/base.scss" as *;
+
+.teaserCaseStaggered {
+  @include mqHelper("padding", 24px, 20px 40px, 32px 70px);
+}
+
+.threeCards {
+  .card:nth-of-type(odd) {
+    .media {
+      aspect-ratio: 3/4;
+    }
+  }
+}
+
+.card {
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  height: fit-content;
+  color: var(--color-espi-black);
+  text-decoration: none;
+  margin-bottom: 24px;
+
+  @include mq("tablet") {
+    grid-column: span 6;
+    margin-bottom: 0;
+
+    .threeCards & {
+      grid-column: span 4;
+    }
+  }
+  @include mq("desktop") {
+    border-radius: 40px;
+  }
+}
+
+.invertedCard {
+  color: var(--color-white);
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+
+  .card:first-of-type & {
+    aspect-ratio: 4/3;
+
+    .threeCards & {
+      aspect-ratio: 3/4;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 24px 20px;
+
+  @include mq("desktop") {
+    padding: 24px 32px 28px;
+  }
+}
+
+.title {
+  @include as-xs-sans;
+}
+.subtitle {
+  @include as-xxs-sans;
+}
