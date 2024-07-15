@@ -18,6 +18,10 @@ import { Purpose } from "./purpose";
 import { Manifesto } from "./manifesto";
 import { ServiceCards } from "./service-cards";
 import { TeaserRelatedNews } from "./teaser-related-news";
+import { TeaserNewsGrid } from "./teaser-news-grid";
+import { TeaserRelatedCase } from "./teaser-related-case";
+import { TeaserCaseGrid } from "./teaser-case-grid";
+import { TeaserCaseStaggered } from "./teaser-case-staggered";
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
@@ -57,6 +61,14 @@ const sectionSwitch = (section: any) => {
       return <ServiceCards key={section.id} {...section} />;
     case "TeaserRelatedNewsRecord":
       return <TeaserRelatedNews key={section.id} {...section} />;
+    case "TeaserNewsGridRecord":
+      return <TeaserNewsGrid key={section.id} {...section} />;
+    case "TeaserRelatedCaseRecord":
+      return <TeaserRelatedCase key={section.id} {...section} />;
+    case "TeaserCaseGridRecord":
+      return <TeaserCaseGrid key={section.id} {...section} />;
+    case "TeaserCaseStaggeredRecord":
+      return <TeaserCaseStaggered key={section.id} {...section} />;
     default:
       return <SectionDevelopment key={nanoid()} {...section} />;
   }

@@ -26,6 +26,10 @@ query Page($slug: String) {
       ...Manifesto
       ...ServiceCards
       ...TeaserRelatedNews
+      ...TeaserNewsGrid
+      ...TeaserRelatedCase
+      ...TeaserCaseGrid
+      ...TeaserCaseStaggered
     }
     invertNavColor
   }

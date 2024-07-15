@@ -12,6 +12,7 @@ query NewsArticle($slug: String) {
     sections {
       __typename
       ...TeaserRelatedNews
+      ...TeaserNewsGrid
     }
   }
 }

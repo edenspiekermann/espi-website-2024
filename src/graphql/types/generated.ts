@@ -6458,7 +6458,25 @@ export type NewsArticleQuery = {
       tag: string;
     }>;
     sections: Array<
-      | { __typename: "TeaserNewsGridRecord" }
+      | {
+          __typename: "TeaserNewsGridRecord";
+          id: string;
+          newsCards: Array<{
+            __typename?: "NewsArticleRecord";
+            id: string;
+            typeOfArticle: string;
+            title: string;
+            slug: string;
+            cardImage: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+            };
+          }>;
+        }
       | {
           __typename: "TeaserRelatedNewsRecord";
           id: string;
@@ -6837,10 +6855,106 @@ export type PageQuery = {
             context: string;
           }>;
         }
-      | { __typename: "TeaserCaseGridRecord" }
-      | { __typename: "TeaserCaseStaggeredRecord" }
-      | { __typename: "TeaserNewsGridRecord" }
-      | { __typename: "TeaserRelatedCaseRecord" }
+      | {
+          __typename: "TeaserCaseGridRecord";
+          id: string;
+          caseStudies: Array<{
+            __typename?: "CaseStudyRecord";
+            id: string;
+            title: string;
+            subtitle: string;
+            slug: string;
+            invertNav: boolean;
+            backgroundColor: { __typename?: "ColorField"; hex: string };
+            cardMedia: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+              video?: {
+                __typename?: "UploadVideoField";
+                mp4Url?: string | null;
+              } | null;
+            };
+          }>;
+        }
+      | {
+          __typename: "TeaserCaseStaggeredRecord";
+          id: string;
+          caseStudies: Array<{
+            __typename?: "CaseStudyRecord";
+            id: string;
+            title: string;
+            subtitle: string;
+            invertNav: boolean;
+            slug: string;
+            backgroundColor: { __typename?: "ColorField"; hex: string };
+            cardMedia: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+              video?: {
+                __typename?: "UploadVideoField";
+                mp4Url?: string | null;
+              } | null;
+            };
+          }>;
+        }
+      | {
+          __typename: "TeaserNewsGridRecord";
+          id: string;
+          newsCards: Array<{
+            __typename?: "NewsArticleRecord";
+            id: string;
+            typeOfArticle: string;
+            title: string;
+            slug: string;
+            cardImage: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+            };
+          }>;
+        }
+      | {
+          __typename: "TeaserRelatedCaseRecord";
+          id: string;
+          showDivider: boolean;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
+          caseStudies: Array<{
+            __typename?: "CaseStudyRecord";
+            id: string;
+            title: string;
+            subtitle: string;
+            slug: string;
+            invertNav: boolean;
+            backgroundColor: { __typename?: "ColorField"; hex: string };
+            cardMedia: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+              video?: {
+                __typename?: "UploadVideoField";
+                mp4Url?: string | null;
+              } | null;
+            };
+          }>;
+        }
       | {
           __typename: "TeaserRelatedNewsRecord";
           id: string;
@@ -7277,16 +7391,100 @@ export type StatsFragment = {
   }>;
 };
 
-export type TeaserRelatedNewsFragment = {
-  __typename: "TeaserRelatedNewsRecord";
+export type TeaserCaseGridFragment = {
+  __typename: "TeaserCaseGridRecord";
   id: string;
-  showDivider: boolean;
-  divider?: {
-    __typename?: "DividerRecord";
-    text?: string | null;
-    invertColor: boolean;
-  } | null;
-  newsArticles: Array<{
+  caseStudies: Array<{
+    __typename?: "CaseStudyRecord";
+    id: string;
+    title: string;
+    subtitle: string;
+    slug: string;
+    invertNav: boolean;
+    backgroundColor: { __typename?: "ColorField"; hex: string };
+    cardMedia: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+      video?: {
+        __typename?: "UploadVideoField";
+        mp4Url?: string | null;
+      } | null;
+    };
+  }>;
+};
+
+export type CaseStudyGridCardFragment = {
+  __typename?: "CaseStudyRecord";
+  id: string;
+  title: string;
+  subtitle: string;
+  slug: string;
+  invertNav: boolean;
+  backgroundColor: { __typename?: "ColorField"; hex: string };
+  cardMedia: {
+    __typename?: "FileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+    } | null;
+    video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
+  };
+};
+
+export type TeaserCaseStaggeredFragment = {
+  __typename: "TeaserCaseStaggeredRecord";
+  id: string;
+  caseStudies: Array<{
+    __typename?: "CaseStudyRecord";
+    id: string;
+    title: string;
+    subtitle: string;
+    invertNav: boolean;
+    slug: string;
+    backgroundColor: { __typename?: "ColorField"; hex: string };
+    cardMedia: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+      video?: {
+        __typename?: "UploadVideoField";
+        mp4Url?: string | null;
+      } | null;
+    };
+  }>;
+};
+
+export type CaseStudyCardFragment = {
+  __typename?: "CaseStudyRecord";
+  id: string;
+  title: string;
+  subtitle: string;
+  invertNav: boolean;
+  slug: string;
+  backgroundColor: { __typename?: "ColorField"; hex: string };
+  cardMedia: {
+    __typename?: "FileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+    } | null;
+    video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
+  };
+};
+
+export type TeaserNewsGridFragment = {
+  __typename: "TeaserNewsGridRecord";
+  id: string;
+  newsCards: Array<{
     __typename?: "NewsArticleRecord";
     id: string;
     typeOfArticle: string;
@@ -7317,6 +7515,64 @@ export type NewsArticleFragment = {
       alt?: string | null;
     } | null;
   };
+};
+
+export type TeaserRelatedCaseFragment = {
+  __typename: "TeaserRelatedCaseRecord";
+  id: string;
+  showDivider: boolean;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
+  caseStudies: Array<{
+    __typename?: "CaseStudyRecord";
+    id: string;
+    title: string;
+    subtitle: string;
+    slug: string;
+    invertNav: boolean;
+    backgroundColor: { __typename?: "ColorField"; hex: string };
+    cardMedia: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+      video?: {
+        __typename?: "UploadVideoField";
+        mp4Url?: string | null;
+      } | null;
+    };
+  }>;
+};
+
+export type TeaserRelatedNewsFragment = {
+  __typename: "TeaserRelatedNewsRecord";
+  id: string;
+  showDivider: boolean;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
+  newsArticles: Array<{
+    __typename?: "NewsArticleRecord";
+    id: string;
+    typeOfArticle: string;
+    title: string;
+    slug: string;
+    cardImage: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+    };
+  }>;
 };
 
 export const StatementNumberedFragmentDoc = {
@@ -8902,6 +9158,326 @@ export const StatsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<StatsFragment, unknown>;
+export const CaseStudyGridCardFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyGridCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "invertNav" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundColor" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hex" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CaseStudyGridCardFragment, unknown>;
+export const TeaserCaseGridFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserCaseGrid" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserCaseGridRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "caseStudies" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CaseStudyGridCard" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyGridCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "invertNav" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundColor" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hex" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TeaserCaseGridFragment, unknown>;
+export const CaseStudyCardFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "invertNav" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundColor" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hex" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CaseStudyCardFragment, unknown>;
+export const TeaserCaseStaggeredFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserCaseStaggered" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserCaseStaggeredRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "caseStudies" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CaseStudyCard" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "invertNav" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundColor" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hex" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TeaserCaseStaggeredFragment, unknown>;
 export const NewsArticleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -8944,6 +9520,199 @@ export const NewsArticleFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<NewsArticleFragment, unknown>;
+export const TeaserNewsGridFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserNewsGrid" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserNewsGridRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "newsCards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "NewsArticle" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "NewsArticle" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "NewsArticleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "typeOfArticle" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TeaserNewsGridFragment, unknown>;
+export const TeaserRelatedCaseFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserRelatedCase" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserRelatedCaseRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "caseStudies" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CaseStudyGridCard" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyGridCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "invertNav" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundColor" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hex" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TeaserRelatedCaseFragment, unknown>;
 export const TeaserRelatedNewsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -9375,6 +10144,10 @@ export const NewsArticleDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "TeaserRelatedNews" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TeaserNewsGrid" },
+                      },
                     ],
                   },
                 },
@@ -9465,6 +10238,34 @@ export const NewsArticleDocument = {
           {
             kind: "Field",
             name: { kind: "Name", value: "newsArticles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "NewsArticle" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserNewsGrid" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserNewsGridRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "newsCards" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -9632,6 +10433,22 @@ export const PageDocument = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "TeaserRelatedNews" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TeaserNewsGrid" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TeaserRelatedCase" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TeaserCaseGrid" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TeaserCaseStaggered" },
                       },
                     ],
                   },
@@ -9907,6 +10724,128 @@ export const PageDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "src" } },
                       { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyGridCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "invertNav" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundColor" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hex" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "invertNav" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundColor" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hex" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
                     ],
                   },
                 },
@@ -10781,6 +11720,132 @@ export const PageDocument = {
                 {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "NewsArticle" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserNewsGrid" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserNewsGridRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "newsCards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "NewsArticle" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserRelatedCase" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserRelatedCaseRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "caseStudies" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CaseStudyGridCard" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserCaseGrid" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserCaseGridRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "caseStudies" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CaseStudyGridCard" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserCaseStaggered" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserCaseStaggeredRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "caseStudies" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CaseStudyCard" },
                 },
               ],
             },
