@@ -1,0 +1,69 @@
+@use "../../app/styles/base.scss" as *;
+
+.sliderNews {
+  @include mqHelper("padding", 24px, 20px 40px, 32px 70px);
+  overflow: hidden;
+}
+
+.sliderContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  grid-column: 1/-1;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+  @include mq("desktop") {
+    gap: 32px;
+  }
+}
+
+.articleCard {
+  width: 240px;
+  flex: 0 0 auto;
+  @include mq("desktop") {
+    width: 290px;
+  }
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 3/4;
+
+  @include mq("desktop") {
+    border-radius: 40px;
+  }
+}
+
+.textContent {
+  padding: 24px;
+  background-color: var(--color-espi-black);
+  border-radius: 20px;
+
+  @include mq("desktop") {
+    border-radius: 40px;
+  }
+}
+
+.publishedDate {
+  @include as-xs-text;
+  color: var(--color-white);
+  opacity: 0.5;
+}
+
+.text {
+  @include as-s-text;
+}
+
+.title {
+  color: var(--color-white);
+}
+
+.shortDescription {
+  color: var(--color-white);
+  opacity: 0.5;
+}
