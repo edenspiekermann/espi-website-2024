@@ -3,10 +3,11 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Media } from "@/components/media";
 import { MediaProperties } from "@/components/media/interfaces";
+import Link from "next/link";
 
 export const PersonCard = ({ name, role, slug, image }: PersonFragment) => {
   return (
-    <div className={styles.personCard}>
+    <Link className={styles.personCard} href={`/about/${slug}`} target="_self">
       <div className={styles.media}>
         <Media {...(image as MediaProperties)} />
       </div>
@@ -14,6 +15,6 @@ export const PersonCard = ({ name, role, slug, image }: PersonFragment) => {
         <p className={styles.name}>{name}</p>
         <p className={styles.role}>{role}</p>
       </div>
-    </div>
+    </Link>
   );
 };

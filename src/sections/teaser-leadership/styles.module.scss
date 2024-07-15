@@ -6,6 +6,7 @@
 
 .personCard {
   grid-column: 1/-1;
+  text-decoration: none;
   @include mq("tablet") {
     grid-column: span 6;
   }
