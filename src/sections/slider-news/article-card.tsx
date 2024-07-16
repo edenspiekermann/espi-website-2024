@@ -10,13 +10,20 @@ export const ArticleCard = ({
   cardImage,
   publishedDate,
 }: SliderNewsCardFragment) => {
+  const publishedDateFormatted = new Date(
+    publishedDate as string,
+  ).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  });
   return (
     <div className={styles.articleCard}>
       <div className={styles.media}>
         <Media {...(cardImage as MediaProperties)} />
       </div>
       <div className={styles.textContent}>
-        <p className={styles.publishedDate}>{publishedDate}</p>
+        <p className={styles.publishedDate}>{publishedDateFormatted}</p>
         <p className={styles.text}>
           <span className={styles.title}>{`${title}: `}</span>
           <span className={styles.shortDescription}>{shortDescription}</span>
