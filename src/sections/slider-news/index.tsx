@@ -2,7 +2,7 @@
 
 import { Divider } from "@/components/divider/divider";
 import { SliderNewsFragment } from "@/graphql/types/generated";
-import React, { useRef } from "react";
+import React from "react";
 import { ArticleCard } from "./article-card";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
@@ -18,16 +18,11 @@ export const SliderNews = ({
     container: true,
   });
 
-  const sliderContainerRef = useRef<HTMLDivElement>(null);
-
   return (
     <section>
       {showDivider && divider && <Divider {...divider} />}
       <div className={containerClass}>
-        <InfiniteScrollContainer
-          ref={sliderContainerRef}
-          className={styles.sliderContainer}
-        >
+        <InfiniteScrollContainer>
           {articles?.map((article) => (
             <ArticleCard key={article.id} {...article} />
           ))}
