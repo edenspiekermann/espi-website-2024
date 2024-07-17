@@ -28,4 +28,10 @@ fragment CaseStudyGridCard on CaseStudyRecord {
       mp4Url
     }
   }
+  relatedIndustries {
+    ...Industry
+  }
+  relatedServices {
+    ...Service
+  }
 }
