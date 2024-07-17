@@ -12,7 +12,6 @@ import classNames from "classnames";
 import styles from "./styles.module.scss";
 import { RevealButton } from "@/components/button/reveal-button";
 import { Filter } from "@/components/filter";
-import { FilteredCard } from "./filtered-card";
 
 export const TeaserCaseGrid = ({
   caseStudies,
@@ -59,6 +58,20 @@ export const TeaserCaseGrid = ({
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 6);
   };
+
+  const filteredCaseStudies =
+    selectedFilter && activeCategory
+      ? caseStudies.filter((caseStudy) =>
+          activeCategory === "industries"
+            ? caseStudy.relatedIndustries.some(
+                ({ industry }) => industry === selectedFilter,
+              )
+            : caseStudy.relatedServices.some(
+                ({ service }) => service === selectedFilter,
+              ),
+        )
+      : caseStudies;
+
   const teaserCaseGridClass = classNames({
     [styles.teaserCaseGrid]: true,
     container: true,
@@ -77,29 +90,14 @@ export const TeaserCaseGrid = ({
         />
       )}
       <section className={teaserCaseGridClass}>
-        {caseStudies?.slice(0, visibleCount).map((caseStudy, index) => {
-          if (showFilter && selectedFilter && activeCategory) {
-            return (
-              <FilteredCard
-                key={caseStudy.id}
-                caseStudy={caseStudy}
-                selectedFilter={selectedFilter}
-                showFilter={showFilter}
-                index={index}
-                visibleCount={visibleCount}
-              />
-            );
-          } else {
-            return (
-              <GridCard
-                key={caseStudy.id}
-                {...caseStudy}
-                visible={index < visibleCount}
-              />
-            );
-          }
-        })}
-        {caseStudies.length > visibleCount && (
+        {filteredCaseStudies.slice(0, visibleCount).map((caseStudy, index) => (
+          <GridCard
+            key={caseStudy.id}
+            {...caseStudy}
+            visible={index < visibleCount}
+          />
+        ))}
+        {filteredCaseStudies.length > visibleCount && (
           <div className={styles.button}>
             <RevealButton text="Load more" onClick={handleLoadMore} />
           </div>

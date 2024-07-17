@@ -38,11 +38,21 @@ export const Filter = ({
     }
   };
 
+  const toggleAll = () => {
+    setActiveCategory(null);
+    setSelectedFilter(null);
+  };
+
   return (
     <div className={styles.filter}>
       <div className="container">
         <div className={styles.filterCategories}>
-          <div className={styles.selected}>All</div>
+          <button
+            className={!activeCategory && !selectedFilter ? styles.active : ""}
+            onClick={() => toggleAll()}
+          >
+            All
+          </button>
           <button
             onClick={() => toggleCategory("industries")}
             className={activeCategory === "industries" ? styles.active : ""}
