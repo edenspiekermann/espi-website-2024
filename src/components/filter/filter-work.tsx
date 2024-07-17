@@ -12,7 +12,7 @@ interface FilterProperties {
   setActiveCategory: (category: string | null) => void;
 }
 
-export const Filter = ({
+export const FilterWork = ({
   industries,
   services,
   selectedFilter,

@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  CaseStudyGridCardFragment,
   IndustryFragment,
   ServiceFragment,
   TeaserCaseGridFragment,
@@ -11,7 +10,7 @@ import { GridCard } from "./card";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
 import { RevealButton } from "@/components/button/reveal-button";
-import { Filter } from "@/components/filter";
+import { FilterWork } from "@/components/filter/filter-work";
 
 export const TeaserCaseGrid = ({
   caseStudies,
@@ -29,7 +28,7 @@ export const TeaserCaseGrid = ({
       industryList = [...industryList, ...caseStudy.relatedIndustries];
     });
     const uniqueIndustries = Array.from(
-      new Set(industryList.map((a) => a.industry)),
+      new Set(industryList.map((a) => a.industry))
     ).map((industry) => {
       return {
         industry,
@@ -44,7 +43,7 @@ export const TeaserCaseGrid = ({
       servicesList = [...servicesList, ...caseStudy.relatedServices];
     });
     const uniqueServices = Array.from(
-      new Set(servicesList.map((a) => a.service)),
+      new Set(servicesList.map((a) => a.service))
     ).map((service) => {
       return {
         service,
@@ -64,11 +63,11 @@ export const TeaserCaseGrid = ({
       ? caseStudies.filter((caseStudy) =>
           activeCategory === "industries"
             ? caseStudy.relatedIndustries.some(
-                ({ industry }) => industry === selectedFilter,
+                ({ industry }) => industry === selectedFilter
               )
             : caseStudy.relatedServices.some(
-                ({ service }) => service === selectedFilter,
-              ),
+                ({ service }) => service === selectedFilter
+              )
         )
       : caseStudies;
 
@@ -80,7 +79,7 @@ export const TeaserCaseGrid = ({
   return (
     <>
       {showFilter && (
-        <Filter
+        <FilterWork
           industries={industries}
           services={services}
           setSelectedFilter={setSelectedFilter}
