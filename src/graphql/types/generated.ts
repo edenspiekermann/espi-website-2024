@@ -3421,8 +3421,6 @@ export type NewsArticleModelFilter = {
   cardImage?: InputMaybe<FileFilter>;
   id?: InputMaybe<ItemIdFilter>;
   publishedDate?: InputMaybe<DateFilter>;
-  relatedIndustries?: InputMaybe<LinksFilter>;
-  relatedServices?: InputMaybe<LinksFilter>;
   sections?: InputMaybe<LinksFilter>;
   shortDescription?: InputMaybe<StringFilter>;
   slug?: InputMaybe<SlugFilter>;
@@ -3482,8 +3480,6 @@ export type NewsArticleRecord = RecordInterface & {
   cardImage: FileField;
   id: Scalars["ItemId"]["output"];
   publishedDate?: Maybe<Scalars["Date"]["output"]>;
-  relatedIndustries: Array<IndustryRecord>;
-  relatedServices: Array<ServiceRecord>;
   sections: Array<NewsArticleModelSectionsField>;
   shortDescription?: Maybe<Scalars["String"]["output"]>;
   slug: Scalars["String"]["output"];
@@ -3493,6 +3489,31 @@ export type NewsArticleRecord = RecordInterface & {
 
 /** Record of type News Article (news_article) */
 export type NewsArticleRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type News Type (news_type) */
+export type NewsTypeRecord = RecordInterface & {
+  __typename?: "NewsTypeRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  typeOfNews?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Block of type News Type (news_type) */
+export type NewsTypeRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 

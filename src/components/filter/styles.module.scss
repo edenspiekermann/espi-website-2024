@@ -1,6 +1,7 @@
 @use "../../app/styles/base.scss" as *;
 
 .filter {
+  padding: 24px 0px;
   button {
     @include as-m-element;
     border-radius: 80px;
@@ -14,6 +15,13 @@
       background-color: var(--color-espi-black);
       color: var(--color-white);
     }
+  }
+}
+
+.newsFilter {
+  background-color: var(--color-extra-light-grey);
+  button {
+    background-color: var(--color-white);
   }
 }
 

@@ -28,7 +28,7 @@ export const TeaserCaseGrid = ({
       industryList = [...industryList, ...caseStudy.relatedIndustries];
     });
     const uniqueIndustries = Array.from(
-      new Set(industryList.map((a) => a.industry))
+      new Set(industryList.map((a) => a.industry)),
     ).map((industry) => {
       return {
         industry,
@@ -43,7 +43,7 @@ export const TeaserCaseGrid = ({
       servicesList = [...servicesList, ...caseStudy.relatedServices];
     });
     const uniqueServices = Array.from(
-      new Set(servicesList.map((a) => a.service))
+      new Set(servicesList.map((a) => a.service)),
     ).map((service) => {
       return {
         service,
@@ -63,11 +63,11 @@ export const TeaserCaseGrid = ({
       ? caseStudies.filter((caseStudy) =>
           activeCategory === "industries"
             ? caseStudy.relatedIndustries.some(
-                ({ industry }) => industry === selectedFilter
+                ({ industry }) => industry === selectedFilter,
               )
             : caseStudy.relatedServices.some(
-                ({ service }) => service === selectedFilter
-              )
+                ({ service }) => service === selectedFilter,
+              ),
         )
       : caseStudies;
 
