@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import { CloseFilter } from "./close-filter";
 import classNames from "classnames";
 
 interface FilterProperties {
