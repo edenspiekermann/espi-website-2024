@@ -25,6 +25,14 @@ query CaseStudy($slug: String) {
     }
     sections {
       __typename
+      ...Purpose
+      ...CaseIntro
+    }
+    relatedServices {
+      service
+    }
+    relatedIndustries {
+      industry
     }
   }
 }

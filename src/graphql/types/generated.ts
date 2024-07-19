@@ -7197,9 +7197,60 @@ export type CaseStudyQuery = {
     backgroundColor: { __typename?: "ColorField"; hex: string };
     sections: Array<
       | { __typename: "CaseContentRecord" }
-      | { __typename: "CaseIntroRecord" }
-      | { __typename: "PurposeRecord" }
+      | {
+          __typename: "CaseIntroRecord";
+          id: string;
+          text: string;
+          problemText: string;
+          solutionText: string;
+        }
+      | {
+          __typename: "PurposeRecord";
+          id: string;
+          showDivider: boolean;
+          text: string;
+          invertColor: boolean;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
+          statement?: {
+            __typename: "StatementSimpleRecord";
+            id: string;
+            text: string;
+            invertColor: boolean;
+            textSize?: string | null;
+          } | null;
+          button?: {
+            __typename?: "PageLinkRecord";
+            text: string;
+            slug: string;
+          } | null;
+          media: {
+            __typename?: "FileField";
+            responsiveImage?: {
+              __typename?: "ResponsiveImage";
+              src: string;
+              alt?: string | null;
+            } | null;
+            video?: {
+              __typename?: "UploadVideoField";
+              mp4Url?: string | null;
+            } | null;
+          };
+          stats: Array<{
+            __typename?: "StatRecord";
+            statistic: string;
+            context: string;
+          }>;
+        }
     >;
+    relatedServices: Array<{ __typename?: "ServiceRecord"; service: string }>;
+    relatedIndustries: Array<{
+      __typename?: "IndustryRecord";
+      industry: string;
+    }>;
   } | null;
 };
 
@@ -7835,6 +7886,14 @@ export type PageQuery = {
         }
     >;
   } | null;
+};
+
+export type CaseIntroFragment = {
+  __typename: "CaseIntroRecord";
+  id: string;
+  text: string;
+  problemText: string;
+  solutionText: string;
 };
 
 export type DrawersFragment = {
@@ -8599,6 +8658,29 @@ export const StatementNumberedFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<StatementNumberedFragment, unknown>;
+export const CaseIntroFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseIntro" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseIntroRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "problemText" } },
+          { kind: "Field", name: { kind: "Name", value: "solutionText" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CaseIntroFragment, unknown>;
 export const DrawersFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -11568,12 +11650,223 @@ export const CaseStudyDocument = {
                         kind: "Field",
                         name: { kind: "Name", value: "__typename" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Purpose" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CaseIntro" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "relatedServices" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "service" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "relatedIndustries" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "industry" },
+                      },
                     ],
                   },
                 },
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementSimple" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementSimpleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Stat" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "statistic" } },
+          { kind: "Field", name: { kind: "Name", value: "context" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Purpose" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PurposeRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "statement" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "StatementSimple" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "button" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "stats" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Stat" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseIntro" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseIntroRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "problemText" } },
+          { kind: "Field", name: { kind: "Name", value: "solutionText" } },
         ],
       },
     },
