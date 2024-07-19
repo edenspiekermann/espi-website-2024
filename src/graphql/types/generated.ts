@@ -283,9 +283,13 @@ export type CallToActionRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+export type CaseContentModelContentBlocksField =
+  | CaseStudyContentImageRecord
+  | ContentQuoteRecord;
+
 export type CaseContentModelContentField = {
   __typename?: "CaseContentModelContentField";
-  blocks: Array<CaseStudyContentImageRecord>;
+  blocks: Array<CaseContentModelContentBlocksField>;
   links: Array<Scalars["String"]["output"]>;
   value: Scalars["JsonField"]["output"];
 };
@@ -586,6 +590,32 @@ export type ColorField = {
 export type ColorFilter = {
   /** Filter records with the specified field defined (i.e. with any value) or not */
   exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+};
+
+/** Block of type Content Quote (content_quote) */
+export type ContentQuoteRecord = RecordInterface & {
+  __typename?: "ContentQuoteRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  author: Scalars["String"]["output"];
+  id: Scalars["ItemId"]["output"];
+  quote: Scalars["String"]["output"];
+};
+
+/** Block of type Content Quote (content_quote) */
+export type ContentQuoteRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter by creation datetime */
@@ -7102,6 +7132,13 @@ export type FocalPoint = {
   y: Scalars["FloatType"]["output"];
 };
 
+export type ContentQuoteFragment = {
+  __typename: "ContentQuoteRecord";
+  id: string;
+  quote: string;
+  author: string;
+};
+
 export type DividerFragment = {
   __typename?: "DividerRecord";
   text?: string | null;
@@ -7227,19 +7264,27 @@ export type CaseStudyQuery = {
           content: {
             __typename?: "CaseContentModelContentField";
             value: unknown;
-            blocks: Array<{
-              __typename: "CaseStudyContentImageRecord";
-              id: string;
-              halfSize: boolean;
-              media: {
-                __typename?: "FileField";
-                responsiveImage?: {
-                  __typename?: "ResponsiveImage";
-                  src: string;
-                  alt?: string | null;
-                } | null;
-              };
-            }>;
+            blocks: Array<
+              | {
+                  __typename: "CaseStudyContentImageRecord";
+                  id: string;
+                  halfSize: boolean;
+                  media: {
+                    __typename?: "FileField";
+                    responsiveImage?: {
+                      __typename?: "ResponsiveImage";
+                      src: string;
+                      alt?: string | null;
+                    } | null;
+                  };
+                }
+              | {
+                  __typename: "ContentQuoteRecord";
+                  id: string;
+                  quote: string;
+                  author: string;
+                }
+            >;
           };
         }
       | { __typename: "CaseIntroRecord" }
@@ -7803,24 +7848,33 @@ export type CaseContentFragment = {
   content: {
     __typename?: "CaseContentModelContentField";
     value: unknown;
-    blocks: Array<{
-      __typename: "CaseStudyContentImageRecord";
-      id: string;
-      halfSize: boolean;
-      media: {
-        __typename?: "FileField";
-        responsiveImage?: {
-          __typename?: "ResponsiveImage";
-          src: string;
-          alt?: string | null;
-        } | null;
-      };
-    }>;
+    blocks: Array<
+      | {
+          __typename: "CaseStudyContentImageRecord";
+          id: string;
+          halfSize: boolean;
+          media: {
+            __typename?: "FileField";
+            responsiveImage?: {
+              __typename?: "ResponsiveImage";
+              src: string;
+              alt?: string | null;
+            } | null;
+          };
+        }
+      | {
+          __typename: "ContentQuoteRecord";
+          id: string;
+          quote: string;
+          author: string;
+        }
+    >;
   };
 };
 
 export type CaseStudyContentImageFragment = {
-  __typename?: "CaseStudyContentImageRecord";
+  __typename: "CaseStudyContentImageRecord";
+  id: string;
   halfSize: boolean;
   media: {
     __typename?: "FileField";
@@ -8482,6 +8536,8 @@ export const CaseStudyContentImageFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "media" },
@@ -8508,6 +8564,28 @@ export const CaseStudyContentImageFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CaseStudyContentImageFragment, unknown>;
+export const ContentQuoteFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentQuote" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ContentQuoteRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "quote" } },
+          { kind: "Field", name: { kind: "Name", value: "author" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentQuoteFragment, unknown>;
 export const CaseContentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -8542,10 +8620,13 @@ export const CaseContentFragmentDoc = {
                         kind: "Field",
                         name: { kind: "Name", value: "__typename" },
                       },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CaseStudyContentImage" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ContentQuote" },
                       },
                     ],
                   },
@@ -8566,6 +8647,8 @@ export const CaseContentFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "media" },
@@ -8587,6 +8670,23 @@ export const CaseContentFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "halfSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentQuote" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ContentQuoteRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "quote" } },
+          { kind: "Field", name: { kind: "Name", value: "author" } },
         ],
       },
     },
@@ -11038,6 +11138,8 @@ export const CaseStudyDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "media" },
@@ -11059,6 +11161,23 @@ export const CaseStudyDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "halfSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentQuote" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ContentQuoteRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "quote" } },
+          { kind: "Field", name: { kind: "Name", value: "author" } },
         ],
       },
     },
@@ -11093,10 +11212,13 @@ export const CaseStudyDocument = {
                         kind: "Field",
                         name: { kind: "Name", value: "__typename" },
                       },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CaseStudyContentImage" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ContentQuote" },
                       },
                     ],
                   },

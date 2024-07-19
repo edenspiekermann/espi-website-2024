@@ -6,13 +6,13 @@ import { MediaProperties } from "@/components/media/interfaces";
 import classNames from "classnames";
 import { Divider } from "@/components/divider/divider";
 import { StructuredText } from "react-datocms";
+import { ContentQuote } from "@/components/content-quote";
 
 export const CaseContent = ({
   headlineText,
   bodyText,
   content,
 }: CaseContentFragment) => {
-  const { blocks } = content;
   const caseContentClass = classNames({
     [styles.caseContent]: true,
     container: true,
@@ -29,6 +29,8 @@ export const CaseContent = ({
             <Media {...(record.media as MediaProperties)} />
           </div>
         );
+      case "ContentQuoteRecord":
+        return <ContentQuote {...record} />;
       default:
         return null;
     }

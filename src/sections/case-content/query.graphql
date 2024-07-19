@@ -7,13 +7,15 @@ fragment CaseContent on CaseContentRecord {
     value
     blocks {
       __typename
-      id
       ...CaseStudyContentImage
+      ...ContentQuote
     }
   }
 }
 
 fragment CaseStudyContentImage on CaseStudyContentImageRecord {
+  __typename
+  id
   media {
     responsiveImage {
       src
