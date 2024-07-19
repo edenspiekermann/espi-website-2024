@@ -9,7 +9,7 @@
     "lint": "next lint",
     "format": "next lint --fix && prettier --write \"src/**/*.{js,ts,jsx,tsx,scss,md,mdx}\"",
     "prettier-check": "prettier --check \"src/**/*.{js,ts,jsx,tsx,scss,md,mdx}\"",
-    "precommit": "next lint && npm run prettier-check",
+    "precommit": "next lint && npm run prettier-check && npm run build",
     "generate-ts-types": "graphql-codegen --config graphql.config.js"
   },
   "dependencies": {

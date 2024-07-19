@@ -10,7 +10,7 @@ import { InfiniteScrollContainer } from "@/components/infinite-scroll-container"
 export const SliderGallery = ({ assets }: SliderGalleryFragment) => {
   return (
     <section className={styles.sliderGallery}>
-      <InfiniteScrollContainer className={styles.container}>
+      <InfiniteScrollContainer>
         {assets.map((asset) => (
           <div key={asset.id} className={styles.media}>
             <Media {...(asset as MediaProperties)} />
