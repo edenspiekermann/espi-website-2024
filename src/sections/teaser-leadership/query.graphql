@@ -1,0 +1,24 @@
+fragment TeaserLeadership on TeaserLeadershipRecord {
+  __typename
+  id
+  showDivider
+  divider {
+    ...Divider
+  }
+  people {
+    ...Person
+  }
+}
+
+fragment Person on PersonRecord {
+  id
+  name
+  role
+  slug
+  email
+  image {
+    responsiveImage {
+      src
+    }
+  }
+}

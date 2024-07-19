@@ -1,0 +1,24 @@
+fragment SliderNews on SliderNewsRecord {
+  __typename
+  id
+  showDivider
+  divider {
+    ...Divider
+  }
+  articles {
+    ...SliderNewsCard
+  }
+}
+
+fragment SliderNewsCard on NewsArticleRecord {
+  id
+  title
+  shortDescription
+  cardImage {
+    responsiveImage {
+      src
+      alt
+    }
+  }
+  publishedDate
+}

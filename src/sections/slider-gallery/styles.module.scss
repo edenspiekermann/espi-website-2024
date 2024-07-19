@@ -1,0 +1,39 @@
+@use "../../app/styles/base.scss" as *;
+
+.sliderGallery {
+  @include mqHelper(
+    "padding",
+    32px 0px 32px 24px,
+    32px 0px 32px 40px,
+    40px 0px 40px 70px
+  );
+}
+
+.container {
+  * {
+    align-items: center !important;
+  }
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+
+  > * {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  @include mqHelper("width", 240px, 326px, 396px);
+  height: auto;
+  @include mqHelper("border-radius", 20px, 27px, 54px);
+
+  &:nth-of-type(even) {
+    aspect-ratio: 3/2;
+    @include mqHelper("height", 320px, 435px, 528px);
+  }
+  &:nth-of-type(odd) {
+    aspect-ratio: 4/3;
+    @include mqHelper("height", 180px, 245px, 298px);
+  }
+}
