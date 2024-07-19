@@ -283,6 +283,150 @@ export type CallToActionRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+export type CaseContentModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CaseContentModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CaseContentModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  bodyText?: InputMaybe<TextFilter>;
+  headlineText?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+};
+
+export enum CaseContentModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  HeadlineTextAsc = "headlineText_ASC",
+  HeadlineTextDesc = "headlineText_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+}
+
+/** Record of type Case Content (case_content) */
+export type CaseContentRecord = RecordInterface & {
+  __typename?: "CaseContentRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  bodyText?: Maybe<Scalars["String"]["output"]>;
+  headlineText: Scalars["String"]["output"];
+  id: Scalars["ItemId"]["output"];
+};
+
+/** Record of type Case Content (case_content) */
+export type CaseContentRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Case Content (case_content) */
+export type CaseContentRecordBodyTextArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type CaseIntroModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CaseIntroModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CaseIntroModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  problemText?: InputMaybe<StringFilter>;
+  solutionText?: InputMaybe<StringFilter>;
+  text?: InputMaybe<TextFilter>;
+};
+
+export enum CaseIntroModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  ProblemTextAsc = "problemText_ASC",
+  ProblemTextDesc = "problemText_DESC",
+  SolutionTextAsc = "solutionText_ASC",
+  SolutionTextDesc = "solutionText_DESC",
+}
+
+/** Record of type Case Intro (case_intro) */
+export type CaseIntroRecord = RecordInterface & {
+  __typename?: "CaseIntroRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  problemText: Scalars["String"]["output"];
+  solutionText: Scalars["String"]["output"];
+  text: Scalars["String"]["output"];
+};
+
+/** Record of type Case Intro (case_intro) */
+export type CaseIntroRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Case Intro (case_intro) */
+export type CaseIntroRecordTextArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
 export type CaseStudyModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<CaseStudyModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<CaseStudyModelFilter>>>;
@@ -299,6 +443,8 @@ export type CaseStudyModelFilter = {
   featuredMedia?: InputMaybe<FileFilter>;
   id?: InputMaybe<ItemIdFilter>;
   invertNav?: InputMaybe<BooleanFilter>;
+  relatedIndustries?: InputMaybe<LinksFilter>;
+  relatedServices?: InputMaybe<LinksFilter>;
   sections?: InputMaybe<LinksFilter>;
   slug?: InputMaybe<SlugFilter>;
   subtitle?: InputMaybe<StringFilter>;
@@ -332,6 +478,11 @@ export enum CaseStudyModelOrderBy {
   TitleDesc = "title_DESC",
 }
 
+export type CaseStudyModelSectionsField =
+  | CaseContentRecord
+  | CaseIntroRecord
+  | PurposeRecord;
+
 /** Record of type Case Study (case_study) */
 export type CaseStudyRecord = RecordInterface & {
   __typename?: "CaseStudyRecord";
@@ -353,7 +504,9 @@ export type CaseStudyRecord = RecordInterface & {
   featuredMedia: FileField;
   id: Scalars["ItemId"]["output"];
   invertNav: Scalars["BooleanType"]["output"];
-  sections: Array<PurposeRecord>;
+  relatedIndustries: Array<IndustryRecord>;
+  relatedServices: Array<ServiceRecord>;
+  sections: Array<CaseStudyModelSectionsField>;
   slug: Scalars["String"]["output"];
   subtitle: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
@@ -2725,6 +2878,69 @@ export type InUseFilter = {
   eq?: InputMaybe<Scalars["BooleanType"]["input"]>;
 };
 
+export type IndustryModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<IndustryModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<IndustryModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  industry?: InputMaybe<StringFilter>;
+};
+
+export enum IndustryModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  IndustryAsc = "industry_ASC",
+  IndustryDesc = "industry_DESC",
+}
+
+/** Record of type Industry (industry) */
+export type IndustryRecord = RecordInterface & {
+  __typename?: "IndustryRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  industry: Scalars["String"]["output"];
+};
+
+/** Record of type Industry (industry) */
+export type IndustryRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by ID */
 export type ItemIdFilter = {
   /** Search the record with the specified ID */
@@ -3425,6 +3641,31 @@ export type NewsArticleRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Block of type News Type (news_type) */
+export type NewsTypeRecord = RecordInterface & {
+  __typename?: "NewsTypeRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  typeOfNews?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Block of type News Type (news_type) */
+export type NewsTypeRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Record of type Open Positions (open_position) */
 export type OpenPositionRecord = RecordInterface & {
   __typename?: "OpenPositionRecord";
@@ -3827,6 +4068,10 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allArticlesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allCaseContentsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allCaseIntrosMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allCaseStudiesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allDrawersMeta: CollectionMetadata;
@@ -3840,6 +4085,8 @@ export type Query = {
   _allHomepageHerosMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allImageWithStatsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allIndustriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allLeadershipCardsModelsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -3868,6 +4115,8 @@ export type Query = {
   _allServiceCardsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allServiceCardsSectionsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allServicesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSliderGalleriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -3901,6 +4150,10 @@ export type Query = {
   /** Returns a collection of records */
   allArticles: Array<ArticleRecord>;
   /** Returns a collection of records */
+  allCaseContents: Array<CaseContentRecord>;
+  /** Returns a collection of records */
+  allCaseIntros: Array<CaseIntroRecord>;
+  /** Returns a collection of records */
   allCaseStudies: Array<CaseStudyRecord>;
   /** Returns a collection of records */
   allDrawers: Array<DrawerRecord>;
@@ -3914,6 +4167,8 @@ export type Query = {
   allHomepageHeros: Array<HomepageHeroRecord>;
   /** Returns a collection of records */
   allImageWithStats: Array<ImageWithStatRecord>;
+  /** Returns a collection of records */
+  allIndustries: Array<IndustryRecord>;
   /** Returns a collection of records */
   allLeadershipCardsModels: Array<LeadershipCardsModelRecord>;
   /** Returns a collection of records */
@@ -3942,6 +4197,8 @@ export type Query = {
   allServiceCards: Array<ServiceCardRecord>;
   /** Returns a collection of records */
   allServiceCardsSections: Array<ServiceCardsSectionRecord>;
+  /** Returns a collection of records */
+  allServices: Array<ServiceRecord>;
   /** Returns a collection of records */
   allSliderGalleries: Array<SliderGalleryRecord>;
   /** Returns a collection of records */
@@ -3973,6 +4230,10 @@ export type Query = {
   /** Returns a specific record */
   article?: Maybe<ArticleRecord>;
   /** Returns a specific record */
+  caseContent?: Maybe<CaseContentRecord>;
+  /** Returns a specific record */
+  caseIntro?: Maybe<CaseIntroRecord>;
+  /** Returns a specific record */
   caseStudy?: Maybe<CaseStudyRecord>;
   /** Returns a specific record */
   drawer?: Maybe<DrawerRecord>;
@@ -3986,6 +4247,8 @@ export type Query = {
   homepageHero?: Maybe<HomepageHeroRecord>;
   /** Returns a specific record */
   imageWithStat?: Maybe<ImageWithStatRecord>;
+  /** Returns a specific record */
+  industry?: Maybe<IndustryRecord>;
   /** Returns a specific record */
   leadershipCardsModel?: Maybe<LeadershipCardsModelRecord>;
   /** Returns a specific record */
@@ -4016,6 +4279,8 @@ export type Query = {
   purpose?: Maybe<PurposeRecord>;
   /** Returns a specific record */
   quote?: Maybe<QuoteRecord>;
+  /** Returns a specific record */
+  service?: Maybe<ServiceRecord>;
   /** Returns a specific record */
   serviceCard?: Maybe<ServiceCardRecord>;
   /** Returns a specific record */
@@ -4053,6 +4318,18 @@ export type Query = {
 /** The query root for this schema */
 export type Query_AllArticlesMetaArgs = {
   filter?: InputMaybe<ArticleModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllCaseContentsMetaArgs = {
+  filter?: InputMaybe<CaseContentModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllCaseIntrosMetaArgs = {
+  filter?: InputMaybe<CaseIntroModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4095,6 +4372,12 @@ export type Query_AllHomepageHerosMetaArgs = {
 /** The query root for this schema */
 export type Query_AllImageWithStatsMetaArgs = {
   filter?: InputMaybe<ImageWithStatModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllIndustriesMetaArgs = {
+  filter?: InputMaybe<IndustryModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4179,6 +4462,12 @@ export type Query_AllServiceCardsMetaArgs = {
 /** The query root for this schema */
 export type Query_AllServiceCardsSectionsMetaArgs = {
   filter?: InputMaybe<ServiceCardsSectionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllServicesMetaArgs = {
+  filter?: InputMaybe<ServiceModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4283,6 +4572,26 @@ export type QueryAllArticlesArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllCaseContentsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CaseContentModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CaseContentModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllCaseIntrosArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CaseIntroModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CaseIntroModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllCaseStudiesArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<CaseStudyModelFilter>;
@@ -4349,6 +4658,16 @@ export type QueryAllImageWithStatsArgs = {
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ImageWithStatModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllIndustriesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<IndustryModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<IndustryModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -4489,6 +4808,16 @@ export type QueryAllServiceCardsSectionsArgs = {
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ServiceCardsSectionModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllServicesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ServiceModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ServiceModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -4641,6 +4970,22 @@ export type QueryArticleArgs = {
 };
 
 /** The query root for this schema */
+export type QueryCaseContentArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CaseContentModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CaseContentModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryCaseIntroArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CaseIntroModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CaseIntroModelOrderBy>>>;
+};
+
+/** The query root for this schema */
 export type QueryCaseStudyArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<CaseStudyModelFilter>;
@@ -4694,6 +5039,14 @@ export type QueryImageWithStatArgs = {
   filter?: InputMaybe<ImageWithStatModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ImageWithStatModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryIndustryArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<IndustryModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<IndustryModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -4808,6 +5161,14 @@ export type QueryQuoteArgs = {
   filter?: InputMaybe<QuoteModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<QuoteModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryServiceArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ServiceModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ServiceModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -5216,6 +5577,69 @@ export type ServiceCardsSectionRecord = RecordInterface & {
 
 /** Record of type Service Cards (service_cards_section) */
 export type ServiceCardsSectionRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type ServiceModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ServiceModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ServiceModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  service?: InputMaybe<StringFilter>;
+};
+
+export enum ServiceModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  ServiceAsc = "service_ASC",
+  ServiceDesc = "service_DESC",
+}
+
+/** Record of type Service (service) */
+export type ServiceRecord = RecordInterface & {
+  __typename?: "ServiceRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  service: Scalars["String"]["output"];
+};
+
+/** Record of type Service (service) */
+export type ServiceRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -5859,6 +6283,7 @@ export type TeaserCaseGridModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   caseStudies?: InputMaybe<LinksFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  showFilter?: InputMaybe<BooleanFilter>;
 };
 
 export enum TeaserCaseGridModelOrderBy {
@@ -5880,6 +6305,8 @@ export enum TeaserCaseGridModelOrderBy {
   UpdatedAtDesc = "_updatedAt_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  ShowFilterAsc = "showFilter_ASC",
+  ShowFilterDesc = "showFilter_DESC",
 }
 
 /** Record of type Teaser Case Grid (teaser_case_grid) */
@@ -5900,6 +6327,7 @@ export type TeaserCaseGridRecord = RecordInterface & {
   _updatedAt: Scalars["DateTime"]["output"];
   caseStudies: Array<CaseStudyRecord>;
   id: Scalars["ItemId"]["output"];
+  showFilter: Scalars["BooleanType"]["output"];
 };
 
 /** Record of type Teaser Case Grid (teaser_case_grid) */
@@ -6047,6 +6475,7 @@ export type TeaserNewsGridModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
   newsCards?: InputMaybe<LinksFilter>;
+  showFilter?: InputMaybe<BooleanFilter>;
 };
 
 export enum TeaserNewsGridModelOrderBy {
@@ -6068,6 +6497,8 @@ export enum TeaserNewsGridModelOrderBy {
   UpdatedAtDesc = "_updatedAt_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  ShowFilterAsc = "showFilter_ASC",
+  ShowFilterDesc = "showFilter_DESC",
 }
 
 /** Record of type Teaser News Grid (teaser_news_grid) */
@@ -6088,6 +6519,7 @@ export type TeaserNewsGridRecord = RecordInterface & {
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
   newsCards: Array<NewsArticleRecord>;
+  showFilter: Scalars["BooleanType"]["output"];
 };
 
 /** Record of type Teaser News Grid (teaser_news_grid) */
@@ -6751,7 +7183,11 @@ export type CaseStudyQuery = {
       } | null;
     };
     backgroundColor: { __typename?: "ColorField"; hex: string };
-    sections: Array<{ __typename: "PurposeRecord"; id: string }>;
+    sections: Array<
+      | { __typename: "CaseContentRecord" }
+      | { __typename: "CaseIntroRecord" }
+      | { __typename: "PurposeRecord" }
+    >;
   } | null;
 };
 
@@ -7136,7 +7572,31 @@ export type PageQuery = {
             } | null;
           }>;
         }
-      | { __typename: "SliderNewsRecord" }
+      | {
+          __typename: "SliderNewsRecord";
+          id: string;
+          showDivider: boolean;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
+          articles: Array<{
+            __typename?: "NewsArticleRecord";
+            id: string;
+            title: string;
+            shortDescription?: string | null;
+            publishedDate?: string | null;
+            cardImage: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+            };
+          }>;
+        }
       | {
           __typename: "StatementCtaRecord";
           id: string;
@@ -7238,7 +7698,31 @@ export type PageQuery = {
             };
           }>;
         }
-      | { __typename: "TeaserLeadershipRecord" }
+      | {
+          __typename: "TeaserLeadershipRecord";
+          id: string;
+          showDivider: boolean;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
+          people: Array<{
+            __typename?: "PersonRecord";
+            id: string;
+            name: string;
+            role: string;
+            slug: string;
+            email?: string | null;
+            image?: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+              } | null;
+            } | null;
+          }>;
+        }
       | {
           __typename: "TeaserNewsGridRecord";
           id: string;
@@ -7693,6 +8177,48 @@ export type SliderGalleryFragment = {
   }>;
 };
 
+export type SliderNewsFragment = {
+  __typename: "SliderNewsRecord";
+  id: string;
+  showDivider: boolean;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
+  articles: Array<{
+    __typename?: "NewsArticleRecord";
+    id: string;
+    title: string;
+    shortDescription?: string | null;
+    publishedDate?: string | null;
+    cardImage: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+    };
+  }>;
+};
+
+export type SliderNewsCardFragment = {
+  __typename?: "NewsArticleRecord";
+  id: string;
+  title: string;
+  shortDescription?: string | null;
+  publishedDate?: string | null;
+  cardImage: {
+    __typename?: "FileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+    } | null;
+  };
+};
+
 export type StatementCtaFragment = {
   __typename: "StatementCtaRecord";
   id: string;
@@ -7828,6 +8354,42 @@ export type CaseStudyCardFragment = {
     } | null;
     video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
   };
+};
+
+export type TeaserLeadershipFragment = {
+  __typename: "TeaserLeadershipRecord";
+  id: string;
+  showDivider: boolean;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
+  people: Array<{
+    __typename?: "PersonRecord";
+    id: string;
+    name: string;
+    role: string;
+    slug: string;
+    email?: string | null;
+    image?: {
+      __typename?: "FileField";
+      responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
+    } | null;
+  }>;
+};
+
+export type PersonFragment = {
+  __typename?: "PersonRecord";
+  id: string;
+  name: string;
+  role: string;
+  slug: string;
+  email?: string | null;
+  image?: {
+    __typename?: "FileField";
+    responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
+  } | null;
 };
 
 export type TeaserNewsGridFragment = {
@@ -9370,6 +9932,147 @@ export const SliderGalleryFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<SliderGalleryFragment, unknown>;
+export const SliderNewsCardFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SliderNewsCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "NewsArticleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SliderNewsCardFragment, unknown>;
+export const SliderNewsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SliderNews" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SliderNewsRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "articles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "SliderNewsCard" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SliderNewsCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "NewsArticleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SliderNewsFragment, unknown>;
 export const StatementCtaFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -9881,6 +10584,147 @@ export const TeaserCaseStaggeredFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<TeaserCaseStaggeredFragment, unknown>;
+export const PersonFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Person" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PersonRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "role" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PersonFragment, unknown>;
+export const TeaserLeadershipFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserLeadership" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserLeadershipRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "people" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Person" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Person" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PersonRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "role" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TeaserLeadershipFragment, unknown>;
 export const NewsArticleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -10447,7 +11291,6 @@ export const CaseStudyDocument = {
                         kind: "Field",
                         name: { kind: "Name", value: "__typename" },
                       },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
                     ],
                   },
                 },
@@ -10857,6 +11700,14 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "SliderGallery" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "SliderNews" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TeaserLeadership" },
+                      },
                     ],
                   },
                 },
@@ -11253,6 +12104,80 @@ export const PageDocument = {
                         kind: "Field",
                         name: { kind: "Name", value: "mp4Url" },
                       },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SliderNewsCard" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "NewsArticleRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Person" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PersonRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "role" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
                     ],
                   },
                 },
@@ -12302,6 +13227,90 @@ export const PageDocument = {
                       },
                     ],
                   },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SliderNews" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SliderNewsRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "articles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "SliderNewsCard" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserLeadership" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserLeadershipRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "people" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Person" },
                 },
               ],
             },

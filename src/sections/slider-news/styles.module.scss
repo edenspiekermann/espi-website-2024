@@ -1,0 +1,61 @@
+@use "../../app/styles/base.scss" as *;
+
+.sliderNews {
+  @include mqHelper("padding", 24px, 20px 40px, 32px 70px);
+}
+
+.articleCard {
+  width: 240px;
+  flex: 0 0 auto;
+  @include mq("desktop") {
+    width: 290px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 3/4;
+
+  @include mq("desktop") {
+    border-radius: 40px;
+  }
+}
+
+.textContent {
+  padding: 24px;
+  background-color: var(--color-espi-black);
+  border-radius: 20px;
+
+  @include mq("desktop") {
+    border-radius: 40px;
+  }
+}
+
+.publishedDate {
+  @include as-xs-text;
+  color: var(--color-white);
+  opacity: 0.5;
+  margin-bottom: 8px;
+}
+
+.text {
+  @include as-s-text;
+}
+
+.title {
+  color: var(--color-white);
+}
+
+.shortDescription {
+  color: var(--color-white);
+  opacity: 0.5;
+}
