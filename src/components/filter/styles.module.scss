@@ -1,0 +1,74 @@
+@use "../../app/styles/base.scss" as *;
+
+.filter {
+  padding: 24px 0px;
+  button {
+    @include as-m-element;
+    border-radius: 80px;
+    padding: 15px 20px;
+    color: var(--color-espi-black);
+    background-color: var(--color-light-grey);
+    border: none;
+    cursor: pointer;
+
+    &.active {
+      background-color: var(--color-espi-black);
+      color: var(--color-white);
+    }
+  }
+}
+
+.newsFilter {
+  background-color: var(--color-extra-light-grey);
+  button {
+    background-color: var(--color-white);
+  }
+}
+
+.filterCategories,
+.filterOptions {
+  grid-column: 1/-1;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  display: flex;
+}
+
+.filterCategories {
+  margin-bottom: 20px;
+  position: relative;
+  padding-top: 24px;
+
+  &::before {
+    content: "";
+    height: 1px;
+    background-color: var(--color-espi-black);
+    opacity: 0.2;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+}
+
+.filterOptions {
+  grid-column: 1/-1;
+  flex-wrap: wrap;
+}
+
+.selected {
+  @include as-m-element;
+  border-radius: 80px;
+  padding: 15px 20px;
+  background-color: var(--color-espi-black);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  position: relative;
+
+  svg {
+    position: absolute;
+    right: -10px;
+    top: 0;
+  }
+}

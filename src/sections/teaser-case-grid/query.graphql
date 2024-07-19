@@ -1,6 +1,7 @@
 fragment TeaserCaseGrid on TeaserCaseGridRecord {
   __typename
   id
+  showFilter
   caseStudies {
     ...CaseStudyGridCard
   }
@@ -23,5 +24,11 @@ fragment CaseStudyGridCard on CaseStudyRecord {
     video {
       mp4Url
     }
+  }
+  relatedIndustries {
+    ...Industry
+  }
+  relatedServices {
+    ...Service
   }
 }

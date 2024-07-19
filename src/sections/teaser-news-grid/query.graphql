@@ -1,6 +1,7 @@
 fragment TeaserNewsGrid on TeaserNewsGridRecord {
   __typename
   id
+  showFilter
   newsCards {
     ...NewsArticle
   }
