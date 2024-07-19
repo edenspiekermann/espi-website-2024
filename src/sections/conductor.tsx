@@ -23,6 +23,7 @@ import { TeaserRelatedCase } from "./teaser-related-case";
 import { TeaserCaseGrid } from "./teaser-case-grid";
 import { TeaserCaseStaggered } from "./teaser-case-staggered";
 import { SliderNews } from "./slider-news";
+import { TeaserLeadership } from "./teaser-leadership";
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
@@ -72,6 +73,8 @@ const sectionSwitch = (section: any) => {
       return <TeaserCaseStaggered key={section.id} {...section} />;
     case "SliderNewsRecord":
       return <SliderNews key={section.id} {...section} />;
+    case "TeaserLeadershipRecord":
+      return <TeaserLeadership key={section.id} {...section} />;
     default:
       return <SectionDevelopment key={nanoid()} {...section} />;
   }
