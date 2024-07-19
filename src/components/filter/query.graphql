@@ -1,0 +1,9 @@
+fragment Industry on IndustryRecord {
+  id
+  industry
+}
+
+fragment Service on ServiceRecord {
+  id
+  service
+}
