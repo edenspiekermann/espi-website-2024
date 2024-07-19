@@ -25,7 +25,6 @@ query CaseStudy($slug: String) {
     }
     sections {
       __typename
-      id
     }
   }
 }

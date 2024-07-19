@@ -1,0 +1,14 @@
+fragment SliderGallery on SliderGalleryRecord {
+  __typename
+  id
+  assets {
+    id
+    responsiveImage {
+      src
+      alt
+    }
+    video {
+      mp4Url
+    }
+  }
+}
