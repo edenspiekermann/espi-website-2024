@@ -1,0 +1,7 @@
+fragment CaseIntro on CaseIntroRecord {
+  __typename
+  id
+  text
+  problemText
+  solutionText
+}

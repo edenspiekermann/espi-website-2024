@@ -22,6 +22,7 @@ import { TeaserNewsGrid } from "./teaser-news-grid";
 import { TeaserRelatedCase } from "./teaser-related-case";
 import { TeaserCaseGrid } from "./teaser-case-grid";
 import { TeaserCaseStaggered } from "./teaser-case-staggered";
+import { CaseIntro } from "./case-intro";
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
@@ -69,6 +70,8 @@ const sectionSwitch = (section: any) => {
       return <TeaserCaseGrid key={section.id} {...section} />;
     case "TeaserCaseStaggeredRecord":
       return <TeaserCaseStaggered key={section.id} {...section} />;
+    case "CaseIntroRecord":
+      return <CaseIntro key={section.id} {...section} />;
     default:
       return <SectionDevelopment key={nanoid()} {...section} />;
   }
