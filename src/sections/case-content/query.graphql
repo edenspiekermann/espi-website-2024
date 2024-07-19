@@ -1,0 +1,24 @@
+fragment CaseContent on CaseContentRecord {
+  __typename
+  id
+  headlineText
+  bodyText
+  content {
+    value
+    blocks {
+      __typename
+      id
+      ...CaseStudyContentImage
+    }
+  }
+}
+
+fragment CaseStudyContentImage on CaseStudyContentImageRecord {
+  media {
+    responsiveImage {
+      src
+      alt
+    }
+  }
+  halfSize
+}

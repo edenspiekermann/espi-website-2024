@@ -1,0 +1,80 @@
+@use "../../app/styles/base.scss" as *;
+
+.caseContent {
+  position: relative;
+  height: auto;
+  padding-top: 24px;
+  padding-bottom: 48px;
+
+  @include mq(desktop) {
+    padding-top: 40px;
+    padding-bottom: 64px;
+  }
+}
+
+.left {
+  position: relative;
+  grid-column: 1/-1;
+  margin-bottom: 32px;
+
+  @include mq("desktop") {
+    grid-column: 1/5;
+    margin-right: 40px;
+    margin-bottom: 0;
+  }
+}
+
+.text {
+  width: 100%;
+  @include mq("desktop") {
+    position: sticky;
+    top: 0;
+    left: 0;
+  }
+}
+
+.headlineText {
+  @include as-m-serif;
+  margin-bottom: 24px;
+
+  @include mq(desktop) {
+    margin-bottom: 32px;
+  }
+}
+
+.bodyText {
+  @include as-m-text;
+}
+
+.right {
+  display: flex;
+  flex-wrap: wrap;
+  @include mqHelper("gap", 16px, 20px, 32px);
+  grid-column: 1/-1;
+
+  @include mq("desktop") {
+    grid-column: 6/13;
+  }
+}
+
+.halfImage,
+.fullImage {
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+}
+
+.fullImage {
+  width: 100%;
+  aspect-ratio: 3/2;
+}
+
+.halfImage {
+  @include mqHelper(
+    "width",
+    calc(50% - 8px),
+    calc(50% - 10px),
+    calc(50% - 16px)
+  );
+  aspect-ratio: 3/4;
+}
