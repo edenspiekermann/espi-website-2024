@@ -3520,6 +3520,7 @@ export type PageModelSectionsField =
   | StatsSectionRecord
   | TeaserCaseGridRecord
   | TeaserCaseStaggeredRecord
+  | TeaserLeadershipRecord
   | TeaserNewsGridRecord
   | TeaserRelatedCaseRecord
   | TeaserRelatedNewsRecord;
@@ -3568,6 +3569,7 @@ export type PersonModelFilter = {
   image?: InputMaybe<FileFilter>;
   name?: InputMaybe<StringFilter>;
   role?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<SlugFilter>;
 };
 
 export enum PersonModelOrderBy {
@@ -3618,6 +3620,7 @@ export type PersonRecord = RecordInterface & {
   image?: Maybe<FileField>;
   name: Scalars["String"]["output"];
   role: Scalars["String"]["output"];
+  slug: Scalars["String"]["output"];
 };
 
 /** Record of type Person (person) */
@@ -3851,6 +3854,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allTeaserCaseStaggeredsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allTeaserLeadershipsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allTeaserNewsGridsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allTeaserRelatedCasesMeta: CollectionMetadata;
@@ -3918,6 +3923,8 @@ export type Query = {
   allTeaserCaseGrids: Array<TeaserCaseGridRecord>;
   /** Returns a collection of records */
   allTeaserCaseStaggereds: Array<TeaserCaseStaggeredRecord>;
+  /** Returns a collection of records */
+  allTeaserLeaderships: Array<TeaserLeadershipRecord>;
   /** Returns a collection of records */
   allTeaserNewsGrids: Array<TeaserNewsGridRecord>;
   /** Returns a collection of records */
@@ -3990,6 +3997,8 @@ export type Query = {
   teaserCaseGrid?: Maybe<TeaserCaseGridRecord>;
   /** Returns a specific record */
   teaserCaseStaggered?: Maybe<TeaserCaseStaggeredRecord>;
+  /** Returns a specific record */
+  teaserLeadership?: Maybe<TeaserLeadershipRecord>;
   /** Returns a specific record */
   teaserNewsGrid?: Maybe<TeaserNewsGridRecord>;
   /** Returns a specific record */
@@ -4171,6 +4180,12 @@ export type Query_AllTeaserCaseGridsMetaArgs = {
 /** The query root for this schema */
 export type Query_AllTeaserCaseStaggeredsMetaArgs = {
   filter?: InputMaybe<TeaserCaseStaggeredModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllTeaserLeadershipsMetaArgs = {
+  filter?: InputMaybe<TeaserLeadershipModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4495,6 +4510,16 @@ export type QueryAllTeaserCaseStaggeredsArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllTeaserLeadershipsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TeaserLeadershipModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<TeaserLeadershipModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllTeaserNewsGridsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<TeaserNewsGridModelFilter>;
@@ -4782,6 +4807,14 @@ export type QueryTeaserCaseStaggeredArgs = {
   filter?: InputMaybe<TeaserCaseStaggeredModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<TeaserCaseStaggeredModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryTeaserLeadershipArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TeaserLeadershipModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<TeaserLeadershipModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -5716,6 +5749,72 @@ export type TeaserCaseStaggeredRecord = RecordInterface & {
 
 /** Record of type Teaser Case Staggered (teaser_case_staggered) */
 export type TeaserCaseStaggeredRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type TeaserLeadershipModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<TeaserLeadershipModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<TeaserLeadershipModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  people?: InputMaybe<LinksFilter>;
+  showDivider?: InputMaybe<BooleanFilter>;
+};
+
+export enum TeaserLeadershipModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  ShowDividerAsc = "showDivider_ASC",
+  ShowDividerDesc = "showDivider_DESC",
+}
+
+/** Record of type Teaser Leadership (teaser_leadership) */
+export type TeaserLeadershipRecord = RecordInterface & {
+  __typename?: "TeaserLeadershipRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  divider?: Maybe<DividerRecord>;
+  id: Scalars["ItemId"]["output"];
+  people: Array<PersonRecord>;
+  showDivider: Scalars["BooleanType"]["output"];
+};
+
+/** Record of type Teaser Leadership (teaser_leadership) */
+export type TeaserLeadershipRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -6906,6 +7005,31 @@ export type PageQuery = {
           }>;
         }
       | {
+          __typename: "TeaserLeadershipRecord";
+          id: string;
+          showDivider: boolean;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
+          people: Array<{
+            __typename?: "PersonRecord";
+            id: string;
+            name: string;
+            role: string;
+            slug: string;
+            email?: string | null;
+            image?: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+              } | null;
+            } | null;
+          }>;
+        }
+      | {
           __typename: "TeaserNewsGridRecord";
           id: string;
           newsCards: Array<{
@@ -7479,6 +7603,42 @@ export type CaseStudyCardFragment = {
     } | null;
     video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
   };
+};
+
+export type TeaserLeadershipFragment = {
+  __typename: "TeaserLeadershipRecord";
+  id: string;
+  showDivider: boolean;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
+  people: Array<{
+    __typename?: "PersonRecord";
+    id: string;
+    name: string;
+    role: string;
+    slug: string;
+    email?: string | null;
+    image?: {
+      __typename?: "FileField";
+      responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
+    } | null;
+  }>;
+};
+
+export type PersonFragment = {
+  __typename?: "PersonRecord";
+  id: string;
+  name: string;
+  role: string;
+  slug: string;
+  email?: string | null;
+  image?: {
+    __typename?: "FileField";
+    responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
+  } | null;
 };
 
 export type TeaserNewsGridFragment = {
@@ -9478,6 +9638,147 @@ export const TeaserCaseStaggeredFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<TeaserCaseStaggeredFragment, unknown>;
+export const PersonFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Person" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PersonRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "role" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PersonFragment, unknown>;
+export const TeaserLeadershipFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserLeadership" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserLeadershipRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "people" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Person" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Person" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PersonRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "role" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TeaserLeadershipFragment, unknown>;
 export const NewsArticleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -10450,6 +10751,10 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "TeaserCaseStaggered" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TeaserLeadership" },
+                      },
                     ],
                   },
                 },
@@ -10846,6 +11151,43 @@ export const PageDocument = {
                         kind: "Field",
                         name: { kind: "Name", value: "mp4Url" },
                       },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Person" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PersonRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "role" } },
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
                     ],
                   },
                 },
@@ -11846,6 +12188,48 @@ export const PageDocument = {
                 {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "CaseStudyCard" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserLeadership" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserLeadershipRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "people" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Person" },
                 },
               ],
             },
