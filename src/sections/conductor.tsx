@@ -22,6 +22,7 @@ import { TeaserNewsGrid } from "./teaser-news-grid";
 import { TeaserRelatedCase } from "./teaser-related-case";
 import { TeaserCaseGrid } from "./teaser-case-grid";
 import { TeaserCaseStaggered } from "./teaser-case-staggered";
+import { CaseContent } from "./case-content";
 import { CaseIntro } from "./case-intro";
 import { SliderGallery } from "./slider-gallery";
 import { SliderNews } from "./slider-news";
@@ -73,6 +74,8 @@ const sectionSwitch = (section: any) => {
       return <TeaserCaseGrid key={section.id} {...section} />;
     case "TeaserCaseStaggeredRecord":
       return <TeaserCaseStaggered key={section.id} {...section} />;
+    case "CaseContentRecord":
+      return <CaseContent key={nanoid()} {...section} />;
     case "CaseIntroRecord":
       return <CaseIntro key={section.id} {...section} />;
     case "SliderGalleryRecord":

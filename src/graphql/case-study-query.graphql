@@ -25,6 +25,7 @@ query CaseStudy($slug: String) {
     }
     sections {
       __typename
+      ...CaseContent
       ...Purpose
       ...CaseIntro
     }

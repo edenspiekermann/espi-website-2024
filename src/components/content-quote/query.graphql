@@ -1,0 +1,6 @@
+fragment ContentQuote on ContentQuoteRecord {
+  __typename
+  id
+  quote
+  author
+}

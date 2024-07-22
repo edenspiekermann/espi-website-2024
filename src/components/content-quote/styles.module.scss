@@ -1,0 +1,18 @@
+@use "../../app/styles/base.scss" as *;
+
+.contentQuote {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @include mqHelper("gap", 16px, 24px);
+  @include mqHelper("padding-left", 24px, 40px);
+  border-left: 4px solid var(--color-espi-black);
+}
+
+.quote {
+  @include as-xl-text;
+}
+
+.author {
+  @include as-m-text;
+}
