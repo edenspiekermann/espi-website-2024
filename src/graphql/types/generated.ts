@@ -4183,6 +4183,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allServicesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allSidebarNewsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSliderGalleriesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSliderNewsMeta: CollectionMetadata;
@@ -4264,6 +4266,8 @@ export type Query = {
   allServiceCardsSections: Array<ServiceCardsSectionRecord>;
   /** Returns a collection of records */
   allServices: Array<ServiceRecord>;
+  /** Returns a collection of records */
+  allSidebarNews: Array<SidebarNewsRecord>;
   /** Returns a collection of records */
   allSliderGalleries: Array<SliderGalleryRecord>;
   /** Returns a collection of records */
@@ -4350,6 +4354,8 @@ export type Query = {
   serviceCard?: Maybe<ServiceCardRecord>;
   /** Returns a specific record */
   serviceCardsSection?: Maybe<ServiceCardsSectionRecord>;
+  /** Returns a specific record */
+  sidebarNews?: Maybe<SidebarNewsRecord>;
   /** Returns a specific record */
   sliderGallery?: Maybe<SliderGalleryRecord>;
   /** Returns a specific record */
@@ -4533,6 +4539,12 @@ export type Query_AllServiceCardsSectionsMetaArgs = {
 /** The query root for this schema */
 export type Query_AllServicesMetaArgs = {
   filter?: InputMaybe<ServiceModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllSidebarNewsMetaArgs = {
+  filter?: InputMaybe<SidebarNewsModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4883,6 +4895,16 @@ export type QueryAllServicesArgs = {
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ServiceModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllSidebarNewsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SidebarNewsModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SidebarNewsModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -5250,6 +5272,14 @@ export type QueryServiceCardsSectionArgs = {
   filter?: InputMaybe<ServiceCardsSectionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ServiceCardsSectionModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QuerySidebarNewsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SidebarNewsModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SidebarNewsModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -5705,6 +5735,75 @@ export type ServiceRecord = RecordInterface & {
 
 /** Record of type Service (service) */
 export type ServiceRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type SidebarNewsModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SidebarNewsModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SidebarNewsModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  author?: InputMaybe<LinkFilter>;
+  date?: InputMaybe<DateFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export enum SidebarNewsModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  DateAsc = "date_ASC",
+  DateDesc = "date_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  TextAsc = "text_ASC",
+  TextDesc = "text_DESC",
+}
+
+/** Record of type Sidebar News (sidebar_news) */
+export type SidebarNewsRecord = RecordInterface & {
+  __typename?: "SidebarNewsRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  author: PersonRecord;
+  date: Scalars["Date"]["output"];
+  id: Scalars["ItemId"]["output"];
+  text: Scalars["String"]["output"];
+};
+
+/** Record of type Sidebar News (sidebar_news) */
+export type SidebarNewsRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -7208,6 +7307,22 @@ export type ServiceCardFragment = {
   image: {
     __typename?: "FileField";
     responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
+  };
+};
+
+export type SidebarNewsFragment = {
+  __typename: "SidebarNewsRecord";
+  id: string;
+  date: string;
+  text: string;
+  author: {
+    __typename?: "PersonRecord";
+    name: string;
+    role: string;
+    image?: {
+      __typename?: "FileField";
+      responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
+    } | null;
   };
 };
 
@@ -8760,6 +8875,61 @@ export type TeaserRelatedNewsFragment = {
   }>;
 };
 
+export const SidebarNewsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SidebarNews" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SidebarNewsRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "author" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "role" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "responsiveImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "src" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SidebarNewsFragment, unknown>;
 export const StatementNumberedFragmentDoc = {
   kind: "Document",
   definitions: [
