@@ -5885,7 +5885,8 @@ export type SidebarGenericModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
-  text?: InputMaybe<StringFilter>;
+  text?: InputMaybe<TextFilter>;
+  textStyle?: InputMaybe<StringFilter>;
 };
 
 export enum SidebarGenericModelOrderBy {
@@ -5907,8 +5908,8 @@ export enum SidebarGenericModelOrderBy {
   UpdatedAtDesc = "_updatedAt_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
-  TextAsc = "text_ASC",
-  TextDesc = "text_DESC",
+  TextStyleAsc = "textStyle_ASC",
+  TextStyleDesc = "textStyle_DESC",
 }
 
 /** Record of type Sidebar Generic (sidebar_generic) */
@@ -5930,11 +5931,17 @@ export type SidebarGenericRecord = RecordInterface & {
   callToAction?: Maybe<CallToActionRecord>;
   id: Scalars["ItemId"]["output"];
   text: Scalars["String"]["output"];
+  textStyle?: Maybe<Scalars["String"]["output"]>;
 };
 
 /** Record of type Sidebar Generic (sidebar_generic) */
 export type SidebarGenericRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Sidebar Generic (sidebar_generic) */
+export type SidebarGenericRecordTextArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 export type SidebarNewsModelFilter = {
@@ -7513,6 +7520,18 @@ export type ServiceCardFragment = {
   };
 };
 
+export type SidebarGenericFragment = {
+  __typename: "SidebarGenericRecord";
+  id: string;
+  text: string;
+  textStyle?: string | null;
+  callToAction?: {
+    __typename?: "CallToActionRecord";
+    text: string;
+    url: string;
+  } | null;
+};
+
 export type SidebarNewsFragment = {
   __typename: "SidebarNewsRecord";
   id: string;
@@ -7722,7 +7741,17 @@ export type NewsArticleQuery = {
             }>;
           };
           leftContent:
-            | { __typename?: "SidebarGenericRecord" }
+            | {
+                __typename: "SidebarGenericRecord";
+                id: string;
+                text: string;
+                textStyle?: string | null;
+                callToAction?: {
+                  __typename?: "CallToActionRecord";
+                  text: string;
+                  url: string;
+                } | null;
+              }
             | {
                 __typename: "SidebarNewsRecord";
                 id: string;
@@ -8443,7 +8472,17 @@ export type ContentTextImageFragment = {
     }>;
   };
   leftContent:
-    | { __typename?: "SidebarGenericRecord" }
+    | {
+        __typename: "SidebarGenericRecord";
+        id: string;
+        text: string;
+        textStyle?: string | null;
+        callToAction?: {
+          __typename?: "CallToActionRecord";
+          text: string;
+          url: string;
+        } | null;
+      }
     | {
         __typename: "SidebarNewsRecord";
         id: string;
@@ -9501,6 +9540,49 @@ export const SidebarNewsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<SidebarNewsFragment, unknown>;
+export const SidebarGenericFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SidebarGeneric" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SidebarGenericRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "textStyle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "callToAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SidebarGenericFragment, unknown>;
 export const ContentTextImageFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -9552,6 +9634,10 @@ export const ContentTextImageFragmentDoc = {
                 {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "SidebarNews" },
+                },
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "SidebarGeneric" },
                 },
               ],
             },
@@ -9656,6 +9742,44 @@ export const ContentTextImageFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "greyBackground" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SidebarGeneric" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SidebarGenericRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "textStyle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "callToAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -13229,6 +13353,44 @@ export const NewsArticleDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SidebarGeneric" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SidebarGenericRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "textStyle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "callToAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "TeaserRelatedNews" },
       typeCondition: {
         kind: "NamedType",
@@ -13346,6 +13508,10 @@ export const NewsArticleDocument = {
                 {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "SidebarNews" },
+                },
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "SidebarGeneric" },
                 },
               ],
             },

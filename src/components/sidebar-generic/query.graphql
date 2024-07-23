@@ -1,0 +1,10 @@
+fragment SidebarGeneric on SidebarGenericRecord {
+  __typename
+  id
+  text(markdown: true)
+  textStyle
+  callToAction {
+    text
+    url
+  }
+}

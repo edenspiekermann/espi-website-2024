@@ -4,9 +4,8 @@ import { ContentTextImageFragment } from "@/graphql/types/generated";
 import { SidebarNews } from "@/components/sidebar-news";
 import { StructuredText } from "react-datocms";
 import classNames from "classnames";
-import { Media } from "@/components/media";
-import { MediaProperties } from "@/components/media/interfaces";
 import { InlineContentImage } from "@/components/inline-content-image";
+import { SidebarGeneric } from "@/components/sidebar-generic";
 
 export const ContentTextImage = ({
   content,
@@ -18,14 +17,13 @@ export const ContentTextImage = ({
   });
 
   const leftContentFilter = (
-    content: ContentTextImageFragment["leftContent"]
+    content: ContentTextImageFragment["leftContent"],
   ) => {
     switch (content.__typename) {
       case "SidebarNewsRecord":
         return <SidebarNews {...content} />;
       case "SidebarGenericRecord":
-        //TODO implement SidebarGenericRecord component
-        return <></>;
+        return <SidebarGeneric {...content} />;
       default:
         return <></>;
     }
