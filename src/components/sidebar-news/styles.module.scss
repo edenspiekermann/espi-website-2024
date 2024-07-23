@@ -1,0 +1,66 @@
+@use "../../app/styles/base.scss" as *;
+
+.sidebarNews {
+  position: relative;
+  width: 100%;
+
+  @include mq("desktop") {
+    position: sticky;
+    top: 24px;
+    left: 0;
+  }
+}
+
+.date,
+.text {
+  @include as-xxs-sans;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-espi-black);
+  opacity: 0.2;
+  margin: 24px 0px;
+}
+
+.text {
+  margin-bottom: 16px;
+}
+
+.author {
+  display: flex;
+  width: 100%;
+  max-width: 214px;
+  background-color: var(--color-white);
+
+  @include mq("desktop") {
+    max-width: 100%;
+  }
+}
+
+.media {
+  position: relative;
+  height: 100%;
+  max-height: 100px;
+  width: 76px;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-radius: 20px;
+  padding: 16px;
+}
+
+.name {
+  @include as-s-text;
+}
+
+.role {
+  @include as-xs-text;
+}

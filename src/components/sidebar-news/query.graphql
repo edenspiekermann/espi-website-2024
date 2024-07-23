@@ -1,0 +1,15 @@
+fragment SidebarNews on SidebarNewsRecord {
+  __typename
+  id
+  date
+  text
+  author {
+    name
+    role
+    image {
+      responsiveImage {
+        src
+      }
+    }
+  }
+}
