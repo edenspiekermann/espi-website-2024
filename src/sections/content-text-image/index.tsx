@@ -6,6 +6,7 @@ import { StructuredText } from "react-datocms";
 import classNames from "classnames";
 import { Media } from "@/components/media";
 import { MediaProperties } from "@/components/media/interfaces";
+import { InlineContentImage } from "@/components/inline-content-image";
 
 export const ContentTextImage = ({
   content,
@@ -17,7 +18,7 @@ export const ContentTextImage = ({
   });
 
   const leftContentFilter = (
-    content: ContentTextImageFragment["leftContent"],
+    content: ContentTextImageFragment["leftContent"]
   ) => {
     switch (content.__typename) {
       case "SidebarNewsRecord":
@@ -33,14 +34,7 @@ export const ContentTextImage = ({
   const renderBlock = ({ record }: { record: any }) => {
     switch (record.__typename) {
       case "CaseStudyContentImageRecord":
-        return (
-          <div
-            key={record.id}
-            className={record.halfSize ? styles.halfImage : styles.fullImage}
-          >
-            <Media {...(record.media as MediaProperties)} />
-          </div>
-        );
+        return <InlineContentImage {...record} />;
       default:
         return null;
     }

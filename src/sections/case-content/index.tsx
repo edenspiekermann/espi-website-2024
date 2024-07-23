@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { Divider } from "@/components/divider/divider";
 import { StructuredText } from "react-datocms";
 import { ContentQuote } from "@/components/content-quote";
+import { InlineContentImage } from "@/components/inline-content-image";
 
 export const CaseContent = ({
   headlineText,
@@ -21,14 +22,7 @@ export const CaseContent = ({
   const renderBlock = ({ record }: { record: any }) => {
     switch (record.__typename) {
       case "CaseStudyContentImageRecord":
-        return (
-          <div
-            key={record.id}
-            className={record.halfSize ? styles.halfImage : styles.fullImage}
-          >
-            <Media {...(record.media as MediaProperties)} />
-          </div>
-        );
+        return <InlineContentImage {...record} />;
       case "ContentQuoteRecord":
         return <ContentQuote {...record} />;
       default:

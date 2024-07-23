@@ -1,0 +1,23 @@
+@use "../../app/styles/base.scss" as *;
+
+.halfImage,
+.fullImage {
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+}
+
+.fullImage {
+  width: 100%;
+  aspect-ratio: 3/2;
+}
+
+.halfImage {
+  @include mqHelper(
+    "width",
+    calc(50% - 8px),
+    calc(50% - 10px),
+    calc(50% - 16px)
+  );
+  aspect-ratio: 3/4;
+}
