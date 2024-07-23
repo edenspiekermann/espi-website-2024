@@ -1,5 +1,27 @@
 @use "../../app/styles/base.scss" as *;
 
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
 .cookieConsentForm {
   border-top: 1px solid var(--color-medium-grey);
   position: fixed;
@@ -7,6 +29,12 @@
   bottom: 0;
   z-index: 999;
   @include mqHelper("padding", 24px 0px, 32px 0px);
+  animation: slideUp 0.5s forwards;
+}
+
+.hidden {
+  animation: slideDown 0.5s forwards;
+  pointer-events: none;
 }
 
 .top {

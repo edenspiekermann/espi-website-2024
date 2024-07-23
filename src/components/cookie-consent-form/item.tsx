@@ -5,6 +5,10 @@ import { MinusSign } from "./minus-sign";
 import { PlusSign } from "./plus-sign";
 import { CookieConsentFormFragment } from "@/graphql/types/generated";
 import styles from "./item.module.scss";
+import {
+  CookieConsentState,
+  useCookieConsent,
+} from "@/context/cookie-consent-context";
 
 export const CookieConsentItem = ({
   item,
@@ -12,16 +16,30 @@ export const CookieConsentItem = ({
   item: CookieConsentFormFragment["items"][0];
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { consent, updateConsent } = useCookieConsent();
+
   const handleClick = () => setIsExpanded(!isExpanded);
 
+  const handleCheckboxChange = () => {
+    const key = item.label.toLowerCase() as keyof CookieConsentState;
+    updateConsent({ [key]: !consent[key] });
+  };
+
+  const isChecked = () => {
+    const key = item.label.toLowerCase() as keyof CookieConsentState;
+    return consent[key];
+  };
+
   return (
-    <div key={item.id} className={styles.item}>
+    <div className={styles.item}>
       <div className={styles.itemTop}>
         <div className={styles.itemLeft}>
           <input
             type="checkbox"
             id={item.id}
             className={styles.defaultCheckbox}
+            checked={isChecked()}
+            onChange={handleCheckboxChange}
           />
           <label htmlFor={item.id} className={styles.label}>
             {item.label}
