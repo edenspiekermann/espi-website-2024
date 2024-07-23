@@ -12,4 +12,5 @@ fragment SidebarNews on SidebarNewsRecord {
       }
     }
   }
+  greyBackground
 }

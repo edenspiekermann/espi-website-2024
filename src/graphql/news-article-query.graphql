@@ -13,6 +13,7 @@ query NewsArticle($slug: String) {
       __typename
       ...TeaserRelatedNews
       ...TeaserNewsGrid
+      ...ContentTextImage
     }
   }
 }
