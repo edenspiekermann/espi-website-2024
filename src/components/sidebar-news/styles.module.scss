@@ -65,3 +65,7 @@
 .role {
   @include as-xs-text;
 }
+
+.greyBackground {
+  background-color: var(--color-extra-light-grey);
+}

@@ -5950,6 +5950,7 @@ export type SidebarNewsModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   author?: InputMaybe<LinkFilter>;
   date?: InputMaybe<DateFilter>;
+  greyBackground?: InputMaybe<BooleanFilter>;
   id?: InputMaybe<ItemIdFilter>;
   text?: InputMaybe<StringFilter>;
 };
@@ -5973,6 +5974,8 @@ export enum SidebarNewsModelOrderBy {
   UpdatedAtDesc = "_updatedAt_DESC",
   DateAsc = "date_ASC",
   DateDesc = "date_DESC",
+  GreyBackgroundAsc = "greyBackground_ASC",
+  GreyBackgroundDesc = "greyBackground_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
   TextAsc = "text_ASC",
@@ -5997,6 +6000,7 @@ export type SidebarNewsRecord = RecordInterface & {
   _updatedAt: Scalars["DateTime"]["output"];
   author: PersonRecord;
   date: Scalars["Date"]["output"];
+  greyBackground: Scalars["BooleanType"]["output"];
   id: Scalars["ItemId"]["output"];
   text: Scalars["String"]["output"];
 };
@@ -7514,6 +7518,7 @@ export type SidebarNewsFragment = {
   id: string;
   date: string;
   text: string;
+  greyBackground: boolean;
   author: {
     __typename?: "PersonRecord";
     name: string;
@@ -7723,6 +7728,7 @@ export type NewsArticleQuery = {
                 id: string;
                 date: string;
                 text: string;
+                greyBackground: boolean;
                 author: {
                   __typename?: "PersonRecord";
                   name: string;
@@ -8443,6 +8449,7 @@ export type ContentTextImageFragment = {
         id: string;
         date: string;
         text: string;
+        greyBackground: boolean;
         author: {
           __typename?: "PersonRecord";
           name: string;
@@ -9488,6 +9495,7 @@ export const SidebarNewsFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "greyBackground" } },
         ],
       },
     },
@@ -9647,6 +9655,7 @@ export const ContentTextImageFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "greyBackground" } },
         ],
       },
     },
@@ -13214,6 +13223,7 @@ export const NewsArticleDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "greyBackground" } },
         ],
       },
     },
