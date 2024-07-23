@@ -12,6 +12,7 @@ export const Button = ({
   url,
   isInverted = false,
   slug,
+  onClick,
 }: ButtonProperties) => {
   const buttonClass = classNames({
     [styles.button]: true,
@@ -29,6 +30,19 @@ export const Button = ({
         <span className={styles.text}>{text}</span>
         <ButtonArrowRight />
       </Link>
+    );
+  }
+
+  if (onClick) {
+    return (
+      <button
+        onClick={onClick}
+        className={buttonClass}
+        aria-label="Navigate to website"
+      >
+        <span className={styles.text}>{text}</span>
+        <ButtonArrowRight />
+      </button>
     );
   }
   return (
