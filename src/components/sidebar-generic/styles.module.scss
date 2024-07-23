@@ -1,0 +1,28 @@
+@use "../../app/styles/base.scss" as *;
+
+.sidebarGeneric {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+
+  @include mq("desktop") {
+    position: sticky;
+    top: 24px;
+    left: 0;
+  }
+}
+
+.text {
+  * {
+    color: var(--color-espi-black);
+  }
+}
+
+.m-sans {
+  @include as-m-sans;
+}
+.m-text {
+  @include as-m-text;
+}
