@@ -21,6 +21,9 @@ fragment CaseStudyContentImage on CaseStudyContentImageRecord {
       src
       alt
     }
+    video {
+      mp4Url
+    }
   }
   halfSize
 }

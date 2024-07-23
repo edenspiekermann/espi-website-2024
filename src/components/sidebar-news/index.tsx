@@ -15,11 +15,11 @@ export const SidebarNews = ({ date, text, author }: SidebarNewsFragment) => {
       <p className={styles.text}>{text}</p>
       <div className={styles.author}>
         <div className={styles.media}>
-          <Media {...(author.image?.responsiveImage?.src as MediaProperties)} />
-          <div className={styles.authorInfo}>
-            <p className={styles.name}>{author.name}</p>
-            <p className={styles.role}>{author.role}</p>
-          </div>
+          <Media {...(author.image as MediaProperties)} />
+        </div>
+        <div className={styles.authorInfo}>
+          <p className={styles.name}>{author.name}</p>
+          <p className={styles.role}>{author.role}</p>
         </div>
       </div>
     </div>

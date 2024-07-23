@@ -1,0 +1,51 @@
+@use "../../app/styles/base.scss" as *;
+
+.contentTextImage {
+  @include mqHelper("padding-top", 24px, 24px, 40px);
+  @include mqHelper("padding-bottom", 48px, 64px, 80px);
+}
+
+.left {
+  position: relative;
+  grid-column: 1/-1;
+  margin-bottom: 32px;
+
+  @include mq("desktop") {
+    grid-column: 1/5;
+    margin-right: 40px;
+    margin-bottom: 0;
+  }
+}
+
+.right {
+  display: flex;
+  flex-wrap: wrap;
+  @include mqHelper("gap", 16px, 20px, 32px);
+  grid-column: 1/-1;
+
+  @include mq("desktop") {
+    grid-column: 6/13;
+  }
+}
+
+.halfImage,
+.fullImage {
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+}
+
+.fullImage {
+  width: 100%;
+  aspect-ratio: 3/2;
+}
+
+.halfImage {
+  @include mqHelper(
+    "width",
+    calc(50% - 8px),
+    calc(50% - 10px),
+    calc(50% - 16px)
+  );
+  aspect-ratio: 3/4;
+}

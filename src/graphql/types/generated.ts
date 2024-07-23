@@ -618,6 +618,80 @@ export type ContentQuoteRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+export type ContentTextImageModelContentField = {
+  __typename?: "ContentTextImageModelContentField";
+  blocks: Array<CaseStudyContentImageRecord>;
+  links: Array<Scalars["String"]["output"]>;
+  value: Scalars["JsonField"]["output"];
+};
+
+export type ContentTextImageModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ContentTextImageModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ContentTextImageModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  leftContent?: InputMaybe<LinkFilter>;
+};
+
+export type ContentTextImageModelLeftContentField =
+  | SidebarGenericRecord
+  | SidebarNewsRecord;
+
+export enum ContentTextImageModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+}
+
+/** Record of type Content Text Image (content_text_image) */
+export type ContentTextImageRecord = RecordInterface & {
+  __typename?: "ContentTextImageRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  content: ContentTextImageModelContentField;
+  id: Scalars["ItemId"]["output"];
+  leftContent: ContentTextImageModelLeftContentField;
+};
+
+/** Record of type Content Text Image (content_text_image) */
+export type ContentTextImageRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by creation datetime */
 export type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -3672,6 +3746,7 @@ export enum NewsArticleModelOrderBy {
 }
 
 export type NewsArticleModelSectionsField =
+  | ContentTextImageRecord
   | TeaserNewsGridRecord
   | TeaserRelatedNewsRecord;
 
@@ -4139,6 +4214,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allCaseStudiesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allContentTextImagesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allDrawersMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allFootersMeta: CollectionMetadata;
@@ -4183,6 +4260,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allServicesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allSidebarGenericsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allSidebarNewsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allSliderGalleriesMeta: CollectionMetadata;
@@ -4222,6 +4301,8 @@ export type Query = {
   allCaseIntros: Array<CaseIntroRecord>;
   /** Returns a collection of records */
   allCaseStudies: Array<CaseStudyRecord>;
+  /** Returns a collection of records */
+  allContentTextImages: Array<ContentTextImageRecord>;
   /** Returns a collection of records */
   allDrawers: Array<DrawerRecord>;
   /** Returns a collection of records */
@@ -4267,6 +4348,8 @@ export type Query = {
   /** Returns a collection of records */
   allServices: Array<ServiceRecord>;
   /** Returns a collection of records */
+  allSidebarGenerics: Array<SidebarGenericRecord>;
+  /** Returns a collection of records */
   allSidebarNews: Array<SidebarNewsRecord>;
   /** Returns a collection of records */
   allSliderGalleries: Array<SliderGalleryRecord>;
@@ -4304,6 +4387,8 @@ export type Query = {
   caseIntro?: Maybe<CaseIntroRecord>;
   /** Returns a specific record */
   caseStudy?: Maybe<CaseStudyRecord>;
+  /** Returns a specific record */
+  contentTextImage?: Maybe<ContentTextImageRecord>;
   /** Returns a specific record */
   drawer?: Maybe<DrawerRecord>;
   /** Returns a specific record */
@@ -4354,6 +4439,8 @@ export type Query = {
   serviceCard?: Maybe<ServiceCardRecord>;
   /** Returns a specific record */
   serviceCardsSection?: Maybe<ServiceCardsSectionRecord>;
+  /** Returns a specific record */
+  sidebarGeneric?: Maybe<SidebarGenericRecord>;
   /** Returns a specific record */
   sidebarNews?: Maybe<SidebarNewsRecord>;
   /** Returns a specific record */
@@ -4407,6 +4494,12 @@ export type Query_AllCaseIntrosMetaArgs = {
 /** The query root for this schema */
 export type Query_AllCaseStudiesMetaArgs = {
   filter?: InputMaybe<CaseStudyModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllContentTextImagesMetaArgs = {
+  filter?: InputMaybe<ContentTextImageModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4543,6 +4636,12 @@ export type Query_AllServicesMetaArgs = {
 };
 
 /** The query root for this schema */
+export type Query_AllSidebarGenericsMetaArgs = {
+  filter?: InputMaybe<SidebarGenericModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
 export type Query_AllSidebarNewsMetaArgs = {
   filter?: InputMaybe<SidebarNewsModelFilter>;
   locale?: InputMaybe<SiteLocale>;
@@ -4675,6 +4774,16 @@ export type QueryAllCaseStudiesArgs = {
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<CaseStudyModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllContentTextImagesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ContentTextImageModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ContentTextImageModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -4899,6 +5008,16 @@ export type QueryAllServicesArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllSidebarGenericsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SidebarGenericModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SidebarGenericModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllSidebarNewsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<SidebarNewsModelFilter>;
@@ -5078,6 +5197,14 @@ export type QueryCaseStudyArgs = {
   filter?: InputMaybe<CaseStudyModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<CaseStudyModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryContentTextImageArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ContentTextImageModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ContentTextImageModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -5272,6 +5399,14 @@ export type QueryServiceCardsSectionArgs = {
   filter?: InputMaybe<ServiceCardsSectionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ServiceCardsSectionModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QuerySidebarGenericArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SidebarGenericModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SidebarGenericModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -5735,6 +5870,70 @@ export type ServiceRecord = RecordInterface & {
 
 /** Record of type Service (service) */
 export type ServiceRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type SidebarGenericModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SidebarGenericModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SidebarGenericModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export enum SidebarGenericModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  TextAsc = "text_ASC",
+  TextDesc = "text_DESC",
+}
+
+/** Record of type Sidebar Generic (sidebar_generic) */
+export type SidebarGenericRecord = RecordInterface & {
+  __typename?: "SidebarGenericRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  callToAction?: Maybe<CallToActionRecord>;
+  id: Scalars["ItemId"]["output"];
+  text: Scalars["String"]["output"];
+};
+
+/** Record of type Sidebar Generic (sidebar_generic) */
+export type SidebarGenericRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -7403,6 +7602,10 @@ export type CaseStudyQuery = {
                       src: string;
                       alt?: string | null;
                     } | null;
+                    video?: {
+                      __typename?: "UploadVideoField";
+                      mp4Url?: string | null;
+                    } | null;
                   };
                 }
               | {
@@ -7489,6 +7692,51 @@ export type NewsArticleQuery = {
       tag: string;
     }>;
     sections: Array<
+      | {
+          __typename: "ContentTextImageRecord";
+          id: string;
+          content: {
+            __typename?: "ContentTextImageModelContentField";
+            value: unknown;
+            blocks: Array<{
+              __typename: "CaseStudyContentImageRecord";
+              id: string;
+              halfSize: boolean;
+              media: {
+                __typename?: "FileField";
+                responsiveImage?: {
+                  __typename?: "ResponsiveImage";
+                  src: string;
+                  alt?: string | null;
+                } | null;
+                video?: {
+                  __typename?: "UploadVideoField";
+                  mp4Url?: string | null;
+                } | null;
+              };
+            }>;
+          };
+          leftContent:
+            | { __typename?: "SidebarGenericRecord" }
+            | {
+                __typename: "SidebarNewsRecord";
+                id: string;
+                date: string;
+                text: string;
+                author: {
+                  __typename?: "PersonRecord";
+                  name: string;
+                  role: string;
+                  image?: {
+                    __typename?: "FileField";
+                    responsiveImage?: {
+                      __typename?: "ResponsiveImage";
+                      src: string;
+                    } | null;
+                  } | null;
+                };
+              };
+        }
       | {
           __typename: "TeaserNewsGridRecord";
           id: string;
@@ -8125,6 +8373,10 @@ export type CaseContentFragment = {
               src: string;
               alt?: string | null;
             } | null;
+            video?: {
+              __typename?: "UploadVideoField";
+              mp4Url?: string | null;
+            } | null;
           };
         }
       | {
@@ -8148,6 +8400,7 @@ export type CaseStudyContentImageFragment = {
       src: string;
       alt?: string | null;
     } | null;
+    video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
   };
 };
 
@@ -8157,6 +8410,52 @@ export type CaseIntroFragment = {
   text: string;
   problemText: string;
   solutionText: string;
+};
+
+export type ContentTextImageFragment = {
+  __typename: "ContentTextImageRecord";
+  id: string;
+  content: {
+    __typename?: "ContentTextImageModelContentField";
+    value: unknown;
+    blocks: Array<{
+      __typename: "CaseStudyContentImageRecord";
+      id: string;
+      halfSize: boolean;
+      media: {
+        __typename?: "FileField";
+        responsiveImage?: {
+          __typename?: "ResponsiveImage";
+          src: string;
+          alt?: string | null;
+        } | null;
+        video?: {
+          __typename?: "UploadVideoField";
+          mp4Url?: string | null;
+        } | null;
+      };
+    }>;
+  };
+  leftContent:
+    | { __typename?: "SidebarGenericRecord" }
+    | {
+        __typename: "SidebarNewsRecord";
+        id: string;
+        date: string;
+        text: string;
+        author: {
+          __typename?: "PersonRecord";
+          name: string;
+          role: string;
+          image?: {
+            __typename?: "FileField";
+            responsiveImage?: {
+              __typename?: "ResponsiveImage";
+              src: string;
+            } | null;
+          } | null;
+        };
+      };
 };
 
 export type DrawersFragment = {
@@ -8875,61 +9174,6 @@ export type TeaserRelatedNewsFragment = {
   }>;
 };
 
-export const SidebarNewsFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SidebarNews" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "SidebarNewsRecord" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "date" } },
-          { kind: "Field", name: { kind: "Name", value: "text" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "author" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "role" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "image" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "responsiveImage" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "src" },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<SidebarNewsFragment, unknown>;
 export const StatementNumberedFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -9005,6 +9249,19 @@ export const CaseStudyContentImageFragmentDoc = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "src" } },
                       { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
                     ],
                   },
                 },
@@ -9119,6 +9376,19 @@ export const CaseContentFragmentDoc = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -9168,6 +9438,220 @@ export const CaseIntroFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CaseIntroFragment, unknown>;
+export const SidebarNewsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SidebarNews" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SidebarNewsRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "author" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "role" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "responsiveImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "src" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SidebarNewsFragment, unknown>;
+export const ContentTextImageFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentTextImage" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ContentTextImageRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "blocks" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CaseStudyContentImage" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leftContent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "SidebarNews" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyContentImage" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyContentImageRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "halfSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SidebarNews" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SidebarNewsRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "author" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "role" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "responsiveImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "src" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentTextImageFragment, unknown>;
 export const DrawersFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -12213,6 +12697,19 @@ export const CaseStudyDocument = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -12556,6 +13053,10 @@ export const NewsArticleDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "TeaserNewsGrid" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ContentTextImage" },
+                      },
                     ],
                   },
                 },
@@ -12608,6 +13109,105 @@ export const NewsArticleDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "src" } },
                       { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyContentImage" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyContentImageRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "halfSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SidebarNews" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SidebarNewsRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "author" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "role" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "responsiveImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "src" },
+                            },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -12681,6 +13281,61 @@ export const NewsArticleDocument = {
                 {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "NewsArticle" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentTextImage" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ContentTextImageRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "blocks" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CaseStudyContentImage" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leftContent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "SidebarNews" },
                 },
               ],
             },

@@ -1,0 +1,14 @@
+fragment ContentTextImage on ContentTextImageRecord {
+  __typename
+  id
+  content {
+    value
+    blocks {
+      __typename
+      ...CaseStudyContentImage
+    }
+  }
+  leftContent {
+    ...SidebarNews
+  }
+}
