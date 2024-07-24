@@ -692,6 +692,99 @@ export type ContentTextImageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Record of type Cookie Consent Form (cookie_consent_form) */
+export type CookieConsentFormRecord = RecordInterface & {
+  __typename?: "CookieConsentFormRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  items: Array<CookieConsentItemRecord>;
+  text: Scalars["String"]["output"];
+};
+
+/** Record of type Cookie Consent Form (cookie_consent_form) */
+export type CookieConsentFormRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type CookieConsentItemModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CookieConsentItemModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CookieConsentItemModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export enum CookieConsentItemModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  DescriptionAsc = "description_ASC",
+  DescriptionDesc = "description_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  LabelAsc = "label_ASC",
+  LabelDesc = "label_DESC",
+}
+
+/** Record of type Cookie Consent Item (cookie_consent_item) */
+export type CookieConsentItemRecord = RecordInterface & {
+  __typename?: "CookieConsentItemRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  description: Scalars["String"]["output"];
+  id: Scalars["ItemId"]["output"];
+  label: Scalars["String"]["output"];
+};
+
+/** Record of type Cookie Consent Item (cookie_consent_item) */
+export type CookieConsentItemRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by creation datetime */
 export type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -4216,6 +4309,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allContentTextImagesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allCookieConsentItemsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allDrawersMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allFootersMeta: CollectionMetadata;
@@ -4304,6 +4399,8 @@ export type Query = {
   /** Returns a collection of records */
   allContentTextImages: Array<ContentTextImageRecord>;
   /** Returns a collection of records */
+  allCookieConsentItems: Array<CookieConsentItemRecord>;
+  /** Returns a collection of records */
   allDrawers: Array<DrawerRecord>;
   /** Returns a collection of records */
   allFooters: Array<FooterRecord>;
@@ -4389,6 +4486,10 @@ export type Query = {
   caseStudy?: Maybe<CaseStudyRecord>;
   /** Returns a specific record */
   contentTextImage?: Maybe<ContentTextImageRecord>;
+  /** Returns the single instance record */
+  cookieConsentForm?: Maybe<CookieConsentFormRecord>;
+  /** Returns a specific record */
+  cookieConsentItem?: Maybe<CookieConsentItemRecord>;
   /** Returns a specific record */
   drawer?: Maybe<DrawerRecord>;
   /** Returns a specific record */
@@ -4500,6 +4601,12 @@ export type Query_AllCaseStudiesMetaArgs = {
 /** The query root for this schema */
 export type Query_AllContentTextImagesMetaArgs = {
   filter?: InputMaybe<ContentTextImageModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllCookieConsentItemsMetaArgs = {
+  filter?: InputMaybe<CookieConsentItemModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4784,6 +4891,16 @@ export type QueryAllContentTextImagesArgs = {
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ContentTextImageModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllCookieConsentItemsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CookieConsentItemModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CookieConsentItemModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -5205,6 +5322,20 @@ export type QueryContentTextImageArgs = {
   filter?: InputMaybe<ContentTextImageModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ContentTextImageModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryCookieConsentFormArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type QueryCookieConsentItemArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CookieConsentItemModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CookieConsentItemModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -7448,6 +7579,35 @@ export type ContentQuoteFragment = {
   author: string;
 };
 
+export type CookieConsentQueryVariables = Exact<{ [key: string]: never }>;
+
+export type CookieConsentQuery = {
+  __typename?: "Query";
+  cookieConsentForm?: {
+    __typename: "CookieConsentFormRecord";
+    id: string;
+    text: string;
+    items: Array<{
+      __typename?: "CookieConsentItemRecord";
+      id: string;
+      label: string;
+      description: string;
+    }>;
+  } | null;
+};
+
+export type CookieConsentFormFragment = {
+  __typename: "CookieConsentFormRecord";
+  id: string;
+  text: string;
+  items: Array<{
+    __typename?: "CookieConsentItemRecord";
+    id: string;
+    label: string;
+    description: string;
+  }>;
+};
+
 export type DividerFragment = {
   __typename?: "DividerRecord";
   text?: string | null;
@@ -9220,6 +9380,39 @@ export type TeaserRelatedNewsFragment = {
   }>;
 };
 
+export const CookieConsentFormFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CookieConsentForm" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CookieConsentFormRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CookieConsentFormFragment, unknown>;
 export const StatementNumberedFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -12522,6 +12715,62 @@ export const TeaserRelatedNewsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<TeaserRelatedNewsFragment, unknown>;
+export const CookieConsentDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "CookieConsent" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cookieConsentForm" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CookieConsentForm" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CookieConsentForm" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CookieConsentFormRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CookieConsentQuery, CookieConsentQueryVariables>;
 export const NavigationDocument = {
   kind: "Document",
   definitions: [
