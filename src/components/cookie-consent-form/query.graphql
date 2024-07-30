@@ -1,0 +1,16 @@
+query CookieConsent {
+  cookieConsentForm {
+    ...CookieConsentForm
+  }
+}
+
+fragment CookieConsentForm on CookieConsentFormRecord {
+  __typename
+  id
+  text
+  items {
+    id
+    label
+    description
+  }
+}

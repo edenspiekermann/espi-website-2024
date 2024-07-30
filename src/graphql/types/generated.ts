@@ -7670,6 +7670,35 @@ export type ContentQuoteFragment = {
   author: string;
 };
 
+export type CookieConsentQueryVariables = Exact<{ [key: string]: never }>;
+
+export type CookieConsentQuery = {
+  __typename?: "Query";
+  cookieConsentForm?: {
+    __typename: "CookieConsentFormRecord";
+    id: string;
+    text: string;
+    items: Array<{
+      __typename?: "CookieConsentItemRecord";
+      id: string;
+      label: string;
+      description: string;
+    }>;
+  } | null;
+};
+
+export type CookieConsentFormFragment = {
+  __typename: "CookieConsentFormRecord";
+  id: string;
+  text: string;
+  items: Array<{
+    __typename?: "CookieConsentItemRecord";
+    id: string;
+    label: string;
+    description: string;
+  }>;
+};
+
 export type DividerFragment = {
   __typename?: "DividerRecord";
   text?: string | null;
@@ -9455,6 +9484,39 @@ export type TeaserRelatedNewsFragment = {
   }>;
 };
 
+export const CookieConsentFormFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CookieConsentForm" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CookieConsentFormRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CookieConsentFormFragment, unknown>;
 export const StatementNumberedFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -12757,6 +12819,62 @@ export const TeaserRelatedNewsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<TeaserRelatedNewsFragment, unknown>;
+export const CookieConsentDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "CookieConsent" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cookieConsentForm" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CookieConsentForm" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CookieConsentForm" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CookieConsentFormRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CookieConsentQuery, CookieConsentQueryVariables>;
 export const NavigationDocument = {
   kind: "Document",
   definitions: [
