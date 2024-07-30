@@ -692,6 +692,99 @@ export type ContentTextImageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Record of type Cookie Consent Form (cookie_consent_form) */
+export type CookieConsentFormRecord = RecordInterface & {
+  __typename?: "CookieConsentFormRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  items: Array<CookieConsentItemRecord>;
+  text: Scalars["String"]["output"];
+};
+
+/** Record of type Cookie Consent Form (cookie_consent_form) */
+export type CookieConsentFormRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type CookieConsentItemModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CookieConsentItemModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CookieConsentItemModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export enum CookieConsentItemModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  DescriptionAsc = "description_ASC",
+  DescriptionDesc = "description_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  LabelAsc = "label_ASC",
+  LabelDesc = "label_DESC",
+}
+
+/** Record of type Cookie Consent Item (cookie_consent_item) */
+export type CookieConsentItemRecord = RecordInterface & {
+  __typename?: "CookieConsentItemRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  description: Scalars["String"]["output"];
+  id: Scalars["ItemId"]["output"];
+  label: Scalars["String"]["output"];
+};
+
+/** Record of type Cookie Consent Item (cookie_consent_item) */
+export type CookieConsentItemRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by creation datetime */
 export type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -1169,6 +1262,65 @@ export type GlobalSeoField = {
   siteName?: Maybe<Scalars["String"]["output"]>;
   titleSuffix?: Maybe<Scalars["String"]["output"]>;
   twitterAccount?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type HeaderNewsModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<HeaderNewsModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<HeaderNewsModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+};
+
+export enum HeaderNewsModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+}
+
+/** Record of type Header News (header_news) */
+export type HeaderNewsRecord = RecordInterface & {
+  __typename?: "HeaderNewsRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+};
+
+/** Record of type Header News (header_news) */
+export type HeaderNewsRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 export type HeaderSimpleModelFilter = {
@@ -3707,6 +3859,7 @@ export type NewsArticleModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   cardImage?: InputMaybe<FileFilter>;
+  featuredMedia?: InputMaybe<FileFilter>;
   id?: InputMaybe<ItemIdFilter>;
   publishedDate?: InputMaybe<DateFilter>;
   sections?: InputMaybe<LinksFilter>;
@@ -3767,6 +3920,7 @@ export type NewsArticleRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   cardImage: FileField;
+  featuredMedia: FileField;
   id: Scalars["ItemId"]["output"];
   publishedDate?: Maybe<Scalars["Date"]["output"]>;
   sections: Array<NewsArticleModelSectionsField>;
@@ -4216,11 +4370,15 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allContentTextImagesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allCookieConsentItemsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allDrawersMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allFootersMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allFullWidthImagesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allHeaderNewsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allHeaderSimplesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -4304,11 +4462,15 @@ export type Query = {
   /** Returns a collection of records */
   allContentTextImages: Array<ContentTextImageRecord>;
   /** Returns a collection of records */
+  allCookieConsentItems: Array<CookieConsentItemRecord>;
+  /** Returns a collection of records */
   allDrawers: Array<DrawerRecord>;
   /** Returns a collection of records */
   allFooters: Array<FooterRecord>;
   /** Returns a collection of records */
   allFullWidthImages: Array<FullWidthImageRecord>;
+  /** Returns a collection of records */
+  allHeaderNews: Array<HeaderNewsRecord>;
   /** Returns a collection of records */
   allHeaderSimples: Array<HeaderSimpleRecord>;
   /** Returns a collection of records */
@@ -4389,12 +4551,18 @@ export type Query = {
   caseStudy?: Maybe<CaseStudyRecord>;
   /** Returns a specific record */
   contentTextImage?: Maybe<ContentTextImageRecord>;
+  /** Returns the single instance record */
+  cookieConsentForm?: Maybe<CookieConsentFormRecord>;
+  /** Returns a specific record */
+  cookieConsentItem?: Maybe<CookieConsentItemRecord>;
   /** Returns a specific record */
   drawer?: Maybe<DrawerRecord>;
   /** Returns a specific record */
   footer?: Maybe<FooterRecord>;
   /** Returns a specific record */
   fullWidthImage?: Maybe<FullWidthImageRecord>;
+  /** Returns a specific record */
+  headerNews?: Maybe<HeaderNewsRecord>;
   /** Returns a specific record */
   headerSimple?: Maybe<HeaderSimpleRecord>;
   /** Returns a specific record */
@@ -4504,6 +4672,12 @@ export type Query_AllContentTextImagesMetaArgs = {
 };
 
 /** The query root for this schema */
+export type Query_AllCookieConsentItemsMetaArgs = {
+  filter?: InputMaybe<CookieConsentItemModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
 export type Query_AllDrawersMetaArgs = {
   filter?: InputMaybe<DrawerModelFilter>;
   locale?: InputMaybe<SiteLocale>;
@@ -4518,6 +4692,12 @@ export type Query_AllFootersMetaArgs = {
 /** The query root for this schema */
 export type Query_AllFullWidthImagesMetaArgs = {
   filter?: InputMaybe<FullWidthImageModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllHeaderNewsMetaArgs = {
+  filter?: InputMaybe<HeaderNewsModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4788,6 +4968,16 @@ export type QueryAllContentTextImagesArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllCookieConsentItemsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CookieConsentItemModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CookieConsentItemModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllDrawersArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<DrawerModelFilter>;
@@ -4814,6 +5004,16 @@ export type QueryAllFullWidthImagesArgs = {
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<FullWidthImageModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllHeaderNewsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<HeaderNewsModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<HeaderNewsModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -5208,6 +5408,20 @@ export type QueryContentTextImageArgs = {
 };
 
 /** The query root for this schema */
+export type QueryCookieConsentFormArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type QueryCookieConsentItemArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<CookieConsentItemModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<CookieConsentItemModelOrderBy>>>;
+};
+
+/** The query root for this schema */
 export type QueryDrawerArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<DrawerModelFilter>;
@@ -5229,6 +5443,14 @@ export type QueryFullWidthImageArgs = {
   filter?: InputMaybe<FullWidthImageModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<FullWidthImageModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryHeaderNewsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<HeaderNewsModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<HeaderNewsModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -7709,12 +7931,25 @@ export type NewsArticleQuery = {
     id: string;
     slug: string;
     title: string;
+    typeOfArticle: string;
     seo: Array<{
       __typename?: "Tag";
       attributes?: Record<string, string> | null;
       content?: string | null;
       tag: string;
     }>;
+    featuredMedia: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+      video?: {
+        __typename?: "UploadVideoField";
+        mp4Url?: string | null;
+      } | null;
+    };
     sections: Array<
       | {
           __typename: "ContentTextImageRecord";
@@ -13168,6 +13403,49 @@ export const NewsArticleDocument = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "slug" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "typeOfArticle" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "featuredMedia" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "responsiveImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "src" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "alt" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "video" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "mp4Url" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "sections" },

@@ -9,6 +9,16 @@ query NewsArticle($slug: String) {
     id
     slug
     title
+    typeOfArticle
+    featuredMedia {
+      responsiveImage {
+        src
+        alt
+      }
+      video {
+        mp4Url
+      }
+    }
     sections {
       __typename
       ...TeaserRelatedNews
