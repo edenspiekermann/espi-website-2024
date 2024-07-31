@@ -19,6 +19,15 @@
     border: none;
     overflow: visible;
   }
+
+  &:hover {
+    svg {
+      fill: var(--color-espi-black) !important;
+      path {
+        fill: var(--color-white) !important;
+      }
+    }
+  }
 }
 
 .text {
@@ -41,5 +50,14 @@
   }
   circle {
     stroke: var(--color-white) !important;
+  }
+
+  &:hover {
+    svg {
+      fill: var(--color-white) !important;
+      path {
+        fill: var(--color-espi-black) !important;
+      }
+    }
   }
 }
