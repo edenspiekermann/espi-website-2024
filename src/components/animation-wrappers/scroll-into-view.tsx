@@ -9,27 +9,25 @@ export const ScrollIntoView = ({
   duration = 0.2,
   delay = 0,
 }: ScrollIntoViewProps) => {
-  const [isCurtainHidden, setCurtainHidden] = useState(false);
-
   const initialStyles = {
-    opacity: 0,
+    // opacity: 0,
     y: scrollAmount,
     overflow: "hidden",
     display: "inline-block",
   };
 
   const animate = {
-    opacity: 1,
+    // opacity: 1,
     y: 0,
     transition: {
       duration: duration,
       delay: delay,
     },
     overflow: "visible",
-    // display: "none",
   };
 
   const curtainInitial = {
+    scaleY: 1,
     y: 0,
     display: "inline-block",
     backgroundColor: "var(--color-white)",
@@ -40,6 +38,7 @@ export const ScrollIntoView = ({
   };
 
   const curtainAnimate = {
+    scaleY: 0,
     y: scrollAmount * 1.5,
     transition: {
       duration: duration,
@@ -61,12 +60,6 @@ export const ScrollIntoView = ({
         animate={isInView && curtainAnimate}
         style={{
           position: "absolute",
-          visibility: isCurtainHidden ? "hidden" : "visible",
-        }}
-        onAnimationComplete={() => {
-          if (isInView) {
-            setCurtainHidden(true);
-          }
         }}
       />
       {children}

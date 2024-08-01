@@ -1,7 +1,7 @@
 "use client";
 
 import { StatementLargeRecord } from "@/graphql/types/generated";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 import { Button } from "@/components/button/button";
@@ -29,17 +29,23 @@ export const StatementLarge = ({
     container: true,
   });
 
+  let delayIndex = 0;
+
   const wrapWordsInSpanWithHtml = (text: string) => {
     return text.split(/(\s+)/).map((part, index) => {
       if (/\s+/.test(part)) {
-        return <React.Fragment key={index}>{part}</React.Fragment>;
+        return part;
       }
+
+      const delay = 0.05 * delayIndex;
+      delayIndex++;
+
       return (
         <ScrollIntoView
           key={index}
           isInView={isInView}
-          delay={0}
-          duration={1}
+          delay={delay}
+          duration={0.3}
           scrollAmount={100}
         >
           <span>{part}</span>
@@ -50,11 +56,9 @@ export const StatementLarge = ({
 
   const options: HTMLReactParserOptions = {
     replace: (domNode: DOMNode) => {
-      if (domNode.type === "text") {
-        // Wrap text nodes in <span> tags
+      if (domNode.type === "text" && domNode.data !== "\n") {
         return <>{wrapWordsInSpanWithHtml(domNode.data)}</>;
       } else if (domNode.type === "tag" && domNode.children) {
-        // Recursively process child nodes
         return React.createElement(
           domNode.name,
           { ...domNode.attribs, key: domNode.name },
@@ -68,15 +72,15 @@ export const StatementLarge = ({
 
   const parsedContent = parse(text, options);
 
-  console.log(parsedContent);
-
   return (
     <section className={statementLargeClass} ref={ref}>
       <div className={styles.content}>{parsedContent}</div>
       {addCallToAction && cta && (
-        <FadeIntoView isInView={isInView} delay={0.3}>
-          <Button text={cta.text} slug={cta.slug} isInverted={invertColor} />
-        </FadeIntoView>
+        <div className={styles.button}>
+          <FadeIntoView isInView={isInView} duration={0.6} delay={0.75}>
+            <Button text={cta.text} slug={cta.slug} isInverted={invertColor} />
+          </FadeIntoView>
+        </div>
       )}
     </section>
   );

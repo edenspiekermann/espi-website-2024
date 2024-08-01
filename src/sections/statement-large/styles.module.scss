@@ -3,10 +3,8 @@
 .statementLarge {
   @include as-xl-serif;
   @include mqHelper("padding", 64px 24px, 80px 40px, 144px 70px);
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
 
   strong {
     @include as-xl-sans-bold;
@@ -24,8 +22,14 @@
 
 .content {
   grid-column: 1/-1;
+  overflow: hidden;
+  margin-bottom: 24px;
 
   @include mq("desktop") {
     grid-column: span 10;
   }
+}
+
+.button {
+  grid-column: 1/-1;
 }
