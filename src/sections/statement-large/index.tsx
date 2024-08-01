@@ -6,13 +6,8 @@ import styles from "./styles.module.scss";
 import classNames from "classnames";
 import { Button } from "@/components/button/button";
 import { useInView } from "framer-motion";
-import { ScrollIntoView } from "@/components/animation-wrappers/scroll-into-view";
 import { FadeIntoView } from "@/components/animation-wrappers/fade-into-view";
-import parse, {
-  DOMNode,
-  domToReact,
-  HTMLReactParserOptions,
-} from "html-react-parser";
+import { ScrollIntoViewText } from "@/components/scroll-into-view-text";
 
 export const StatementLarge = ({
   text,
@@ -29,52 +24,11 @@ export const StatementLarge = ({
     container: true,
   });
 
-  let delayIndex = 0;
-
-  const wrapWordsInSpanWithHtml = (text: string) => {
-    return text.split(/(\s+)/).map((part, index) => {
-      if (/\s+/.test(part)) {
-        return part;
-      }
-
-      const delay = 0.05 * delayIndex;
-      delayIndex++;
-
-      return (
-        <ScrollIntoView
-          key={index}
-          isInView={isInView}
-          delay={delay}
-          duration={0.3}
-          scrollAmount={100}
-        >
-          <span>{part}</span>
-        </ScrollIntoView>
-      );
-    });
-  };
-
-  const options: HTMLReactParserOptions = {
-    replace: (domNode: DOMNode) => {
-      if (domNode.type === "text" && domNode.data !== "\n") {
-        return <>{wrapWordsInSpanWithHtml(domNode.data)}</>;
-      } else if (domNode.type === "tag" && domNode.children) {
-        return React.createElement(
-          domNode.name,
-          { ...domNode.attribs, key: domNode.name },
-          domToReact(domNode.children as DOMNode[], options),
-        );
-      } else {
-        return domNode;
-      }
-    },
-  };
-
-  const parsedContent = parse(text, options);
-
   return (
     <section className={statementLargeClass} ref={ref}>
-      <div className={styles.content}>{parsedContent}</div>
+      <div className={styles.content}>
+        <ScrollIntoViewText text={text} isInView={isInView} duration={0.3} />
+      </div>
       {addCallToAction && cta && (
         <div className={styles.button}>
           <FadeIntoView isInView={isInView} duration={0.6} delay={0.75}>
