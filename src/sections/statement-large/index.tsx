@@ -27,7 +27,7 @@ export const StatementLarge = ({
   return (
     <section className={statementLargeClass} ref={ref}>
       <div className={styles.content}>
-        <ScrollIntoViewText text={text} isInView={isInView} duration={1.1} />
+        <ScrollIntoViewText text={text} isInView={isInView} duration={0.8} />
       </div>
       {addCallToAction && cta && (
         <div className={styles.button}>

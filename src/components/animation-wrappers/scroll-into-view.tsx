@@ -20,7 +20,7 @@ export const ScrollIntoView = ({
     transition: {
       duration: duration,
       delay: delay,
-      ease: [0, 0.9, 0.1, 1],
+      ease: [0.01, 0.71, 0.28, 1],
     },
     overflow: "visible",
   };
@@ -42,7 +42,7 @@ export const ScrollIntoView = ({
     transition: {
       duration: duration,
       delay: delay,
-      ease: [0, 0.9, 0.1, 1],
+      ease: [0.01, 0.71, 0.28, 1],
     },
     display: "none",
   };
