@@ -25,7 +25,7 @@ export const ScrollIntoViewText = ({
         return part;
       }
 
-      const delay = 0.05 * delayIndex;
+      const delay = 0.02 * delayIndex;
       delayIndex++;
 
       return (
