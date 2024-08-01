@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React from "react";
 import { ScrollIntoViewProps } from "./interfaces";
 
 export const ScrollIntoView = ({
@@ -10,14 +10,12 @@ export const ScrollIntoView = ({
   delay = 0,
 }: ScrollIntoViewProps) => {
   const initialStyles = {
-    // opacity: 0,
     y: scrollAmount,
     overflow: "hidden",
     display: "inline-block",
   };
 
   const animate = {
-    // opacity: 1,
     y: 0,
     transition: {
       duration: duration,

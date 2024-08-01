@@ -1,7 +1,7 @@
 "use client";
 
 import { StatementLargeRecord } from "@/graphql/types/generated";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 import { Button } from "@/components/button/button";
