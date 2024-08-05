@@ -1169,6 +1169,7 @@ export type FooterRecord = RecordInterface & {
   copyrightText?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ItemId"]["output"];
   legalLinks: Array<LinkRecord>;
+  loopingTitleText: Array<TextRecord>;
   pageLinks: Array<PageRecord>;
   socialLinks: Array<SocialLinkRecord>;
   title: Scalars["String"]["output"];
@@ -1262,6 +1263,65 @@ export type GlobalSeoField = {
   siteName?: Maybe<Scalars["String"]["output"]>;
   titleSuffix?: Maybe<Scalars["String"]["output"]>;
   twitterAccount?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type HeaderNewsModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<HeaderNewsModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<HeaderNewsModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+};
+
+export enum HeaderNewsModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+}
+
+/** Record of type Header News (header_news) */
+export type HeaderNewsRecord = RecordInterface & {
+  __typename?: "HeaderNewsRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+};
+
+/** Record of type Header News (header_news) */
+export type HeaderNewsRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 export type HeaderSimpleModelFilter = {
@@ -3800,6 +3860,7 @@ export type NewsArticleModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   cardImage?: InputMaybe<FileFilter>;
+  featuredMedia?: InputMaybe<FileFilter>;
   id?: InputMaybe<ItemIdFilter>;
   publishedDate?: InputMaybe<DateFilter>;
   sections?: InputMaybe<LinksFilter>;
@@ -3860,6 +3921,7 @@ export type NewsArticleRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   cardImage: FileField;
+  featuredMedia: FileField;
   id: Scalars["ItemId"]["output"];
   publishedDate?: Maybe<Scalars["Date"]["output"]>;
   sections: Array<NewsArticleModelSectionsField>;
@@ -4317,6 +4379,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allFullWidthImagesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allHeaderNewsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allHeaderSimplesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allHomepageHerosMeta: CollectionMetadata;
@@ -4407,6 +4471,8 @@ export type Query = {
   /** Returns a collection of records */
   allFullWidthImages: Array<FullWidthImageRecord>;
   /** Returns a collection of records */
+  allHeaderNews: Array<HeaderNewsRecord>;
+  /** Returns a collection of records */
   allHeaderSimples: Array<HeaderSimpleRecord>;
   /** Returns a collection of records */
   allHomepageHeros: Array<HomepageHeroRecord>;
@@ -4496,6 +4562,8 @@ export type Query = {
   footer?: Maybe<FooterRecord>;
   /** Returns a specific record */
   fullWidthImage?: Maybe<FullWidthImageRecord>;
+  /** Returns a specific record */
+  headerNews?: Maybe<HeaderNewsRecord>;
   /** Returns a specific record */
   headerSimple?: Maybe<HeaderSimpleRecord>;
   /** Returns a specific record */
@@ -4625,6 +4693,12 @@ export type Query_AllFootersMetaArgs = {
 /** The query root for this schema */
 export type Query_AllFullWidthImagesMetaArgs = {
   filter?: InputMaybe<FullWidthImageModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllHeaderNewsMetaArgs = {
+  filter?: InputMaybe<HeaderNewsModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4931,6 +5005,16 @@ export type QueryAllFullWidthImagesArgs = {
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<FullWidthImageModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllHeaderNewsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<HeaderNewsModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<HeaderNewsModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -5360,6 +5444,14 @@ export type QueryFullWidthImageArgs = {
   filter?: InputMaybe<FullWidthImageModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<FullWidthImageModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryHeaderNewsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<HeaderNewsModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<HeaderNewsModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -7178,6 +7270,31 @@ export type TextFilter = {
   notMatches?: InputMaybe<StringMatchesFilter>;
 };
 
+/** Block of type Text (text) */
+export type TextRecord = RecordInterface & {
+  __typename?: "TextRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  text: Scalars["String"]["output"];
+};
+
+/** Block of type Text (text) */
+export type TextRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by upload type */
 export type TypeFilter = {
   /** Search uploads with the specified type */
@@ -8694,6 +8811,11 @@ export type FooterQuery = {
     id: string;
     title: string;
     copyrightText?: string | null;
+    loopingTitleText: Array<{
+      __typename?: "TextRecord";
+      id: string;
+      text: string;
+    }>;
     titleCta?: {
       __typename?: "LinkRecord";
       id: string;
@@ -15639,6 +15761,17 @@ export const FooterDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "loopingTitleText" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "titleCta" },

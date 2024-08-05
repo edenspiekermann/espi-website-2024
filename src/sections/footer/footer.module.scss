@@ -18,11 +18,17 @@
   p {
     @include as-xl-sans;
     grid-column: 1/4;
-    margin-bottom: 32px;
   }
   a {
     grid-column: span 1/2;
   }
+}
+
+.animatedText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
 }
 
 .linkSection {

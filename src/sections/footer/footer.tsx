@@ -3,11 +3,13 @@ import styles from "./footer.module.scss";
 import Link from "next/link";
 import { NewsLetterSignupForm } from "./newsletter-signup";
 import { EspiLogo } from "../../assets/icons/espi-logo";
-import { FooterProperties } from "./interfaces";
 import { Button } from "@/components/button/button";
+import { AnimatedFooterTitle } from "./animated-footer-title";
+import { FooterProperties } from "./interfaces";
 
 export function Footer({
   title,
+  loopingTitleText,
   titleCta,
   pageLinks,
   socialLinks,
@@ -17,8 +19,11 @@ export function Footer({
   return (
     <footer className={styles.footer}>
       <div className={`${styles.title} container`}>
-        <p>{title}</p>
-        <Button text={titleCta.text} url={titleCta.url} isInverted />
+        <AnimatedFooterTitle
+          title={title}
+          loopingTitleText={loopingTitleText}
+        />
+        <Button text={titleCta?.text!} url={titleCta?.url} isInverted />
       </div>
       <div className={`${styles.linkSection} container`}>
         <div className={styles.links}>

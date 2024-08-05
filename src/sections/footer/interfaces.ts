@@ -2,15 +2,13 @@ import {
   LinkRecord,
   PageRecord,
   SocialLinkRecord,
+  TextRecord,
 } from "@/graphql/types/generated";
 
 export interface FooterProperties {
   title: string;
-  titleCta: {
-    id: string;
-    text: string;
-    url: string;
-  };
+  loopingTitleText: TextRecord[];
+  titleCta: LinkRecord;
   pageLinks: PageRecord[];
   socialLinks: SocialLinkRecord[];
   legalLinks: LinkRecord[];
