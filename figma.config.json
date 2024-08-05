@@ -1,0 +1,14 @@
+{
+  "codeConnect": {
+    "include": ["src/components/**", "src/sections/**"],
+    "exclude": ["test/**", "docs/**", "build/**"],
+    "parser": "react",
+    "importPaths": {
+      "src/components/*": "@/components",
+      "src/sections/*": "@/sections"
+    },
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

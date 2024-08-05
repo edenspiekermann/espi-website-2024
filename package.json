@@ -13,6 +13,7 @@
     "generate-ts-types": "graphql-codegen --config graphql.config.js"
   },
   "dependencies": {
+    "@figma/code-connect": "^1.0.3",
     "classnames": "^2.5.1",
     "framer-motion": "^11.3.4",
     "graphql": "^16.8.1",
