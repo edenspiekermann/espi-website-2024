@@ -22,8 +22,6 @@ export default async function NewsArticleLayout({
     slug: params.slug,
   });
 
-  console.log("NEWS ARTICLE: ", newsArticle);
-
   const { title, typeOfArticle, featuredMedia } = newsArticle!;
 
   return (

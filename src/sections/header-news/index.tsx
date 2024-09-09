@@ -3,6 +3,7 @@ import { HeaderNewsProperties } from "./interfaces";
 import { Tag } from "@/components/tag";
 import { Media } from "@/components/media";
 import { MediaProperties } from "@/components/media/interfaces";
+import styles from "./styles.module.scss";
 
 export const HeaderNews = ({
   title,
@@ -10,13 +11,13 @@ export const HeaderNews = ({
   featuredMedia,
 }: HeaderNewsProperties) => {
   return (
-    <section>
+    <section className={styles.headerNews}>
       <div>
         <Tag text={typeOfArticle} />
         <h1>{title}</h1>
       </div>
       {featuredMedia && (
-        <div>
+        <div className={styles.image}>
           <Media {...(featuredMedia as MediaProperties)} />
         </div>
       )}

@@ -1,7 +1,7 @@
 @use "../../app/styles/base.scss" as *;
 
 .navigation {
-  position: fixed;
+  position: relative;
   z-index: var(--layer-header);
   top: 0;
   left: 0;
@@ -19,6 +19,14 @@
       padding-left: 0;
     }
   }
+}
+
+.sticky {
+  position: sticky;
+}
+
+.relative {
+  position: relative;
 }
 
 .hidden {
