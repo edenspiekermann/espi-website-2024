@@ -2,6 +2,10 @@ query Footer {
   footer {
     id
     title
+    loopingTitleText {
+      id
+      text
+    }
     titleCta {
       id
       url

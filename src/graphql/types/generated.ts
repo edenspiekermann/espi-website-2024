@@ -1169,6 +1169,7 @@ export type FooterRecord = RecordInterface & {
   copyrightText?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ItemId"]["output"];
   legalLinks: Array<LinkRecord>;
+  loopingTitleText: Array<TextRecord>;
   pageLinks: Array<PageRecord>;
   socialLinks: Array<SocialLinkRecord>;
   title: Scalars["String"]["output"];
@@ -7269,6 +7270,31 @@ export type TextFilter = {
   notMatches?: InputMaybe<StringMatchesFilter>;
 };
 
+/** Block of type Text (text) */
+export type TextRecord = RecordInterface & {
+  __typename?: "TextRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  text: Scalars["String"]["output"];
+};
+
+/** Block of type Text (text) */
+export type TextRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by upload type */
 export type TypeFilter = {
   /** Search uploads with the specified type */
@@ -8798,6 +8824,11 @@ export type FooterQuery = {
     id: string;
     title: string;
     copyrightText?: string | null;
+    loopingTitleText: Array<{
+      __typename?: "TextRecord";
+      id: string;
+      text: string;
+    }>;
     titleCta?: {
       __typename?: "LinkRecord";
       id: string;
@@ -15786,6 +15817,17 @@ export const FooterDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "loopingTitleText" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "titleCta" },

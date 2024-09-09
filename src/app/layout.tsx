@@ -7,6 +7,7 @@ import {
   NavigationDocument,
   PageRecord,
   SocialLinkRecord,
+  TextRecord,
 } from "@/graphql/types/generated";
 import { request } from "@/lib/request";
 import { NavigationProvider } from "@/context/navigation-context";
@@ -52,6 +53,7 @@ export default async function RootLayout({
               {children}
               <Footer
                 title={footer?.title || "Let's Innovate"}
+                loopingTitleText={footer?.loopingTitleText as TextRecord[]}
                 titleCta={footer?.titleCta as LinkRecord}
                 pageLinks={footer?.pageLinks as PageRecord[]}
                 socialLinks={footer?.socialLinks as SocialLinkRecord[]}
