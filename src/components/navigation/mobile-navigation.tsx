@@ -25,7 +25,7 @@ export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
               return (
                 <li key={link.id}>
                   <Link
-                    href={link.slug}
+                    href={`/${link.slug}`}
                     className={`${styles.navLinks} ${styles.navLink}`}
                   >
                     {link.label}

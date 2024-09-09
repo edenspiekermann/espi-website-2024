@@ -13,6 +13,8 @@ export const DesktopNavigation: React.FC<NavigationBaseProperties> = ({
     [styles.desktop]: true,
   });
 
+  console.log(links);
+
   return (
     <div className={classNameList}>
       <nav>
@@ -21,7 +23,7 @@ export const DesktopNavigation: React.FC<NavigationBaseProperties> = ({
             links.map((link) => {
               return (
                 <li key={link.id}>
-                  <Link href={link.slug} className={styles.navLink}>
+                  <Link href={`/${link.slug}`} className={styles.navLink}>
                     {link.label}
                   </Link>
                 </li>
