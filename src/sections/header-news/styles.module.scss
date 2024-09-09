@@ -4,8 +4,35 @@
   position: relative;
   @include mqHelper("padding", 32px 24px, 32px 40px, 40px 70px);
   background-color: var(--color-extra-light-grey);
+  display: flex;
+  flex-direction: column;
+
+  @include mq(desktop) {
+    flex-direction: row;
+  }
+}
+
+.left {
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @include mqHelper("padding", 24px, 40px);
+}
+
+.left,
+.image {
+  @include mqHelper("border-radius", 10px, 18px, 27px);
+  flex: 1;
+}
+
+.title {
+  @include as-m-sans;
 }
 
 .image {
   position: relative;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+  overflow: hidden;
 }

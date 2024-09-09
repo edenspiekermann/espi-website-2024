@@ -12,9 +12,9 @@ export const HeaderNews = ({
 }: HeaderNewsProperties) => {
   return (
     <section className={styles.headerNews}>
-      <div>
+      <div className={styles.left}>
         <Tag text={typeOfArticle} />
-        <h1>{title}</h1>
+        <h1 className={styles.title}>{title}</h1>
       </div>
       {featuredMedia && (
         <div className={styles.image}>
