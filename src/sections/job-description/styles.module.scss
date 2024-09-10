@@ -25,4 +25,8 @@
 
 .value {
   @include as-m-text;
+
+  & * {
+    @include as-m-text;
+  }
 }

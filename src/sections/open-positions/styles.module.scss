@@ -54,6 +54,11 @@
   gap: 16px;
 }
 
+.jobLinkWrapper {
+  text-decoration: none;
+  color: var(--color-espi-black);
+}
+
 .job {
   display: flex;
   flex-direction: column;
