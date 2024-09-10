@@ -13,8 +13,6 @@ export const DesktopNavigation: React.FC<NavigationBaseProperties> = ({
     [styles.desktop]: true,
   });
 
-  console.log(links);
-
   return (
     <div className={classNameList}>
       <nav>

@@ -1,0 +1,26 @@
+@use "../../app/styles/base.scss" as *;
+
+.headerGeneric {
+  position: relative;
+  @include mqHelper("padding", 48px 0px 80px, 48px 0px 80px, 80px 0px 124px);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-espi-black);
+  @include mqHelper("gap", 8px, 8px, 16px);
+  grid-column: 1/-1;
+
+  @include mq(desktop) {
+    grid-column: span 10;
+  }
+}
+
+.eyebrow {
+  @include as-m-sans;
+}
+
+.title {
+  @include as-xl-sans;
+}

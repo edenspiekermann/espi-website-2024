@@ -3,7 +3,7 @@ import { Parser } from "xml2js";
 import { normalizePersonioJobData } from "@/utils/normalize-personio-data";
 
 export async function GET() {
-  const url = "https://edenspiekermann.jobs.personio.de/xml?language=de";
+  const url = "https://edenspiekermann.jobs.personio.de/xml?language=en";
 
   try {
     const response = await fetch(url, {
