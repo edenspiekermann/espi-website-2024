@@ -1,5 +1,8 @@
 import React from "react";
 import { HeaderGeneric } from "@/sections/header-generic";
+import { SidebarGeneric } from "@/components/sidebar-generic";
+import { JobDescription } from "@/sections/job-description";
+import { Divider } from "@/components/divider/divider";
 
 type PageProps = { params: { id: string }; children: React.ReactNode };
 
@@ -22,11 +25,26 @@ export default async function JobDetailsLayout({
   }
 
   const job = jobs.data.filter((job: any) => job.id === params.id);
-  const { name, office } = job[0];
+  const { name, office, id, jobdescriptions } = job[0];
+
+  const callToAction = {
+    text: "Apply now",
+    url: `/jobs/${id}/apply`,
+  };
 
   return (
     <>
       <HeaderGeneric title={name} eyebrow={office} />
+      <Divider invertColor={false} />
+      <div className="container">
+        <SidebarGeneric
+          __typename={"SidebarGenericRecord"}
+          id={id}
+          text={"Interested? Join us!"}
+          callToAction={callToAction}
+        />
+        <JobDescription jobDescriptions={jobdescriptions} />
+      </div>
       {children}
     </>
   );
