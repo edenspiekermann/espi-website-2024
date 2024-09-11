@@ -6986,6 +6986,7 @@ export type TeaserCaseStaggeredRecord = RecordInterface & {
   _updatedAt: Scalars["DateTime"]["output"];
   caseStudies: Array<CaseStudyRecord>;
   id: Scalars["ItemId"]["output"];
+  numberedStatement?: Maybe<StatementNumberedRecord>;
 };
 
 /** Record of type Teaser Case Staggered (teaser_case_staggered) */
@@ -8541,6 +8542,22 @@ export type PageQuery = {
       | {
           __typename: "TeaserCaseStaggeredRecord";
           id: string;
+          numberedStatement?: {
+            __typename?: "StatementNumberedRecord";
+            id: string;
+            title: string;
+            subtitle?: string | null;
+            numberImage: {
+              __typename?: "AltFileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+                width: number;
+                height: number;
+              } | null;
+            };
+          } | null;
           caseStudies: Array<{
             __typename?: "CaseStudyRecord";
             id: string;
@@ -9332,6 +9349,22 @@ export type CaseStudyGridCardFragment = {
 export type TeaserCaseStaggeredFragment = {
   __typename: "TeaserCaseStaggeredRecord";
   id: string;
+  numberedStatement?: {
+    __typename?: "StatementNumberedRecord";
+    id: string;
+    title: string;
+    subtitle?: string | null;
+    numberImage: {
+      __typename?: "AltFileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+        width: number;
+        height: number;
+      } | null;
+    };
+  } | null;
   caseStudies: Array<{
     __typename?: "CaseStudyRecord";
     id: string;
@@ -9548,52 +9581,6 @@ export const CookieConsentFormFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CookieConsentFormFragment, unknown>;
-export const StatementNumberedFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "StatementNumbered" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "StatementNumberedRecord" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "numberImage" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "responsiveImage" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "src" } },
-                      { kind: "Field", name: { kind: "Name", value: "alt" } },
-                      { kind: "Field", name: { kind: "Name", value: "width" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "height" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<StatementNumberedFragment, unknown>;
 export const CaseStudyContentImageFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -12158,6 +12145,52 @@ export const TeaserCaseGridFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<TeaserCaseGridFragment, unknown>;
+export const StatementNumberedFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementNumbered" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementNumberedRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "numberImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StatementNumberedFragment, unknown>;
 export const CaseStudyCardFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -12241,6 +12274,19 @@ export const TeaserCaseStaggeredFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
+            name: { kind: "Name", value: "numberedStatement" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "StatementNumbered" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "caseStudies" },
             selectionSet: {
               kind: "SelectionSet",
@@ -12252,6 +12298,47 @@ export const TeaserCaseStaggeredFragmentDoc = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementNumbered" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementNumberedRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "numberImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
         ],
       },
     },
@@ -14531,6 +14618,47 @@ export const PageDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StatementNumbered" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StatementNumberedRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "numberImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "CaseStudyCard" },
       typeCondition: {
         kind: "NamedType",
@@ -15648,6 +15776,19 @@ export const PageDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "numberedStatement" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "StatementNumbered" },
+                },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "caseStudies" },
