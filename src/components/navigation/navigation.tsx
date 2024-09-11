@@ -30,7 +30,7 @@ export const Navigation: React.FC<NavigationProperties> = ({
     [styles.navigation]: true,
     [styles.hidden]: !show,
     [styles.inverted]: isInverted,
-    [styles.sticky]: isSticky,
+    [styles.fixed]: isSticky,
     [styles.relative]: !isSticky,
   });
 
@@ -41,11 +41,11 @@ export const Navigation: React.FC<NavigationProperties> = ({
       setShow(true);
     }
 
-    if (latest > 300) {
-      setIsSticky(false);
-    } else {
-      setIsSticky(true);
-    }
+    // if (latest > 300) {
+    //   setIsSticky(false);
+    // } else {
+    //   setIsSticky(true);
+    // }
 
     setLastScrollY(latest);
   });
