@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { NowHiringIcon } from "./now-hiring";
 import { OpenPositionFragment } from "@/graphql/types/generated";
 import styles from "./styles.module.scss";
+import Link from "next/link";
 
 interface JobDetails {
   id: string;
@@ -57,11 +58,16 @@ export const OpenPositions = ({ title }: OpenPositionFragment) => {
             {!loading &&
               !error &&
               jobs.map((job) => (
-                // TODO: Add clickable functionality to take to a job application page
-                <li key={job.id} className={styles.job}>
-                  <span className={styles.name}>{job.name}</span>
-                  <span className={styles.office}>{job.office}</span>
-                </li>
+                <Link
+                  href={`/jobs/${job.id}`}
+                  key={job.id}
+                  className={styles.jobLinkWrapper}
+                >
+                  <li className={styles.job}>
+                    <span className={styles.name}>{job.name}</span>
+                    <span className={styles.office}>{job.office}</span>
+                  </li>
+                </Link>
               ))}
           </ul>
         </div>
