@@ -22,6 +22,7 @@ interface CookieConsentContextType {
   allowAll: () => void;
   isFormVisible: boolean;
   hideForm: () => void;
+  submitted: boolean;
 }
 
 const defaultConsent: CookieConsentState = {
@@ -56,34 +57,44 @@ export const CookieConsentProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [consent, setConsent] = useState<CookieConsentState>(
-    loadConsentFromLocalStorage,
-  );
-  const [isFormVisible, setIsFormVisible] = useState(true);
+  const [consent, setConsent] = useState<CookieConsentState>(defaultConsent);
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    const storedConsent = loadConsentFromLocalStorage();
+    setConsent(storedConsent);
+    setIsFormVisible(!storedConsent.necessary && !submitted); // Show form if necessary cookies are not accepted
+  }, [submitted]);
 
   useEffect(() => {
     saveConsentToLocalStorage(consent);
   }, [consent]);
-
   const updateConsent = (updatedConsent: Partial<CookieConsentState>) => {
     setConsent((prevConsent) => {
-      const newConsent = { ...prevConsent };
-      for (const key in updatedConsent) {
-        if (updatedConsent[key] !== undefined) {
-          newConsent[key] = updatedConsent[key]!;
-        }
-      }
+      const newConsent: CookieConsentState = {
+        ...prevConsent,
+        ...updatedConsent,
+        necessary: prevConsent.necessary || updatedConsent.necessary || false,
+        analytics: prevConsent.analytics || updatedConsent.analytics || false,
+        marketing: prevConsent.marketing || updatedConsent.marketing || false,
+        contents: prevConsent.contents || updatedConsent.contents || false,
+      };
+      saveConsentToLocalStorage(newConsent);
       return newConsent;
     });
   };
 
   const allowAll = () => {
-    setConsent({
+    const newConsent = {
       necessary: true,
       analytics: true,
       marketing: true,
       contents: true,
-    });
+    };
+    setConsent(newConsent);
+    saveConsentToLocalStorage(newConsent);
+    setSubmitted(true);
     setIsFormVisible(false);
   };
 
@@ -93,7 +104,14 @@ export const CookieConsentProvider = ({
 
   return (
     <CookieConsentContext.Provider
-      value={{ consent, updateConsent, allowAll, isFormVisible, hideForm }}
+      value={{
+        consent,
+        updateConsent,
+        allowAll,
+        isFormVisible,
+        hideForm,
+        submitted,
+      }}
     >
       {children}
     </CookieConsentContext.Provider>
