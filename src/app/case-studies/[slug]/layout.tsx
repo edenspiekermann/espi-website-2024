@@ -33,7 +33,7 @@ export default async function CaseStudyLayout({ children, params }: PageProps) {
 
   return (
     <>
-      <UpdateNavState isInverted={invertNav} />
+      <UpdateNavState isInverted={invertNav} isFixed />
       <CaseStudyProvider>
         <UpdateCaseStudyState
           relatedIndustries={relatedIndustries.map(

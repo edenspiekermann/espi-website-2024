@@ -3,12 +3,14 @@
 import React, { createContext, useState } from "react";
 
 interface NavigationContextType {
-  navState: { isInverted: boolean };
-  setNavState: React.Dispatch<React.SetStateAction<{ isInverted: boolean }>>;
+  navState: { isInverted: boolean; isFixed: boolean };
+  setNavState: React.Dispatch<
+    React.SetStateAction<{ isInverted: boolean; isFixed: boolean }>
+  >;
 }
 
 const defaultContextValue: NavigationContextType = {
-  navState: { isInverted: false },
+  navState: { isInverted: false, isFixed: false },
   setNavState: () => {},
 };
 
@@ -22,6 +24,7 @@ export const NavigationProvider = ({
 }) => {
   const [navState, setNavState] = useState({
     isInverted: false,
+    isFixed: false,
   });
 
   return (

@@ -11,6 +11,7 @@ export interface NavigationProperties extends NavigationBaseProperties {
   alternativeLogoText: string;
   socialLinks: NavSocialLinkProperties[];
   isInverted?: boolean;
+  isFixed?: boolean;
 }
 
 export interface NavigationWrapperProperties extends NavigationBaseProperties {

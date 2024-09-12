@@ -18,20 +18,20 @@ export const Navigation: React.FC<NavigationProperties> = ({
   showLogo,
   socialLinks,
   isInverted = false,
+  isFixed = true,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const toggle = () => setIsOpen(!isOpen);
   const { scrollY } = useScroll();
-  const [isSticky, setIsSticky] = useState(true);
 
   const classNameList = classNames({
     [styles.navigation]: true,
     [styles.hidden]: !show,
     [styles.inverted]: isInverted,
-    [styles.fixed]: isSticky,
-    [styles.relative]: !isSticky,
+    [styles.fixed]: isFixed,
+    [styles.relative]: !isFixed,
   });
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -40,12 +40,6 @@ export const Navigation: React.FC<NavigationProperties> = ({
     } else {
       setShow(true);
     }
-
-    // if (latest > 300) {
-    //   setIsSticky(false);
-    // } else {
-    //   setIsSticky(true);
-    // }
 
     setLastScrollY(latest);
   });
