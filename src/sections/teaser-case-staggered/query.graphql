@@ -1,6 +1,9 @@
 fragment TeaserCaseStaggered on TeaserCaseStaggeredRecord {
   __typename
   id
+  numberedStatement {
+    ...StatementNumbered
+  }
   caseStudies {
     ...CaseStudyCard
   }
