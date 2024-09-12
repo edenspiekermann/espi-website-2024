@@ -12,7 +12,7 @@ export const CookieConsentForm = ({
   text,
   items,
 }: CookieConsentFormFragment) => {
-  const { allowAll, hideForm, isFormVisible } = useCookieConsent();
+  const { allowAll, hideForm, isFormVisible, submitted } = useCookieConsent();
 
   const allowSelection = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -22,6 +22,7 @@ export const CookieConsentForm = ({
   const formClass = classNames({
     [styles.cookieConsentForm]: true,
     [styles.hidden]: !isFormVisible,
+    [styles.submitted]: submitted,
   });
 
   return (

@@ -32,9 +32,14 @@
   animation: slideUp 0.5s forwards;
 }
 
-.hidden {
+.submitted {
   animation: slideDown 0.5s forwards;
   pointer-events: none;
+}
+
+.hidden {
+  pointer-events: none;
+  display: none;
 }
 
 .top {
