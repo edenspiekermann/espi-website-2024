@@ -73,12 +73,7 @@ export const InfiniteScrollContainer = ({
         })
       }
     >
-      <motion.div
-        className={styles.items}
-        animate={controls}
-        ref={contentRef}
-        style={{ display: "flex" }}
-      >
+      <motion.div className={styles.items} animate={controls} ref={contentRef}>
         {children}
         {children}
       </motion.div>
