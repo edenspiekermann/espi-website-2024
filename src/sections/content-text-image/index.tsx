@@ -14,7 +14,6 @@ export const ContentTextImage = ({
 }: ContentTextImageFragment) => {
   const contentTextImageClass = classNames({
     [styles.contentTextImage]: true,
-    container: true,
   });
 
   const leftContentFilter = (
@@ -43,9 +42,11 @@ export const ContentTextImage = ({
 
   return (
     <section className={contentTextImageClass}>
-      <div className={styles.left}>{leftContentFilter(leftContent)}</div>
-      <div className={styles.right}>
-        <StructuredText data={content} renderBlock={renderBlock} />
+      <div className="container">
+        <div className={styles.left}>{leftContentFilter(leftContent)}</div>
+        <div className={styles.right}>
+          <StructuredText data={content} renderBlock={renderBlock} />
+        </div>
       </div>
     </section>
   );
