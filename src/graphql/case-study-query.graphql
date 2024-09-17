@@ -28,6 +28,7 @@ query CaseStudy($slug: String) {
       ...CaseContent
       ...Purpose
       ...CaseIntro
+      ...Stats
     }
     relatedServices {
       service
