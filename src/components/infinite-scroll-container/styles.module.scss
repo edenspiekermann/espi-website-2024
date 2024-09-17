@@ -17,6 +17,7 @@
   display: flex;
   gap: 20px;
   width: fit-content;
+  // width: 200%;
 
   @include mq("desktop") {
     gap: 32px;
