@@ -6,6 +6,7 @@ import { StructuredText } from "react-datocms";
 import classNames from "classnames";
 import { InlineContentImage } from "@/components/inline-content-image";
 import { SidebarGeneric } from "@/components/sidebar-generic";
+import { ContentQuote } from "@/components/content-quote";
 
 export const ContentTextImage = ({
   content,
@@ -33,6 +34,8 @@ export const ContentTextImage = ({
     switch (record.__typename) {
       case "CaseStudyContentImageRecord":
         return <InlineContentImage {...record} />;
+      case "ContentQuoteRecord":
+        return <ContentQuote {...record} />;
       default:
         return null;
     }

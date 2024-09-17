@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import { CaseContentFragment } from "@/graphql/types/generated";
-import { Media } from "@/components/media";
-import { MediaProperties } from "@/components/media/interfaces";
 import classNames from "classnames";
 import { Divider } from "@/components/divider/divider";
 import { StructuredText } from "react-datocms";
