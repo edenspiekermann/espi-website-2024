@@ -9,8 +9,10 @@ import Head from "next/head";
 type PageProps = { params: { slug: string } };
 
 export async function generateMetadata({ params }: PageProps) {
-  const capitalizedSlug =
-    params.slug.charAt(0).toUpperCase() + params.slug.slice(1);
+  const capitalizedSlug = params.slug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
   return {
     title: capitalizedSlug,
   };
