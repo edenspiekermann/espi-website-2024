@@ -1,6 +1,10 @@
 fragment StatementSimple on StatementSimpleRecord {
   __typename
   id
+  showDivider
+  divider {
+    ...Divider
+  }
   text(markdown: true)
   invertColor
   textSize

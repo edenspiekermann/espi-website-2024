@@ -6682,6 +6682,7 @@ export type StatementSimpleModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
   invertColor?: InputMaybe<BooleanFilter>;
+  showDivider?: InputMaybe<BooleanFilter>;
   text?: InputMaybe<TextFilter>;
   textSize?: InputMaybe<StringFilter>;
 };
@@ -6707,6 +6708,8 @@ export enum StatementSimpleModelOrderBy {
   IdDesc = "id_DESC",
   InvertColorAsc = "invertColor_ASC",
   InvertColorDesc = "invertColor_DESC",
+  ShowDividerAsc = "showDivider_ASC",
+  ShowDividerDesc = "showDivider_DESC",
   TextSizeAsc = "textSize_ASC",
   TextSizeDesc = "textSize_DESC",
 }
@@ -6727,8 +6730,10 @@ export type StatementSimpleRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  divider?: Maybe<DividerRecord>;
   id: Scalars["ItemId"]["output"];
   invertColor: Scalars["BooleanType"]["output"];
+  showDivider: Scalars["BooleanType"]["output"];
   text: Scalars["String"]["output"];
   textSize?: Maybe<Scalars["String"]["output"]>;
 };
@@ -7942,9 +7947,15 @@ export type CaseStudyQuery = {
           statement?: {
             __typename: "StatementSimpleRecord";
             id: string;
+            showDivider: boolean;
             text: string;
             invertColor: boolean;
             textSize?: string | null;
+            divider?: {
+              __typename?: "DividerRecord";
+              text?: string | null;
+              invertColor: boolean;
+            } | null;
           } | null;
           button?: {
             __typename?: "PageLinkRecord";
@@ -8361,9 +8372,15 @@ export type PageQuery = {
           statement?: {
             __typename: "StatementSimpleRecord";
             id: string;
+            showDivider: boolean;
             text: string;
             invertColor: boolean;
             textSize?: string | null;
+            divider?: {
+              __typename?: "DividerRecord";
+              text?: string | null;
+              invertColor: boolean;
+            } | null;
           } | null;
           cards: Array<{
             __typename?: "ManifestoCardRecord";
@@ -8394,9 +8411,15 @@ export type PageQuery = {
           statement?: {
             __typename: "StatementSimpleRecord";
             id: string;
+            showDivider: boolean;
             text: string;
             invertColor: boolean;
             textSize?: string | null;
+            divider?: {
+              __typename?: "DividerRecord";
+              text?: string | null;
+              invertColor: boolean;
+            } | null;
           } | null;
           button?: {
             __typename?: "PageLinkRecord";
@@ -8450,9 +8473,15 @@ export type PageQuery = {
           statement?: {
             __typename: "StatementSimpleRecord";
             id: string;
+            showDivider: boolean;
             text: string;
             invertColor: boolean;
             textSize?: string | null;
+            divider?: {
+              __typename?: "DividerRecord";
+              text?: string | null;
+              invertColor: boolean;
+            } | null;
           } | null;
           serviceCards: Array<{
             __typename?: "ServiceCardRecord";
@@ -8542,9 +8571,15 @@ export type PageQuery = {
       | {
           __typename: "StatementSimpleRecord";
           id: string;
+          showDivider: boolean;
           text: string;
           invertColor: boolean;
           textSize?: string | null;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
         }
       | {
           __typename: "StatsSectionRecord";
@@ -9122,9 +9157,15 @@ export type ManifestoFragment = {
   statement?: {
     __typename: "StatementSimpleRecord";
     id: string;
+    showDivider: boolean;
     text: string;
     invertColor: boolean;
     textSize?: string | null;
+    divider?: {
+      __typename?: "DividerRecord";
+      text?: string | null;
+      invertColor: boolean;
+    } | null;
   } | null;
   cards: Array<{
     __typename?: "ManifestoCardRecord";
@@ -9161,9 +9202,15 @@ export type PurposeFragment = {
   statement?: {
     __typename: "StatementSimpleRecord";
     id: string;
+    showDivider: boolean;
     text: string;
     invertColor: boolean;
     textSize?: string | null;
+    divider?: {
+      __typename?: "DividerRecord";
+      text?: string | null;
+      invertColor: boolean;
+    } | null;
   } | null;
   button?: { __typename?: "PageLinkRecord"; text: string; slug: string } | null;
   media: {
@@ -9218,9 +9265,15 @@ export type ServiceCardsFragment = {
   statement?: {
     __typename: "StatementSimpleRecord";
     id: string;
+    showDivider: boolean;
     text: string;
     invertColor: boolean;
     textSize?: string | null;
+    divider?: {
+      __typename?: "DividerRecord";
+      text?: string | null;
+      invertColor: boolean;
+    } | null;
   } | null;
   serviceCards: Array<{
     __typename?: "ServiceCardRecord";
@@ -9317,9 +9370,15 @@ export type StatementLargeFragment = {
 export type StatementSimpleFragment = {
   __typename: "StatementSimpleRecord";
   id: string;
+  showDivider: boolean;
   text: string;
   invertColor: boolean;
   textSize?: string | null;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
 };
 
 export type StatsFragment = {
@@ -10855,6 +10914,20 @@ export const StatementSimpleFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "text" },
@@ -10868,6 +10941,21 @@ export const StatementSimpleFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "invertColor" } },
           { kind: "Field", name: { kind: "Name", value: "textSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
         ],
       },
     },
@@ -10999,6 +11087,20 @@ export const ManifestoFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "text" },
@@ -11224,6 +11326,20 @@ export const PurposeFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "text" },
@@ -11441,6 +11557,20 @@ export const ServiceCardsFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "text" },
@@ -13432,6 +13562,20 @@ export const CaseStudyDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "text" },
@@ -14498,6 +14642,21 @@ export const PageDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "Location" },
       typeCondition: {
         kind: "NamedType",
@@ -14592,21 +14751,6 @@ export const PageDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "Divider" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "DividerRecord" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "text" } },
-          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
       name: { kind: "Name", value: "StatementSimple" },
       typeCondition: {
         kind: "NamedType",
@@ -14617,6 +14761,20 @@ export const PageDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "text" },
