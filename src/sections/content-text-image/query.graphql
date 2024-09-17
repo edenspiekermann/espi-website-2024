@@ -6,6 +6,7 @@ fragment ContentTextImage on ContentTextImageRecord {
     blocks {
       __typename
       ...CaseStudyContentImage
+      ...ContentQuote
     }
   }
   leftContent {

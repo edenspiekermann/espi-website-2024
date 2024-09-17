@@ -620,9 +620,13 @@ export type ContentQuoteRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+export type ContentTextImageModelContentBlocksField =
+  | CaseStudyContentImageRecord
+  | ContentQuoteRecord;
+
 export type ContentTextImageModelContentField = {
   __typename?: "ContentTextImageModelContentField";
-  blocks: Array<CaseStudyContentImageRecord>;
+  blocks: Array<ContentTextImageModelContentBlocksField>;
   links: Array<Scalars["String"]["output"]>;
   value: Scalars["JsonField"]["output"];
 };
@@ -6682,6 +6686,7 @@ export type StatementSimpleModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
   invertColor?: InputMaybe<BooleanFilter>;
+  showDivider?: InputMaybe<BooleanFilter>;
   text?: InputMaybe<TextFilter>;
   textSize?: InputMaybe<StringFilter>;
 };
@@ -6707,6 +6712,8 @@ export enum StatementSimpleModelOrderBy {
   IdDesc = "id_DESC",
   InvertColorAsc = "invertColor_ASC",
   InvertColorDesc = "invertColor_DESC",
+  ShowDividerAsc = "showDivider_ASC",
+  ShowDividerDesc = "showDivider_DESC",
   TextSizeAsc = "textSize_ASC",
   TextSizeDesc = "textSize_DESC",
 }
@@ -6727,8 +6734,10 @@ export type StatementSimpleRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  divider?: Maybe<DividerRecord>;
   id: Scalars["ItemId"]["output"];
   invertColor: Scalars["BooleanType"]["output"];
+  showDivider: Scalars["BooleanType"]["output"];
   text: Scalars["String"]["output"];
   textSize?: Maybe<Scalars["String"]["output"]>;
 };
@@ -8072,23 +8081,31 @@ export type NewsArticleQuery = {
           content: {
             __typename?: "ContentTextImageModelContentField";
             value: unknown;
-            blocks: Array<{
-              __typename: "CaseStudyContentImageRecord";
-              id: string;
-              halfSize: boolean;
-              media: {
-                __typename?: "FileField";
-                responsiveImage?: {
-                  __typename?: "ResponsiveImage";
-                  src: string;
-                  alt?: string | null;
-                } | null;
-                video?: {
-                  __typename?: "UploadVideoField";
-                  mp4Url?: string | null;
-                } | null;
-              };
-            }>;
+            blocks: Array<
+              | {
+                  __typename: "CaseStudyContentImageRecord";
+                  id: string;
+                  halfSize: boolean;
+                  media: {
+                    __typename?: "FileField";
+                    responsiveImage?: {
+                      __typename?: "ResponsiveImage";
+                      src: string;
+                      alt?: string | null;
+                    } | null;
+                    video?: {
+                      __typename?: "UploadVideoField";
+                      mp4Url?: string | null;
+                    } | null;
+                  };
+                }
+              | {
+                  __typename: "ContentQuoteRecord";
+                  id: string;
+                  quote: string;
+                  author: string;
+                }
+            >;
           };
           leftContent:
             | {
@@ -8819,23 +8836,31 @@ export type ContentTextImageFragment = {
   content: {
     __typename?: "ContentTextImageModelContentField";
     value: unknown;
-    blocks: Array<{
-      __typename: "CaseStudyContentImageRecord";
-      id: string;
-      halfSize: boolean;
-      media: {
-        __typename?: "FileField";
-        responsiveImage?: {
-          __typename?: "ResponsiveImage";
-          src: string;
-          alt?: string | null;
-        } | null;
-        video?: {
-          __typename?: "UploadVideoField";
-          mp4Url?: string | null;
-        } | null;
-      };
-    }>;
+    blocks: Array<
+      | {
+          __typename: "CaseStudyContentImageRecord";
+          id: string;
+          halfSize: boolean;
+          media: {
+            __typename?: "FileField";
+            responsiveImage?: {
+              __typename?: "ResponsiveImage";
+              src: string;
+              alt?: string | null;
+            } | null;
+            video?: {
+              __typename?: "UploadVideoField";
+              mp4Url?: string | null;
+            } | null;
+          };
+        }
+      | {
+          __typename: "ContentQuoteRecord";
+          id: string;
+          quote: string;
+          author: string;
+        }
+    >;
   };
   leftContent:
     | {
@@ -9993,6 +10018,10 @@ export const ContentTextImageFragmentDoc = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CaseStudyContentImage" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ContentQuote" },
+                      },
                     ],
                   },
                 },
@@ -10065,6 +10094,23 @@ export const ContentTextImageFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "halfSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentQuote" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ContentQuoteRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "quote" } },
+          { kind: "Field", name: { kind: "Name", value: "author" } },
         ],
       },
     },
@@ -14083,6 +14129,23 @@ export const NewsArticleDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentQuote" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ContentQuoteRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "quote" } },
+          { kind: "Field", name: { kind: "Name", value: "author" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "SidebarNews" },
       typeCondition: {
         kind: "NamedType",
@@ -14273,6 +14336,10 @@ export const NewsArticleDocument = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CaseStudyContentImage" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ContentQuote" },
                       },
                     ],
                   },
