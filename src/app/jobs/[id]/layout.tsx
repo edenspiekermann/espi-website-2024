@@ -37,7 +37,7 @@ export default async function JobDetailsLayout({
 
   const callToAction = {
     text: "Apply now",
-    url: `/jobs/${id}/apply`,
+    url: `https://edenspiekermann.jobs.personio.de/job/${id}?language=en&display=en#apply`,
   };
 
   return (
