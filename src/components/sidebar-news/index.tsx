@@ -10,7 +10,7 @@ export const SidebarNews = ({
   date,
   text,
   author,
-  greyBackground,
+  greyBackground = false,
 }: SidebarNewsFragment) => {
   const formattedDate = formateDate(date);
   const authorInfoClass = classNames({
