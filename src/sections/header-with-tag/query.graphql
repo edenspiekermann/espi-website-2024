@@ -1,7 +1,7 @@
 fragment HeaderWithTag on HeaderWithTagRecord {
   __typename
   id
-  title
+  title(markdown: true)
   subtitle
   industry {
     industry
