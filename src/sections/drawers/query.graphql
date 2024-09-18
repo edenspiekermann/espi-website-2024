@@ -18,4 +18,6 @@ fragment Drawers on DrawerRecord {
       mp4Url
     }
   }
+  imageOnLeft
+  whiteBackground
 }

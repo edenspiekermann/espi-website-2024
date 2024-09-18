@@ -6,6 +6,43 @@
   color: var(--color-white);
 }
 
+.whiteBackground {
+  background-color: var(--color-white);
+
+  * {
+    color: var(--color-espi-black);
+  }
+
+  svg > circle {
+    opacity: 1;
+    fill: var(--color-medium-grey) !important;
+  }
+}
+
+.imageOnLeft {
+  .media {
+    grid-row: 2;
+    @include mq("tablet") {
+      grid-column: span 4;
+      grid-row: 1;
+      margin-right: 42px;
+    }
+    @include mq("desktop") {
+      grid-column: span 6;
+      margin-right: 62px;
+    }
+  }
+  .left {
+    margin-right: 0;
+    @include mq("tablet") {
+      grid-column: 5/13;
+    }
+    @include mq("desktop") {
+      grid-column: 7/13;
+    }
+  }
+}
+
 .left {
   grid-column: 1/-1;
   @include mq("tablet") {
