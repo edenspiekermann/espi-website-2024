@@ -7,6 +7,7 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
+import Router from "next/router";
 
 export interface CookieConsentState {
   [key: string]: boolean;
@@ -36,19 +37,30 @@ const CookieConsentContext = createContext<
   CookieConsentContextType | undefined
 >(undefined);
 
-const loadConsentFromLocalStorage = (): CookieConsentState => {
+const loadConsentFromLocalStorage = (): {
+  consent: CookieConsentState;
+  submitted: boolean;
+} => {
   if (typeof window !== "undefined") {
     const storedConsent = localStorage.getItem("cookieConsent");
+    const storedSubmitted = localStorage.getItem("cookieConsentSubmitted");
     if (storedConsent) {
-      return JSON.parse(storedConsent);
+      return {
+        consent: JSON.parse(storedConsent),
+        submitted: storedSubmitted === "true",
+      };
     }
   }
-  return defaultConsent;
+  return { consent: defaultConsent, submitted: false };
 };
 
-const saveConsentToLocalStorage = (consent: CookieConsentState) => {
+const saveConsentToLocalStorage = (
+  consent: CookieConsentState,
+  submitted: boolean,
+) => {
   if (typeof window !== "undefined") {
     localStorage.setItem("cookieConsent", JSON.stringify(consent));
+    localStorage.setItem("cookieConsentSubmitted", submitted.toString());
   }
 };
 
@@ -60,16 +72,37 @@ export const CookieConsentProvider = ({
   const [consent, setConsent] = useState<CookieConsentState>(defaultConsent);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const storedConsent = loadConsentFromLocalStorage();
+    const { consent: storedConsent, submitted: storedSubmitted } =
+      loadConsentFromLocalStorage();
     setConsent(storedConsent);
-    setIsFormVisible(!storedConsent.necessary && !submitted); // Show form if necessary cookies are not accepted
-  }, [submitted]);
+    setSubmitted(storedSubmitted);
+    setIsFormVisible(!storedConsent.necessary && !storedSubmitted);
+    setIsLoaded(true);
+
+    const handleRouteChange = () => {
+      const { consent: updatedConsent, submitted: updatedSubmitted } =
+        loadConsentFromLocalStorage();
+      setConsent(updatedConsent);
+      setSubmitted(updatedSubmitted);
+      setIsFormVisible(!updatedConsent.necessary && !updatedSubmitted);
+    };
+
+    Router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      Router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, []);
 
   useEffect(() => {
-    saveConsentToLocalStorage(consent);
-  }, [consent]);
+    if (isLoaded) {
+      saveConsentToLocalStorage(consent, submitted);
+    }
+  }, [consent, submitted, isLoaded]);
+
   const updateConsent = (updatedConsent: Partial<CookieConsentState>) => {
     setConsent((prevConsent) => {
       const newConsent: CookieConsentState = {
@@ -80,7 +113,7 @@ export const CookieConsentProvider = ({
         marketing: prevConsent.marketing || updatedConsent.marketing || false,
         contents: prevConsent.contents || updatedConsent.contents || false,
       };
-      saveConsentToLocalStorage(newConsent);
+      saveConsentToLocalStorage(newConsent, submitted);
       return newConsent;
     });
   };
@@ -93,7 +126,6 @@ export const CookieConsentProvider = ({
       contents: true,
     };
     setConsent(newConsent);
-    saveConsentToLocalStorage(newConsent);
     setSubmitted(true);
     setIsFormVisible(false);
   };
@@ -108,7 +140,7 @@ export const CookieConsentProvider = ({
         consent,
         updateConsent,
         allowAll,
-        isFormVisible,
+        isFormVisible: isLoaded && isFormVisible,
         hideForm,
         submitted,
       }}
