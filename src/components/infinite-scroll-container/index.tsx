@@ -10,18 +10,51 @@ export const InfiniteScrollContainer = ({
   children,
 }: InfiniteScrollContainerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [containerWidth, setContainerWidth] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentWidth, setContentWidth] = useState(0);
   const controls = useAnimation();
+  const [duration, setDuration] = useState(25);
 
   useEffect(() => {
-    if (containerRef.current) {
-      setContainerWidth(containerRef.current.getBoundingClientRect().width);
+    const handleResize = () => {
+      if (contentRef.current && containerRef.current) {
+        const containerWidth =
+          containerRef.current.getBoundingClientRect().width;
+        const contentWidth = contentRef.current.getBoundingClientRect().width;
+        setContentWidth(contentWidth);
+
+        const ratio = contentWidth / containerWidth;
+        let baseDuration;
+        if (window.innerWidth < 768) {
+          baseDuration = 10;
+        } else if (window.innerWidth < 1024) {
+          baseDuration = 20;
+        } else {
+          baseDuration = 25;
+        }
+        setDuration(baseDuration * ratio);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (contentWidth > 0) {
       controls.start({
-        x: -containerWidth,
-        transition: { duration: 15, repeat: Infinity, ease: "linear" },
+        x: -contentWidth / 2,
+        transition: {
+          duration,
+          repeat: Infinity,
+          ease: "linear",
+          repeatType: "loop",
+        },
       });
     }
-  }, [containerRef, controls, containerWidth]);
+  }, [contentWidth, duration, controls]);
 
   return (
     <motion.div
@@ -30,15 +63,18 @@ export const InfiniteScrollContainer = ({
       onMouseEnter={() => controls.stop()}
       onMouseLeave={() =>
         controls.start({
-          x: -containerWidth,
-          transition: { duration: 15, repeat: Infinity, ease: "linear" },
+          x: -contentWidth / 2,
+          transition: {
+            duration,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "loop",
+          },
         })
       }
     >
-      <motion.div className={styles.items} animate={controls}>
+      <motion.div className={styles.items} animate={controls} ref={contentRef}>
         {children}
-      </motion.div>
-      <motion.div className={styles.items} animate={controls}>
         {children}
       </motion.div>
     </motion.div>
