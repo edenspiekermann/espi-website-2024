@@ -9,7 +9,6 @@ export const ScrollIntoView = ({
   duration = 0.2,
   delay = 0,
 }: ScrollIntoViewProps) => {
-  console.log("isInView", isInView);
   const initialStyles = {
     y: scrollAmount,
     overflow: "hidden",
