@@ -1,0 +1,24 @@
+query Person($slug: String) {
+  person(filter: { slug: { eq: $slug } }) {
+    seo: _seoMetaTags {
+      attributes
+      content
+      tag
+    }
+    __typename
+    id
+    name
+    role
+    slug
+    image {
+      responsiveImage {
+        src
+      }
+    }
+    sections {
+      __typename
+      ...ContentTextImage
+      ...StatementCta
+    }
+  }
+}
