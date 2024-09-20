@@ -1,0 +1,97 @@
+@use "../../app/styles/base.scss" as *;
+
+.staggered {
+  background-color: var(--color-espi-black);
+  color: var(--color-white);
+}
+
+.title {
+  padding: 24px 0px;
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  @include as-xl-serif;
+
+  strong {
+    @include as-xl-sans-bold;
+  }
+
+  @include mq(tablet) {
+    grid-column: 2/12;
+  }
+
+  @include mq(desktop) {
+    padding: 32px 0px;
+  }
+}
+
+.items {
+  padding: 24px 0px;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @include mq(tablet) {
+    gap: 48px;
+    padding: 48px 0px;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column-reverse;
+  @include mq(desktop) {
+    flex-direction: row;
+  }
+}
+
+.itemEven {
+  @include mq(desktop) {
+    flex-direction: row-reverse;
+  }
+}
+
+.itemText {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include mq(desktop) {
+    width: 50%;
+  }
+}
+
+.itemTitle {
+  @include as-m-serif;
+  margin-bottom: 16px;
+
+  @include mq(tablet) {
+    margin-bottom: 24px;
+  }
+}
+
+.itemSubtext {
+  @include as-m-text;
+}
+
+.itemMedia {
+  aspect-ratio: 3/2;
+  width: 100%;
+  margin-bottom: 32px;
+  position: relative;
+
+  @include mq(desktop) {
+    width: 50%;
+    margin-right: 0px;
+    margin-left: 76px;
+
+    .itemEven & {
+      margin-bottom: 0px;
+      margin-right: 76px;
+      margin-left: 0px;
+    }
+  }
+}

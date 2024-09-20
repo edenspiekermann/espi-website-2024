@@ -8422,6 +8422,37 @@ export type CaseStudyQuery = {
   } | null;
 };
 
+export type IndustryQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type IndustryQuery = {
+  __typename?: "Query";
+  industry?: {
+    __typename: "IndustryRecord";
+    id: string;
+    industry: string;
+    slug: string;
+    title: string;
+    seo: Array<{
+      __typename?: "Tag";
+      attributes?: Record<string, string> | null;
+      content?: string | null;
+      tag: string;
+    }>;
+    sections: Array<
+      | {
+          __typename: "HeaderWithTagRecord";
+          id: string;
+          title: string;
+          subtitle?: string | null;
+          industry: { __typename?: "IndustryRecord"; industry: string };
+        }
+      | { __typename: "StaggeredRecord" }
+    >;
+  } | null;
+};
+
 export type NewsArticleQueryVariables = Exact<{
   slug?: InputMaybe<Scalars["String"]["input"]>;
 }>;
@@ -8587,6 +8618,8 @@ export type PageQuery = {
           __typename: "DrawerRecord";
           id: string;
           title: string;
+          imageOnLeft: boolean;
+          whiteBackground: boolean;
           items: Array<{
             __typename?: "DrawerItemRecord";
             id: string;
@@ -8630,7 +8663,13 @@ export type PageQuery = {
           showCta: boolean;
           showInquiryInfo: boolean;
         }
-      | { __typename: "HeaderWithTagRecord" }
+      | {
+          __typename: "HeaderWithTagRecord";
+          id: string;
+          title: string;
+          subtitle?: string | null;
+          industry: { __typename?: "IndustryRecord"; industry: string };
+        }
       | {
           __typename: "HomepageHeroRecord";
           id: string;
@@ -8925,7 +8964,31 @@ export type PageQuery = {
             };
           }>;
         }
-      | { __typename: "StaggeredRecord" }
+      | {
+          __typename: "StaggeredRecord";
+          id: string;
+          showDivider: boolean;
+          title: string;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
+          items: Array<{
+            __typename: "StaggeredItemRecord";
+            id: string;
+            title: string;
+            subtext: string;
+            media: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+            };
+          }>;
+        }
       | {
           __typename: "StatementCtaRecord";
           id: string;
@@ -9434,6 +9497,8 @@ export type DrawersFragment = {
   __typename: "DrawerRecord";
   id: string;
   title: string;
+  imageOnLeft: boolean;
+  whiteBackground: boolean;
   items: Array<{
     __typename?: "DrawerItemRecord";
     id: string;
@@ -9522,6 +9587,14 @@ export type HeaderSimpleFragment = {
   subtext?: string | null;
   showCta: boolean;
   showInquiryInfo: boolean;
+};
+
+export type HeaderWithTagFragment = {
+  __typename: "HeaderWithTagRecord";
+  id: string;
+  title: string;
+  subtitle?: string | null;
+  industry: { __typename?: "IndustryRecord"; industry: string };
 };
 
 export type HomepageHeroFragment = {
@@ -9868,6 +9941,32 @@ export type SliderNewsCardFragment = {
       alt?: string | null;
     } | null;
   };
+};
+
+export type StaggeredFragment = {
+  __typename: "StaggeredRecord";
+  id: string;
+  showDivider: boolean;
+  title: string;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
+  items: Array<{
+    __typename: "StaggeredItemRecord";
+    id: string;
+    title: string;
+    subtext: string;
+    media: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+    };
+  }>;
 };
 
 export type StatementCtaFragment = {
@@ -10872,6 +10971,8 @@ export const DrawersFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "imageOnLeft" } },
+          { kind: "Field", name: { kind: "Name", value: "whiteBackground" } },
         ],
       },
     },
@@ -10964,6 +11065,48 @@ export const HeaderSimpleFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<HeaderSimpleFragment, unknown>;
+export const HeaderWithTagFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeaderWithTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HeaderWithTagRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "title" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HeaderWithTagFragment, unknown>;
 export const HomepageHeroFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -12401,6 +12544,88 @@ export const SliderNewsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<SliderNewsFragment, unknown>;
+export const StaggeredFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Staggered" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StaggeredRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "title" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "subtext" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "media" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "responsiveImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "src" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "alt" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StaggeredFragment, unknown>;
 export const StatementCtaFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -14621,6 +14846,153 @@ export const CaseStudyDocument = {
     },
   ],
 } as unknown as DocumentNode<CaseStudyQuery, CaseStudyQueryVariables>;
+export const IndustryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Industry" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "slug" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filter" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "slug" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "seo" },
+                  name: { kind: "Name", value: "_seoMetaTags" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "attributes" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "content" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "tag" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "title" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "markdown" },
+                      value: { kind: "BooleanValue", value: true },
+                    },
+                  ],
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sections" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "HeaderWithTag" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeaderWithTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HeaderWithTagRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "title" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<IndustryQuery, IndustryQueryVariables>;
 export const NewsArticleDocument = {
   kind: "Document",
   definitions: [
@@ -15296,6 +15668,14 @@ export const PageDocument = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "TeaserCta" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Staggered" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "HeaderWithTag" },
                       },
                     ],
                   },
@@ -16347,6 +16727,8 @@ export const PageDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "imageOnLeft" } },
+          { kind: "Field", name: { kind: "Name", value: "whiteBackground" } },
         ],
       },
     },
@@ -17096,6 +17478,120 @@ export const PageDocument = {
                     ],
                   },
                 },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Staggered" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StaggeredRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "title" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "subtext" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "media" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "responsiveImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "src" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "alt" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeaderWithTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HeaderWithTagRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "title" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
               ],
             },
           },

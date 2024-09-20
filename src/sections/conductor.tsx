@@ -28,6 +28,8 @@ import { SliderGallery } from "./slider-gallery";
 import { SliderNews } from "./slider-news";
 import { TeaserLeadership } from "./teaser-leadership";
 import { ContentTextImage } from "./content-text-image";
+import { Staggered } from "./staggered";
+import { HeaderWithTag } from "./header-with-tag";
 import { TeaserCta } from "./teaser-cta";
 
 const sectionSwitch = (section: any) => {
@@ -88,6 +90,10 @@ const sectionSwitch = (section: any) => {
       return <TeaserLeadership key={section.id} {...section} />;
     case "ContentTextImageRecord":
       return <ContentTextImage key={section.id} {...section} />;
+    case "StaggeredRecord":
+      return <Staggered key={section.id} {...section} />;
+    case "HeaderWithTagRecord":
+      return <HeaderWithTag key={section.id} {...section} />;
     case "TeaserCtaRecord":
       return <TeaserCta key={section.id} {...section} />;
     default:
