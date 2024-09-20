@@ -8618,6 +8618,8 @@ export type PageQuery = {
           __typename: "DrawerRecord";
           id: string;
           title: string;
+          imageOnLeft: boolean;
+          whiteBackground: boolean;
           items: Array<{
             __typename?: "DrawerItemRecord";
             id: string;
@@ -9472,6 +9474,8 @@ export type DrawersFragment = {
   __typename: "DrawerRecord";
   id: string;
   title: string;
+  imageOnLeft: boolean;
+  whiteBackground: boolean;
   items: Array<{
     __typename?: "DrawerItemRecord";
     id: string;
@@ -10919,6 +10923,8 @@ export const DrawersFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "imageOnLeft" } },
+          { kind: "Field", name: { kind: "Name", value: "whiteBackground" } },
         ],
       },
     },
@@ -16595,6 +16601,8 @@ export const PageDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "imageOnLeft" } },
+          { kind: "Field", name: { kind: "Name", value: "whiteBackground" } },
         ],
       },
     },
