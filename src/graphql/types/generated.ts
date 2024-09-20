@@ -274,6 +274,7 @@ export type CallToActionRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
+  isDownloadButton: Scalars["BooleanType"]["output"];
   text: Scalars["String"]["output"];
   url: Scalars["String"]["output"];
 };
@@ -896,8 +897,10 @@ export type DrawerModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  imageOnLeft?: InputMaybe<BooleanFilter>;
   media?: InputMaybe<FileFilter>;
   title?: InputMaybe<StringFilter>;
+  whiteBackground?: InputMaybe<BooleanFilter>;
 };
 
 export enum DrawerModelOrderBy {
@@ -919,8 +922,12 @@ export enum DrawerModelOrderBy {
   UpdatedAtDesc = "_updatedAt_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  ImageOnLeftAsc = "imageOnLeft_ASC",
+  ImageOnLeftDesc = "imageOnLeft_DESC",
   TitleAsc = "title_ASC",
   TitleDesc = "title_DESC",
+  WhiteBackgroundAsc = "whiteBackground_ASC",
+  WhiteBackgroundDesc = "whiteBackground_DESC",
 }
 
 /** Record of type Drawer (drawer) */
@@ -940,9 +947,11 @@ export type DrawerRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
+  imageOnLeft: Scalars["BooleanType"]["output"];
   items: Array<DrawerItemRecord>;
   media: FileField;
   title: Scalars["String"]["output"];
+  whiteBackground: Scalars["BooleanType"]["output"];
 };
 
 /** Record of type Drawer (drawer) */
@@ -3266,6 +3275,8 @@ export type IndustryModelFilter = {
   industry?: InputMaybe<StringFilter>;
   sections?: InputMaybe<LinksFilter>;
   slug?: InputMaybe<SlugFilter>;
+  teaserMedia?: InputMaybe<FileFilter>;
+  teaserText?: InputMaybe<StringFilter>;
   title?: InputMaybe<TextFilter>;
 };
 
@@ -3290,6 +3301,8 @@ export enum IndustryModelOrderBy {
   IdDesc = "id_DESC",
   IndustryAsc = "industry_ASC",
   IndustryDesc = "industry_DESC",
+  TeaserTextAsc = "teaserText_ASC",
+  TeaserTextDesc = "teaserText_DESC",
 }
 
 export type IndustryModelSectionsField = HeaderWithTagRecord | StaggeredRecord;
@@ -3314,6 +3327,8 @@ export type IndustryRecord = RecordInterface & {
   industry: Scalars["String"]["output"];
   sections: Array<IndustryModelSectionsField>;
   slug: Scalars["String"]["output"];
+  teaserMedia?: Maybe<FileField>;
+  teaserText?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
 };
 
@@ -4181,6 +4196,7 @@ export type PageModelSectionsField =
   | StatsSectionRecord
   | TeaserCaseGridRecord
   | TeaserCaseStaggeredRecord
+  | TeaserCtaRecord
   | TeaserLeadershipRecord
   | TeaserNewsGridRecord
   | TeaserRelatedCaseRecord
@@ -4547,6 +4563,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allTeaserCaseStaggeredsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allTeaserCtasMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allTeaserLeadershipsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allTeaserNewsGridsMeta: CollectionMetadata;
@@ -4642,6 +4660,8 @@ export type Query = {
   allTeaserCaseGrids: Array<TeaserCaseGridRecord>;
   /** Returns a collection of records */
   allTeaserCaseStaggereds: Array<TeaserCaseStaggeredRecord>;
+  /** Returns a collection of records */
+  allTeaserCtas: Array<TeaserCtaRecord>;
   /** Returns a collection of records */
   allTeaserLeaderships: Array<TeaserLeadershipRecord>;
   /** Returns a collection of records */
@@ -4744,6 +4764,8 @@ export type Query = {
   teaserCaseGrid?: Maybe<TeaserCaseGridRecord>;
   /** Returns a specific record */
   teaserCaseStaggered?: Maybe<TeaserCaseStaggeredRecord>;
+  /** Returns a specific record */
+  teaserCta?: Maybe<TeaserCtaRecord>;
   /** Returns a specific record */
   teaserLeadership?: Maybe<TeaserLeadershipRecord>;
   /** Returns a specific record */
@@ -5005,6 +5027,12 @@ export type Query_AllTeaserCaseGridsMetaArgs = {
 /** The query root for this schema */
 export type Query_AllTeaserCaseStaggeredsMetaArgs = {
   filter?: InputMaybe<TeaserCaseStaggeredModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllTeaserCtasMetaArgs = {
+  filter?: InputMaybe<TeaserCtaModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -5465,6 +5493,16 @@ export type QueryAllTeaserCaseStaggeredsArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllTeaserCtasArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TeaserCtaModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<TeaserCtaModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllTeaserLeadershipsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<TeaserLeadershipModelFilter>;
@@ -5872,6 +5910,14 @@ export type QueryTeaserCaseStaggeredArgs = {
   filter?: InputMaybe<TeaserCaseStaggeredModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<TeaserCaseStaggeredModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryTeaserCtaArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<TeaserCtaModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<TeaserCtaModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -7265,6 +7311,72 @@ export type TeaserCaseStaggeredRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+export type TeaserCtaModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<TeaserCtaModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<TeaserCtaModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  industryInsight?: InputMaybe<LinkFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export enum TeaserCtaModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  TextAsc = "text_ASC",
+  TextDesc = "text_DESC",
+}
+
+/** Record of type Teaser Cta (teaser_cta) */
+export type TeaserCtaRecord = RecordInterface & {
+  __typename?: "TeaserCtaRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  cta?: Maybe<CallToActionRecord>;
+  id: Scalars["ItemId"]["output"];
+  industryInsight: IndustryRecord;
+  text: Scalars["String"]["output"];
+};
+
+/** Record of type Teaser Cta (teaser_cta) */
+export type TeaserCtaRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 export type TeaserLeadershipModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<TeaserLeadershipModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<TeaserLeadershipModelFilter>>>;
@@ -8310,6 +8422,37 @@ export type CaseStudyQuery = {
   } | null;
 };
 
+export type IndustryQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type IndustryQuery = {
+  __typename?: "Query";
+  industry?: {
+    __typename: "IndustryRecord";
+    id: string;
+    industry: string;
+    slug: string;
+    title: string;
+    seo: Array<{
+      __typename?: "Tag";
+      attributes?: Record<string, string> | null;
+      content?: string | null;
+      tag: string;
+    }>;
+    sections: Array<
+      | {
+          __typename: "HeaderWithTagRecord";
+          id: string;
+          title: string;
+          subtitle?: string | null;
+          industry: { __typename?: "IndustryRecord"; industry: string };
+        }
+      | { __typename: "StaggeredRecord" }
+    >;
+  } | null;
+};
+
 export type NewsArticleQueryVariables = Exact<{
   slug?: InputMaybe<Scalars["String"]["input"]>;
 }>;
@@ -8518,7 +8661,13 @@ export type PageQuery = {
           showCta: boolean;
           showInquiryInfo: boolean;
         }
-      | { __typename: "HeaderWithTagRecord" }
+      | {
+          __typename: "HeaderWithTagRecord";
+          id: string;
+          title: string;
+          subtitle?: string | null;
+          industry: { __typename?: "IndustryRecord"; industry: string };
+        }
       | {
           __typename: "HomepageHeroRecord";
           id: string;
@@ -8972,6 +9121,7 @@ export type PageQuery = {
             };
           }>;
         }
+      | { __typename: "TeaserCtaRecord" }
       | {
           __typename: "TeaserLeadershipRecord";
           id: string;
@@ -9410,6 +9560,14 @@ export type HeaderSimpleFragment = {
   subtext?: string | null;
   showCta: boolean;
   showInquiryInfo: boolean;
+};
+
+export type HeaderWithTagFragment = {
+  __typename: "HeaderWithTagRecord";
+  id: string;
+  title: string;
+  subtitle?: string | null;
+  industry: { __typename?: "IndustryRecord"; industry: string };
 };
 
 export type HomepageHeroFragment = {
@@ -10853,6 +11011,48 @@ export const HeaderSimpleFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<HeaderSimpleFragment, unknown>;
+export const HeaderWithTagFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeaderWithTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HeaderWithTagRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "title" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HeaderWithTagFragment, unknown>;
 export const HomepageHeroFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -14518,6 +14718,153 @@ export const CaseStudyDocument = {
     },
   ],
 } as unknown as DocumentNode<CaseStudyQuery, CaseStudyQueryVariables>;
+export const IndustryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Industry" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "slug" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filter" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "slug" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "seo" },
+                  name: { kind: "Name", value: "_seoMetaTags" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "attributes" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "content" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "tag" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "title" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "markdown" },
+                      value: { kind: "BooleanValue", value: true },
+                    },
+                  ],
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sections" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "HeaderWithTag" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeaderWithTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HeaderWithTagRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "title" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<IndustryQuery, IndustryQueryVariables>;
 export const NewsArticleDocument = {
   kind: "Document",
   definitions: [
@@ -15193,6 +15540,10 @@ export const PageDocument = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "Staggered" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "HeaderWithTag" },
                       },
                     ],
                   },
@@ -17001,6 +17352,43 @@ export const PageDocument = {
                     ],
                   },
                 },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeaderWithTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HeaderWithTagRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "title" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
               ],
             },
           },
