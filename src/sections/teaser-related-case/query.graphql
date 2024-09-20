@@ -6,11 +6,12 @@ fragment TeaserRelatedCase on TeaserRelatedCaseRecord {
     ...Divider
   }
   caseStudies {
-    ...CaseStudyGridCard
+    ...CaseStudyGridCardRelatedCase
   }
 }
 
-fragment CaseStudyGridCard on CaseStudyRecord {
+fragment CaseStudyGridCardRelatedCase on CaseStudyRecord {
+  __typename
   id
   title
   subtitle

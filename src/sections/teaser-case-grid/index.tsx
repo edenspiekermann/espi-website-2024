@@ -6,11 +6,12 @@ import {
   TeaserCaseGridFragment,
 } from "@/graphql/types/generated";
 import React, { useEffect, useState } from "react";
-import { GridCard } from "./card";
+import { CaseStudyGridCard } from "./case-stuy-card";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
 import { RevealButton } from "@/components/button/reveal-button";
 import { FilterWork } from "@/components/filter/filter-work";
+import { IndustryGridCard } from "./industry-card";
 
 export const TeaserCaseGrid = ({
   caseStudies,
@@ -25,7 +26,9 @@ export const TeaserCaseGrid = ({
   useEffect(() => {
     let industryList: IndustryFragment[] = [];
     caseStudies.map((caseStudy) => {
-      industryList = [...industryList, ...caseStudy.relatedIndustries];
+      if (caseStudy.__typename === "CaseStudyRecord") {
+        industryList = [...industryList, ...caseStudy.relatedIndustries];
+      }
     });
     const uniqueIndustries = Array.from(
       new Set(industryList.map((a) => a.industry)),
@@ -40,7 +43,9 @@ export const TeaserCaseGrid = ({
 
     let servicesList: ServiceFragment[] = [];
     caseStudies.map((caseStudy) => {
-      servicesList = [...servicesList, ...caseStudy.relatedServices];
+      if (caseStudy.__typename === "CaseStudyRecord") {
+        servicesList = [...servicesList, ...caseStudy.relatedServices];
+      }
     });
     const uniqueServices = Array.from(
       new Set(servicesList.map((a) => a.service)),
@@ -61,13 +66,15 @@ export const TeaserCaseGrid = ({
   const filteredCaseStudies =
     selectedFilter && activeCategory
       ? caseStudies.filter((caseStudy) =>
-          activeCategory === "industries"
-            ? caseStudy.relatedIndustries.some(
-                ({ industry }) => industry === selectedFilter,
-              )
-            : caseStudy.relatedServices.some(
-                ({ service }) => service === selectedFilter,
-              ),
+          caseStudy.__typename === "CaseStudyRecord"
+            ? activeCategory === "industries"
+              ? caseStudy.relatedIndustries.some(
+                  ({ industry }) => industry === selectedFilter,
+                )
+              : caseStudy.relatedServices.some(
+                  ({ service }) => service === selectedFilter,
+                )
+            : false,
         )
       : caseStudies;
 
@@ -89,13 +96,28 @@ export const TeaserCaseGrid = ({
         />
       )}
       <section className={teaserCaseGridClass}>
-        {filteredCaseStudies.slice(0, visibleCount).map((caseStudy, index) => (
-          <GridCard
-            key={caseStudy.id}
-            {...caseStudy}
-            visible={index < visibleCount}
-          />
-        ))}
+        {filteredCaseStudies.slice(0, visibleCount).map((caseStudy, index) => {
+          switch (caseStudy.__typename) {
+            case "CaseStudyRecord":
+              return (
+                <CaseStudyGridCard
+                  key={caseStudy.id}
+                  {...caseStudy}
+                  visible={index < visibleCount}
+                />
+              );
+            case "IndustryRecord":
+              return (
+                <IndustryGridCard
+                  key={caseStudy.id}
+                  {...caseStudy}
+                  visible={index < visibleCount}
+                />
+              );
+            default:
+              return null;
+          }
+        })}
         {filteredCaseStudies.length > visibleCount && (
           <div className={styles.button}>
             <RevealButton text="Load more" onClick={handleLoadMore} />
