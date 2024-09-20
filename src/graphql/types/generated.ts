@@ -1411,6 +1411,81 @@ export type HeaderSimpleRecordSubtextArgs = {
   markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
+export type HeaderWithTagModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<HeaderWithTagModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<HeaderWithTagModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  industry?: InputMaybe<LinkFilter>;
+  subtitle?: InputMaybe<TextFilter>;
+  title?: InputMaybe<TextFilter>;
+};
+
+export enum HeaderWithTagModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+}
+
+/** Record of type Header With Tag (header_with_tag) */
+export type HeaderWithTagRecord = RecordInterface & {
+  __typename?: "HeaderWithTagRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  industry: IndustryRecord;
+  subtitle?: Maybe<Scalars["String"]["output"]>;
+  title: Scalars["String"]["output"];
+};
+
+/** Record of type Header With Tag (header_with_tag) */
+export type HeaderWithTagRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Header With Tag (header_with_tag) */
+export type HeaderWithTagRecordSubtitleArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Record of type Header With Tag (header_with_tag) */
+export type HeaderWithTagRecordTitleArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
 export type HomepageHeroModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<HomepageHeroModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<HomepageHeroModelFilter>>>;
@@ -3189,6 +3264,7 @@ export type IndustryModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
   industry?: InputMaybe<StringFilter>;
+  sections?: InputMaybe<LinksFilter>;
 };
 
 export enum IndustryModelOrderBy {
@@ -3232,6 +3308,7 @@ export type IndustryRecord = RecordInterface & {
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
   industry: Scalars["String"]["output"];
+  sections: Array<HeaderWithTagRecord>;
 };
 
 /** Record of type Industry (industry) */
@@ -4073,6 +4150,7 @@ export type PageModelSectionsField =
   | DrawerRecord
   | FullWidthImageRecord
   | HeaderSimpleRecord
+  | HeaderWithTagRecord
   | HomepageHeroRecord
   | ImageWithStatRecord
   | LocationTeaserRecord
@@ -4395,6 +4473,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allHeaderSimplesMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allHeaderWithTagsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allHomepageHerosMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allImageWithStatsMeta: CollectionMetadata;
@@ -4487,6 +4567,8 @@ export type Query = {
   /** Returns a collection of records */
   allHeaderSimples: Array<HeaderSimpleRecord>;
   /** Returns a collection of records */
+  allHeaderWithTags: Array<HeaderWithTagRecord>;
+  /** Returns a collection of records */
   allHomepageHeros: Array<HomepageHeroRecord>;
   /** Returns a collection of records */
   allImageWithStats: Array<ImageWithStatRecord>;
@@ -4578,6 +4660,8 @@ export type Query = {
   headerNews?: Maybe<HeaderNewsRecord>;
   /** Returns a specific record */
   headerSimple?: Maybe<HeaderSimpleRecord>;
+  /** Returns a specific record */
+  headerWithTag?: Maybe<HeaderWithTagRecord>;
   /** Returns a specific record */
   homepageHero?: Maybe<HomepageHeroRecord>;
   /** Returns a specific record */
@@ -4717,6 +4801,12 @@ export type Query_AllHeaderNewsMetaArgs = {
 /** The query root for this schema */
 export type Query_AllHeaderSimplesMetaArgs = {
   filter?: InputMaybe<HeaderSimpleModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllHeaderWithTagsMetaArgs = {
+  filter?: InputMaybe<HeaderWithTagModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -5037,6 +5127,16 @@ export type QueryAllHeaderSimplesArgs = {
   first?: InputMaybe<Scalars["IntType"]["input"]>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<HeaderSimpleModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
+export type QueryAllHeaderWithTagsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<HeaderWithTagModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<HeaderWithTagModelOrderBy>>>;
   skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
@@ -5472,6 +5572,14 @@ export type QueryHeaderSimpleArgs = {
   filter?: InputMaybe<HeaderSimpleModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<HeaderSimpleModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QueryHeaderWithTagArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<HeaderWithTagModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<HeaderWithTagModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -8265,6 +8373,13 @@ export type PageQuery = {
           showInquiryInfo: boolean;
         }
       | {
+          __typename: "HeaderWithTagRecord";
+          id: string;
+          title: string;
+          subtitle?: string | null;
+          industry: { __typename?: "IndustryRecord"; industry: string };
+        }
+      | {
           __typename: "HomepageHeroRecord";
           id: string;
           media: {
@@ -9130,6 +9245,14 @@ export type HeaderSimpleFragment = {
   subtext?: string | null;
   showCta: boolean;
   showInquiryInfo: boolean;
+};
+
+export type HeaderWithTagFragment = {
+  __typename: "HeaderWithTagRecord";
+  id: string;
+  title: string;
+  subtitle?: string | null;
+  industry: { __typename?: "IndustryRecord"; industry: string };
 };
 
 export type HomepageHeroFragment = {
@@ -10547,6 +10670,38 @@ export const HeaderSimpleFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<HeaderSimpleFragment, unknown>;
+export const HeaderWithTagFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeaderWithTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HeaderWithTagRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HeaderWithTagFragment, unknown>;
 export const HomepageHeroFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -14802,6 +14957,10 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "TeaserLeadership" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "HeaderWithTag" },
+                      },
                     ],
                   },
                 },
@@ -16532,6 +16691,33 @@ export const PageDocument = {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "Person" },
                 },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeaderWithTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HeaderWithTagRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
               ],
             },
           },

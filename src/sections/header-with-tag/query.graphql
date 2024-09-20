@@ -1,0 +1,9 @@
+fragment HeaderWithTag on HeaderWithTagRecord {
+  __typename
+  id
+  title
+  subtitle
+  industry {
+    industry
+  }
+}
