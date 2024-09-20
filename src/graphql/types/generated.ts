@@ -9000,7 +9000,7 @@ export type PageQuery = {
             invertColor: boolean;
           } | null;
           callToAction: {
-            __typename?: "PageLinkRecord";
+            __typename: "PageLinkRecord";
             text: string;
             slug: string;
           };
@@ -9123,7 +9123,30 @@ export type PageQuery = {
             };
           }>;
         }
-      | { __typename: "TeaserCtaRecord" }
+      | {
+          __typename: "TeaserCtaRecord";
+          id: string;
+          text: string;
+          cta?: {
+            __typename?: "CallToActionRecord";
+            text: string;
+            url: string;
+            isDownloadButton: boolean;
+          } | null;
+          industryInsight: {
+            __typename?: "IndustryRecord";
+            teaserText?: string | null;
+            slug: string;
+            teaserMedia?: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+            } | null;
+          };
+        }
       | {
           __typename: "TeaserLeadershipRecord";
           id: string;
@@ -9337,7 +9360,7 @@ export type PersonQuery = {
             invertColor: boolean;
           } | null;
           callToAction: {
-            __typename?: "PageLinkRecord";
+            __typename: "PageLinkRecord";
             text: string;
             slug: string;
           };
@@ -9956,7 +9979,7 @@ export type StatementCtaFragment = {
     text?: string | null;
     invertColor: boolean;
   } | null;
-  callToAction: { __typename?: "PageLinkRecord"; text: string; slug: string };
+  callToAction: { __typename: "PageLinkRecord"; text: string; slug: string };
 };
 
 export type StatementLargeFragment = {
@@ -10123,6 +10146,31 @@ export type CaseStudyCardFragment = {
       alt?: string | null;
     } | null;
     video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
+  };
+};
+
+export type TeaserCtaFragment = {
+  __typename: "TeaserCtaRecord";
+  id: string;
+  text: string;
+  cta?: {
+    __typename?: "CallToActionRecord";
+    text: string;
+    url: string;
+    isDownloadButton: boolean;
+  } | null;
+  industryInsight: {
+    __typename?: "IndustryRecord";
+    teaserText?: string | null;
+    slug: string;
+    teaserMedia?: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+    } | null;
   };
 };
 
@@ -12614,6 +12662,7 @@ export const StatementCtaFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 {
                   kind: "InlineFragment",
                   typeCondition: {
@@ -13342,6 +13391,79 @@ export const TeaserCaseStaggeredFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<TeaserCaseStaggeredFragment, unknown>;
+export const TeaserCtaFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserCta" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserCtaRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cta" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "isDownloadButton" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industryInsight" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "teaserText" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "teaserMedia" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "responsiveImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "src" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "alt" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TeaserCtaFragment, unknown>;
 export const PersonFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -15545,6 +15667,10 @@ export const PageDocument = {
                       },
                       {
                         kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TeaserCta" },
+                      },
+                      {
+                        kind: "FragmentSpread",
                         name: { kind: "Name", value: "Staggered" },
                       },
                       {
@@ -16639,6 +16765,7 @@ export const PageDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 {
                   kind: "InlineFragment",
                   typeCondition: {
@@ -17291,6 +17418,74 @@ export const PageDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TeaserCta" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TeaserCtaRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cta" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "isDownloadButton" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industryInsight" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "teaserText" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "teaserMedia" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "responsiveImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "src" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "alt" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "Staggered" },
       typeCondition: {
         kind: "NamedType",
@@ -17795,6 +17990,7 @@ export const PersonDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 {
                   kind: "InlineFragment",
                   typeCondition: {

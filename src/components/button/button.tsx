@@ -6,6 +6,7 @@ import styles from "./styles.module.scss";
 import classNames from "classnames";
 import { ButtonArrowRight } from "./button-arrow-right";
 import Link from "next/link";
+import { ButtonArrowDownload } from "./button-arrow-download";
 
 export const Button = ({
   text,
@@ -13,6 +14,7 @@ export const Button = ({
   isInverted = false,
   slug,
   onClick,
+  isDownloadButton,
 }: ButtonProperties) => {
   const buttonClass = classNames({
     [styles.button]: true,
@@ -23,9 +25,10 @@ export const Button = ({
     return (
       <Link
         href={slug}
+        scroll={false}
         title={text}
         className={buttonClass}
-        aria-label="Navigate to website"
+        aria-label={text}
       >
         <span className={styles.text}>{text}</span>
         <ButtonArrowRight />
@@ -43,6 +46,15 @@ export const Button = ({
         <span className={styles.text}>{text}</span>
         <ButtonArrowRight />
       </button>
+    );
+  }
+
+  if (isDownloadButton) {
+    return (
+      <a href={url} className={buttonClass} aria-label="Download file">
+        <span className={styles.text}>{text}</span>
+        <ButtonArrowDownload />
+      </a>
     );
   }
   return (
