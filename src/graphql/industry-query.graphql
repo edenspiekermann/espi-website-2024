@@ -1,0 +1,18 @@
+query Industry($slug: String) {
+  industry(filter: { slug: { eq: $slug } }) {
+    seo: _seoMetaTags {
+      attributes
+      content
+      tag
+    }
+    __typename
+    id
+    industry
+    slug
+    title(markdown: true)
+    sections {
+      __typename
+      ...HeaderWithTag
+    }
+  }
+}

@@ -3265,6 +3265,8 @@ export type IndustryModelFilter = {
   id?: InputMaybe<ItemIdFilter>;
   industry?: InputMaybe<StringFilter>;
   sections?: InputMaybe<LinksFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  title?: InputMaybe<TextFilter>;
 };
 
 export enum IndustryModelOrderBy {
@@ -3309,11 +3311,18 @@ export type IndustryRecord = RecordInterface & {
   id: Scalars["ItemId"]["output"];
   industry: Scalars["String"]["output"];
   sections: Array<HeaderWithTagRecord>;
+  slug: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
 };
 
 /** Record of type Industry (industry) */
 export type IndustryRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Industry (industry) */
+export type IndustryRecordTitleArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 /** Specifies how to filter by ID */
@@ -8164,6 +8173,34 @@ export type CaseStudyQuery = {
   } | null;
 };
 
+export type IndustryQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type IndustryQuery = {
+  __typename?: "Query";
+  industry?: {
+    __typename: "IndustryRecord";
+    id: string;
+    industry: string;
+    slug: string;
+    title: string;
+    seo: Array<{
+      __typename?: "Tag";
+      attributes?: Record<string, string> | null;
+      content?: string | null;
+      tag: string;
+    }>;
+    sections: Array<{
+      __typename: "HeaderWithTagRecord";
+      id: string;
+      title: string;
+      subtitle?: string | null;
+      industry: { __typename?: "IndustryRecord"; industry: string };
+    }>;
+  } | null;
+};
+
 export type NewsArticleQueryVariables = Exact<{
   slug?: InputMaybe<Scalars["String"]["input"]>;
 }>;
@@ -10685,7 +10722,17 @@ export const HeaderWithTagFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "title" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
           { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           {
             kind: "Field",
@@ -14285,6 +14332,153 @@ export const CaseStudyDocument = {
     },
   ],
 } as unknown as DocumentNode<CaseStudyQuery, CaseStudyQueryVariables>;
+export const IndustryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Industry" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "slug" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filter" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "slug" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "eq" },
+                            value: {
+                              kind: "Variable",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  alias: { kind: "Name", value: "seo" },
+                  name: { kind: "Name", value: "_seoMetaTags" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "attributes" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "content" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "tag" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "title" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "markdown" },
+                      value: { kind: "BooleanValue", value: true },
+                    },
+                  ],
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sections" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "HeaderWithTag" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeaderWithTag" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "HeaderWithTagRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "title" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "industry" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "industry" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<IndustryQuery, IndustryQueryVariables>;
 export const NewsArticleDocument = {
   kind: "Document",
   definitions: [
@@ -16709,7 +16903,17 @@ export const PageDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "title" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
           { kind: "Field", name: { kind: "Name", value: "subtitle" } },
           {
             kind: "Field",
