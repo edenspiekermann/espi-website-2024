@@ -4,4 +4,5 @@ export interface ButtonProperties {
   isInverted?: boolean;
   url?: string;
   slug?: string;
+  isDownloadButton?: boolean;
 }

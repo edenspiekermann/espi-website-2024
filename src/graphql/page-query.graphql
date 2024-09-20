@@ -33,6 +33,7 @@ query Page($slug: String) {
       ...SliderGallery
       ...SliderNews
       ...TeaserLeadership
+      ...TeaserCta
     }
     invertNavColor
   }

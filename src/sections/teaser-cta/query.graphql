@@ -1,0 +1,20 @@
+fragment TeaserCta on TeaserCtaRecord {
+  __typename
+  id
+  text
+  cta {
+    text
+    url
+    isDownloadButton
+  }
+  industryInsight {
+    teaserText
+    slug
+    teaserMedia {
+      responsiveImage {
+        src
+        alt
+      }
+    }
+  }
+}
