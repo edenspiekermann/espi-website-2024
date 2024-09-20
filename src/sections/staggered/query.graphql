@@ -1,0 +1,22 @@
+fragment Staggered on StaggeredRecord {
+  __typename
+  id
+  showDivider
+  divider {
+    text
+    invertColor
+  }
+  title(markdown: true)
+  items {
+    __typename
+    id
+    title
+    subtext
+    media {
+      responsiveImage {
+        src
+        alt
+      }
+    }
+  }
+}

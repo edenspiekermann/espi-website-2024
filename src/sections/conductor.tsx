@@ -28,6 +28,11 @@ import { SliderGallery } from "./slider-gallery";
 import { SliderNews } from "./slider-news";
 import { TeaserLeadership } from "./teaser-leadership";
 import { ContentTextImage } from "./content-text-image";
+<<<<<<< HEAD
+import { Staggered } from "./staggered";
+=======
+import { HeaderWithTag } from "./header-with-tag";
+>>>>>>> develop
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
@@ -87,6 +92,13 @@ const sectionSwitch = (section: any) => {
       return <TeaserLeadership key={section.id} {...section} />;
     case "ContentTextImageRecord":
       return <ContentTextImage key={section.id} {...section} />;
+<<<<<<< HEAD
+    case "StaggeredRecord":
+      return <Staggered key={section.id} {...section} />;
+=======
+    case "HeaderWithTagRecord":
+      return <HeaderWithTag key={section.id} {...section} />;
+>>>>>>> develop
     default:
       return <SectionDevelopment key={nanoid()} {...section} />;
   }

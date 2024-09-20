@@ -1,0 +1,36 @@
+@use "../../app/styles/base.scss" as *;
+
+.headerWithTag {
+  @include mqHelper("padding", 40px 0px 24px, 40px 0px 32px, 80px 0px 32px);
+}
+
+.tag {
+  margin-bottom: 16px;
+  grid-column: 1/-1;
+}
+
+.title {
+  grid-column: 1/-1;
+  margin-bottom: 56px;
+  @include as-xl-serif;
+  strong {
+    @include as-xl-sans-bold;
+  }
+
+  @include mq("desktop") {
+    grid-column: span 10;
+    margin-bottom: 96px;
+  }
+}
+
+.subtitle {
+  grid-column: 1/-1;
+  margin-bottom: 24px;
+  @include as-m-text;
+  @include mq("tablet") {
+    grid-column: span 10;
+  }
+  @include mq("desktop") {
+    grid-column: span 6;
+  }
+}
