@@ -1,4 +1,7 @@
-import { TeaserRelatedCaseFragment } from "@/graphql/types/generated";
+import {
+  CaseStudyGridCardRelatedCaseFragment,
+  TeaserRelatedCaseFragment,
+} from "@/graphql/types/generated";
 import React from "react";
 import styles from "./styles.module.scss";
 import { Divider } from "@/components/divider/divider";
@@ -13,9 +16,15 @@ export const TeaserRelatedCase = ({
     <section>
       {showDivider && divider && <Divider {...divider} />}
       <div className={`${[styles.teaserRelatedCase]} container`}>
-        {caseStudies?.map((caseStudy) => (
-          <CaseStudyRelatedCard key={caseStudy.id} {...caseStudy} />
-        ))}
+        {caseStudies?.map(
+          (caseStudy) =>
+            caseStudy.__typename === "CaseStudyRecord" && (
+              <CaseStudyRelatedCard
+                key={caseStudy.id}
+                {...(caseStudy as CaseStudyGridCardRelatedCaseFragment)}
+              />
+            ),
+        )}
       </div>
     </section>
   );

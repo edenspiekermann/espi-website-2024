@@ -1,6 +1,6 @@
 import { CaseStudyGridCardFragment } from "@/graphql/types/generated";
 import React from "react";
-import styles from "./styles.module.scss";
+import styles from "./case-study-card.module.scss";
 import Link from "next/link";
 import { Media } from "@/components/media";
 import { MediaProperties } from "@/components/media/interfaces";
@@ -10,7 +10,7 @@ interface GridCardProperties extends CaseStudyGridCardFragment {
   visible?: boolean;
 }
 
-export const GridCard = ({
+export const CaseStudyGridCard = ({
   title,
   subtitle,
   cardMedia,

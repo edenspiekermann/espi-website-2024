@@ -3,11 +3,28 @@ fragment TeaserCaseGrid on TeaserCaseGridRecord {
   id
   showFilter
   caseStudies {
+    __typename
     ...CaseStudyGridCard
+    ...IndustryGridCard
+  }
+}
+
+fragment IndustryGridCard on IndustryRecord {
+  __typename
+  id
+  industry
+  teaserText
+  slug
+  teaserMedia {
+    responsiveImage {
+      src
+      alt
+    }
   }
 }
 
 fragment CaseStudyGridCard on CaseStudyRecord {
+  __typename
   id
   title
   subtitle
