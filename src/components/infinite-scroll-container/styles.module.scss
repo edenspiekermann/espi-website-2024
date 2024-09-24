@@ -1,24 +1,28 @@
 @use "../../app/styles/base.scss" as *;
 
 .carouselContainer {
-  display: flex;
-  overflow-x: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none; // Hide scrollbar in Firefox
+  -ms-overflow-style: none; // Hide scrollbar in IE and Edge
   grid-column: 1/-1;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-  gap: 20px;
 
-  @include mq("desktop") {
-    gap: 32px;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
 .items {
   display: flex;
+  flex-direction: row;
   gap: 20px;
   width: fit-content;
 
   @include mq("desktop") {
     gap: 32px;
+  }
+
+  > * {
+    white-space: normal;
   }
 }

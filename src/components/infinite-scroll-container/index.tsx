@@ -1,6 +1,7 @@
-import { motion, useAnimation } from "framer-motion";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
+import { ScrollIntoView } from "../animation-wrappers/scroll-into-view";
+import { useInView } from "framer-motion";
 
 interface InfiniteScrollContainerProps {
   children?: React.ReactNode;
@@ -10,74 +11,60 @@ export const InfiniteScrollContainer = ({
   children,
 }: InfiniteScrollContainerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [contentWidth, setContentWidth] = useState(0);
-  const controls = useAnimation();
-  const [duration, setDuration] = useState(25);
+  const [isHovered, setIsHovered] = useState(false);
+  const isInView = useInView(containerRef, { once: true, amount: 0.65 });
 
   useEffect(() => {
-    const handleResize = () => {
-      if (contentRef.current && containerRef.current) {
-        const containerWidth =
-          containerRef.current.getBoundingClientRect().width;
-        const contentWidth = contentRef.current.getBoundingClientRect().width;
-        setContentWidth(contentWidth);
+    let animationFrameId: number;
+    const scrollSpeed = 0.75;
 
-        const ratio = contentWidth / containerWidth;
-        let baseDuration;
-        if (window.innerWidth < 768) {
-          baseDuration = 10;
-        } else if (window.innerWidth < 1024) {
-          baseDuration = 20;
-        } else {
-          baseDuration = 25;
+    const smoothScroll = () => {
+      if (!isHovered && containerRef.current) {
+        containerRef.current.scrollLeft += scrollSpeed;
+
+        const maxScrollLeft = containerRef.current.scrollWidth / 3; // Since we duplicate the content
+
+        if (containerRef.current.scrollLeft >= maxScrollLeft) {
+          containerRef.current.scrollLeft -= maxScrollLeft;
         }
-        setDuration(baseDuration * ratio);
       }
+
+      animationFrameId = requestAnimationFrame(smoothScroll);
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    animationFrameId = requestAnimationFrame(smoothScroll);
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovered]);
 
-  useEffect(() => {
-    if (contentWidth > 0) {
-      controls.start({
-        x: -contentWidth / 2,
-        transition: {
-          duration,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        },
-      });
+  const handleScroll = () => {
+    if (containerRef.current) {
+      const maxScrollLeft = containerRef.current.scrollWidth / 3; // Since we duplicate the content
+
+      if (containerRef.current.scrollLeft >= maxScrollLeft) {
+        containerRef.current.scrollLeft -= maxScrollLeft;
+      } else if (containerRef.current.scrollLeft <= 0) {
+        containerRef.current.scrollLeft += maxScrollLeft;
+      }
     }
-  }, [contentWidth, duration, controls]);
+  };
 
   return (
-    <motion.div
+    <div
       className={styles.carouselContainer}
       ref={containerRef}
-      onMouseEnter={() => controls.stop()}
-      onMouseLeave={() =>
-        controls.start({
-          x: -contentWidth / 2,
-          transition: {
-            duration,
-            repeat: Infinity,
-            ease: "linear",
-            repeatType: "loop",
-          },
-        })
-      }
+      onScroll={handleScroll}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <motion.div className={styles.items} animate={controls} ref={contentRef}>
-        {children}
-        {children}
-      </motion.div>
-    </motion.div>
+      <ScrollIntoView isInView={isInView} scrollAmount={50} duration={0.3}>
+        <div className={styles.items}>
+          {children}
+          {children}
+          {children}
+        </div>
+      </ScrollIntoView>
+    </div>
   );
 };
 
