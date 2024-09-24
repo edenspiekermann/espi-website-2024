@@ -37,6 +37,21 @@
   @include mq("desktop") {
     border-radius: 40px;
   }
+
+  &:hover {
+    .content {
+      transition: border-radius 0.2s ease-in-out;
+      border-radius: 40px;
+    }
+    .media {
+      transition: border-radius 0.2s ease-in-out;
+      border-radius: 80px;
+      > * {
+        transform: scale(1);
+        transition: transform 0.2s ease-in-out;
+      }
+    }
+  }
 }
 
 .invertedCard {
@@ -50,6 +65,10 @@
   overflow: hidden;
   object-fit: contain;
   aspect-ratio: 1/1;
+
+  > * {
+    transform: scale(1.05);
+  }
 
   .card:first-of-type & {
     aspect-ratio: 4/3;
