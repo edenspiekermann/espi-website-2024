@@ -20,13 +20,13 @@ export const ScrollIntoView = ({
 
   const animate = {
     y: 0,
+    opacity: 1,
+    overflow: "visible",
     transition: {
       duration: duration,
       delay: delay,
       ease: [0.01, 0.71, 0.28, 1],
     },
-    overflow: "visible",
-    opacity: 1,
   };
 
   const curtainInitial = {
