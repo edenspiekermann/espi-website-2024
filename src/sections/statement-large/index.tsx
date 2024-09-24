@@ -16,7 +16,7 @@ export const StatementLarge = ({
   addCallToAction,
 }: StatementLargeRecord) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 1 });
+  const isInView = useInView(ref, { once: true, amount: 0.7 });
 
   const statementLargeClass = classNames({
     [styles.statementLarge]: true,
@@ -25,8 +25,8 @@ export const StatementLarge = ({
   });
 
   return (
-    <section className={statementLargeClass} ref={ref}>
-      <div className={styles.content}>
+    <section className={statementLargeClass}>
+      <div className={styles.content} ref={ref}>
         <ScrollIntoViewText text={text} isInView={isInView} duration={0.8} />
       </div>
       {addCallToAction && cta && (
