@@ -26,25 +26,30 @@ export const Navigation: React.FC<NavigationProperties> = ({
   const toggle = () => setIsOpen(!isOpen);
   const { scrollY } = useScroll();
   const [isTransparent, setIsTransparent] = useState(true);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   const classNameList = classNames({
     [styles.navigation]: true,
     [styles.hidden]: !show,
-    [styles.inverted]: isInverted,
+    [styles.inverted]: isInverted && !isScrolling,
     [styles.fixed]: isFixed,
     [styles.relative]: !isFixed,
     [styles.transparent]: isTransparent,
+    [styles.scrolling]: isScrolling,
   });
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > lastScrollY) {
       setShow(false);
+      setIsScrolling(false);
     } else {
       setShow(true);
       setIsTransparent(false);
+      setIsScrolling(true);
     }
 
     if (latest === 0) {
+      setIsScrolling(false);
       setIsTransparent(true);
     }
 
@@ -62,7 +67,7 @@ export const Navigation: React.FC<NavigationProperties> = ({
       <div className="container">
         <div className={styles.wrapper}>
           {showLogo ? (
-            <Link href="/" title="home">
+            <Link href="/" title="home" className={styles.logo}>
               <EspiLogo />
             </Link>
           ) : (
@@ -72,7 +77,11 @@ export const Navigation: React.FC<NavigationProperties> = ({
             <MenuToggle isOpen={isOpen} onClick={toggle} />
           </div>
           <div className={styles.nav}>
-            <DesktopNavigation links={links} cta={cta} />
+            <DesktopNavigation
+              links={links}
+              cta={cta}
+              isInverted={isInverted && !isScrolling}
+            />
           </div>
           <MobileNavigation
             links={links}

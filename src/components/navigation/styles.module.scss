@@ -9,10 +9,16 @@
   padding: 23px 0px;
   transition: transform 1.2s ease-in-out;
   background-color: var(--color-white);
+}
 
+.logo {
   svg {
     width: 152px;
     height: auto;
+
+    > path {
+      fill: var(--color-espi-red);
+    }
 
     @include mq("desktop") {
       width: auto;
@@ -41,11 +47,14 @@
 
 .inverted {
   color: var(--color-white);
-  background-color: var(--color-espi-black);
 
   svg path {
     fill: var(--color-white);
   }
+}
+
+.scrolling {
+  background-color: var(--color-white);
 }
 
 .wrapper {
