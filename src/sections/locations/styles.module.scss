@@ -1,7 +1,7 @@
 @use "../../app/styles/base.scss" as *;
 
 .locations {
-  @include mqHelper("padding", 24px 24px 64px, 24px 40px 60px, 40px 70px 80px);
+  @include mqHelper("padding", 24px 0px 64px, 24px 0px 60px, 40px 0px 80px);
   display: flex;
   flex-direction: column;
 }
