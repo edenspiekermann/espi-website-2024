@@ -6,9 +6,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: transparent;
   padding: 23px 0px;
   transition: transform 1.2s ease-in-out;
+  background-color: var(--color-white);
 
   svg {
     width: 152px;
@@ -19,6 +19,10 @@
       padding-left: 0;
     }
   }
+}
+
+.transparent {
+  background-color: transparent;
 }
 
 .fixed {
@@ -37,6 +41,7 @@
 
 .inverted {
   color: var(--color-white);
+  background-color: var(--color-espi-black);
 
   svg path {
     fill: var(--color-white);
