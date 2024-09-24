@@ -69,6 +69,14 @@
   @include mqHelper("border-radius", 20px, 20px, 40px);
   @include as-m-sans;
 
+  &:hover {
+    background-color: var(--color-espi-black);
+    color: var(--color-white);
+    transition:
+      background-color 0.2s ease-in-out,
+      color 0.2s ease-in-out;
+  }
+
   @include mq("tablet") {
     flex-direction: row;
     align-items: center;
