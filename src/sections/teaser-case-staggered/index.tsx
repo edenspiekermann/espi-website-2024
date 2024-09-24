@@ -1,9 +1,12 @@
+"use client";
+
 import { TeaserCaseStaggeredFragment } from "@/graphql/types/generated";
-import React from "react";
+import React, { useRef } from "react";
 import { Card } from "./card";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
 import { StatementNumbered } from "@/components/statement-numbered";
+import { useInView } from "framer-motion";
 
 export const TeaserCaseStaggered = ({
   numberedStatement,
@@ -13,12 +16,23 @@ export const TeaserCaseStaggered = ({
     [styles.teaserCaseStaggered]: true,
     [styles.threeCards]: caseStudies?.length === 3,
   });
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.9 });
+
   return (
-    <section className={teaserCaseStaggeredClass}>
+    <section className={teaserCaseStaggeredClass} ref={ref}>
       {numberedStatement && <StatementNumbered {...numberedStatement} />}
       <div className="container">
-        {caseStudies?.map((caseStudy) => {
-          return <Card key={caseStudy.id} {...caseStudy} />;
+        {caseStudies?.map((caseStudy, index) => {
+          return (
+            <Card
+              key={caseStudy.id}
+              {...caseStudy}
+              isInView={isInView}
+              index={index}
+            />
+          );
         })}
       </div>
     </section>

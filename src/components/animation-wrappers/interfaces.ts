@@ -7,4 +7,6 @@ export interface AnimationWrapperProps {
 
 export interface ScrollIntoViewProps extends AnimationWrapperProps {
   scrollAmount?: number;
+  className?: string;
+  fade?: boolean;
 }

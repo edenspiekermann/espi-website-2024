@@ -17,11 +17,14 @@
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: hidden !important;
   height: fit-content;
-  color: var(--color-espi-black);
-  text-decoration: none;
   margin-bottom: 24px;
+
+  * {
+    color: var(--color-espi-black);
+    text-decoration: none;
+  }
 
   @include mq("tablet") {
     grid-column: span 6;
@@ -37,7 +40,9 @@
 }
 
 .invertedCard {
-  color: var(--color-white);
+  * {
+    color: var(--color-white);
+  }
 }
 
 .media {
