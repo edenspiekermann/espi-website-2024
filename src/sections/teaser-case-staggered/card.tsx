@@ -26,7 +26,6 @@ export const Card = ({
     [styles.card]: true,
     [styles.invertedCard]: invertNav,
   });
-  console.log(isInView);
 
   return (
     <ScrollIntoView

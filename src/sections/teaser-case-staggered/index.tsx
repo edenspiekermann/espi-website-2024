@@ -18,12 +18,12 @@ export const TeaserCaseStaggered = ({
   });
 
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.9 });
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   return (
-    <section className={teaserCaseStaggeredClass} ref={ref}>
+    <section className={teaserCaseStaggeredClass}>
       {numberedStatement && <StatementNumbered {...numberedStatement} />}
-      <div className="container">
+      <div className="container" ref={ref}>
         {caseStudies?.map((caseStudy, index) => {
           return (
             <Card
