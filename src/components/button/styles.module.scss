@@ -21,6 +21,9 @@
   }
 
   &:hover {
+    * {
+      transition: fill 0.2s ease-in-out;
+    }
     svg {
       fill: var(--color-espi-black) !important;
       path {
