@@ -6,6 +6,7 @@
   scrollbar-width: none; // Hide scrollbar in Firefox
   -ms-overflow-style: none; // Hide scrollbar in IE and Edge
   grid-column: 1/-1;
+  cursor: grab;
 
   &::-webkit-scrollbar {
     display: none;
@@ -25,4 +26,8 @@
   > * {
     white-space: normal;
   }
+}
+
+.grabbing {
+  cursor: grabbing;
 }

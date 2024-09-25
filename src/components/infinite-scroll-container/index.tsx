@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { ScrollIntoView } from "../animation-wrappers/scroll-into-view";
 import { useInView } from "framer-motion";
+import classNames from "classnames";
 
 interface InfiniteScrollContainerProps {
   children?: React.ReactNode;
@@ -13,6 +14,12 @@ export const InfiniteScrollContainer = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const isInView = useInView(containerRef, { once: true, amount: 0.65 });
+  const [isGrabbing, setIsGrabbing] = useState(false);
+
+  const carouselContainerStyles = classNames({
+    [styles.carouselContainer]: true,
+    [styles.grabbing]: isGrabbing,
+  });
 
   useEffect(() => {
     let animationFrameId: number;
@@ -49,21 +56,38 @@ export const InfiniteScrollContainer = ({
     }
   };
 
+  const handleMouseDown = () => {
+    setIsGrabbing(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsGrabbing(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsGrabbing(false);
+    setIsHovered(false);
+  };
+
   return (
     <div
-      className={styles.carouselContainer}
+      className={carouselContainerStyles}
       ref={containerRef}
       onScroll={handleScroll}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={handleMouseLeave}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
     >
-      <ScrollIntoView isInView={isInView} scrollAmount={50} duration={0.3}>
-        <div className={styles.items}>
-          {children}
-          {children}
-          {children}
-        </div>
-      </ScrollIntoView>
+      <div className={styles.edgeToEdgeContainer}>
+        <ScrollIntoView isInView={isInView} scrollAmount={50} duration={0.3}>
+          <div className={styles.items}>
+            {children}
+            {children}
+            {children}
+          </div>
+        </ScrollIntoView>
+      </div>
     </div>
   );
 };
