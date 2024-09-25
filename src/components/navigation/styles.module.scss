@@ -142,6 +142,7 @@
   align-items: flex-start;
   @include mq("desktop") {
     align-items: center;
+    margin: 0;
   }
 }
 
@@ -185,7 +186,7 @@
 
   @include mq("desktop") {
     @include as-m-element;
-    margin-right: 70px;
+    margin-right: 40px;
     color: var(--color-espi-black);
 
     &::after {
