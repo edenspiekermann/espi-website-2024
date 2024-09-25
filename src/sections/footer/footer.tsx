@@ -16,6 +16,8 @@ export function Footer({
   legalLinks,
   copyrightText,
 }: FooterProperties) {
+  const copyRightTextWithYear = `${copyrightText} ${new Date().getFullYear()}`;
+
   return (
     <footer className={styles.footer}>
       <div className={`${styles.title} container`}>
@@ -73,7 +75,7 @@ export function Footer({
                   </a>
                 </li>
               ))}
-            <li>{copyrightText}</li>
+            <li>{copyRightTextWithYear}</li>
           </ul>
         </div>
       </div>
