@@ -46,7 +46,7 @@ export const InfiniteScrollContainer = ({
 
   const handleScroll = () => {
     if (containerRef.current) {
-      const maxScrollLeft = containerRef.current.scrollWidth / 3; // Since we duplicate the content
+      const maxScrollLeft = containerRef.current.scrollWidth / 3; // Since the content is duplicated
 
       if (containerRef.current.scrollLeft >= maxScrollLeft) {
         containerRef.current.scrollLeft -= maxScrollLeft;

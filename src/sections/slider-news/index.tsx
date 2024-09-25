@@ -15,7 +15,6 @@ export const SliderNews = ({
 }: SliderNewsFragment) => {
   const containerClass = classNames({
     [styles.sliderNews]: true,
-    container: true,
   });
 
   return (

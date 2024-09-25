@@ -3,9 +3,9 @@
 .carouselContainer {
   overflow-x: auto;
   white-space: nowrap;
-  scrollbar-width: none; // Hide scrollbar in Firefox
-  -ms-overflow-style: none; // Hide scrollbar in IE and Edge
-  grid-column: 1/-1;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100vw;
   cursor: grab;
 
   &::-webkit-scrollbar {
