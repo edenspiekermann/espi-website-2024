@@ -1,9 +1,19 @@
+// app/providers.tsx
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
-export default function ScrollToTop() {
-  useEffect(() => window.document.scrollingElement?.scrollTo(0, 0), []);
+export function ScrollToTopProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
 
-  return null;
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top on route change
+  }, [pathname]);
+
+  return <>{children}</>;
 }
