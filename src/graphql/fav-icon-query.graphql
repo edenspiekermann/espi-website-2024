@@ -1,0 +1,7 @@
+query FavIcon {
+  _site {
+    favicon {
+      url
+    }
+  }
+}
