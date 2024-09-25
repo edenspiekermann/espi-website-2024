@@ -10,12 +10,14 @@ interface ScrollIntoViewTextProps {
   text: string;
   isInView?: boolean;
   duration?: number;
+  backgroundColor?: string;
 }
 
 export const ScrollIntoViewText = ({
   text,
   isInView,
   duration = 0.2,
+  backgroundColor,
 }: ScrollIntoViewTextProps) => {
   let delayIndex = 0;
 
@@ -35,6 +37,7 @@ export const ScrollIntoViewText = ({
           delay={delay}
           duration={duration}
           scrollAmount={100}
+          backgroundColor={backgroundColor}
         >
           <span>{part}</span>
         </ScrollIntoView>
