@@ -15,8 +15,11 @@ export const InfiniteScrollContainer = ({
   const [isHovered, setIsHovered] = useState(false);
   const isInView = useInView(containerRef, { once: true, amount: 0.65 });
   const [isGrabbing, setIsGrabbing] = useState(false);
-  const [startX, setStartX] = useState(0); // Track initial click position
-  const [scrollLeft, setScrollLeft] = useState(0); // Track initial scroll position
+  const [startX, setStartX] = useState(0); // Initial mouse click position
+  const [scrollLeft, setScrollLeft] = useState(0); // Initial scroll position
+  const [velocity, setVelocity] = useState(0); // Track velocity
+  const lastX = useRef(0); // For tracking the mouse position change
+  const lastTime = useRef(0); // For tracking the time between movements
 
   const carouselContainerStyles = classNames({
     [styles.carouselContainer]: true,
@@ -62,26 +65,60 @@ export const InfiniteScrollContainer = ({
     e.preventDefault(); // Prevent text selection while dragging
     setIsGrabbing(true);
     if (containerRef.current) {
-      setStartX(e.pageX - containerRef.current.offsetLeft); // Track initial click position
+      setStartX(e.pageX - containerRef.current.offsetLeft); // Track initial mouse click
       setScrollLeft(containerRef.current.scrollLeft); // Track initial scroll position
     }
+    lastX.current = e.pageX; // Reset for velocity tracking
+    lastTime.current = Date.now();
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isGrabbing || !containerRef.current) return;
 
-    const x = e.pageX - containerRef.current.offsetLeft; // Current mouse position
-    const walk = x - startX; // Multiplied by 2 for faster scroll
-    containerRef.current.scrollLeft = scrollLeft - walk; // Set the new scroll position
+    const x = e.pageX - containerRef.current.offsetLeft;
+    const walk = x - startX;
+    containerRef.current.scrollLeft = scrollLeft - walk;
+
+    // Calculate velocity based on the difference in position and time
+    const currentTime = Date.now();
+    const deltaTime = currentTime - lastTime.current;
+    const deltaX = e.pageX - lastX.current;
+
+    setVelocity(deltaX / deltaTime); // Set velocity (px/ms)
+    lastX.current = e.pageX;
+    lastTime.current = currentTime;
   };
 
   const handleMouseUp = () => {
     setIsGrabbing(false);
+    if (velocity !== 0) {
+      applyInertia(velocity); // Apply inertia after letting go
+    }
   };
 
   const handleMouseLeave = () => {
     setIsGrabbing(false);
     setIsHovered(false);
+  };
+
+  const applyInertia = (initialVelocity: number) => {
+    let velocity = -initialVelocity; // Invert the direction of the velocity
+    const friction = 0.95; // Friction to slow down the scrolling
+
+    const scrollInertia = () => {
+      if (!containerRef.current) return;
+
+      containerRef.current.scrollLeft += velocity * 20; // Multiply for noticeable inertia
+
+      // Apply friction to gradually slow down
+      velocity *= friction;
+
+      if (Math.abs(velocity) > 0.1) {
+        requestAnimationFrame(scrollInertia); // Continue until velocity is low
+      }
+    };
+
+    scrollInertia();
   };
 
   return (
@@ -92,7 +129,7 @@ export const InfiniteScrollContainer = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
       onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove} // Handle mouse movement
+      onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
     >
       <div className={styles.edgeToEdgeContainer}>
