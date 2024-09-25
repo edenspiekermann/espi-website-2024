@@ -77,4 +77,8 @@
 
 .office {
   color: var(--color-medium-grey);
+
+  @include mq("tablet") {
+    margin-left: 40px;
+  }
 }
