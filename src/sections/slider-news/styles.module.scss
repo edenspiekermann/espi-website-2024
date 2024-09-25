@@ -12,9 +12,14 @@
   }
 
   &:hover {
-    .media > * {
-      transform: scale(1);
-      transition: transform 0.3s ease-in-out;
+    .textContent {
+      border-radius: 40px;
+    }
+    .media {
+      border-radius: 80px;
+      > * {
+        transform: scale(1);
+      }
     }
   }
 }
@@ -26,9 +31,11 @@
   object-fit: cover;
   object-position: center;
   aspect-ratio: 3/4;
+  transition: border-radius var(--animation-soft-curve-200ms);
 
   > * {
     transform: scale(1.05);
+    transition: transform var(--animation-soft-curve-200ms);
   }
 
   @include mq("desktop") {
@@ -40,6 +47,7 @@
   padding: 24px;
   background-color: var(--color-espi-black);
   border-radius: 20px;
+  transition: border-radius var(--animation-soft-curve-200ms);
 
   @include mq("desktop") {
     border-radius: 40px;
