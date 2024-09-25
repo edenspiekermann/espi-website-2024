@@ -40,15 +40,12 @@
 
   &:hover {
     .content {
-      transition: border-radius 0.2s ease-in-out;
       border-radius: 40px;
     }
     .media {
-      transition: border-radius 0.2s ease-in-out;
       border-radius: 80px;
       > * {
         transform: scale(1);
-        transition: transform 0.2s ease-in-out;
       }
     }
   }
@@ -65,9 +62,11 @@
   overflow: hidden;
   object-fit: contain;
   aspect-ratio: 1/1;
+  transition: border-radius var(--animation-soft-curve-200ms);
 
   > * {
     transform: scale(1.05);
+    transition: transform var(--animation-soft-curve-200ms);
   }
 
   .card:first-of-type & {
@@ -84,6 +83,7 @@
   flex-direction: column;
   gap: 8px;
   padding: 16px 24px 20px;
+  transition: border-radius var(--animation-soft-curve-200ms);
 
   @include mq("desktop") {
     padding: 24px 32px 28px;
