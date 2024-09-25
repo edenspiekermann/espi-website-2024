@@ -61,7 +61,9 @@ export function Footer({
       </div>
       <div className="container">
         <div className={styles.bottom}>
-          <EspiLogo />
+          <Link href={"/"} scroll>
+            <EspiLogo />
+          </Link>
           <ul>
             {legalLinks &&
               legalLinks.map((legalLink) => (
