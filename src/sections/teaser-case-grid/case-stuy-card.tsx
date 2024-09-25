@@ -25,7 +25,7 @@ export const CaseStudyGridCard = ({
     [styles.visible]: visible,
   });
   return (
-    <Link href={`case-studies/${slug}`} className={cardClass}>
+    <Link href={`case-studies/${slug}`} className={cardClass} scroll={true}>
       <div className={styles.media}>
         <Media {...(cardMedia as MediaProperties)} />
       </div>

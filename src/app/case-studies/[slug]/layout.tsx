@@ -6,6 +6,7 @@ import { request } from "@/lib/request";
 import { HeaderCaseStudy } from "@/sections/header-case-study";
 import React from "react";
 import UpdateCaseStudyState from "./update-case-study-state";
+import ScrollToTop from "@/components/scroll-to-top";
 
 type PageProps = { params: { slug: string }; children: React.ReactNode };
 
@@ -34,6 +35,7 @@ export default async function CaseStudyLayout({ children, params }: PageProps) {
   return (
     <>
       <UpdateNavState isInverted={invertNav} isFixed />
+      <ScrollToTop />
       <CaseStudyProvider>
         <UpdateCaseStudyState
           relatedIndustries={relatedIndustries.map(
