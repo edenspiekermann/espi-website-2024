@@ -12,6 +12,7 @@ export const InfiniteScrollContainer = ({
   children,
 }: InfiniteScrollContainerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const itemsRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const isInView = useInView(containerRef, { once: true, amount: 0.65 });
   const [isGrabbing, setIsGrabbing] = useState(false);
@@ -26,28 +27,33 @@ export const InfiniteScrollContainer = ({
     [styles.grabbing]: isGrabbing,
   });
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+
   useEffect(() => {
     let animationFrameId: number;
-    const scrollSpeed = 0.75;
+    const scrollSpeed = 0.5; // Allows for fractional speeds
 
     const smoothScroll = () => {
-      if (!isHovered && containerRef.current) {
-        containerRef.current.scrollLeft += scrollSpeed;
+      if (itemsRef.current) {
+        if (!isHovered && !isGrabbing) {
+          setScrollPosition((prevPosition) => {
+            const newPosition = prevPosition + scrollSpeed;
+            const maxScrollLeft = itemsRef.current.offsetWidth / 3; // Since we duplicated once
 
-        const maxScrollLeft = containerRef.current.scrollWidth / 3; // Since we duplicate the content
-
-        if (containerRef.current.scrollLeft >= maxScrollLeft) {
-          containerRef.current.scrollLeft -= maxScrollLeft;
+            if (newPosition >= maxScrollLeft) {
+              return newPosition - maxScrollLeft;
+            }
+            return newPosition;
+          });
         }
       }
-
       animationFrameId = requestAnimationFrame(smoothScroll);
     };
 
-    animationFrameId = requestAnimationFrame(smoothScroll);
+    smoothScroll(); // Start the loop
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isHovered]);
+  }, [isHovered, isGrabbing]);
 
   const handleScroll = () => {
     if (containerRef.current) {
@@ -132,15 +138,17 @@ export const InfiniteScrollContainer = ({
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
     >
-      <div className={styles.edgeToEdgeContainer}>
-        <ScrollIntoView isInView={isInView} scrollAmount={50} duration={0.3}>
-          <div className={styles.items}>
-            {children}
-            {children}
-            {children}
-          </div>
-        </ScrollIntoView>
-      </div>
+      <ScrollIntoView isInView={isInView} scrollAmount={50} duration={0.3}>
+        <div
+          className={styles.items}
+          ref={itemsRef}
+          style={{ transform: `translateX(-${scrollPosition}px)` }}
+        >
+          {children}
+          {children}
+          {children}
+        </div>
+      </ScrollIntoView>
     </div>
   );
 };
