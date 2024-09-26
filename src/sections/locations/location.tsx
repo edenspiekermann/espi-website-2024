@@ -72,7 +72,7 @@ export const Location = ({
         </div>
         <div>
           <a href={`mailto:${email}`}>{email}</a>
-          <p>{phoneNumber}</p>
+          {phoneNumber && <p>{phoneNumber}</p>}
         </div>
         {contactPerson && (
           <div className={styles.person}>

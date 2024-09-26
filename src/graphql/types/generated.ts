@@ -3567,7 +3567,7 @@ export type LocationRecord = RecordInterface & {
   email: Scalars["String"]["output"];
   id: Scalars["ItemId"]["output"];
   media: FileField;
-  phoneNumber: Scalars["String"]["output"];
+  phoneNumber?: Maybe<Scalars["String"]["output"]>;
   timeZone: Scalars["String"]["output"];
 };
 
@@ -8864,7 +8864,7 @@ export type PageQuery = {
             timeZone: string;
             address: string;
             email: string;
-            phoneNumber: string;
+            phoneNumber?: string | null;
             decorativeImage?: {
               __typename?: "FileField";
               responsiveImage?: {
@@ -9809,7 +9809,7 @@ export type LocationsFragment = {
     timeZone: string;
     address: string;
     email: string;
-    phoneNumber: string;
+    phoneNumber?: string | null;
     decorativeImage?: {
       __typename?: "FileField";
       responsiveImage?: {
@@ -9846,7 +9846,7 @@ export type LocationFragment = {
   timeZone: string;
   address: string;
   email: string;
-  phoneNumber: string;
+  phoneNumber?: string | null;
   decorativeImage?: {
     __typename?: "FileField";
     responsiveImage?: {
