@@ -38,7 +38,10 @@ export const InfiniteScrollContainer = ({
         if (!isHovered && !isGrabbing) {
           setScrollPosition((prevPosition) => {
             const newPosition = prevPosition + scrollSpeed;
-            const maxScrollLeft = itemsRef.current.offsetWidth / 3; // Since we duplicated once
+            const maxScrollLeft =
+              (itemsRef.current?.offsetWidth &&
+                itemsRef.current?.offsetWidth / 3) ??
+              0;
 
             if (newPosition >= maxScrollLeft) {
               return newPosition - maxScrollLeft;
