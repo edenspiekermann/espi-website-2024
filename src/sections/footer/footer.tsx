@@ -48,6 +48,7 @@ export function Footer({
                     className={styles.link}
                     href={socialLink.url}
                     aria-label={`Link to Edenspiekermann's ${socialLink.title}`}
+                    target="_blank"
                   >
                     {socialLink.title}
                   </a>
