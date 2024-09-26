@@ -62,7 +62,7 @@ export const Location = ({
       </div>
       <div className={styles.center}>
         <div className={styles.address}>
-          <p>{address}</p>
+          <div dangerouslySetInnerHTML={{ __html: address }} />
           <a
             href={`https://www.google.com/maps/dir/?api=1&destination=${address}`}
             target="_blank"
