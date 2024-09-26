@@ -3342,6 +3342,24 @@ export type IndustryRecordTitleArgs = {
   markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
+/** Specifies how to filter Integer fields */
+export type IntegerFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars["IntType"]["input"]>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: InputMaybe<Scalars["IntType"]["input"]>;
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: InputMaybe<Scalars["IntType"]["input"]>;
+  /** Filter records with a value that's less than the one specified */
+  lt?: InputMaybe<Scalars["IntType"]["input"]>;
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: InputMaybe<Scalars["IntType"]["input"]>;
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
 /** Specifies how to filter by ID */
 export type ItemIdFilter = {
   /** Search the record with the specified ID */
@@ -4189,6 +4207,7 @@ export type PageModelSectionsField =
   | ServiceCardsSectionRecord
   | SliderGalleryRecord
   | SliderNewsRecord
+  | SpacerRecord
   | StaggeredRecord
   | StatementCtaRecord
   | StatementLargeRecord
@@ -4549,6 +4568,8 @@ export type Query = {
   /** Returns meta information regarding a record collection */
   _allSocialLinksMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allSpacersMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allStaggeredsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allStatementCtasMeta: CollectionMetadata;
@@ -4646,6 +4667,8 @@ export type Query = {
   allSliderNews: Array<SliderNewsRecord>;
   /** Returns a collection of records */
   allSocialLinks: Array<SocialLinkRecord>;
+  /** Returns a collection of records */
+  allSpacers: Array<SpacerRecord>;
   /** Returns a collection of records */
   allStaggereds: Array<StaggeredRecord>;
   /** Returns a collection of records */
@@ -4750,6 +4773,8 @@ export type Query = {
   sliderNews?: Maybe<SliderNewsRecord>;
   /** Returns a specific record */
   socialLink?: Maybe<SocialLinkRecord>;
+  /** Returns a specific record */
+  spacer?: Maybe<SpacerRecord>;
   /** Returns a specific record */
   staggered?: Maybe<StaggeredRecord>;
   /** Returns a specific record */
@@ -4985,6 +5010,12 @@ export type Query_AllSliderNewsMetaArgs = {
 /** The query root for this schema */
 export type Query_AllSocialLinksMetaArgs = {
   filter?: InputMaybe<SocialLinkModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** The query root for this schema */
+export type Query_AllSpacersMetaArgs = {
+  filter?: InputMaybe<SpacerModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -5423,6 +5454,16 @@ export type QueryAllSocialLinksArgs = {
 };
 
 /** The query root for this schema */
+export type QueryAllSpacersArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SpacerModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SpacerModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
+};
+
+/** The query root for this schema */
 export type QueryAllStaggeredsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<StaggeredModelFilter>;
@@ -5854,6 +5895,14 @@ export type QuerySocialLinkArgs = {
   filter?: InputMaybe<SocialLinkModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<SocialLinkModelOrderBy>>>;
+};
+
+/** The query root for this schema */
+export type QuerySpacerArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<SpacerModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<SpacerModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -6675,6 +6724,77 @@ export type SocialLinkRecord = RecordInterface & {
 
 /** Record of type Social Link (social_link) */
 export type SocialLinkRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+export type SpacerModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SpacerModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SpacerModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  desktopSpaceAmount?: InputMaybe<IntegerFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  mobileSpaceAmount?: InputMaybe<IntegerFilter>;
+  tabletSpaceAmount?: InputMaybe<IntegerFilter>;
+};
+
+export enum SpacerModelOrderBy {
+  CreatedAtAsc = "_createdAt_ASC",
+  CreatedAtDesc = "_createdAt_DESC",
+  FirstPublishedAtAsc = "_firstPublishedAt_ASC",
+  FirstPublishedAtDesc = "_firstPublishedAt_DESC",
+  IsValidAsc = "_isValid_ASC",
+  IsValidDesc = "_isValid_DESC",
+  PublicationScheduledAtAsc = "_publicationScheduledAt_ASC",
+  PublicationScheduledAtDesc = "_publicationScheduledAt_DESC",
+  PublishedAtAsc = "_publishedAt_ASC",
+  PublishedAtDesc = "_publishedAt_DESC",
+  StatusAsc = "_status_ASC",
+  StatusDesc = "_status_DESC",
+  UnpublishingScheduledAtAsc = "_unpublishingScheduledAt_ASC",
+  UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
+  UpdatedAtAsc = "_updatedAt_ASC",
+  UpdatedAtDesc = "_updatedAt_DESC",
+  DesktopSpaceAmountAsc = "desktopSpaceAmount_ASC",
+  DesktopSpaceAmountDesc = "desktopSpaceAmount_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  MobileSpaceAmountAsc = "mobileSpaceAmount_ASC",
+  MobileSpaceAmountDesc = "mobileSpaceAmount_DESC",
+  TabletSpaceAmountAsc = "tabletSpaceAmount_ASC",
+  TabletSpaceAmountDesc = "tabletSpaceAmount_DESC",
+}
+
+/** Record of type Spacer (spacer) */
+export type SpacerRecord = RecordInterface & {
+  __typename?: "SpacerRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  desktopSpaceAmount: Scalars["IntType"]["output"];
+  id: Scalars["ItemId"]["output"];
+  mobileSpaceAmount?: Maybe<Scalars["IntType"]["output"]>;
+  tabletSpaceAmount?: Maybe<Scalars["IntType"]["output"]>;
+};
+
+/** Record of type Spacer (spacer) */
+export type SpacerRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -8214,6 +8334,14 @@ export type SidebarNewsFragment = {
   };
 };
 
+export type SpacerFragment = {
+  __typename: "SpacerRecord";
+  id: string;
+  desktopSpaceAmount: number;
+  tabletSpaceAmount?: number | null;
+  mobileSpaceAmount?: number | null;
+};
+
 export type StatementNumberedFragment = {
   __typename?: "StatementNumberedRecord";
   id: string;
@@ -8967,6 +9095,13 @@ export type PageQuery = {
               } | null;
             };
           }>;
+        }
+      | {
+          __typename: "SpacerRecord";
+          id: string;
+          desktopSpaceAmount: number;
+          tabletSpaceAmount?: number | null;
+          mobileSpaceAmount?: number | null;
         }
       | {
           __typename: "StaggeredRecord";
@@ -10431,6 +10566,32 @@ export const CookieConsentFormFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CookieConsentFormFragment, unknown>;
+export const SpacerFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Spacer" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SpacerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "desktopSpaceAmount" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "tabletSpaceAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "mobileSpaceAmount" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SpacerFragment, unknown>;
 export const CaseStudyContentImageFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -15973,6 +16134,10 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "HeaderWithTag" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Spacer" },
+                      },
                     ],
                   },
                 },
@@ -18023,6 +18188,27 @@ export const PageDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Spacer" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SpacerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "desktopSpaceAmount" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "tabletSpaceAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "mobileSpaceAmount" } },
         ],
       },
     },
