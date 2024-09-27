@@ -275,7 +275,6 @@ export type CallToActionRecord = RecordInterface & {
   _updatedAt: Scalars["DateTime"]["output"];
   buttonType: Scalars["String"]["output"];
   id: Scalars["ItemId"]["output"];
-  isDownloadButton: Scalars["BooleanType"]["output"];
   pageLink?: Maybe<PageRecord>;
   text: Scalars["String"]["output"];
   url?: Maybe<Scalars["String"]["output"]>;
@@ -7429,6 +7428,7 @@ export type TeaserCaseStaggeredRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   caseStudies: Array<CaseStudyRecord>;
+  divider?: Maybe<DividerRecord>;
   id: Scalars["ItemId"]["output"];
   numberedStatement?: Maybe<StatementNumberedRecord>;
 };
@@ -9116,7 +9116,6 @@ export type PageQuery = {
             };
           }>;
         }
-      | { __typename: "SpacerRecord" }
       | {
           __typename: "SpacerRecord";
           id: string;
@@ -9262,6 +9261,11 @@ export type PageQuery = {
       | {
           __typename: "TeaserCaseStaggeredRecord";
           id: string;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
           numberedStatement?: {
             __typename?: "StatementNumberedRecord";
             id: string;
@@ -10309,6 +10313,11 @@ export type CaseStudyGridCardFragment = {
 export type TeaserCaseStaggeredFragment = {
   __typename: "TeaserCaseStaggeredRecord";
   id: string;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
   numberedStatement?: {
     __typename?: "StatementNumberedRecord";
     id: string;
@@ -13662,6 +13671,19 @@ export const TeaserCaseStaggeredFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "numberedStatement" },
             selectionSet: {
               kind: "SelectionSet",
@@ -13686,6 +13708,21 @@ export const TeaserCaseStaggeredFragmentDoc = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Divider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DividerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
         ],
       },
     },
@@ -18016,6 +18053,19 @@ export const PageDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Divider" },
+                },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "numberedStatement" },
