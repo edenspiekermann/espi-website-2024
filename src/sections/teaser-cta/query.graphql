@@ -3,9 +3,14 @@ fragment TeaserCta on TeaserCtaRecord {
   id
   text
   cta {
-    text
-    url
-    isDownloadButton
+    ... on CallToActionRecord {
+      text
+      url
+      pageLink {
+        slug
+      }
+      buttonType
+    }
   }
   industryInsight {
     teaserText

@@ -273,10 +273,12 @@ export type CallToActionRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  buttonType: Scalars["String"]["output"];
   id: Scalars["ItemId"]["output"];
   isDownloadButton: Scalars["BooleanType"]["output"];
+  pageLink?: Maybe<PageRecord>;
   text: Scalars["String"]["output"];
-  url: Scalars["String"]["output"];
+  url?: Maybe<Scalars["String"]["output"]>;
 };
 
 /** Block of type Call To Action (call_to_action) */
@@ -1398,6 +1400,7 @@ export type HeaderSimpleRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  cta?: Maybe<CallToActionRecord>;
   featuredText: Scalars["String"]["output"];
   id: Scalars["ItemId"]["output"];
   showCta: Scalars["BooleanType"]["output"];
@@ -8288,7 +8291,7 @@ export type NavigationQuery = {
     cta?: {
       __typename?: "CallToActionRecord";
       text: string;
-      url: string;
+      url?: string | null;
     } | null;
   } | null;
 };
@@ -8313,7 +8316,7 @@ export type SidebarGenericFragment = {
   callToAction?: {
     __typename?: "CallToActionRecord";
     text: string;
-    url: string;
+    url?: string | null;
   } | null;
 };
 
@@ -8649,7 +8652,7 @@ export type NewsArticleQuery = {
                 callToAction?: {
                   __typename?: "CallToActionRecord";
                   text: string;
-                  url: string;
+                  url?: string | null;
                 } | null;
               }
             | {
@@ -8784,8 +8787,15 @@ export type PageQuery = {
           id: string;
           featuredText: string;
           subtext?: string | null;
-          showCta: boolean;
           showInquiryInfo: boolean;
+          showCta: boolean;
+          cta?: {
+            __typename?: "CallToActionRecord";
+            text: string;
+            url?: string | null;
+            buttonType: string;
+            pageLink?: { __typename?: "PageRecord"; slug: string } | null;
+          } | null;
         }
       | {
           __typename: "HeaderWithTagRecord";
@@ -9272,8 +9282,9 @@ export type PageQuery = {
           cta?: {
             __typename?: "CallToActionRecord";
             text: string;
-            url: string;
-            isDownloadButton: boolean;
+            url?: string | null;
+            buttonType: string;
+            pageLink?: { __typename?: "PageRecord"; slug: string } | null;
           } | null;
           industryInsight: {
             __typename?: "IndustryRecord";
@@ -9468,7 +9479,7 @@ export type PersonQuery = {
                 callToAction?: {
                   __typename?: "CallToActionRecord";
                   text: string;
-                  url: string;
+                  url?: string | null;
                 } | null;
               }
             | {
@@ -9611,7 +9622,7 @@ export type ContentTextImageFragment = {
         callToAction?: {
           __typename?: "CallToActionRecord";
           text: string;
-          url: string;
+          url?: string | null;
         } | null;
       }
     | {
@@ -9727,8 +9738,15 @@ export type HeaderSimpleFragment = {
   id: string;
   featuredText: string;
   subtext?: string | null;
-  showCta: boolean;
   showInquiryInfo: boolean;
+  showCta: boolean;
+  cta?: {
+    __typename?: "CallToActionRecord";
+    text: string;
+    url?: string | null;
+    buttonType: string;
+    pageLink?: { __typename?: "PageRecord"; slug: string } | null;
+  } | null;
 };
 
 export type HeaderWithTagFragment = {
@@ -10331,8 +10349,9 @@ export type TeaserCtaFragment = {
   cta?: {
     __typename?: "CallToActionRecord";
     text: string;
-    url: string;
-    isDownloadButton: boolean;
+    url?: string | null;
+    buttonType: string;
+    pageLink?: { __typename?: "PageRecord"; slug: string } | null;
   } | null;
   industryInsight: {
     __typename?: "IndustryRecord";
@@ -11262,8 +11281,48 @@ export const HeaderSimpleFragmentDoc = {
             ],
           },
           { kind: "Field", name: { kind: "Name", value: "subtext" } },
-          { kind: "Field", name: { kind: "Name", value: "showCta" } },
           { kind: "Field", name: { kind: "Name", value: "showInquiryInfo" } },
+          { kind: "Field", name: { kind: "Name", value: "showCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cta" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "CallToActionRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "pageLink" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "buttonType" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -13705,11 +13764,36 @@ export const TeaserCtaFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "text" } },
-                { kind: "Field", name: { kind: "Name", value: "url" } },
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "isDownloadButton" },
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "CallToActionRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "pageLink" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "buttonType" },
+                      },
+                    ],
+                  },
                 },
               ],
             },
@@ -16945,8 +17029,48 @@ export const PageDocument = {
             ],
           },
           { kind: "Field", name: { kind: "Name", value: "subtext" } },
-          { kind: "Field", name: { kind: "Name", value: "showCta" } },
           { kind: "Field", name: { kind: "Name", value: "showInquiryInfo" } },
+          { kind: "Field", name: { kind: "Name", value: "showCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cta" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "CallToActionRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "pageLink" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "buttonType" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -17984,11 +18108,36 @@ export const PageDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "text" } },
-                { kind: "Field", name: { kind: "Name", value: "url" } },
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "isDownloadButton" },
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "CallToActionRecord" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "pageLink" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "buttonType" },
+                      },
+                    ],
+                  },
                 },
               ],
             },

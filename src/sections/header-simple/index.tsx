@@ -1,14 +1,15 @@
 import React from "react";
 import { HeaderSimpleFragment } from "@/graphql/types/generated";
 import styles from "./styles.module.scss";
-import { ScrollButton } from "@/components/button/scroll-button";
 import classNames from "classnames";
+import { Button } from "@/components/button/button";
 
 export const HeaderSimple = ({
   featuredText,
   subtext,
   showCta = false,
   showInquiryInfo = false,
+  cta,
 }: HeaderSimpleFragment) => {
   const headerSimpleClass = classNames({
     [styles.headerSimple]: true,
@@ -21,8 +22,14 @@ export const HeaderSimple = ({
           className={styles.featuredText}
         />
         {subtext && <p className={styles.subtext}>{subtext}</p>}
-        {/* TODO - Implement scroll behavior on button */}
-        {showCta && <ScrollButton text={"See our openings"} />}
+        {showCta && (
+          <Button
+            text={cta?.text!}
+            url={cta?.url || ""}
+            slug={cta?.pageLink?.slug}
+            type={cta?.buttonType}
+          />
+        )}
         {showInquiryInfo && (
           <div className={styles.inquiryInfo}>
             <p>Get in touch</p>

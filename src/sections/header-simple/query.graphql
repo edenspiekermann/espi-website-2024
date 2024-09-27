@@ -3,6 +3,16 @@ fragment HeaderSimple on HeaderSimpleRecord {
   id
   featuredText(markdown: true)
   subtext
-  showCta
   showInquiryInfo
+  showCta
+  cta {
+    ... on CallToActionRecord {
+      text
+      url
+      pageLink {
+        slug
+      }
+      buttonType
+    }
+  }
 }
