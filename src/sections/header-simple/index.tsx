@@ -22,7 +22,7 @@ export const HeaderSimple = ({
           className={styles.featuredText}
         />
         {subtext && <p className={styles.subtext}>{subtext}</p>}
-        {showCta && (
+        {showCta && cta && (
           <Button
             text={cta?.text!}
             url={cta?.url || ""}

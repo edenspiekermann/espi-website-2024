@@ -3,7 +3,8 @@
 .headerSimple {
   @include mqHelper("padding", 142px 0px 24px, 142px 0px 32px, 194px 0px 32px);
 
-  button {
+  button,
+  a {
     grid-column: 1/-1;
     @include mq("desktop") {
       grid-column: 1/4;
