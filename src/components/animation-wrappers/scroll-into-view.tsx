@@ -8,28 +8,33 @@ export const ScrollIntoView = ({
   scrollAmount = 25,
   duration = 0.2,
   delay = 0,
+  className,
+  fade = false,
+  backgroundColor,
 }: ScrollIntoViewProps) => {
   const initialStyles = {
     y: scrollAmount,
     overflow: "hidden",
     display: "inline-block",
+    opacity: fade ? 0 : 1,
   };
 
   const animate = {
     y: 0,
+    opacity: 1,
+    overflow: "visible",
     transition: {
       duration: duration,
       delay: delay,
       ease: [0.01, 0.71, 0.28, 1],
     },
-    overflow: "visible",
   };
 
   const curtainInitial = {
     scaleY: 1,
     y: 0,
     display: "inline-block",
-    backgroundColor: "var(--color-extra-light-grey)",
+    backgroundColor: backgroundColor ?? "var(--color-extra-light-grey)",
     top: 0,
     left: 0,
     right: 0,
@@ -54,6 +59,7 @@ export const ScrollIntoView = ({
       style={{
         position: "relative",
       }}
+      className={className}
     >
       <motion.span
         initial={curtainInitial}
