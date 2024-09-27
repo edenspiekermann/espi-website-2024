@@ -1,8 +1,12 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 import { HeaderSimpleFragment } from "@/graphql/types/generated";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 import { Button } from "@/components/button/button";
+import { ScrollIntoViewText } from "@/components/scroll-into-view-text";
+import { useInView } from "framer-motion";
 
 export const HeaderSimple = ({
   featuredText,
@@ -14,13 +18,25 @@ export const HeaderSimple = ({
   const headerSimpleClass = classNames({
     [styles.headerSimple]: true,
   });
+  const ref = useRef(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    if (ref.current) {
+      setIsLoaded(true);
+    }
+  }, []);
+
   return (
     <section className={headerSimpleClass}>
       <div className="container">
-        <h2
-          dangerouslySetInnerHTML={{ __html: featuredText }}
-          className={styles.featuredText}
-        />
+        <h2 className={styles.featuredText} ref={ref}>
+          <ScrollIntoViewText
+            text={featuredText}
+            isInView={isLoaded}
+            duration={0.8}
+            inline
+          />
+        </h2>
         {subtext && <p className={styles.subtext}>{subtext}</p>}
         {showCta && cta && (
           <Button

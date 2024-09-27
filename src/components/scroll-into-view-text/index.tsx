@@ -11,6 +11,7 @@ interface ScrollIntoViewTextProps {
   isInView?: boolean;
   duration?: number;
   backgroundColor?: string;
+  inline?: boolean;
 }
 
 export const ScrollIntoViewText = ({
@@ -18,6 +19,7 @@ export const ScrollIntoViewText = ({
   isInView,
   duration = 0.2,
   backgroundColor,
+  inline = false,
 }: ScrollIntoViewTextProps) => {
   let delayIndex = 0;
 
@@ -50,6 +52,13 @@ export const ScrollIntoViewText = ({
       if (domNode.type === "text" && domNode.data !== "\n") {
         return <>{wrapWordsInSpanWithHtml(domNode.data)}</>;
       } else if (domNode.type === "tag" && domNode.children) {
+        if (domNode.name === "p" && inline) {
+          return React.createElement(
+            "span",
+            { ...domNode.attribs, key: domNode.name },
+            domToReact(domNode.children as DOMNode[], options),
+          );
+        }
         return React.createElement(
           domNode.name,
           { ...domNode.attribs, key: domNode.name },
