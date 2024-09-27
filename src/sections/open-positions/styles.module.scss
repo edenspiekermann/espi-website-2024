@@ -22,12 +22,12 @@
 
     @include mq("tablet") {
       margin-bottom: 0;
-      margin-right: 62px;
     }
 
     @include mq("desktop") {
       width: 181px;
       height: 181px;
+      grid-column: span 2;
     }
   }
 }
