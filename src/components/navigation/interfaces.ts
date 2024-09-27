@@ -6,6 +6,10 @@ export interface NavigationBaseProperties {
   cta: ButtonProperties;
 }
 
+export interface DesktopNavigationProperties extends NavigationBaseProperties {
+  isInverted?: boolean;
+}
+
 export interface NavigationProperties extends NavigationBaseProperties {
   showLogo: boolean;
   alternativeLogoText: string;
