@@ -12,7 +12,7 @@ export const TeaserNewsGrid = ({
   newsCards,
   showFilter,
 }: TeaserNewsGridFragment) => {
-  const [visibleCount, setVisibleCount] = useState(12);
+  const [visibleCount, setVisibleCount] = useState(6);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [typesOfNews, setTypesOfNews] = useState<string[]>([]);
 
@@ -37,6 +37,8 @@ export const TeaserNewsGrid = ({
     ? newsCards.filter((newsCard) => newsCard.typeOfArticle === selectedFilter)
     : newsCards;
 
+  const visibleNewsCards = filteredNewsCards.slice(0, visibleCount);
+
   return (
     <>
       {showFilter && (
@@ -47,7 +49,7 @@ export const TeaserNewsGrid = ({
         />
       )}
       <section className={teaserNewsGridClass}>
-        {filteredNewsCards?.map((newsCard) => (
+        {visibleNewsCards?.map((newsCard) => (
           <NewsCard key={newsCard.id} {...newsCard} />
         ))}
         {newsCards.length > visibleCount && (
