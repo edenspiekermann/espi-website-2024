@@ -12,6 +12,10 @@
   }
 }
 
+.cardContainer {
+  @include mqHelper("padding", 24px 0px, 20px 0px, 32px 0px);
+}
+
 .card {
   grid-column: 1/-1;
   display: flex;
