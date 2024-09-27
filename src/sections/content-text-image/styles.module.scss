@@ -3,6 +3,13 @@
 .contentTextImage {
   @include mqHelper("padding-top", 24px, 24px, 40px);
   @include mqHelper("padding-bottom", 48px, 64px, 80px);
+}
+
+.white {
+  background-color: var(--color-white);
+}
+
+.grey {
   background-color: var(--color-extra-light-grey);
 }
 
