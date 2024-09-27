@@ -1,13 +1,10 @@
-"use client";
-
 import { StatementLargeRecord } from "@/graphql/types/generated";
-import React, { useRef } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 import { Button } from "@/components/button/button";
-import { useInView } from "framer-motion";
-import { FadeIntoView } from "@/components/animation-wrappers/fade-into-view";
 import { ScrollIntoViewText } from "@/components/scroll-into-view-text";
+import { FadeIntoView } from "@/components/animation-wrappers/fade-into-view";
 
 export const StatementLarge = ({
   text,
@@ -15,9 +12,6 @@ export const StatementLarge = ({
   cta,
   addCallToAction,
 }: StatementLargeRecord) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.7 });
-
   const statementLargeClass = classNames({
     [styles.statementLarge]: true,
     [styles.inverted]: invertColor,
@@ -26,12 +20,16 @@ export const StatementLarge = ({
 
   return (
     <section className={statementLargeClass}>
-      <div className={styles.content} ref={ref}>
-        <ScrollIntoViewText text={text} isInView={isInView} duration={0.8} />
-      </div>
+      <ScrollIntoViewText
+        text={text}
+        duration={0.8}
+        inline
+        tag="h2"
+        className={styles.content}
+      />
       {addCallToAction && cta && (
         <div className={styles.button}>
-          <FadeIntoView isInView={isInView} duration={0.6} delay={0.75}>
+          <FadeIntoView duration={0.6} delay={0.75}>
             <Button text={cta.text} slug={cta.slug} isInverted={invertColor} />
           </FadeIntoView>
         </div>
