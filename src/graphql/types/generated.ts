@@ -8334,6 +8334,14 @@ export type SidebarNewsFragment = {
   };
 };
 
+export type SpacerFragment = {
+  __typename: "SpacerRecord";
+  id: string;
+  desktopSpaceAmount: number;
+  tabletSpaceAmount?: number | null;
+  mobileSpaceAmount?: number | null;
+};
+
 export type StatementNumberedFragment = {
   __typename?: "StatementNumberedRecord";
   id: string;
@@ -9099,6 +9107,13 @@ export type PageQuery = {
           }>;
         }
       | { __typename: "SpacerRecord" }
+      | {
+          __typename: "SpacerRecord";
+          id: string;
+          desktopSpaceAmount: number;
+          tabletSpaceAmount?: number | null;
+          mobileSpaceAmount?: number | null;
+        }
       | {
           __typename: "StaggeredRecord";
           id: string;
@@ -10562,6 +10577,32 @@ export const CookieConsentFormFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CookieConsentFormFragment, unknown>;
+export const SpacerFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Spacer" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SpacerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "desktopSpaceAmount" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "tabletSpaceAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "mobileSpaceAmount" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SpacerFragment, unknown>;
 export const CaseStudyContentImageFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -16138,6 +16179,10 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "HeaderWithTag" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Spacer" },
+                      },
                     ],
                   },
                 },
@@ -18188,6 +18233,27 @@ export const PageDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Spacer" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SpacerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "desktopSpaceAmount" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "tabletSpaceAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "mobileSpaceAmount" } },
         ],
       },
     },

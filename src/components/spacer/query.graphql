@@ -1,0 +1,7 @@
+fragment Spacer on SpacerRecord {
+  __typename
+  id
+  desktopSpaceAmount
+  tabletSpaceAmount
+  mobileSpaceAmount
+}
