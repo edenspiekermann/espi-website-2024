@@ -34,7 +34,7 @@ export const ScrollIntoView = ({
     scaleY: 1,
     y: 0,
     display: "inline-block",
-    backgroundColor: backgroundColor ?? "var(--color-extra-light-grey)",
+    backgroundColor: backgroundColor ?? "var(--color-white)",
     top: 0,
     left: 0,
     right: 0,
