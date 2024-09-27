@@ -1,14 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
-import React from "react";
+import { motion, useInView } from "framer-motion";
+import React, { useRef } from "react";
 import { AnimationWrapperProps } from "./interfaces";
 
 export const FadeIntoView = ({
   children,
-  isInView,
   delay = 0,
   duration = 0.2,
+  amount = 0,
 }: AnimationWrapperProps) => {
   const initialStyles = {
     opacity: 0,
@@ -22,8 +22,11 @@ export const FadeIntoView = ({
     },
   };
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: amount });
+
   return (
-    <motion.div initial={initialStyles} animate={isInView && animate}>
+    <motion.div ref={ref} initial={initialStyles} animate={isInView && animate}>
       {children}
     </motion.div>
   );
