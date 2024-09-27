@@ -1,27 +1,35 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
 import { ScrollIntoView } from "../animation-wrappers/scroll-into-view";
 import parse, {
   DOMNode,
   domToReact,
   HTMLReactParserOptions,
 } from "html-react-parser";
+import { useInView } from "framer-motion";
 
 interface ScrollIntoViewTextProps {
   text: string;
-  isInView?: boolean;
   duration?: number;
   backgroundColor?: string;
   inline?: boolean;
+  tag?: keyof JSX.IntrinsicElements;
+  className?: string;
 }
 
 export const ScrollIntoViewText = ({
   text,
-  isInView,
   duration = 0.2,
   backgroundColor,
   inline = false,
+  tag = "span",
+  className,
 }: ScrollIntoViewTextProps) => {
   let delayIndex = 0;
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.7 });
 
   const wrapWordsInSpanWithHtml = (text: string) => {
     return text.split(/(\s+)/).map((part, index) => {
@@ -70,5 +78,9 @@ export const ScrollIntoViewText = ({
     },
   };
 
-  return parse(text, options);
+  return React.createElement(
+    tag, // The tag to render (e.g., h2, span, div)
+    { ref, className }, // Assign the ref to the dynamic element
+    parse(text, options), // Render the parsed text inside the tag
+  );
 };
