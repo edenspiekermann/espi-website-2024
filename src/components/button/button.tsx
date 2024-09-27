@@ -22,22 +22,33 @@ export const Button = ({
     [styles.inverted]: isInverted,
   });
 
-  if (slug && type === "link") {
+  const iconSwitch = (type?: ButtonProperties["type"]) => {
+    switch (type) {
+      case "link":
+        return <ButtonArrowRight />;
+      case "download":
+        return <ButtonArrowDownload />;
+      default:
+        return <ButtonArrowRight />;
+    }
+  };
+
+  if (slug) {
     return (
       <Link
         href={slug}
-        scroll={false}
+        scroll={true}
         title={text}
         className={buttonClass}
         aria-label={text}
       >
         <span className={styles.text}>{text}</span>
-        <ButtonArrowRight />
+        {iconSwitch(type)}
       </Link>
     );
   }
 
-  if (onClick && type === "link") {
+  if (onClick) {
     return (
       <button
         onClick={onClick}
@@ -45,17 +56,8 @@ export const Button = ({
         aria-label="Navigate to website"
       >
         <span className={styles.text}>{text}</span>
-        <ButtonArrowRight />
+        {iconSwitch(type)}
       </button>
-    );
-  }
-
-  if (type === "download") {
-    return (
-      <a href={url} className={buttonClass} aria-label="Download file">
-        <span className={styles.text}>{text}</span>
-        <ButtonArrowDownload />
-      </a>
     );
   }
 
@@ -69,9 +71,9 @@ export const Button = ({
   }
 
   return (
-    <a href={url} className={buttonClass} aria-label="Navigate to website">
+    <a href={url} className={buttonClass} aria-label={text}>
       <span className={styles.text}>{text}</span>
-      <ButtonArrowRight />
+      {iconSwitch(type)}
     </a>
   );
 };
