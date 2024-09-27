@@ -1,24 +1,36 @@
 @use "../../app/styles/base.scss" as *;
 
 .carouselContainer {
-  display: flex;
-  overflow-x: hidden;
-  grid-column: 1/-1;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-  gap: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100vw;
+  cursor: grab;
 
-  @include mq("desktop") {
-    gap: 32px;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
 .items {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 20px;
   width: fit-content;
+  will-change: transform;
 
   @include mq("desktop") {
     gap: 32px;
   }
+
+  > * {
+    white-space: normal;
+    flex: 0 0 auto;
+  }
+}
+
+.grabbing {
+  cursor: grabbing;
 }

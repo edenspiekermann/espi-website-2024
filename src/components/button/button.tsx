@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { ButtonArrowRight } from "./button-arrow-right";
 import Link from "next/link";
 import { ButtonArrowDownload } from "./button-arrow-download";
+import { ScrollButton } from "./scroll-button";
 
 export const Button = ({
   text,
@@ -14,14 +15,14 @@ export const Button = ({
   isInverted = false,
   slug,
   onClick,
-  isDownloadButton,
+  type,
 }: ButtonProperties) => {
   const buttonClass = classNames({
     [styles.button]: true,
     [styles.inverted]: isInverted,
   });
 
-  if (slug) {
+  if (slug && type === "link") {
     return (
       <Link
         href={slug}
@@ -36,7 +37,7 @@ export const Button = ({
     );
   }
 
-  if (onClick) {
+  if (onClick && type === "link") {
     return (
       <button
         onClick={onClick}
@@ -49,7 +50,7 @@ export const Button = ({
     );
   }
 
-  if (isDownloadButton) {
+  if (type === "download") {
     return (
       <a href={url} className={buttonClass} aria-label="Download file">
         <span className={styles.text}>{text}</span>
@@ -57,6 +58,16 @@ export const Button = ({
       </a>
     );
   }
+
+  {
+    /* TODO - Implement scroll behavior on button */
+  }
+  if (type === "scroll") {
+    return (
+      <ScrollButton text={text} onClick={onClick} isInverted={isInverted} />
+    );
+  }
+
   return (
     <a href={url} className={buttonClass} aria-label="Navigate to website">
       <span className={styles.text}>{text}</span>

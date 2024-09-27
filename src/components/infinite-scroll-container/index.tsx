@@ -1,6 +1,8 @@
-import { motion, useAnimation } from "framer-motion";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
+import { ScrollIntoView } from "../animation-wrappers/scroll-into-view";
+import { useInView } from "framer-motion";
+import classNames from "classnames";
 
 interface InfiniteScrollContainerProps {
   children?: React.ReactNode;
@@ -10,74 +12,147 @@ export const InfiniteScrollContainer = ({
   children,
 }: InfiniteScrollContainerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [contentWidth, setContentWidth] = useState(0);
-  const controls = useAnimation();
-  const [duration, setDuration] = useState(25);
+  const itemsRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const isInView = useInView(containerRef, { once: true, amount: 0.65 });
+  const [isGrabbing, setIsGrabbing] = useState(false);
+  const [startX, setStartX] = useState(0); // Initial mouse click position
+  const [scrollLeft, setScrollLeft] = useState(0); // Initial scroll position
+  const [velocity, setVelocity] = useState(0); // Track velocity
+  const lastX = useRef(0); // For tracking the mouse position change
+  const lastTime = useRef(0); // For tracking the time between movements
+
+  const carouselContainerStyles = classNames({
+    [styles.carouselContainer]: true,
+    [styles.grabbing]: isGrabbing,
+  });
+
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (contentRef.current && containerRef.current) {
-        const containerWidth =
-          containerRef.current.getBoundingClientRect().width;
-        const contentWidth = contentRef.current.getBoundingClientRect().width;
-        setContentWidth(contentWidth);
+    let animationFrameId: number;
+    const scrollSpeed = 0.5; // Allows for fractional speeds
 
-        const ratio = contentWidth / containerWidth;
-        let baseDuration;
-        if (window.innerWidth < 768) {
-          baseDuration = 10;
-        } else if (window.innerWidth < 1024) {
-          baseDuration = 20;
-        } else {
-          baseDuration = 25;
+    const smoothScroll = () => {
+      if (itemsRef.current) {
+        if (!isHovered && !isGrabbing) {
+          setScrollPosition((prevPosition) => {
+            const newPosition = prevPosition + scrollSpeed;
+            const maxScrollLeft =
+              (itemsRef.current?.offsetWidth &&
+                itemsRef.current?.offsetWidth / 3) ??
+              0;
+
+            if (newPosition >= maxScrollLeft) {
+              return newPosition - maxScrollLeft;
+            }
+            return newPosition;
+          });
         }
-        setDuration(baseDuration * ratio);
+      }
+      animationFrameId = requestAnimationFrame(smoothScroll);
+    };
+
+    smoothScroll(); // Start the loop
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovered, isGrabbing]);
+
+  const handleScroll = () => {
+    if (containerRef.current) {
+      const maxScrollLeft = containerRef.current.scrollWidth / 3; // Since we duplicate the content
+
+      if (containerRef.current.scrollLeft >= maxScrollLeft) {
+        containerRef.current.scrollLeft -= maxScrollLeft;
+      } else if (containerRef.current.scrollLeft <= 0) {
+        containerRef.current.scrollLeft += maxScrollLeft;
+      }
+    }
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent text selection while dragging
+    setIsGrabbing(true);
+    if (containerRef.current) {
+      setStartX(e.pageX - containerRef.current.offsetLeft); // Track initial mouse click
+      setScrollLeft(containerRef.current.scrollLeft); // Track initial scroll position
+    }
+    lastX.current = e.pageX; // Reset for velocity tracking
+    lastTime.current = Date.now();
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isGrabbing || !containerRef.current) return;
+
+    const x = e.pageX - containerRef.current.offsetLeft;
+    const walk = x - startX;
+    containerRef.current.scrollLeft = scrollLeft - walk;
+
+    // Calculate velocity based on the difference in position and time
+    const currentTime = Date.now();
+    const deltaTime = currentTime - lastTime.current;
+    const deltaX = e.pageX - lastX.current;
+
+    setVelocity(deltaX / deltaTime); // Set velocity (px/ms)
+    lastX.current = e.pageX;
+    lastTime.current = currentTime;
+  };
+
+  const handleMouseUp = () => {
+    setIsGrabbing(false);
+    if (velocity !== 0) {
+      applyInertia(velocity); // Apply inertia after letting go
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsGrabbing(false);
+    setIsHovered(false);
+  };
+
+  const applyInertia = (initialVelocity: number) => {
+    let velocity = -initialVelocity; // Invert the direction of the velocity
+    const friction = 0.95; // Friction to slow down the scrolling
+
+    const scrollInertia = () => {
+      if (!containerRef.current) return;
+
+      containerRef.current.scrollLeft += velocity * 20; // Multiply for noticeable inertia
+
+      // Apply friction to gradually slow down
+      velocity *= friction;
+
+      if (Math.abs(velocity) > 0.1) {
+        requestAnimationFrame(scrollInertia); // Continue until velocity is low
       }
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (contentWidth > 0) {
-      controls.start({
-        x: -contentWidth / 2,
-        transition: {
-          duration,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        },
-      });
-    }
-  }, [contentWidth, duration, controls]);
+    scrollInertia();
+  };
 
   return (
-    <motion.div
-      className={styles.carouselContainer}
+    <div
+      className={carouselContainerStyles}
       ref={containerRef}
-      onMouseEnter={() => controls.stop()}
-      onMouseLeave={() =>
-        controls.start({
-          x: -contentWidth / 2,
-          transition: {
-            duration,
-            repeat: Infinity,
-            ease: "linear",
-            repeatType: "loop",
-          },
-        })
-      }
+      onScroll={handleScroll}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
     >
-      <motion.div className={styles.items} animate={controls} ref={contentRef}>
-        {children}
-        {children}
-      </motion.div>
-    </motion.div>
+      <ScrollIntoView isInView={isInView} scrollAmount={50} duration={0.3}>
+        <div
+          className={styles.items}
+          ref={itemsRef}
+          style={{ transform: `translateX(-${scrollPosition}px)` }}
+        >
+          {children}
+          {children}
+          {children}
+        </div>
+      </ScrollIntoView>
+    </div>
   );
 };
 

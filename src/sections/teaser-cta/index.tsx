@@ -16,7 +16,15 @@ export const TeaserCta = ({
       <div className="container">
         <div className={styles.left}>
           <p className={styles.text}>{text}</p>
-          {cta && <Button {...cta} />}
+          {cta && (
+            <Button
+              {...cta}
+              text={cta.text}
+              url={cta?.url || ""}
+              type={cta.buttonType}
+              slug={cta.pageLink?.slug}
+            />
+          )}
         </div>
         <Link href={industryInsight.slug} className={styles.right}>
           <div className={styles.insightMedia}>

@@ -10,6 +10,7 @@ export const ScrollIntoView = ({
   delay = 0,
   className,
   fade = false,
+  backgroundColor,
 }: ScrollIntoViewProps) => {
   const initialStyles = {
     y: scrollAmount,
@@ -33,7 +34,7 @@ export const ScrollIntoView = ({
     scaleY: 1,
     y: 0,
     display: "inline-block",
-    backgroundColor: "var(--color-extra-light-grey)",
+    backgroundColor: backgroundColor ?? "var(--color-extra-light-grey)",
     top: 0,
     left: 0,
     right: 0,

@@ -16,7 +16,7 @@ fragment Location on LocationRecord {
       alt
     }
   }
-  address(markdown: false)
+  address(markdown: true)
   email
   phoneNumber
   contactPerson {

@@ -9,10 +9,16 @@
   padding: 23px 0px;
   transition: transform 1.2s ease-in-out;
   background-color: var(--color-white);
+}
 
+.logo {
   svg {
     width: 152px;
     height: auto;
+
+    > path {
+      fill: var(--color-espi-red);
+    }
 
     @include mq("desktop") {
       width: auto;
@@ -41,11 +47,14 @@
 
 .inverted {
   color: var(--color-white);
-  background-color: var(--color-espi-black);
 
   svg path {
     fill: var(--color-white);
   }
+}
+
+.scrolling {
+  background-color: var(--color-white);
 }
 
 .wrapper {
@@ -133,6 +142,7 @@
   align-items: flex-start;
   @include mq("desktop") {
     align-items: center;
+    margin: 0;
   }
 }
 
@@ -176,7 +186,7 @@
 
   @include mq("desktop") {
     @include as-m-element;
-    margin-right: 70px;
+    margin-right: 40px;
     color: var(--color-espi-black);
 
     &::after {

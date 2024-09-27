@@ -1,4 +1,4 @@
-@import url("https://p.typekit.net/p.css?s=1&k=fph5jqx&ht=tk&f=5022.5310.26425.26426.26427.26430.26432.26438.26439.26443.35630.35631.35633&a=85909431&app=typekit&e=css");
+@import url("https://p.typekit.net/p.css?s=1&k=fph5jqx&ht=tk&f=5022.5310.26439.26443.26445.35629.35630.35631&a=85909431&app=typekit&e=css");
 
 @font-face {
   font-family: "ff-meta-serif-web-pro";
@@ -27,21 +27,6 @@
   font-display: auto;
   font-style: normal;
   font-weight: 500;
-  font-stretch: normal;
-}
-
-@font-face {
-  font-family: "ff-real-text-pro";
-  src:
-    url("https://use.typekit.net/af/fe69ed/00000000000000007735a6ee/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
-      format("woff2"),
-    url("https://use.typekit.net/af/fe69ed/00000000000000007735a6ee/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
-      format("woff"),
-    url("https://use.typekit.net/af/fe69ed/00000000000000007735a6ee/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
-      format("opentype");
-  font-display: auto;
-  font-style: normal;
-  font-weight: 700;
   font-stretch: normal;
 }
 
@@ -78,6 +63,36 @@
 @font-face {
   font-family: "ff-real-text-pro";
   src:
+    url("https://use.typekit.net/af/0b9bd1/00000000000000007735a704/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/0b9bd1/00000000000000007735a704/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/0b9bd1/00000000000000007735a704/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 300;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "ff-real-text-pro";
+  src:
+    url("https://use.typekit.net/af/a5095c/00000000000000007735a710/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/a5095c/00000000000000007735a710/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/a5095c/00000000000000007735a710/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: italic;
+  font-weight: 300;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "ff-real-text-pro";
+  src:
     url("https://use.typekit.net/af/4c793e/00000000000000007735a71d/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
       format("woff2"),
     url("https://use.typekit.net/af/4c793e/00000000000000007735a71d/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
@@ -105,27 +120,9 @@
   font-stretch: normal;
 }
 
-@font-face {
-  font-family: "ff-real-text-pro";
-  src:
-    url("https://use.typekit.net/af/486f39/00000000000000007735a727/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
-      format("woff2"),
-    url("https://use.typekit.net/af/486f39/00000000000000007735a727/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
-      format("woff"),
-    url("https://use.typekit.net/af/486f39/00000000000000007735a727/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
-      format("opentype");
-  font-display: auto;
-  font-style: italic;
-  font-weight: 700;
-  font-stretch: normal;
+.tk-ff-meta-serif-web-pro {
+  font-family: "ff-meta-serif-web-pro", serif;
 }
-
-body {
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-
+.tk-ff-real-text-pro {
   font-family: "ff-real-text-pro", sans-serif;
-  font-style: normal;
-  font-weight: 400;
 }

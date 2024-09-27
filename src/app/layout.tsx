@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./styles/global.scss";
 import {
+  FavIconDocument,
   FooterDocument,
   LinkRecord,
   NavigationDocument,
@@ -37,9 +38,17 @@ export default async function RootLayout({
     navigation!;
 
   const { footer } = await request(FooterDocument);
+  const { _site } = await request(FavIconDocument);
 
   return (
     <html lang="en" className={inter.className}>
+      <head>
+        <link
+          rel="icon"
+          href={_site.favicon?.url ?? "/favicon.ico"}
+          sizes="any"
+        />
+      </head>
       <body>
         <CookieConsentProvider>
           <NavigationProvider>

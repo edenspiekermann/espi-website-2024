@@ -81,10 +81,3 @@
 .subtitle {
   @include as-xxs-sans;
 }
-
-.button {
-  grid-column: 1/-1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}

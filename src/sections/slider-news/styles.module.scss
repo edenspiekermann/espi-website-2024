@@ -1,7 +1,7 @@
 @use "../../app/styles/base.scss" as *;
 
 .sliderNews {
-  @include mqHelper("padding", 24px, 20px 40px, 32px 70px);
+  @include mqHelper("padding", 24px 0px, 20px 0px, 32px 0px);
 }
 
 .articleCard {
@@ -12,8 +12,15 @@
   }
 
   &:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease-in-out;
+    .textContent {
+      border-radius: 40px;
+    }
+    .media {
+      border-radius: 80px;
+      > * {
+        transform: scale(1);
+      }
+    }
   }
 }
 
@@ -24,6 +31,12 @@
   object-fit: cover;
   object-position: center;
   aspect-ratio: 3/4;
+  transition: border-radius var(--animation-soft-curve-200ms);
+
+  > * {
+    transform: scale(1.05);
+    transition: transform var(--animation-soft-curve-200ms);
+  }
 
   @include mq("desktop") {
     border-radius: 40px;
@@ -34,6 +47,7 @@
   padding: 24px;
   background-color: var(--color-espi-black);
   border-radius: 20px;
+  transition: border-radius var(--animation-soft-curve-200ms);
 
   @include mq("desktop") {
     border-radius: 40px;
