@@ -8546,6 +8546,16 @@ export type CaseStudyQuery = {
   } | null;
 };
 
+export type FavIconQueryVariables = Exact<{ [key: string]: never }>;
+
+export type FavIconQuery = {
+  __typename?: "Query";
+  _site: {
+    __typename?: "Site";
+    favicon?: { __typename?: "FileField"; url: string } | null;
+  };
+};
+
 export type IndustryQueryVariables = Exact<{
   slug?: InputMaybe<Scalars["String"]["input"]>;
 }>;
@@ -15263,6 +15273,40 @@ export const CaseStudyDocument = {
     },
   ],
 } as unknown as DocumentNode<CaseStudyQuery, CaseStudyQueryVariables>;
+export const FavIconDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "FavIcon" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "_site" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "favicon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<FavIconQuery, FavIconQueryVariables>;
 export const IndustryDocument = {
   kind: "Document",
   definitions: [
