@@ -7017,8 +7017,8 @@ export type StatementLargeModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   addCallToAction?: InputMaybe<BooleanFilter>;
+  backgroundColor?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
-  invertColor?: InputMaybe<BooleanFilter>;
   text?: InputMaybe<TextFilter>;
 };
 
@@ -7041,10 +7041,10 @@ export enum StatementLargeModelOrderBy {
   UpdatedAtDesc = "_updatedAt_DESC",
   AddCallToActionAsc = "addCallToAction_ASC",
   AddCallToActionDesc = "addCallToAction_DESC",
+  BackgroundColorAsc = "backgroundColor_ASC",
+  BackgroundColorDesc = "backgroundColor_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
-  InvertColorAsc = "invertColor_ASC",
-  InvertColorDesc = "invertColor_DESC",
 }
 
 /** Record of type Statement Large (statement_large) */
@@ -7064,9 +7064,9 @@ export type StatementLargeRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   addCallToAction: Scalars["BooleanType"]["output"];
+  backgroundColor?: Maybe<Scalars["String"]["output"]>;
   cta?: Maybe<PageLinkRecord>;
   id: Scalars["ItemId"]["output"];
-  invertColor: Scalars["BooleanType"]["output"];
   text: Scalars["String"]["output"];
 };
 
@@ -9176,7 +9176,7 @@ export type PageQuery = {
           __typename: "StatementLargeRecord";
           id: string;
           text: string;
-          invertColor: boolean;
+          backgroundColor?: string | null;
           addCallToAction: boolean;
           cta?: {
             __typename: "PageLinkRecord";
@@ -10186,7 +10186,7 @@ export type StatementLargeFragment = {
   __typename: "StatementLargeRecord";
   id: string;
   text: string;
-  invertColor: boolean;
+  backgroundColor?: string | null;
   addCallToAction: boolean;
   cta?: { __typename: "PageLinkRecord"; text: string; slug: string } | null;
 };
@@ -13061,7 +13061,7 @@ export const StatementLargeFragmentDoc = {
               },
             ],
           },
-          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
           { kind: "Field", name: { kind: "Name", value: "addCallToAction" } },
           {
             kind: "Field",
@@ -17115,7 +17115,7 @@ export const PageDocument = {
               },
             ],
           },
-          { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
           { kind: "Field", name: { kind: "Name", value: "addCallToAction" } },
           {
             kind: "Field",
