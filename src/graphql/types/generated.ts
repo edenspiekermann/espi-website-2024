@@ -8298,6 +8298,7 @@ export type NavigationQuery = {
       __typename?: "CallToActionRecord";
       text: string;
       url?: string | null;
+      pageLink?: { __typename?: "PageRecord"; slug: string } | null;
     } | null;
   } | null;
 };
@@ -14706,6 +14707,19 @@ export const NavigationDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "text" } },
                       { kind: "Field", name: { kind: "Name", value: "url" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "pageLink" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },

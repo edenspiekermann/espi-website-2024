@@ -16,6 +16,9 @@ query Navigation {
     cta {
       text
       url
+      pageLink {
+        slug
+      }
     }
   }
 }

@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  DesktopNavigationProperties,
-  NavigationBaseProperties,
-} from "./interfaces";
+import { DesktopNavigationProperties } from "./interfaces";
 import Link from "next/link";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
@@ -32,7 +29,13 @@ export const DesktopNavigation: React.FC<DesktopNavigationProperties> = ({
               );
             })}
           <li>
-            <Button text={cta.text} isInverted={isInverted} />
+            <Button
+              isInverted={isInverted}
+              {...cta}
+              text={cta?.text || ""}
+              url={cta?.url || ""}
+              slug={cta?.pageLink?.slug}
+            />
           </li>
         </ul>
       </nav>

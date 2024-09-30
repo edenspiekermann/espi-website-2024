@@ -1,9 +1,9 @@
 import React from "react";
-import { ButtonProperties } from "../button/interfaces";
+import { NavigationRecord } from "@/graphql/types/generated";
 
 export interface NavigationBaseProperties {
   links: NavLinkProperties[];
-  cta: ButtonProperties;
+  cta: NavigationRecord["cta"];
 }
 
 export interface DesktopNavigationProperties extends NavigationBaseProperties {

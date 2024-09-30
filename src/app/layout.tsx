@@ -6,6 +6,7 @@ import {
   FooterDocument,
   LinkRecord,
   NavigationDocument,
+  NavigationRecord,
   PageRecord,
   SocialLinkRecord,
   TextRecord,
@@ -55,7 +56,7 @@ export default async function RootLayout({
               alternativeLogoText={alternativeLogoText || "Let's Innovate"}
               showLogo={showLogo}
               socialLinks={socialLinks}
-              cta={cta as ButtonProperties}
+              cta={cta as NavigationRecord["cta"]}
             >
               {children}
               <Footer
