@@ -523,6 +523,7 @@ export type CaseStudyModelSectionsField =
   | CaseContentRecord
   | CaseIntroRecord
   | PurposeRecord
+  | SpacerRecord
   | StatsSectionRecord
   | TeaserRelatedCaseRecord;
 
@@ -644,6 +645,7 @@ export type ContentTextImageModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  backgroundColor?: InputMaybe<StringFilter>;
   content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
   leftContent?: InputMaybe<LinkFilter>;
@@ -670,6 +672,8 @@ export enum ContentTextImageModelOrderBy {
   UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
   UpdatedAtAsc = "_updatedAt_ASC",
   UpdatedAtDesc = "_updatedAt_DESC",
+  BackgroundColorAsc = "backgroundColor_ASC",
+  BackgroundColorDesc = "backgroundColor_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
 }
@@ -690,6 +694,7 @@ export type ContentTextImageRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  backgroundColor?: Maybe<Scalars["String"]["output"]>;
   content: ContentTextImageModelContentField;
   id: Scalars["ItemId"]["output"];
   leftContent: ContentTextImageModelLeftContentField;
@@ -4300,6 +4305,7 @@ export enum PersonModelOrderBy {
 
 export type PersonModelSectionsField =
   | ContentTextImageRecord
+  | SpacerRecord
   | StatementCtaRecord;
 
 /** Record of type Person (person) */
@@ -8491,6 +8497,7 @@ export type CaseStudyQuery = {
             context: string;
           }>;
         }
+      | { __typename: "SpacerRecord" }
       | {
           __typename: "StatsSectionRecord";
           id: string;
@@ -8632,6 +8639,7 @@ export type NewsArticleQuery = {
       | {
           __typename: "ContentTextImageRecord";
           id: string;
+          backgroundColor?: string | null;
           content: {
             __typename?: "ContentTextImageModelContentField";
             value: unknown;
@@ -9470,6 +9478,7 @@ export type PersonQuery = {
       | {
           __typename: "ContentTextImageRecord";
           id: string;
+          backgroundColor?: string | null;
           content: {
             __typename?: "ContentTextImageModelContentField";
             value: unknown;
@@ -9531,6 +9540,7 @@ export type PersonQuery = {
                 };
               };
         }
+      | { __typename: "SpacerRecord" }
       | {
           __typename: "StatementCtaRecord";
           id: string;
@@ -9613,6 +9623,7 @@ export type CaseIntroFragment = {
 export type ContentTextImageFragment = {
   __typename: "ContentTextImageRecord";
   id: string;
+  backgroundColor?: string | null;
   content: {
     __typename?: "ContentTextImageModelContentField";
     value: unknown;
@@ -11011,6 +11022,7 @@ export const ContentTextImageFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
         ],
       },
     },
@@ -16102,6 +16114,7 @@ export const NewsArticleDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
         ],
       },
     },
@@ -18812,6 +18825,7 @@ export const PersonDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
         ],
       },
     },

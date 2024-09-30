@@ -11,9 +11,11 @@ import { ContentQuote } from "@/components/content-quote";
 export const ContentTextImage = ({
   content,
   leftContent,
+  backgroundColor = "white",
 }: ContentTextImageFragment) => {
   const contentTextImageClass = classNames({
     [styles.contentTextImage]: true,
+    [styles.backgroundColor]: !!backgroundColor,
   });
 
   const leftContentFilter = (
