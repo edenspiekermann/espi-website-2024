@@ -4,4 +4,5 @@ fragment Spacer on SpacerRecord {
   desktopSpaceAmount
   tabletSpaceAmount
   mobileSpaceAmount
+  backgroundColor
 }

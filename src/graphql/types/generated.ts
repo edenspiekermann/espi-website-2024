@@ -6746,6 +6746,7 @@ export type SpacerModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  backgroundColor?: InputMaybe<StringFilter>;
   desktopSpaceAmount?: InputMaybe<IntegerFilter>;
   id?: InputMaybe<ItemIdFilter>;
   mobileSpaceAmount?: InputMaybe<IntegerFilter>;
@@ -6769,6 +6770,8 @@ export enum SpacerModelOrderBy {
   UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
   UpdatedAtAsc = "_updatedAt_ASC",
   UpdatedAtDesc = "_updatedAt_DESC",
+  BackgroundColorAsc = "backgroundColor_ASC",
+  BackgroundColorDesc = "backgroundColor_DESC",
   DesktopSpaceAmountAsc = "desktopSpaceAmount_ASC",
   DesktopSpaceAmountDesc = "desktopSpaceAmount_DESC",
   IdAsc = "id_ASC",
@@ -6795,6 +6798,7 @@ export type SpacerRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  backgroundColor?: Maybe<Scalars["String"]["output"]>;
   desktopSpaceAmount: Scalars["IntType"]["output"];
   id: Scalars["ItemId"]["output"];
   mobileSpaceAmount?: Maybe<Scalars["IntType"]["output"]>;
@@ -8350,6 +8354,7 @@ export type SpacerFragment = {
   desktopSpaceAmount: number;
   tabletSpaceAmount?: number | null;
   mobileSpaceAmount?: number | null;
+  backgroundColor?: string | null;
 };
 
 export type StatementNumberedFragment = {
@@ -9131,6 +9136,7 @@ export type PageQuery = {
           desktopSpaceAmount: number;
           tabletSpaceAmount?: number | null;
           mobileSpaceAmount?: number | null;
+          backgroundColor?: string | null;
         }
       | {
           __typename: "StaggeredRecord";
@@ -10638,6 +10644,7 @@ export const SpacerFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "tabletSpaceAmount" } },
           { kind: "Field", name: { kind: "Name", value: "mobileSpaceAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
         ],
       },
     },
@@ -18480,6 +18487,7 @@ export const PageDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "tabletSpaceAmount" } },
           { kind: "Field", name: { kind: "Name", value: "mobileSpaceAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
         ],
       },
     },

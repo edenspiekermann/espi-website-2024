@@ -2,11 +2,13 @@
 
 import { SpacerFragment } from "@/graphql/types/generated";
 import React, { useState, useEffect } from "react";
+import styles from "./styles.module.scss";
 
 export const Spacer = ({
   desktopSpaceAmount,
   tabletSpaceAmount,
   mobileSpaceAmount,
+  backgroundColor = "transparent",
 }: SpacerFragment) => {
   const [height, setHeight] = useState(desktopSpaceAmount);
 
@@ -29,5 +31,5 @@ export const Spacer = ({
     return () => window.removeEventListener("resize", updateHeight);
   }, [desktopSpaceAmount, tabletSpaceAmount, mobileSpaceAmount]);
 
-  return <div style={{ height, backgroundColor: "transparent" }} />;
+  return <div className={styles[backgroundColor!]} style={{ height }} />;
 };
