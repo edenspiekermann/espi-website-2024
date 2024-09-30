@@ -3,6 +3,7 @@ import { HeaderSimpleFragment } from "@/graphql/types/generated";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 import { Button } from "@/components/button/button";
+import { ScrollIntoViewText } from "@/components/scroll-into-view-text";
 
 export const HeaderSimple = ({
   featuredText,
@@ -14,11 +15,15 @@ export const HeaderSimple = ({
   const headerSimpleClass = classNames({
     [styles.headerSimple]: true,
   });
+
   return (
     <section className={headerSimpleClass}>
       <div className="container">
-        <h2
-          dangerouslySetInnerHTML={{ __html: featuredText }}
+        <ScrollIntoViewText
+          text={featuredText}
+          duration={0.8}
+          inline
+          tag="h2"
           className={styles.featuredText}
         />
         {subtext && <p className={styles.subtext}>{subtext}</p>}

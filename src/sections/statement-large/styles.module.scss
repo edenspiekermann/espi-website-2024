@@ -1,7 +1,6 @@
 @use "../../app/styles/base.scss" as *;
 
 .statementLarge {
-  @include as-xl-serif;
   @include mqHelper("padding", 64px 24px, 80px 40px, 144px 70px);
   flex-direction: column;
   align-items: flex-start;
@@ -22,6 +21,7 @@
 }
 
 .content {
+  @include as-xl-serif;
   grid-column: 1/-1;
   margin-bottom: 24px;
 
