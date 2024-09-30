@@ -42,13 +42,11 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={inter.className}>
-      <head>
-        <link
-          rel="icon"
-          href={_site.favicon?.url ?? "/favicon.ico"}
-          sizes="any"
-        />
-      </head>
+      <link
+        rel="icon"
+        href={_site.favicon?.url ?? "/favicon.ico"}
+        sizes="any"
+      />
       <body>
         <CookieConsentProvider>
           <NavigationProvider>
