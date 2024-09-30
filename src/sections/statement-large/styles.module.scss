@@ -15,9 +15,13 @@
   }
 }
 
-.inverted {
+.black {
   background-color: var(--color-espi-black);
   color: var(--color-white);
+}
+
+.grey {
+  background-color: var(--color-extra-light-grey);
 }
 
 .content {
