@@ -7,10 +7,12 @@ import classNames from "classnames";
 import styles from "./styles.module.scss";
 import { StatementNumbered } from "@/components/statement-numbered";
 import { useInView } from "framer-motion";
+import { Divider } from "@/components/divider/divider";
 
 export const TeaserCaseStaggered = ({
   numberedStatement,
   caseStudies,
+  divider,
 }: TeaserCaseStaggeredFragment) => {
   const teaserCaseStaggeredClass = classNames({
     [styles.teaserCaseStaggered]: true,
@@ -27,6 +29,7 @@ export const TeaserCaseStaggered = ({
 
   return (
     <section className={teaserCaseStaggeredClass}>
+      {divider && <Divider {...divider} />}
       {numberedStatement && <StatementNumbered {...numberedStatement} />}
       <div className={containerClass} ref={ref}>
         {caseStudies?.map((caseStudy, index) => {
