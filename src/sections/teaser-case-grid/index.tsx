@@ -81,6 +81,7 @@ export const TeaserCaseGrid = ({
   const teaserCaseGridClass = classNames({
     [styles.teaserCaseGrid]: true,
     container: true,
+    [styles.filterActiveFade]: selectedFilter !== null,
   });
 
   return (
