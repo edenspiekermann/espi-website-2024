@@ -66,12 +66,14 @@ export const FilterWork = ({
             Services
           </button>
           {selectedFilter && (
-            <div
-              className={styles.selected}
-              onClick={() => selectFilter(selectedFilter)}
-            >
-              {selectedFilter}
-              <CloseFilter />
+            <div className={styles.selectedRow}>
+              <div
+                className={styles.selected}
+                onClick={() => selectFilter(selectedFilter)}
+              >
+                {selectedFilter}
+                <CloseFilter />
+              </div>
             </div>
           )}
         </div>

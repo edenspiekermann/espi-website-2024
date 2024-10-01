@@ -56,6 +56,13 @@
   flex-wrap: wrap;
 }
 
+.selectedRow {
+  width: 100%;
+  @include mq("tablet") {
+    width: fit-content;
+  }
+}
+
 .selected {
   @include as-m-element;
   border-radius: 80px;
