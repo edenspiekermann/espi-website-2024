@@ -56,6 +56,27 @@
   flex-wrap: wrap;
 }
 
+@keyframes fadeIn {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  50% {
+    visibility: visible;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.activeFilter {
+  animation: fadeIn var(--animation-soft-curve-200ms);
+}
+
 .selectedRow {
   width: 100%;
   @include mq("tablet") {
