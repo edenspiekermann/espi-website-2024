@@ -7,14 +7,24 @@ import classNames from "classnames";
 import { NewsCard } from "./news-card";
 import { RevealButton } from "@/components/button/reveal-button";
 import { FilterNews } from "@/components/filter/filter-news";
+import { useSearchParams } from "next/navigation";
 
 export const TeaserNewsGrid = ({
   newsCards,
   showFilter,
 }: TeaserNewsGridFragment) => {
+  const searchParams = useSearchParams();
+  const urlFilter = searchParams.get("filter");
+
   const [visibleCount, setVisibleCount] = useState(6);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [typesOfNews, setTypesOfNews] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (urlFilter) {
+      setSelectedFilter(urlFilter);
+    }
+  }, [urlFilter]);
 
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 6);

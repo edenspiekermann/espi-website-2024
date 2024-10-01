@@ -18,7 +18,10 @@ export const HeaderNews = ({
   return (
     <section className={headerNewsClass}>
       <div className={styles.left}>
-        <Link href="/news" className={styles.tag}>
+        <Link
+          href={{ pathname: "/news", query: { filter: typeOfArticle } }}
+          className={styles.tag}
+        >
           <Tag text={typeOfArticle} />
         </Link>
         <h1 className={styles.title}>{title}</h1>
