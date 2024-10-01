@@ -13,7 +13,7 @@
 
 .logo {
   svg {
-    width: 152px;
+    width: 188px;
     height: auto;
 
     > path {
@@ -40,9 +40,7 @@
 }
 
 .hidden {
-  @include mq("tablet") {
-    transform: translateY(-500px);
-  }
+  transform: translateY(-500px);
 }
 
 .inverted {
@@ -229,7 +227,7 @@
 
   .inverted & {
     border-color: var(--color-white);
-    color: var(--color-white);
+    color: var(--color-white) !important;
   }
 
   @include mq("desktop") {

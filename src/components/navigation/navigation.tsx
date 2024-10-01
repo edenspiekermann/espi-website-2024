@@ -53,7 +53,7 @@ export const Navigation: React.FC<NavigationProperties> = ({
       setIsTransparent(true);
     }
 
-    setLastScrollY(latest);
+    setLastScrollY((prev) => latest);
   });
 
   useEffect(() => {
