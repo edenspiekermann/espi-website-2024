@@ -44,5 +44,6 @@ export interface HamburgerProperties {
 
 export interface MobileNavigationProperties extends NavigationBaseProperties {
   isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
   socialLinks: NavSocialLinkProperties[];
 }
