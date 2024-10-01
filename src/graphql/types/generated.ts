@@ -1407,6 +1407,7 @@ export type HeaderSimpleRecord = RecordInterface & {
   cta?: Maybe<CallToActionRecord>;
   featuredText: Scalars["String"]["output"];
   id: Scalars["ItemId"]["output"];
+  inquiryInfo?: Maybe<InquiryInfoRecord>;
   showCta: Scalars["BooleanType"]["output"];
   showInquiryInfo: Scalars["BooleanType"]["output"];
   subtext?: Maybe<Scalars["String"]["output"]>;
@@ -3346,6 +3347,37 @@ export type IndustryRecord_SeoMetaTagsArgs = {
 
 /** Record of type Industry (industry) */
 export type IndustryRecordTitleArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Block of type Inquiry Info (inquiry_info) */
+export type InquiryInfoRecord = RecordInterface & {
+  __typename?: "InquiryInfoRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  subtext?: Maybe<Scalars["String"]["output"]>;
+  title: Scalars["String"]["output"];
+};
+
+/** Block of type Inquiry Info (inquiry_info) */
+export type InquiryInfoRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Inquiry Info (inquiry_info) */
+export type InquiryInfoRecordSubtextArgs = {
   markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
@@ -8341,6 +8373,7 @@ export type SidebarNewsFragment = {
     __typename?: "PersonRecord";
     name: string;
     role: string;
+    slug: string;
     image?: {
       __typename?: "FileField";
       responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
@@ -8697,6 +8730,7 @@ export type NewsArticleQuery = {
                   __typename?: "PersonRecord";
                   name: string;
                   role: string;
+                  slug: string;
                   image?: {
                     __typename?: "FileField";
                     responsiveImage?: {
@@ -9537,6 +9571,7 @@ export type PersonQuery = {
                   __typename?: "PersonRecord";
                   name: string;
                   role: string;
+                  slug: string;
                   image?: {
                     __typename?: "FileField";
                     responsiveImage?: {
@@ -9682,6 +9717,7 @@ export type ContentTextImageFragment = {
           __typename?: "PersonRecord";
           name: string;
           role: string;
+          slug: string;
           image?: {
             __typename?: "FileField";
             responsiveImage?: {
@@ -10893,6 +10929,7 @@ export const SidebarNewsFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },
@@ -11122,6 +11159,7 @@ export const ContentTextImageFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },
@@ -15937,6 +15975,7 @@ export const NewsArticleDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },
@@ -18705,6 +18744,7 @@ export const PersonDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },

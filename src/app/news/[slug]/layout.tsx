@@ -3,6 +3,7 @@ import { HeaderNews } from "@/sections/header-news";
 import { MediaProperties } from "@/components/media/interfaces";
 import { NewsArticleDocument } from "@/graphql/types/generated";
 import React from "react";
+import { notFound } from "next/navigation";
 
 type PageProps = { params: { slug: string }; children: React.ReactNode };
 
@@ -21,6 +22,10 @@ export default async function NewsArticleLayout({
   const { newsArticle } = await request(NewsArticleDocument, {
     slug: params.slug,
   });
+
+  if (!newsArticle) {
+    return notFound();
+  }
 
   const { title, typeOfArticle, featuredMedia } = newsArticle!;
 

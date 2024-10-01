@@ -6,6 +6,7 @@ fragment SidebarNews on SidebarNewsRecord {
   author {
     name
     role
+    slug
     image {
       responsiveImage {
         src

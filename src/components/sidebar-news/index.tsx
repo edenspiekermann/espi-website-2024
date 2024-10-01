@@ -5,6 +5,7 @@ import { MediaProperties } from "../media/interfaces";
 import styles from "./styles.module.scss";
 import { formateDate } from "@/utils/format-date";
 import classNames from "classnames";
+import Link from "next/link";
 
 export const SidebarNews = ({
   date,
@@ -23,15 +24,17 @@ export const SidebarNews = ({
       <p className={styles.date}>{formattedDate}</p>
       <div className={styles.divider} />
       <p className={styles.text}>{text}</p>
-      <div className={styles.author}>
-        <div className={styles.media}>
-          <Media {...(author.image as MediaProperties)} />
+      <Link href={`/about/${author.slug}`} className={styles.authorLink}>
+        <div className={styles.author}>
+          <div className={styles.media}>
+            <Media {...(author.image as MediaProperties)} />
+          </div>
+          <div className={authorInfoClass}>
+            <p className={styles.name}>{author.name}</p>
+            <p className={styles.role}>{author.role}</p>
+          </div>
         </div>
-        <div className={authorInfoClass}>
-          <p className={styles.name}>{author.name}</p>
-          <p className={styles.role}>{author.role}</p>
-        </div>
-      </div>
+      </Link>
     </div>
   );
 };
