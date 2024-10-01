@@ -1407,6 +1407,7 @@ export type HeaderSimpleRecord = RecordInterface & {
   cta?: Maybe<CallToActionRecord>;
   featuredText: Scalars["String"]["output"];
   id: Scalars["ItemId"]["output"];
+  inquiryInfo?: Maybe<InquiryInfoRecord>;
   showCta: Scalars["BooleanType"]["output"];
   showInquiryInfo: Scalars["BooleanType"]["output"];
   subtext?: Maybe<Scalars["String"]["output"]>;
@@ -3346,6 +3347,37 @@ export type IndustryRecord_SeoMetaTagsArgs = {
 
 /** Record of type Industry (industry) */
 export type IndustryRecordTitleArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Block of type Inquiry Info (inquiry_info) */
+export type InquiryInfoRecord = RecordInterface & {
+  __typename?: "InquiryInfoRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  subtext?: Maybe<Scalars["String"]["output"]>;
+  title: Scalars["String"]["output"];
+};
+
+/** Block of type Inquiry Info (inquiry_info) */
+export type InquiryInfoRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Inquiry Info (inquiry_info) */
+export type InquiryInfoRecordSubtextArgs = {
   markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
@@ -8828,6 +8860,11 @@ export type PageQuery = {
             buttonType: string;
             pageLink?: { __typename?: "PageRecord"; slug: string } | null;
           } | null;
+          inquiryInfo?: {
+            __typename?: "InquiryInfoRecord";
+            title: string;
+            subtext?: string | null;
+          } | null;
         }
       | {
           __typename: "HeaderWithTagRecord";
@@ -9793,6 +9830,11 @@ export type HeaderSimpleFragment = {
     url?: string | null;
     buttonType: string;
     pageLink?: { __typename?: "PageRecord"; slug: string } | null;
+  } | null;
+  inquiryInfo?: {
+    __typename?: "InquiryInfoRecord";
+    title: string;
+    subtext?: string | null;
   } | null;
 };
 
@@ -11399,6 +11441,27 @@ export const HeaderSimpleFragmentDoc = {
                       },
                     ],
                   },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inquiryInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "subtext" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "markdown" },
+                      value: { kind: "BooleanValue", value: true },
+                    },
+                  ],
                 },
               ],
             },
@@ -17227,6 +17290,27 @@ export const PageDocument = {
                       },
                     ],
                   },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inquiryInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "subtext" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "markdown" },
+                      value: { kind: "BooleanValue", value: true },
+                    },
+                  ],
                 },
               ],
             },

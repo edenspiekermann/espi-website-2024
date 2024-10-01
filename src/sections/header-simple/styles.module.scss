@@ -45,6 +45,14 @@
     margin-bottom: 24px;
   }
 
+  > div {
+    @include as-m-text;
+  }
+
+  a {
+    @include as-link;
+  }
+
   @include mq("desktop") {
     grid-column: 1/7;
   }
