@@ -35,15 +35,15 @@ export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
                 </li>
               );
             })}
-          <li className={styles.mobileNavButton}>
-            <Button
-              text={cta?.text!}
-              url={cta?.url || ""}
-              slug={cta?.pageLink?.slug}
-              isInverted
-            />
-          </li>
         </ul>
+        <div className={styles.mobileNavButton}>
+          <Button
+            text={cta?.text!}
+            url={cta?.url || ""}
+            slug={cta?.pageLink?.slug}
+            isInverted
+          />
+        </div>
         <ul
           className={`${styles.mobileNavList} ${styles.navLinks} ${styles.socialLinks}`}
         >
