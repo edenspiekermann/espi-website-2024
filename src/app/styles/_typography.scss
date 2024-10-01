@@ -234,3 +234,15 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
   line-height: 100%;
   font-size: 14px;
 }
+
+@mixin as-link {
+  color: var(--color-espi-black);
+  font-size: inherit;
+  text-decoration: underline;
+  opacity: 1;
+  transition: opacity var(--animation-soft-curve-200ms);
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
