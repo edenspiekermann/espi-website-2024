@@ -229,6 +229,7 @@
   background: transparent;
   cursor: pointer;
   appearance: none;
+  color: var(--color-espi-black);
 
   .inverted & {
     border-color: var(--color-white);
