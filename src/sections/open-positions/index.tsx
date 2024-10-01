@@ -30,7 +30,9 @@ export const OpenPositions = ({ title }: OpenPositionFragment) => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch("/api/jobs");
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/jobs`,
+        );
         const jobsData = await response.json();
         setJobs(jobsData.data);
       } catch (error) {

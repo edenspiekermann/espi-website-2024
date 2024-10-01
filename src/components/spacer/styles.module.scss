@@ -1,0 +1,13 @@
+@use "../../app/styles/base.scss" as *;
+
+.white {
+  background-color: var(--color-white);
+}
+
+.black {
+  background-color: var(--color-espi-black);
+}
+
+.grey {
+  background-color: var(--color-extra-light-grey);
+}

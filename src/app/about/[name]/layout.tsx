@@ -28,7 +28,7 @@ export default async function PersonLayout({ children, params }: PageProps) {
     <>
       <UpdateNavState isInverted={false} isFixed />
       <HeaderCaseStudy
-        backgroundColor="#fff"
+        backgroundColor="var(--color-white)"
         title={name}
         subtitle={role}
         featuredMedia={image as MediaProperties}

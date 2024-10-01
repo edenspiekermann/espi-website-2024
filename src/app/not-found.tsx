@@ -20,12 +20,6 @@ export default async function NotFound() {
     <>
       <div style={{ height: 48 }} />
       <SectionConductor sections={sections} />
-      <div
-        className="container"
-        style={{ marginTop: "24px", marginBottom: "24px" }}
-      >
-        <Button slug="/" text="Go to homepage" />
-      </div>
     </>
   );
 }

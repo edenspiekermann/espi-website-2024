@@ -76,6 +76,8 @@
   object-fit: contain;
   aspect-ratio: 3/4;
   grid-column: 1/-1;
+  @include mqHelper("border-radius", 20px, 11px, 27px, 40px);
+  overflow: hidden;
   @include mq("tablet") {
     grid-column: 9/13;
   }

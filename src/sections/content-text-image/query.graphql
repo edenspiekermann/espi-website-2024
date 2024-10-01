@@ -13,4 +13,5 @@ fragment ContentTextImage on ContentTextImageRecord {
     ...SidebarNews
     ...SidebarGeneric
   }
+  backgroundColor
 }

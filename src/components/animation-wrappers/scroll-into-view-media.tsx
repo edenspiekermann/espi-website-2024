@@ -1,17 +1,22 @@
-import { motion } from "framer-motion";
-import React from "react";
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import React, { useRef } from "react";
 import { ScrollIntoViewProps } from "./interfaces";
 
-export const ScrollIntoView = ({
+export const ScrollIntoViewMedia = ({
   children,
-  isInView,
   scrollAmount = 25,
   duration = 0.2,
   delay = 0,
   className,
   fade = false,
   backgroundColor,
+  amount = 0,
 }: ScrollIntoViewProps) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: amount });
+
   const initialStyles = {
     y: scrollAmount,
     overflow: "hidden",
@@ -60,6 +65,7 @@ export const ScrollIntoView = ({
         position: "relative",
       }}
       className={className}
+      ref={ref}
     >
       <motion.span
         initial={curtainInitial}

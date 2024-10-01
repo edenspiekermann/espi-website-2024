@@ -2,7 +2,7 @@ fragment StatementLarge on StatementLargeRecord {
   __typename
   id
   text(markdown: true)
-  invertColor
+  backgroundColor
   addCallToAction
   cta {
     __typename

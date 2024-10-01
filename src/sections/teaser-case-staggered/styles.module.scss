@@ -1,7 +1,7 @@
 @use "../../app/styles/base.scss" as *;
 
 .teaserCaseStaggered {
-  @include mqHelper("padding", 24px, 20px 40px, 32px 70px);
+  @include mqHelper("padding", 24px, 20px 0px, 32px 0px);
 }
 
 .threeCards {
@@ -12,16 +12,23 @@
   }
 }
 
+.cardContainer {
+  @include mqHelper("padding", 24px 0px, 20px 0px, 32px 0px);
+}
+
 .card {
   grid-column: 1/-1;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: hidden !important;
   height: fit-content;
-  color: var(--color-espi-black);
-  text-decoration: none;
   margin-bottom: 24px;
+
+  * {
+    color: var(--color-espi-black);
+    text-decoration: none;
+  }
 
   @include mq("tablet") {
     grid-column: span 6;
@@ -34,10 +41,24 @@
   @include mq("desktop") {
     border-radius: 40px;
   }
+
+  &:hover {
+    .content {
+      border-radius: 40px;
+    }
+    .media {
+      border-radius: 80px;
+      > * {
+        transform: scale(1);
+      }
+    }
+  }
 }
 
 .invertedCard {
-  color: var(--color-white);
+  * {
+    color: var(--color-white);
+  }
 }
 
 .media {
@@ -45,6 +66,12 @@
   overflow: hidden;
   object-fit: contain;
   aspect-ratio: 1/1;
+  transition: border-radius var(--animation-soft-curve-200ms);
+
+  > * {
+    transform: scale(1.05);
+    transition: transform var(--animation-soft-curve-200ms);
+  }
 
   .card:first-of-type & {
     aspect-ratio: 4/3;
@@ -60,6 +87,7 @@
   flex-direction: column;
   gap: 8px;
   padding: 16px 24px 20px;
+  transition: border-radius var(--animation-soft-curve-200ms);
 
   @include mq("desktop") {
     padding: 24px 32px 28px;

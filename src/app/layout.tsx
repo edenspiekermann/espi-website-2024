@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./styles/global.scss";
 import {
+  FavIconDocument,
   FooterDocument,
   LinkRecord,
   NavigationDocument,
+  NavigationRecord,
   PageRecord,
   SocialLinkRecord,
   TextRecord,
@@ -38,9 +40,15 @@ export default async function RootLayout({
     navigation!;
 
   const { footer } = await request(FooterDocument);
+  const { _site } = await request(FavIconDocument);
 
   return (
     <html lang="en" className={inter.className}>
+      <link
+        rel="icon"
+        href={_site.favicon?.url ?? "/favicon.ico"}
+        sizes="any"
+      />
       <body>
         <ScrollToTopProvider>
           <CookieConsentProvider>
@@ -50,7 +58,7 @@ export default async function RootLayout({
                 alternativeLogoText={alternativeLogoText || "Let's Innovate"}
                 showLogo={showLogo}
                 socialLinks={socialLinks}
-                cta={cta as ButtonProperties}
+                cta={cta as NavigationRecord["cta"]}
               >
                 {children}
                 <Footer

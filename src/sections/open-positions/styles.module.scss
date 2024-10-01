@@ -18,16 +18,16 @@
     width: 93px;
     height: 93px;
     margin-bottom: 24px;
-    animation: spin 5s linear infinite;
+    animation: spin 10s linear infinite;
 
     @include mq("tablet") {
       margin-bottom: 0;
-      margin-right: 62px;
     }
 
     @include mq("desktop") {
       width: 181px;
       height: 181px;
+      grid-column: span 2;
     }
   }
 }
@@ -69,6 +69,14 @@
   @include mqHelper("border-radius", 20px, 20px, 40px);
   @include as-m-sans;
 
+  &:hover {
+    background-color: var(--color-espi-black);
+    color: var(--color-white);
+    transition:
+      background-color 0.2s ease-in-out,
+      color 0.2s ease-in-out;
+  }
+
   @include mq("tablet") {
     flex-direction: row;
     align-items: center;
@@ -77,4 +85,8 @@
 
 .office {
   color: var(--color-medium-grey);
+
+  @include mq("tablet") {
+    margin-left: 40px;
+  }
 }

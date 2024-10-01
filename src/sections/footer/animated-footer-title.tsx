@@ -13,6 +13,7 @@ export const AnimatedFooterTitle = ({
   loopingTitleText: TextRecord[];
 }) => {
   const [currentPhrase, setCurrentPhrase] = useState(0);
+  const formattedTitle = title.replace(/'/g, "’");
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -42,7 +43,7 @@ export const AnimatedFooterTitle = ({
   };
   return (
     <div>
-      <p>{title}</p>
+      <p>{formattedTitle}</p>
       <motion.p
         key={loopingTitleText[currentPhrase].id}
         variants={animationVariants}

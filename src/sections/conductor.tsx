@@ -31,6 +31,7 @@ import { ContentTextImage } from "./content-text-image";
 import { Staggered } from "./staggered";
 import { HeaderWithTag } from "./header-with-tag";
 import { TeaserCta } from "./teaser-cta";
+import { Spacer } from "@/components/spacer";
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
@@ -96,6 +97,8 @@ const sectionSwitch = (section: any) => {
       return <HeaderWithTag key={section.id} {...section} />;
     case "TeaserCtaRecord":
       return <TeaserCta key={section.id} {...section} />;
+    case "SpacerRecord":
+      return <Spacer key={section.id} {...section} />;
     default:
       return <SectionDevelopment key={nanoid()} {...section} />;
   }

@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { ButtonArrowRight } from "./button-arrow-right";
 import Link from "next/link";
 import { ButtonArrowDownload } from "./button-arrow-download";
+import { ScrollButton } from "./scroll-button";
 
 export const Button = ({
   text,
@@ -14,24 +15,35 @@ export const Button = ({
   isInverted = false,
   slug,
   onClick,
-  isDownloadButton,
+  type,
 }: ButtonProperties) => {
   const buttonClass = classNames({
     [styles.button]: true,
     [styles.inverted]: isInverted,
   });
 
+  const iconSwitch = (type?: ButtonProperties["type"]) => {
+    switch (type) {
+      case "link":
+        return <ButtonArrowRight />;
+      case "download":
+        return <ButtonArrowDownload />;
+      default:
+        return <ButtonArrowRight />;
+    }
+  };
+
   if (slug) {
     return (
       <Link
         href={slug}
-        scroll={false}
+        scroll={true}
         title={text}
         className={buttonClass}
         aria-label={text}
       >
         <span className={styles.text}>{text}</span>
-        <ButtonArrowRight />
+        {iconSwitch(type)}
       </Link>
     );
   }
@@ -44,23 +56,24 @@ export const Button = ({
         aria-label="Navigate to website"
       >
         <span className={styles.text}>{text}</span>
-        <ButtonArrowRight />
+        {iconSwitch(type)}
       </button>
     );
   }
 
-  if (isDownloadButton) {
+  {
+    /* TODO - Implement scroll behavior on button */
+  }
+  if (type === "scroll") {
     return (
-      <a href={url} className={buttonClass} aria-label="Download file">
-        <span className={styles.text}>{text}</span>
-        <ButtonArrowDownload />
-      </a>
+      <ScrollButton text={text} onClick={onClick} isInverted={isInverted} />
     );
   }
+
   return (
-    <a href={url} className={buttonClass} aria-label="Navigate to website">
+    <a href={url} className={buttonClass} aria-label={text} target="_blank">
       <span className={styles.text}>{text}</span>
-      <ButtonArrowRight />
+      {iconSwitch(type)}
     </a>
   );
 };

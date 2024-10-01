@@ -17,7 +17,9 @@ export const SidebarGeneric = ({
   return (
     <div className={styles.sidebarGeneric}>
       <div className={textClass} dangerouslySetInnerHTML={{ __html: text }} />
-      {callToAction && <Button {...callToAction} />}
+      {callToAction && (
+        <Button {...callToAction} url={callToAction.url || ""} />
+      )}
     </div>
   );
 };

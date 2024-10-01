@@ -32,7 +32,6 @@
 }
 
 .linkSection {
-  display: flex;
   grid-column: 1/-1;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -62,6 +61,7 @@
     display: flex;
     flex-direction: column;
     padding: 0;
+    margin: 0;
   }
 }
 
@@ -92,6 +92,7 @@
   }
 
   li {
+    @include as-s-text;
     margin-right: 32px;
     margin-bottom: 8px;
     &:last-child {
@@ -110,5 +111,9 @@
   @include mq("desktop") {
     flex-direction: row;
     align-items: center;
+
+    svg {
+      margin-bottom: 0;
+    }
   }
 }

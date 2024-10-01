@@ -3,6 +3,9 @@ import { HeaderCaseStudyProperties } from "./interfaces";
 import { Media } from "@/components/media";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
+import { ScrollIntoViewText } from "@/components/scroll-into-view-text";
+import { FadeIntoView } from "@/components/animation-wrappers/fade-into-view";
+import { ScrollIntoViewMedia } from "@/components/animation-wrappers/scroll-into-view-media";
 
 export const HeaderCaseStudy = ({
   title,
@@ -15,14 +18,30 @@ export const HeaderCaseStudy = ({
     [styles.headerCaseStudy]: true,
     [styles.inverted]: inverted,
   });
+
   return (
     <div className={headerCaseStudyClass} style={{ backgroundColor }}>
       <div className="container">
-        <h1 className={styles.title}>{title}</h1>
-        <h2 className={styles.subtitle}>{subtitle}</h2>
-        <div className={styles.media}>
+        <ScrollIntoViewText
+          text={title}
+          tag="h1"
+          inline
+          duration={0.2}
+          backgroundColor={backgroundColor}
+          className={styles.title}
+        />
+
+        <h2 className={styles.subtitle}>
+          <FadeIntoView delay={0.2}>{subtitle}</FadeIntoView>
+        </h2>
+        <ScrollIntoViewMedia
+          fade
+          delay={0.4}
+          className={styles.media}
+          scrollAmount={100}
+        >
           <Media {...featuredMedia} />
-        </div>
+        </ScrollIntoViewMedia>
       </div>
     </div>
   );

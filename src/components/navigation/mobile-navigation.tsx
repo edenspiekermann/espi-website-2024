@@ -34,7 +34,12 @@ export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
               );
             })}
           <li>
-            <Button text={cta.text} url={cta.url} isInverted />
+            <Button
+              text={cta?.text!}
+              url={cta?.url || ""}
+              slug={cta?.pageLink?.slug}
+              isInverted
+            />
           </li>
         </ul>
         <ul

@@ -15,10 +15,14 @@ export const Drawers = ({
   imageOnLeft = false,
   whiteBackground = false,
 }: DrawersFragment) => {
-  const [activeDrawer, setActiveDrawer] = useState<number | null>();
+  const [openDrawers, setOpenDrawers] = useState<boolean[]>(
+    items.map(() => false),
+  );
 
   const handleDrawerClick = (index: number) => {
-    activeDrawer === index ? setActiveDrawer(null) : setActiveDrawer(index);
+    const updatedDrawers = [...openDrawers];
+    updatedDrawers[index] = !updatedDrawers[index];
+    setOpenDrawers(updatedDrawers);
   };
 
   const drawersClass = classNames({
@@ -37,7 +41,7 @@ export const Drawers = ({
               <DrawerItem
                 key={item.id}
                 {...item}
-                isActive={activeDrawer === index}
+                isActive={openDrawers[index]}
                 onClick={() => handleDrawerClick(index)}
               />
             ))}

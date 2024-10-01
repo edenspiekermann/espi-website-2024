@@ -1,12 +1,7 @@
 @use "../../app/styles/base.scss" as *;
 
 .teaserRelatedNews {
-  @include mqHelper(
-    "padding",
-    24px 24px 88px,
-    20px 40px 100px,
-    32px 70px 112px
-  );
+  @include mqHelper("padding", 24px 0px 88px, 20px 0px 100px, 32px 0px 112px);
   background-color: var(--color-extra-light-grey);
 }
 

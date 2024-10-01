@@ -19,7 +19,7 @@ export const CaseIntro = ({
     <section className={styles.caseIntro}>
       <div className="container">
         <div className={styles.left}>
-          {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+          {tags?.map((tag) => <Tag key={tag} text={tag} isLargeTag />)}
         </div>
         <div className={styles.right}>
           <p className={styles.text}>{text}</p>

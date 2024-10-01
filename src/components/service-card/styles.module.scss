@@ -34,6 +34,7 @@
     list-style: none;
   }
   li {
+    @include as-m-text;
     color: var(--color-dark-grey);
   }
 }

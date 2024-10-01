@@ -8,7 +8,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // XL Serif
 @mixin as-xl-serif {
-  font-weight: 450;
+  font-weight: 400;
   line-height: 100%;
   letter-spacing: -0.02em;
   font-family: "ff-meta-serif-web-pro", serif;
@@ -18,9 +18,9 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // XL Sans
 @mixin as-xl-sans {
-  font-weight: 400;
+  font-weight: 300;
   line-height: 100%;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
   font-family: "ff-real-text-pro", sans-serif;
 
   @include mqHelper("font-size", 48px, 64px, $scaling-font-size-xl-desktop);
@@ -28,7 +28,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // XL Sans - Bold
 @mixin as-xl-sans-bold {
-  font-weight: 450;
+  font-weight: 400;
   line-height: 100%;
   letter-spacing: -0.02em;
   font-weight: 500;
@@ -39,7 +39,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // L Serif
 @mixin as-l-serif {
-  font-weight: 450;
+  font-weight: 400;
   font-family: "ff-meta-serif-web-pro", serif;
   letter-spacing: -0.01em;
   line-height: 110%;
@@ -49,7 +49,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // L Sans
 @mixin as-l-sans {
-  font-weight: 400;
+  font-weight: 300;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: -0.03em;
   line-height: 110%;
@@ -69,7 +69,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // M Serif
 @mixin as-m-serif {
-  font-weight: 450;
+  font-weight: 400;
   font-family: "ff-meta-serif-web-pro", serif;
   letter-spacing: -0.01em;
   line-height: 120%;
@@ -79,7 +79,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // M Sans
 @mixin as-m-sans {
-  font-weight: 400;
+  font-weight: 300;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: -0.03em;
   line-height: 120%;
@@ -99,7 +99,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // S Serif
 @mixin as-s-serif {
-  font-weight: 450;
+  font-weight: 400;
   font-family: "ff-meta-serif-web-pro", serif;
   letter-spacing: -0.01em;
   line-height: 125%;
@@ -109,7 +109,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // S Serif
 @mixin as-s-serif {
-  font-weight: 450;
+  font-weight: 400;
   font-family: "ff-meta-serif-web-pro", serif;
   letter-spacing: -0.01em;
   line-height: 125%;
@@ -119,7 +119,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // S Sans
 @mixin as-s-sans {
-  font-weight: 400;
+  font-weight: 300;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: -0.02em;
   line-height: 125%;
@@ -139,7 +139,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // XS Sans
 @mixin as-xs-sans {
-  font-weight: 400;
+  font-weight: 300;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: -0.01em;
   line-height: 125%;
@@ -149,7 +149,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // XXS Sans
 @mixin as-xxs-sans {
-  font-weight: 400;
+  font-weight: 300;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: normal;
   line-height: 130%;
@@ -161,7 +161,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // XL Text
 @mixin as-xl-text {
-  font-weight: 400;
+  font-weight: 300;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: -0.03em;
   line-height: 130%;
@@ -171,7 +171,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // L Text
 @mixin as-l-text {
-  font-weight: 400;
+  font-weight: 300;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: -0.02em;
   line-height: 140%;
@@ -181,7 +181,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // M Text
 @mixin as-m-text {
-  font-weight: 400;
+  font-weight: 300;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: -0.01em;
   line-height: 150%;
@@ -199,7 +199,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // S Text
 @mixin as-s-text {
-  font-weight: 400;
+  font-weight: 300;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: normal;
   line-height: 140%;
@@ -208,7 +208,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // XS Text
 @mixin as-xs-text {
-  font-weight: 400;
+  font-weight: 300;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: normal;
   line-height: 130%;
@@ -219,7 +219,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // M Element (Used for Navigation, Buttons, Filters, Large tags, etc.)
 @mixin as-m-element {
-  font-weight: 450;
+  font-weight: 400;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: -0.01em;
   line-height: 100%;
@@ -228,9 +228,21 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
 
 // S Element (Used for small tags, mobile menus, etc.)
 @mixin as-s-element {
-  font-weight: 400;
+  font-weight: 300;
   font-family: "ff-real-text-pro", sans-serif;
   letter-spacing: -0.01em;
   line-height: 100%;
   font-size: 14px;
+}
+
+@mixin as-link {
+  color: var(--color-espi-black);
+  font-size: inherit;
+  text-decoration: underline;
+  opacity: 1;
+  transition: opacity var(--animation-soft-curve-200ms);
+
+  &:hover {
+    opacity: 0.6;
+  }
 }
