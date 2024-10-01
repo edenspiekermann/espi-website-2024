@@ -71,7 +71,7 @@ export const Button = ({
   }
 
   return (
-    <a href={url} className={buttonClass} aria-label={text}>
+    <a href={url} className={buttonClass} aria-label={text} target="_blank">
       <span className={styles.text}>{text}</span>
       {iconSwitch(type)}
     </a>
