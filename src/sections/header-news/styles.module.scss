@@ -12,6 +12,12 @@
   }
 }
 
+.tag {
+  width: fit-content;
+  text-decoration: none !important;
+  color: inherit;
+}
+
 .left {
   background-color: var(--color-white);
   display: flex;
@@ -24,6 +30,10 @@
 .image {
   @include mqHelper("border-radius", 10px, 18px, 27px);
   flex: 1;
+
+  @include mq(desktop) {
+    flex: auto;
+  }
 }
 
 .title {
@@ -35,4 +45,8 @@
   aspect-ratio: 3/2;
   object-fit: contain;
   overflow: hidden;
+
+  @include mq(desktop) {
+    width: 62%;
+  }
 }
