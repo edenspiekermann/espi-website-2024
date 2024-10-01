@@ -2,7 +2,12 @@
 
 .headerNews {
   position: relative;
-  @include mqHelper("padding", 32px 24px, 32px 40px, 40px 70px);
+  @include mqHelper(
+    "padding",
+    114px 24px 34px,
+    114px 40px 32px,
+    134px 70px 40px
+  );
   background-color: var(--color-extra-light-grey);
   display: flex;
   flex-direction: column;
