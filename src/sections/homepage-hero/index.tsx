@@ -10,7 +10,14 @@ export const HomePageHero = ({ media }: HomepageHeroFragment) => {
   return (
     <section className="homepage-hero">
       {video?.mp4Url && (
-        <video src={video.mp4Url} autoPlay controls={false} loop muted />
+        <video
+          src={video.mp4Url}
+          autoPlay
+          controls={false}
+          loop
+          muted
+          playsInline
+        />
       )}
       {responsiveImage && !video && (
         <Image
