@@ -10,7 +10,12 @@ query Person($slug: String) {
     name
     role
     slug
-    image {
+    cardImage {
+      responsiveImage {
+        src
+      }
+    }
+    headerImage {
       responsiveImage {
         src
       }
