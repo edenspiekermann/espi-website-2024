@@ -7,9 +7,18 @@
   width: fit-content;
   height: fit-content;
   border-radius: 80px;
+  transition:
+    background-color var(--animation-soft-curve-200ms),
+    color var(--animation-soft-curve-200ms);
 
   &--large {
     @include as-m-element;
     padding: 15px 20px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-espi-black);
+    color: var(--color-white);
   }
 }
