@@ -82,6 +82,7 @@ export const TeaserCaseGrid = ({
     [styles.teaserCaseGrid]: true,
     container: true,
     [styles.filterActiveFade]: selectedFilter !== null,
+    [styles.slideContent]: activeCategory && !selectedFilter,
   });
 
   return (
@@ -105,6 +106,7 @@ export const TeaserCaseGrid = ({
                   key={caseStudy.id}
                   {...caseStudy}
                   visible={index < visibleCount}
+                  index={index}
                 />
               );
             case "IndustryRecord":

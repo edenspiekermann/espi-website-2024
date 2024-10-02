@@ -74,6 +74,9 @@
 }
 
 .activeFilter {
+  transition:
+    opacity var(--animation-soft-curve-200ms),
+    transform var(--animation-soft-curve-200ms);
   animation: fadeIn var(--animation-soft-curve-200ms);
 }
 

@@ -8,22 +8,28 @@ import classNames from "classnames";
 
 interface GridCardProperties extends CaseStudyGridCardFragment {
   visible?: boolean;
+  index: number;
 }
 
 export const CaseStudyGridCard = ({
   title,
   subtitle,
-  cardMedia,
+  cardMedia2x1,
+  cardMedia3x2,
   slug,
   backgroundColor,
   invertNav,
   visible,
+  index,
 }: GridCardProperties) => {
   const cardClass = classNames({
     [styles.gridCard]: true,
     [styles.invertedCard]: invertNav,
     [styles.visible]: visible,
   });
+
+  const cardMedia = index % 3 === 0 ? cardMedia2x1 : cardMedia3x2;
+
   return (
     <Link href={`case-studies/${slug}`} className={cardClass}>
       <div className={styles.media}>
