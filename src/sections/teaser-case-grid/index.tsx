@@ -82,6 +82,7 @@ export const TeaserCaseGrid = ({
     [styles.teaserCaseGrid]: true,
     container: true,
     [styles.filterActiveFade]: selectedFilter !== null,
+    [styles.slideContent]: activeCategory && !selectedFilter,
   });
 
   return (
