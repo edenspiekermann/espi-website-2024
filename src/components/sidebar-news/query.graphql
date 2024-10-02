@@ -7,7 +7,7 @@ fragment SidebarNews on SidebarNewsRecord {
     name
     role
     slug
-    image {
+    smallImage {
       responsiveImage {
         src
       }

@@ -4299,13 +4299,15 @@ export type PersonModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  cardImage?: InputMaybe<FileFilter>;
   email?: InputMaybe<StringFilter>;
+  headerImage?: InputMaybe<FileFilter>;
   id?: InputMaybe<ItemIdFilter>;
-  image?: InputMaybe<FileFilter>;
   name?: InputMaybe<StringFilter>;
   role?: InputMaybe<StringFilter>;
   sections?: InputMaybe<LinksFilter>;
   slug?: InputMaybe<SlugFilter>;
+  smallImage?: InputMaybe<FileFilter>;
 };
 
 export enum PersonModelOrderBy {
@@ -4356,13 +4358,15 @@ export type PersonRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  cardImage?: Maybe<FileField>;
   email?: Maybe<Scalars["String"]["output"]>;
+  headerImage?: Maybe<FileField>;
   id: Scalars["ItemId"]["output"];
-  image?: Maybe<FileField>;
   name: Scalars["String"]["output"];
   role: Scalars["String"]["output"];
   sections: Array<PersonModelSectionsField>;
   slug: Scalars["String"]["output"];
+  smallImage?: Maybe<FileField>;
 };
 
 /** Record of type Person (person) */
@@ -8374,7 +8378,7 @@ export type SidebarNewsFragment = {
     name: string;
     role: string;
     slug: string;
-    image?: {
+    smallImage?: {
       __typename?: "FileField";
       responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
     } | null;
@@ -8731,7 +8735,7 @@ export type NewsArticleQuery = {
                   name: string;
                   role: string;
                   slug: string;
-                  image?: {
+                  smallImage?: {
                     __typename?: "FileField";
                     responsiveImage?: {
                       __typename?: "ResponsiveImage";
@@ -9394,7 +9398,7 @@ export type PageQuery = {
             role: string;
             slug: string;
             email?: string | null;
-            image?: {
+            cardImage?: {
               __typename?: "FileField";
               responsiveImage?: {
                 __typename?: "ResponsiveImage";
@@ -9511,7 +9515,11 @@ export type PersonQuery = {
       content?: string | null;
       tag: string;
     }>;
-    image?: {
+    cardImage?: {
+      __typename?: "FileField";
+      responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
+    } | null;
+    headerImage?: {
       __typename?: "FileField";
       responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
     } | null;
@@ -9572,7 +9580,7 @@ export type PersonQuery = {
                   name: string;
                   role: string;
                   slug: string;
-                  image?: {
+                  smallImage?: {
                     __typename?: "FileField";
                     responsiveImage?: {
                       __typename?: "ResponsiveImage";
@@ -9718,7 +9726,7 @@ export type ContentTextImageFragment = {
           name: string;
           role: string;
           slug: string;
-          image?: {
+          smallImage?: {
             __typename?: "FileField";
             responsiveImage?: {
               __typename?: "ResponsiveImage";
@@ -10472,7 +10480,7 @@ export type TeaserLeadershipFragment = {
     role: string;
     slug: string;
     email?: string | null;
-    image?: {
+    cardImage?: {
       __typename?: "FileField";
       responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
     } | null;
@@ -10486,7 +10494,7 @@ export type PersonFragment = {
   role: string;
   slug: string;
   email?: string | null;
-  image?: {
+  cardImage?: {
     __typename?: "FileField";
     responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
   } | null;
@@ -10932,7 +10940,7 @@ export const SidebarNewsFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "image" },
+                  name: { kind: "Name", value: "smallImage" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
@@ -11162,7 +11170,7 @@ export const ContentTextImageFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "image" },
+                  name: { kind: "Name", value: "smallImage" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
@@ -14006,7 +14014,7 @@ export const PersonFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "image" },
+            name: { kind: "Name", value: "cardImage" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -14105,7 +14113,7 @@ export const TeaserLeadershipFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "image" },
+            name: { kind: "Name", value: "cardImage" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -15978,7 +15986,7 @@ export const NewsArticleDocument = {
                 { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "image" },
+                  name: { kind: "Name", value: "smallImage" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
@@ -17074,7 +17082,7 @@ export const PageDocument = {
           { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "image" },
+            name: { kind: "Name", value: "cardImage" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -18609,7 +18617,29 @@ export const PersonDocument = {
                 { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "image" },
+                  name: { kind: "Name", value: "cardImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "responsiveImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "src" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "headerImage" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
@@ -18747,7 +18777,7 @@ export const PersonDocument = {
                 { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "image" },
+                  name: { kind: "Name", value: "smallImage" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [

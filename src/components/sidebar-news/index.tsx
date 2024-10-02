@@ -25,14 +25,12 @@ export const SidebarNews = ({
       <div className={styles.divider} />
       <p className={styles.text}>{text}</p>
       <Link href={`/about/${author.slug}`} className={styles.authorLink}>
-        <div className={styles.author}>
-          <div className={styles.media}>
-            <Media {...(author.image as MediaProperties)} />
-          </div>
-          <div className={authorInfoClass}>
-            <p className={styles.name}>{author.name}</p>
-            <p className={styles.role}>{author.role}</p>
-          </div>
+        <div className={styles.media}>
+          <Media {...(author.smallImage as MediaProperties)} />
+        </div>
+        <div className={authorInfoClass}>
+          <p className={styles.name}>{author.name}</p>
+          <p className={styles.role}>{author.role}</p>
         </div>
       </Link>
     </div>
