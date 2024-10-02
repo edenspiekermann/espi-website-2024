@@ -39,6 +39,7 @@ export const TeaserCaseStaggered = ({
               {...caseStudy}
               isInView={isInView}
               index={index}
+              size={caseStudies.length}
             />
           );
         })}
