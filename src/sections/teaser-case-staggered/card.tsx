@@ -10,22 +10,34 @@ import { ScrollIntoView } from "@/components/animation-wrappers/scroll-into-view
 interface CardProps extends CaseStudyCardFragment {
   isInView?: boolean;
   index: number;
+  size: number;
 }
 
 export const Card = ({
   title,
   subtitle,
   backgroundColor,
-  cardMedia,
+  cardMedia1x1,
+  cardMedia3x4,
+  cardMedia4x3,
   slug,
   invertNav,
   isInView,
   index,
+  size,
 }: CardProps) => {
   const cardClass = classNames({
     [styles.card]: true,
     [styles.invertedCard]: invertNav,
   });
+
+  let cardMedia;
+
+  if (size === 3) {
+    cardMedia = index % 2 === 0 ? cardMedia3x4 : cardMedia1x1;
+  } else {
+    cardMedia = index % 2 === 0 ? cardMedia4x3 : cardMedia1x1;
+  }
 
   return (
     <ScrollIntoView

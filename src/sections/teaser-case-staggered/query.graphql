@@ -21,7 +21,25 @@ fragment CaseStudyCard on CaseStudyRecord {
     hex
   }
   slug
-  cardMedia {
+  cardMedia3x4 {
+    responsiveImage {
+      src
+      alt
+    }
+    video {
+      mp4Url
+    }
+  }
+  cardMedia1x1 {
+    responsiveImage {
+      src
+      alt
+    }
+    video {
+      mp4Url
+    }
+  }
+  cardMedia4x3 {
     responsiveImage {
       src
       alt

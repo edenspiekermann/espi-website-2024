@@ -20,7 +20,7 @@ fragment CaseStudyGridCardRelatedCase on CaseStudyRecord {
   backgroundColor {
     hex
   }
-  cardMedia {
+  cardMedia3x2 {
     responsiveImage {
       src
       alt
