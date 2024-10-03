@@ -33,7 +33,16 @@ fragment CaseStudyGridCard on CaseStudyRecord {
   backgroundColor {
     hex
   }
-  cardMedia {
+  cardMedia2x1 {
+    responsiveImage {
+      src
+      alt
+    }
+    video {
+      mp4Url
+    }
+  }
+  cardMedia3x2 {
     responsiveImage {
       src
       alt

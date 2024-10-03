@@ -25,7 +25,7 @@ export const SidebarNews = ({
       <p className={styles.text}>{text}</p>
       <div className={styles.author}>
         <div className={styles.media}>
-          <Media {...(author.image as MediaProperties)} />
+          <Media {...(author.smallImage as MediaProperties)} />
         </div>
         <div className={authorInfoClass}>
           <p className={styles.name}>{author.name}</p>

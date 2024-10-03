@@ -2,6 +2,7 @@ import { IndustryFragment, ServiceFragment } from "@/graphql/types/generated";
 import React from "react";
 import styles from "./styles.module.scss";
 import { CloseFilter } from "./close-filter";
+import classNames from "classnames";
 
 interface FilterProperties {
   industries: IndustryFragment[] | null;
@@ -43,6 +44,11 @@ export const FilterWork = ({
     setSelectedFilter(null);
   };
 
+  const filterOptionsClass = classNames({
+    [styles.filterOptions]: true,
+    [styles.activeFilter]: activeCategory !== null,
+  });
+
   return (
     <div className={styles.filter}>
       <div className="container">
@@ -66,18 +72,20 @@ export const FilterWork = ({
             Services
           </button>
           {selectedFilter && (
-            <div
-              className={styles.selected}
-              onClick={() => selectFilter(selectedFilter)}
-            >
-              {selectedFilter}
-              <CloseFilter />
+            <div className={styles.selectedRow}>
+              <div
+                className={styles.selected}
+                onClick={() => selectFilter(selectedFilter)}
+              >
+                {selectedFilter}
+                <CloseFilter />
+              </div>
             </div>
           )}
         </div>
 
         {activeCategory === "industries" && !selectedFilter && (
-          <div className={styles.filterOptions}>
+          <div className={filterOptionsClass}>
             {industries?.map(({ industry, id }) => (
               <button
                 key={id}
@@ -91,7 +99,7 @@ export const FilterWork = ({
         )}
 
         {activeCategory === "services" && !selectedFilter && (
-          <div className={styles.filterOptions}>
+          <div className={filterOptionsClass}>
             {services?.map(({ service, id }) => (
               <button
                 key={id}

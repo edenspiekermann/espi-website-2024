@@ -16,7 +16,7 @@ fragment Person on PersonRecord {
   role
   slug
   email
-  image {
+  cardImage {
     responsiveImage {
       src
     }
