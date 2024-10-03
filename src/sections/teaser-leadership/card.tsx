@@ -5,11 +5,11 @@ import { Media } from "@/components/media";
 import { MediaProperties } from "@/components/media/interfaces";
 import Link from "next/link";
 
-export const PersonCard = ({ name, role, slug, image }: PersonFragment) => {
+export const PersonCard = ({ name, role, slug, cardImage }: PersonFragment) => {
   return (
     <Link className={styles.personCard} href={`/about/${slug}`} target="_self">
       <div className={styles.media}>
-        <Media {...(image as MediaProperties)} />
+        <Media {...(cardImage as MediaProperties)} />
       </div>
       <div className={styles.text}>
         <p className={styles.name}>{name}</p>

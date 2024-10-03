@@ -3,6 +3,10 @@
 .teaserCaseGrid {
   @include mqHelper("padding", 24px, 20px 40px, 32px 70px);
   opacity: 1;
+  transform: translateY(0px);
+  transition:
+    opacity var(--animation-soft-curve-200ms),
+    transform var(--animation-soft-curve-200ms);
 }
 
 .button {
@@ -25,5 +29,10 @@
 }
 
 .filterActiveFade {
-  animation: fadeOutIn var(--animation-soft-curve-400ms);
+  animation: fadeOutIn var(--animation-soft-curve-200ms);
+}
+
+.slideContent {
+  transition: transform var(--animation-soft-curve-200ms);
+  transform: translateY(50px);
 }

@@ -3,11 +3,13 @@ import { ButtonProperties } from "./interfaces";
 import { ButtonArrowDown } from "./button-arrow-down";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
+import Link from "next/link";
 
 export const ScrollButton = ({
   text,
   onClick,
   isInverted = false,
+  url,
 }: ButtonProperties) => {
   const buttonClass = classNames({
     [styles.button]: true,
@@ -15,9 +17,9 @@ export const ScrollButton = ({
   });
 
   return (
-    <button className={buttonClass} onClick={onClick}>
+    <Link href={url || ""} className={buttonClass} onClick={onClick}>
       <span className={styles.text}>{text}</span>
       <ButtonArrowDown />
-    </button>
+    </Link>
   );
 };

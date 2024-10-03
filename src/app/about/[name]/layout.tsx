@@ -22,7 +22,7 @@ export default async function PersonLayout({ children, params }: PageProps) {
     slug: params.name,
   });
 
-  const { name, image, role } = person!;
+  const { name, headerImage, cardImage, role } = person!;
 
   return (
     <>
@@ -31,7 +31,7 @@ export default async function PersonLayout({ children, params }: PageProps) {
         backgroundColor="var(--color-white)"
         title={name}
         subtitle={role}
-        featuredMedia={image as MediaProperties}
+        featuredMedia={(headerImage || cardImage) as MediaProperties}
         inverted={false}
       />
       {children}

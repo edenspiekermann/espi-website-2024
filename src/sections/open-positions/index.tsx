@@ -46,7 +46,7 @@ export const OpenPositions = ({ title }: OpenPositionFragment) => {
   }, []);
 
   return (
-    <section className={styles.openPositions}>
+    <section className={styles.openPositions} id="open-positions">
       <div className="container">
         <NowHiringIcon />
         <div className={styles.jobContent}>

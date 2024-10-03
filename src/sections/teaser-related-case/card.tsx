@@ -1,4 +1,4 @@
-import { CaseStudyGridCardFragment } from "@/graphql/types/generated";
+import { CaseStudyGridCardRelatedCaseFragment } from "@/graphql/types/generated";
 import React from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import { MediaProperties } from "@/components/media/interfaces";
 import classNames from "classnames";
 import { ScrollIntoView } from "@/components/animation-wrappers/scroll-into-view";
 
-interface CardProps extends CaseStudyGridCardFragment {
+interface CardProps extends CaseStudyGridCardRelatedCaseFragment {
   isInView?: boolean;
   index: number;
 }
@@ -15,7 +15,7 @@ interface CardProps extends CaseStudyGridCardFragment {
 export const CaseStudyRelatedCard = ({
   title,
   subtitle,
-  cardMedia,
+  cardMedia3x2,
   backgroundColor,
   slug,
   invertNav,
@@ -37,7 +37,7 @@ export const CaseStudyRelatedCard = ({
     >
       <Link href={`case-studies/${slug}`}>
         <div className={styles.media}>
-          <Media {...(cardMedia as MediaProperties)} />
+          <Media {...(cardMedia3x2 as MediaProperties)} />
         </div>
         <div
           className={styles.cardContent}
