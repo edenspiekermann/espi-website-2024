@@ -186,15 +186,15 @@
     transition: transform 0.2s ease-in-out;
   }
 
-  &:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
+  // &:hover::after {
+  //   transform: scaleX(1);
+  //   transform-origin: left;
+  // }
 
-  &:active,
-  &:hover {
-    color: var(--color-espi-black);
-  }
+  // &:active,
+  // &:hover {
+  //   color: var(--color-espi-black);
+  // }
 
   @include mq("desktop") {
     @include as-m-element;
