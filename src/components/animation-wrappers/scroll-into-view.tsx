@@ -15,7 +15,7 @@ export const ScrollIntoView = ({
   const initialStyles = {
     y: scrollAmount,
     overflow: "hidden",
-    display: "inline-block",
+    display: "inline-flex",
     opacity: fade ? 0 : 1,
   };
 
@@ -56,9 +56,6 @@ export const ScrollIntoView = ({
     <motion.span
       initial={initialStyles}
       animate={isInView && animate}
-      style={{
-        position: "relative",
-      }}
       className={className}
     >
       <motion.span
