@@ -61,12 +61,14 @@ export const Button = ({
     );
   }
 
-  {
-    /* TODO - Implement scroll behavior on button */
-  }
   if (type === "scroll") {
     return (
-      <ScrollButton text={text} onClick={onClick} isInverted={isInverted} />
+      <ScrollButton
+        text={text}
+        url={url}
+        onClick={onClick}
+        isInverted={isInverted}
+      />
     );
   }
 

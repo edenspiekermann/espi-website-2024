@@ -480,7 +480,11 @@ export type CaseStudyModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   backgroundColor?: InputMaybe<ColorFilter>;
-  cardMedia?: InputMaybe<FileFilter>;
+  cardMedia1x1?: InputMaybe<FileFilter>;
+  cardMedia2x1?: InputMaybe<FileFilter>;
+  cardMedia3x2?: InputMaybe<FileFilter>;
+  cardMedia3x4?: InputMaybe<FileFilter>;
+  cardMedia4x3?: InputMaybe<FileFilter>;
   featuredMedia?: InputMaybe<FileFilter>;
   id?: InputMaybe<ItemIdFilter>;
   invertNav?: InputMaybe<BooleanFilter>;
@@ -544,7 +548,11 @@ export type CaseStudyRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   backgroundColor: ColorField;
-  cardMedia: FileField;
+  cardMedia1x1: FileField;
+  cardMedia2x1: FileField;
+  cardMedia3x2: FileField;
+  cardMedia3x4: FileField;
+  cardMedia4x3: FileField;
   featuredMedia: FileField;
   id: Scalars["ItemId"]["output"];
   invertNav: Scalars["BooleanType"]["output"];
@@ -8573,7 +8581,7 @@ export type CaseStudyQuery = {
             slug: string;
             invertNav: boolean;
             backgroundColor: { __typename?: "ColorField"; hex: string };
-            cardMedia: {
+            cardMedia3x2: {
               __typename?: "FileField";
               responsiveImage?: {
                 __typename?: "ResponsiveImage";
@@ -9269,7 +9277,19 @@ export type PageQuery = {
                 slug: string;
                 invertNav: boolean;
                 backgroundColor: { __typename?: "ColorField"; hex: string };
-                cardMedia: {
+                cardMedia2x1: {
+                  __typename?: "FileField";
+                  responsiveImage?: {
+                    __typename?: "ResponsiveImage";
+                    src: string;
+                    alt?: string | null;
+                  } | null;
+                  video?: {
+                    __typename?: "UploadVideoField";
+                    mp4Url?: string | null;
+                  } | null;
+                };
+                cardMedia3x2: {
                   __typename?: "FileField";
                   responsiveImage?: {
                     __typename?: "ResponsiveImage";
@@ -9341,7 +9361,31 @@ export type PageQuery = {
             invertNav: boolean;
             slug: string;
             backgroundColor: { __typename?: "ColorField"; hex: string };
-            cardMedia: {
+            cardMedia3x4: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+              video?: {
+                __typename?: "UploadVideoField";
+                mp4Url?: string | null;
+              } | null;
+            };
+            cardMedia1x1: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
+                alt?: string | null;
+              } | null;
+              video?: {
+                __typename?: "UploadVideoField";
+                mp4Url?: string | null;
+              } | null;
+            };
+            cardMedia4x3: {
               __typename?: "FileField";
               responsiveImage?: {
                 __typename?: "ResponsiveImage";
@@ -9442,7 +9486,7 @@ export type PageQuery = {
             slug: string;
             invertNav: boolean;
             backgroundColor: { __typename?: "ColorField"; hex: string };
-            cardMedia: {
+            cardMedia3x2: {
               __typename?: "FileField";
               responsiveImage?: {
                 __typename?: "ResponsiveImage";
@@ -10282,7 +10326,19 @@ export type TeaserCaseGridFragment = {
         slug: string;
         invertNav: boolean;
         backgroundColor: { __typename?: "ColorField"; hex: string };
-        cardMedia: {
+        cardMedia2x1: {
+          __typename?: "FileField";
+          responsiveImage?: {
+            __typename?: "ResponsiveImage";
+            src: string;
+            alt?: string | null;
+          } | null;
+          video?: {
+            __typename?: "UploadVideoField";
+            mp4Url?: string | null;
+          } | null;
+        };
+        cardMedia3x2: {
           __typename?: "FileField";
           responsiveImage?: {
             __typename?: "ResponsiveImage";
@@ -10347,7 +10403,16 @@ export type CaseStudyGridCardFragment = {
   slug: string;
   invertNav: boolean;
   backgroundColor: { __typename?: "ColorField"; hex: string };
-  cardMedia: {
+  cardMedia2x1: {
+    __typename?: "FileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+    } | null;
+    video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
+  };
+  cardMedia3x2: {
     __typename?: "FileField";
     responsiveImage?: {
       __typename?: "ResponsiveImage";
@@ -10400,7 +10465,31 @@ export type TeaserCaseStaggeredFragment = {
     invertNav: boolean;
     slug: string;
     backgroundColor: { __typename?: "ColorField"; hex: string };
-    cardMedia: {
+    cardMedia3x4: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+      video?: {
+        __typename?: "UploadVideoField";
+        mp4Url?: string | null;
+      } | null;
+    };
+    cardMedia1x1: {
+      __typename?: "FileField";
+      responsiveImage?: {
+        __typename?: "ResponsiveImage";
+        src: string;
+        alt?: string | null;
+      } | null;
+      video?: {
+        __typename?: "UploadVideoField";
+        mp4Url?: string | null;
+      } | null;
+    };
+    cardMedia4x3: {
       __typename?: "FileField";
       responsiveImage?: {
         __typename?: "ResponsiveImage";
@@ -10423,7 +10512,25 @@ export type CaseStudyCardFragment = {
   invertNav: boolean;
   slug: string;
   backgroundColor: { __typename?: "ColorField"; hex: string };
-  cardMedia: {
+  cardMedia3x4: {
+    __typename?: "FileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+    } | null;
+    video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
+  };
+  cardMedia1x1: {
+    __typename?: "FileField";
+    responsiveImage?: {
+      __typename?: "ResponsiveImage";
+      src: string;
+      alt?: string | null;
+    } | null;
+    video?: { __typename?: "UploadVideoField"; mp4Url?: string | null } | null;
+  };
+  cardMedia4x3: {
     __typename?: "FileField";
     responsiveImage?: {
       __typename?: "ResponsiveImage";
@@ -10550,7 +10657,7 @@ export type TeaserRelatedCaseFragment = {
     slug: string;
     invertNav: boolean;
     backgroundColor: { __typename?: "ColorField"; hex: string };
-    cardMedia: {
+    cardMedia3x2: {
       __typename?: "FileField";
       responsiveImage?: {
         __typename?: "ResponsiveImage";
@@ -10583,7 +10690,7 @@ export type CaseStudyGridCardRelatedCaseFragment = {
   slug: string;
   invertNav: boolean;
   backgroundColor: { __typename?: "ColorField"; hex: string };
-  cardMedia: {
+  cardMedia3x2: {
     __typename?: "FileField";
     responsiveImage?: {
       __typename?: "ResponsiveImage";
@@ -13272,7 +13379,40 @@ export const CaseStudyGridCardFragmentDoc = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "cardMedia" },
+            name: { kind: "Name", value: "cardMedia2x1" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia3x2" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -13502,7 +13642,40 @@ export const TeaserCaseGridFragmentDoc = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "cardMedia" },
+            name: { kind: "Name", value: "cardMedia2x1" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia3x2" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -13678,7 +13851,73 @@ export const CaseStudyCardFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "slug" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "cardMedia" },
+            name: { kind: "Name", value: "cardMedia3x4" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia1x1" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia4x3" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -13854,7 +14093,73 @@ export const TeaserCaseStaggeredFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "slug" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "cardMedia" },
+            name: { kind: "Name", value: "cardMedia3x4" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia1x1" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia4x3" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -14273,7 +14578,7 @@ export const CaseStudyGridCardRelatedCaseFragmentDoc = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "cardMedia" },
+            name: { kind: "Name", value: "cardMedia3x2" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -14483,7 +14788,7 @@ export const TeaserRelatedCaseFragmentDoc = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "cardMedia" },
+            name: { kind: "Name", value: "cardMedia3x2" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -15196,7 +15501,7 @@ export const CaseStudyDocument = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "cardMedia" },
+            name: { kind: "Name", value: "cardMedia3x2" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -16733,7 +17038,7 @@ export const PageDocument = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "cardMedia" },
+            name: { kind: "Name", value: "cardMedia3x2" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -16821,7 +17126,40 @@ export const PageDocument = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "cardMedia" },
+            name: { kind: "Name", value: "cardMedia2x1" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia3x2" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -16987,7 +17325,73 @@ export const PageDocument = {
           { kind: "Field", name: { kind: "Name", value: "slug" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "cardMedia" },
+            name: { kind: "Name", value: "cardMedia3x4" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia1x1" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cardMedia4x3" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [

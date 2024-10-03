@@ -118,6 +118,7 @@ export const TeaserCaseGrid = ({
                   key={caseStudy.id}
                   {...caseStudy}
                   visible={index < visibleCount}
+                  index={index}
                 />
               );
             case "IndustryRecord":
