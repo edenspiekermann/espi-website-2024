@@ -3,6 +3,7 @@
 .homepage-hero {
   height: 100vh;
   position: relative;
+  padding: env(safe-area-inset-bottom) 0 0;
 
   img,
   video {
