@@ -15,7 +15,7 @@ export const ContentTextImage = ({
 }: ContentTextImageFragment) => {
   const contentTextImageClass = classNames({
     [styles.contentTextImage]: true,
-    [styles.backgroundColor]: !!backgroundColor,
+    [styles[backgroundColor!]]: !!backgroundColor,
   });
 
   const leftContentFilter = (
