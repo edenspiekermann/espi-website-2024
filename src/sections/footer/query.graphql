@@ -7,9 +7,16 @@ query Footer {
       text
     }
     titleCta {
-      id
-      url
-      text
+      ... on LinkRecord {
+        __typename
+        text
+        url
+      }
+      ... on PageLinkRecord {
+        __typename
+        slug
+        text
+      }
     }
     pageLinks {
       id

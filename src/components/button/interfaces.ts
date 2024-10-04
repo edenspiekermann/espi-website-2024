@@ -7,4 +7,5 @@ export interface ButtonProperties {
   url?: string;
   slug?: string;
   type?: CallToActionRecord["buttonType"];
+  replace?: boolean;
 }

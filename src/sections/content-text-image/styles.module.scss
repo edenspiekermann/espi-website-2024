@@ -9,7 +9,7 @@
   background-color: var(--color-white);
 }
 
-.grey {
+.gray {
   background-color: var(--color-extra-light-grey);
 }
 
@@ -35,8 +35,13 @@
     @include as-m-text;
   }
 
-  ul {
+  ul,
+  ol {
     margin: 0;
+  }
+
+  li {
+    margin-bottom: 12px;
   }
 
   h1,
@@ -61,7 +66,8 @@
     h3,
     h4,
     h5,
-    ul {
+    ul,
+    ol {
       width: 71%;
     }
   }

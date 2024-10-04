@@ -1179,6 +1179,8 @@ export enum FooterModelOrderBy {
   TitleDesc = "title_DESC",
 }
 
+export type FooterModelTitleCtaField = LinkRecord | PageLinkRecord;
+
 /** Record of type Footer (footer) */
 export type FooterRecord = RecordInterface & {
   __typename?: "FooterRecord";
@@ -1202,7 +1204,7 @@ export type FooterRecord = RecordInterface & {
   pageLinks: Array<PageRecord>;
   socialLinks: Array<SocialLinkRecord>;
   title: Scalars["String"]["output"];
-  titleCta?: Maybe<LinkRecord>;
+  titleCta?: Maybe<FooterModelTitleCtaField>;
 };
 
 /** Record of type Footer (footer) */
@@ -4238,6 +4240,7 @@ export enum PageModelOrderBy {
 }
 
 export type PageModelSectionsField =
+  | ContentTextImageRecord
   | DrawerRecord
   | FullWidthImageRecord
   | HeaderSimpleRecord
@@ -8819,6 +8822,7 @@ export type PageQuery = {
       tag: string;
     }>;
     sections: Array<
+      | { __typename: "ContentTextImageRecord" }
       | {
           __typename: "DrawerRecord";
           id: string;
@@ -9818,12 +9822,10 @@ export type FooterQuery = {
       id: string;
       text: string;
     }>;
-    titleCta?: {
-      __typename?: "LinkRecord";
-      id: string;
-      url: string;
-      text: string;
-    } | null;
+    titleCta?:
+      | { __typename: "LinkRecord"; text: string; url: string }
+      | { __typename: "PageLinkRecord"; slug: string; text: string }
+      | null;
     pageLinks: Array<{
       __typename?: "PageRecord";
       id: string;
@@ -19416,9 +19418,54 @@ export const FooterDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "url" } },
-                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "LinkRecord" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "text" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "PageLinkRecord" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "slug" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "text" },
+                            },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },

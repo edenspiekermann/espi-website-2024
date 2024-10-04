@@ -1,7 +1,7 @@
 @use "../../app/styles/base.scss" as *;
 
 .teaserCaseStaggered {
-  @include mqHelper("padding", 24px, 20px 0px, 32px 0px);
+  @include mqHelper("padding", 24px 0px, 20px 0px, 32px 0px);
 }
 
 .threeCards {
