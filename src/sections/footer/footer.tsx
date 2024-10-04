@@ -6,6 +6,7 @@ import { EspiLogo } from "../../assets/icons/espi-logo";
 import { Button } from "@/components/button/button";
 import { AnimatedFooterTitle } from "./animated-footer-title";
 import { FooterProperties } from "./interfaces";
+import { FooterRecord } from "@/graphql/types/generated";
 
 export function Footer({
   title,
@@ -25,7 +26,15 @@ export function Footer({
           title={title}
           loopingTitleText={loopingTitleText}
         />
-        <Button text={titleCta?.text!} url={titleCta?.url} isInverted />
+        <Button
+          text={titleCta?.text!}
+          url={titleCta?.__typename === "LinkRecord" ? titleCta.url : ""}
+          slug={
+            titleCta?.__typename === "PageLinkRecord" ? `/${titleCta.slug}` : ""
+          }
+          isInverted
+          replace
+        />
       </div>
       <div className={`${styles.linkSection} container`}>
         <div className={styles.links}>

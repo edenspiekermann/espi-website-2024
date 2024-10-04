@@ -16,6 +16,7 @@ export const Button = ({
   slug,
   onClick,
   type,
+  replace,
 }: ButtonProperties) => {
   const buttonClass = classNames({
     [styles.button]: true,
@@ -41,6 +42,7 @@ export const Button = ({
         title={text}
         className={buttonClass}
         aria-label={text}
+        replace={replace}
       >
         <span className={styles.text}>{text}</span>
         {iconSwitch(type)}

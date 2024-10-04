@@ -1,5 +1,7 @@
 import {
+  FooterRecord,
   LinkRecord,
+  PageLinkRecord,
   PageRecord,
   SocialLinkRecord,
   TextRecord,
@@ -8,7 +10,7 @@ import {
 export interface FooterProperties {
   title: string;
   loopingTitleText: TextRecord[];
-  titleCta: LinkRecord;
+  titleCta: FooterRecord["titleCta"];
   pageLinks: PageRecord[];
   socialLinks: SocialLinkRecord[];
   legalLinks: LinkRecord[];
