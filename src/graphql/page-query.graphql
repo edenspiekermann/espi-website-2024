@@ -37,6 +37,7 @@ query Page($slug: String) {
       ...Staggered
       ...HeaderWithTag
       ...Spacer
+      ...ContentTextImage
     }
     invertNavColor
   }

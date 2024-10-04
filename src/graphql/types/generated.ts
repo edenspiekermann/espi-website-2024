@@ -8820,7 +8820,71 @@ export type PageQuery = {
       tag: string;
     }>;
     sections: Array<
-      | { __typename: "ContentTextImageRecord" }
+      | {
+          __typename: "ContentTextImageRecord";
+          id: string;
+          backgroundColor?: string | null;
+          content: {
+            __typename?: "ContentTextImageModelContentField";
+            value: unknown;
+            blocks: Array<
+              | {
+                  __typename: "CaseStudyContentImageRecord";
+                  id: string;
+                  halfSize: boolean;
+                  media: {
+                    __typename?: "FileField";
+                    responsiveImage?: {
+                      __typename?: "ResponsiveImage";
+                      src: string;
+                      alt?: string | null;
+                    } | null;
+                    video?: {
+                      __typename?: "UploadVideoField";
+                      mp4Url?: string | null;
+                    } | null;
+                  };
+                }
+              | {
+                  __typename: "ContentQuoteRecord";
+                  id: string;
+                  quote: string;
+                  author: string;
+                }
+            >;
+          };
+          leftContent:
+            | {
+                __typename: "SidebarGenericRecord";
+                id: string;
+                text: string;
+                textStyle?: string | null;
+                callToAction?: {
+                  __typename?: "CallToActionRecord";
+                  text: string;
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "SidebarNewsRecord";
+                id: string;
+                date: string;
+                text: string;
+                greyBackground: boolean;
+                author: {
+                  __typename?: "PersonRecord";
+                  name: string;
+                  role: string;
+                  smallImage?: {
+                    __typename?: "FileField";
+                    responsiveImage?: {
+                      __typename?: "ResponsiveImage";
+                      src: string;
+                    } | null;
+                  } | null;
+                };
+              };
+        }
       | {
           __typename: "DrawerRecord";
           id: string;
@@ -16685,6 +16749,10 @@ export const PageDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "Spacer" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ContentTextImage" },
+                      },
                     ],
                   },
                 },
@@ -17495,6 +17563,161 @@ export const PageDocument = {
                     ],
                   },
                 },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CaseStudyContentImage" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CaseStudyContentImageRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                      { kind: "Field", name: { kind: "Name", value: "alt" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mp4Url" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "halfSize" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentQuote" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ContentQuoteRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "quote" } },
+          { kind: "Field", name: { kind: "Name", value: "author" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SidebarNews" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SidebarNewsRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "date" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "author" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "role" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "smallImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "responsiveImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "src" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "greyBackground" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SidebarGeneric" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SidebarGenericRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "text" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "markdown" },
+                value: { kind: "BooleanValue", value: true },
+              },
+            ],
+          },
+          { kind: "Field", name: { kind: "Name", value: "textStyle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "callToAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
               ],
             },
           },
@@ -18933,6 +19156,70 @@ export const PageDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "tabletSpaceAmount" } },
           { kind: "Field", name: { kind: "Name", value: "mobileSpaceAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentTextImage" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ContentTextImageRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "blocks" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CaseStudyContentImage" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ContentQuote" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leftContent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "SidebarNews" },
+                },
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "SidebarGeneric" },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
         ],
       },
