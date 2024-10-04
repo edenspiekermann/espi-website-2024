@@ -1,7 +1,7 @@
 "use client";
 
 import { TeaserCaseStaggeredFragment } from "@/graphql/types/generated";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Card } from "./card";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
@@ -24,8 +24,27 @@ export const TeaserCaseStaggered = ({
     container: true,
   });
 
+  const [amount, setAmount] = React.useState(0.5);
+
+  useEffect(() => {
+    const updateAmount = () => {
+      if (window.innerWidth < 720) {
+        console.log("less than 720");
+        setAmount(0.2);
+      } else {
+        setAmount(0.5);
+      }
+    };
+
+    updateAmount();
+
+    document.addEventListener("resize", updateAmount);
+
+    return document.removeEventListener("resize", updateAmount);
+  }, []);
+
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const isInView = useInView(ref, { once: true, amount: amount });
 
   return (
     <section className={teaserCaseStaggeredClass}>
