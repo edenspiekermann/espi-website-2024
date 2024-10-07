@@ -51,6 +51,7 @@ export const Navigation: React.FC<NavigationProperties> = ({
     if (latest === 0) {
       setIsScrolling(false);
       setIsTransparent(true);
+      setShow(true);
     }
 
     setLastScrollY((prev) => latest);
