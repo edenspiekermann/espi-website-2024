@@ -186,15 +186,15 @@
     transition: transform 0.2s ease-in-out;
   }
 
-  &:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-
   @include mq("desktop") {
     @include as-m-element;
     margin-right: 40px;
     color: var(--color-espi-black);
+
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
 
     &::after {
       background-color: var(--color-espi-black);
