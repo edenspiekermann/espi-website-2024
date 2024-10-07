@@ -39,10 +39,17 @@
   ul,
   ol {
     margin: 0;
+    padding: 0;
   }
 
   li {
     margin-bottom: 12px;
+    margin-left: 1em;
+
+    p,
+    &::marker {
+      display: inline;
+    }
   }
 
   h1,
@@ -61,7 +68,7 @@
   @include mq("desktop") {
     grid-column: 6/13;
 
-    p,
+    > p,
     h1,
     h2,
     h3,
