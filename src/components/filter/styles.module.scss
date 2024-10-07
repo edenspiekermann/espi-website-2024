@@ -10,6 +10,15 @@
     background-color: var(--color-light-grey);
     border: none;
     cursor: pointer;
+    transition:
+      background-color var(--animation-soft-curve-200ms),
+      color var(--animation-soft-curve-200ms);
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--color-espi-black);
+      color: var(--color-white);
+    }
 
     &.active {
       background-color: var(--color-espi-black);

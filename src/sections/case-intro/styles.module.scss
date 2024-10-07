@@ -68,3 +68,9 @@
 .subtext {
   @include as-m-serif;
 }
+
+.tag {
+  width: fit-content;
+  text-decoration: none !important;
+  color: inherit;
+}

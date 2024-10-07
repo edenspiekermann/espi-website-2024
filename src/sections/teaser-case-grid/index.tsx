@@ -12,16 +12,28 @@ import styles from "./styles.module.scss";
 import { RevealButton } from "@/components/button/reveal-button";
 import { FilterWork } from "@/components/filter/filter-work";
 import { IndustryGridCard } from "./industry-card";
+import { useSearchParams } from "next/navigation";
 
 export const TeaserCaseGrid = ({
   caseStudies,
   showFilter,
 }: TeaserCaseGridFragment) => {
+  const searchParams = useSearchParams();
+  const urlFilter = searchParams.get("filter");
+  const urlTag = searchParams.get("tag");
+
   const [visibleCount, setVisibleCount] = useState(6);
   const [industries, setIndustries] = useState<IndustryFragment[] | null>(null);
   const [services, setServices] = useState<ServiceFragment[] | null>(null);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (urlFilter && urlTag) {
+      setSelectedFilter(urlTag);
+      setActiveCategory(urlFilter);
+    }
+  }, [urlFilter, urlTag]);
 
   useEffect(() => {
     let industryList: IndustryFragment[] = [];
@@ -31,7 +43,7 @@ export const TeaserCaseGrid = ({
       }
     });
     const uniqueIndustries = Array.from(
-      new Set(industryList.map((a) => a.industry)),
+      new Set(industryList.map((a) => a.industry))
     ).map((industry) => {
       return {
         industry,
@@ -48,7 +60,7 @@ export const TeaserCaseGrid = ({
       }
     });
     const uniqueServices = Array.from(
-      new Set(servicesList.map((a) => a.service)),
+      new Set(servicesList.map((a) => a.service))
     ).map((service) => {
       return {
         service,
@@ -69,12 +81,12 @@ export const TeaserCaseGrid = ({
           caseStudy.__typename === "CaseStudyRecord"
             ? activeCategory === "industries"
               ? caseStudy.relatedIndustries.some(
-                  ({ industry }) => industry === selectedFilter,
+                  ({ industry }) => industry === selectedFilter
                 )
               : caseStudy.relatedServices.some(
-                  ({ service }) => service === selectedFilter,
+                  ({ service }) => service === selectedFilter
                 )
-            : false,
+            : false
         )
       : caseStudies;
 
