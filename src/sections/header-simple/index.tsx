@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import classNames from "classnames";
 import { Button } from "@/components/button/button";
 import { ScrollIntoViewText } from "@/components/scroll-into-view-text";
+import { FadeIntoView } from "@/components/animation-wrappers/fade-into-view";
 
 export const HeaderSimple = ({
   featuredText,
@@ -38,13 +39,15 @@ export const HeaderSimple = ({
         )}
         {showInquiryInfo && inquiryInfo && (
           <div className={styles.inquiryInfo}>
-            <p>{inquiryInfo.title}</p>
-            {inquiryInfo.subtext && (
-              <div
-                className={styles.inquiryInfoBottom}
-                dangerouslySetInnerHTML={{ __html: inquiryInfo.subtext }}
-              />
-            )}
+            <FadeIntoView duration={0.6} delay={0.75}>
+              <p className={styles.inquiryTitle}>{inquiryInfo.title}</p>
+              {inquiryInfo.subtext && (
+                <div
+                  className={styles.inquiryInfoBottom}
+                  dangerouslySetInnerHTML={{ __html: inquiryInfo.subtext }}
+                />
+              )}
+            </FadeIntoView>
           </div>
         )}
       </div>

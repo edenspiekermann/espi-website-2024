@@ -40,29 +40,24 @@
 
 .inquiryInfo {
   grid-column: 1/-1;
-  > p {
-    @include as-l-serif;
-    margin-bottom: 24px;
-  }
-
-  > div {
-    @include as-m-text;
-  }
-
-  a {
-    @include as-link;
-  }
 
   @include mq("desktop") {
     grid-column: 1/7;
   }
 }
 
+.inquiryTitle {
+  @include as-l-serif;
+  margin-bottom: 24px;
+}
+
 .inquiryInfoBottom {
+  @include as-m-text;
   display: flex;
   flex-direction: column;
 
   a {
     color: var(--color-espi-black);
+    @include as-link;
   }
 }

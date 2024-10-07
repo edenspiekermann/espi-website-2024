@@ -19,7 +19,7 @@ export const ContentTextImage = ({
   });
 
   const leftContentFilter = (
-    content: ContentTextImageFragment["leftContent"]
+    content: ContentTextImageFragment["leftContent"],
   ) => {
     switch (content.__typename) {
       case "SidebarNewsRecord":
