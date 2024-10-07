@@ -34,7 +34,7 @@ export const DesktopNavigation: React.FC<DesktopNavigationProperties> = ({
               {...cta}
               text={cta?.text || ""}
               url={cta?.url || ""}
-              slug={cta?.pageLink?.slug}
+              slug={`/${cta?.pageLink?.slug}`}
             />
           </li>
         </ul>
