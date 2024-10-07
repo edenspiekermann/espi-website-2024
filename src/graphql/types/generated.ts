@@ -8940,6 +8940,11 @@ export type PageQuery = {
             buttonType: string;
             pageLink?: { __typename?: "PageRecord"; slug: string } | null;
           } | null;
+          inquiryInfo?: {
+            __typename?: "InquiryInfoRecord";
+            title: string;
+            subtext?: string | null;
+          } | null;
         }
       | {
           __typename: "HeaderWithTagRecord";
@@ -9944,6 +9949,11 @@ export type HeaderSimpleFragment = {
     url?: string | null;
     buttonType: string;
     pageLink?: { __typename?: "PageRecord"; slug: string } | null;
+  } | null;
+  inquiryInfo?: {
+    __typename?: "InquiryInfoRecord";
+    title: string;
+    subtext?: string | null;
   } | null;
 };
 
@@ -11615,6 +11625,27 @@ export const HeaderSimpleFragmentDoc = {
                       },
                     ],
                   },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inquiryInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "subtext" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "markdown" },
+                      value: { kind: "BooleanValue", value: true },
+                    },
+                  ],
                 },
               ],
             },
@@ -17902,6 +17933,27 @@ export const PageDocument = {
                       },
                     ],
                   },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inquiryInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "subtext" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "markdown" },
+                      value: { kind: "BooleanValue", value: true },
+                    },
+                  ],
                 },
               ],
             },

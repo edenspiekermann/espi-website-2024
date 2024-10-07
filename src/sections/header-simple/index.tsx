@@ -11,6 +11,7 @@ export const HeaderSimple = ({
   showCta = false,
   showInquiryInfo = false,
   cta,
+  inquiryInfo,
 }: HeaderSimpleFragment) => {
   const headerSimpleClass = classNames({
     [styles.headerSimple]: true,
@@ -35,15 +36,15 @@ export const HeaderSimple = ({
             type={cta?.buttonType}
           />
         )}
-        {showInquiryInfo && (
+        {showInquiryInfo && inquiryInfo && (
           <div className={styles.inquiryInfo}>
-            <p>Get in touch</p>
-            <div className={styles.inquiryInfoBottom}>
-              <p>General enquiries, new business, or press:</p>
-              <a href="mailto:info@edenspiekermann.com">
-                info@edenspiekermann.com
-              </a>
-            </div>
+            <p>{inquiryInfo.title}</p>
+            {inquiryInfo.subtext && (
+              <div
+                className={styles.inquiryInfoBottom}
+                dangerouslySetInnerHTML={{ __html: inquiryInfo.subtext }}
+              />
+            )}
           </div>
         )}
       </div>

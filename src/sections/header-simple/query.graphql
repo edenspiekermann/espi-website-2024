@@ -15,4 +15,8 @@ fragment HeaderSimple on HeaderSimpleRecord {
       buttonType
     }
   }
+  inquiryInfo {
+    title
+    subtext(markdown: true)
+  }
 }
