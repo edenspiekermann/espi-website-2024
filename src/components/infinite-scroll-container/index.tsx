@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { ScrollIntoView } from "../animation-wrappers/scroll-into-view";
 import { useInView } from "framer-motion";
 import classNames from "classnames";
+
+export const ScrollContext = createContext({ wasDragging: false });
 
 interface InfiniteScrollContainerProps {
   children?: React.ReactNode;
@@ -21,6 +23,7 @@ export const InfiniteScrollContainer = ({
   const [velocity, setVelocity] = useState(0); // Track velocity
   const lastX = useRef(0); // For tracking the mouse position change
   const lastTime = useRef(0); // For tracking the time between movements
+  const [wasDragging, setWasDragging] = useState(false);
 
   const carouselContainerStyles = classNames({
     [styles.carouselContainer]: true,
@@ -73,6 +76,7 @@ export const InfiniteScrollContainer = ({
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent text selection while dragging
     setIsGrabbing(true);
+    setWasDragging(false);
     if (containerRef.current) {
       setStartX(e.pageX - containerRef.current.offsetLeft); // Track initial mouse click
       setScrollLeft(containerRef.current.scrollLeft); // Track initial scroll position
@@ -87,6 +91,10 @@ export const InfiniteScrollContainer = ({
     const x = e.pageX - containerRef.current.offsetLeft;
     const walk = x - startX;
     containerRef.current.scrollLeft = scrollLeft - walk;
+
+    if (Math.abs(walk) > 5) {
+      setWasDragging(true);
+    }
 
     // Calculate velocity based on the difference in position and time
     const currentTime = Date.now();
@@ -103,6 +111,9 @@ export const InfiniteScrollContainer = ({
     if (velocity !== 0) {
       applyInertia(velocity); // Apply inertia after letting go
     }
+    setTimeout(() => {
+      setWasDragging(false);
+    }, 0);
   };
 
   const handleMouseLeave = () => {
@@ -131,28 +142,30 @@ export const InfiniteScrollContainer = ({
   };
 
   return (
-    <div
-      className={carouselContainerStyles}
-      ref={containerRef}
-      onScroll={handleScroll}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-    >
-      <ScrollIntoView isInView={isInView} scrollAmount={50} duration={0.3}>
-        <div
-          className={styles.items}
-          ref={itemsRef}
-          style={{ transform: `translateX(-${scrollPosition}px)` }}
-        >
-          {children}
-          {children}
-          {children}
-        </div>
-      </ScrollIntoView>
-    </div>
+    <ScrollContext.Provider value={{ wasDragging }}>
+      <div
+        className={carouselContainerStyles}
+        ref={containerRef}
+        onScroll={handleScroll}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+      >
+        <ScrollIntoView isInView={isInView} scrollAmount={50} duration={0.3}>
+          <div
+            className={styles.items}
+            ref={itemsRef}
+            style={{ transform: `translateX(-${scrollPosition}px)` }}
+          >
+            {children}
+            {children}
+            {children}
+          </div>
+        </ScrollIntoView>
+      </div>
+    </ScrollContext.Provider>
   );
 };
 
