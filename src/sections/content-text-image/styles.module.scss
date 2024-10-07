@@ -31,6 +31,28 @@
   @include mqHelper("gap", 16px, 20px, 32px);
   grid-column: 1/-1;
 
+  p {
+    @include as-m-text;
+  }
+
+  ul,
+  ol {
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 12px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include as-l-text;
+  }
+
   a {
     @include as-link;
   }
@@ -38,7 +60,14 @@
   @include mq("desktop") {
     grid-column: 6/13;
 
-    p {
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    ul,
+    ol {
       width: 71%;
     }
   }

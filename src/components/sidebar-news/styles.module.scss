@@ -28,6 +28,12 @@
   margin-bottom: 16px;
 }
 
+.authorLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+}
+
 .author {
   display: flex;
   width: 100%;
@@ -61,10 +67,12 @@
 
 .name {
   @include as-s-text;
+  color: var(--color-espi-black);
 }
 
 .role {
   @include as-xs-text;
+  opacity: 0.5;
 }
 
 .greyBackground {

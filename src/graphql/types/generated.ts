@@ -8388,6 +8388,7 @@ export type SidebarNewsFragment = {
     __typename?: "PersonRecord";
     name: string;
     role: string;
+    slug: string;
     smallImage?: {
       __typename?: "FileField";
       responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
@@ -8744,6 +8745,7 @@ export type NewsArticleQuery = {
                   __typename?: "PersonRecord";
                   name: string;
                   role: string;
+                  slug: string;
                   smallImage?: {
                     __typename?: "FileField";
                     responsiveImage?: {
@@ -9695,6 +9697,7 @@ export type PersonQuery = {
                   __typename?: "PersonRecord";
                   name: string;
                   role: string;
+                  slug: string;
                   smallImage?: {
                     __typename?: "FileField";
                     responsiveImage?: {
@@ -9840,6 +9843,7 @@ export type ContentTextImageFragment = {
           __typename?: "PersonRecord";
           name: string;
           role: string;
+          slug: string;
           smallImage?: {
             __typename?: "FileField";
             responsiveImage?: {
@@ -11119,6 +11123,7 @@ export const SidebarNewsFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "smallImage" },
@@ -11348,6 +11353,7 @@ export const ContentTextImageFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "smallImage" },
@@ -16384,6 +16390,7 @@ export const NewsArticleDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "smallImage" },
@@ -19518,6 +19525,7 @@ export const PersonDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "smallImage" },
