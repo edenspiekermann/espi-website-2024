@@ -43,6 +43,7 @@ export const Button = ({
         className={buttonClass}
         aria-label={text}
         replace={replace}
+        onClick={onClick || undefined}
       >
         <span className={styles.text}>{text}</span>
         {iconSwitch(type)}

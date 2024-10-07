@@ -42,6 +42,7 @@ export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
             url={cta?.url || ""}
             slug={cta?.pageLink?.slug}
             isInverted
+            onClick={() => setIsOpen(false)}
           />
         </div>
         <ul
