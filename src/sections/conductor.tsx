@@ -32,6 +32,8 @@ import { Staggered } from "./staggered";
 import { HeaderWithTag } from "./header-with-tag";
 import { TeaserCta } from "./teaser-cta";
 import { Spacer } from "@/components/spacer";
+import { FadeIntoView } from "@/components/animation-wrappers/fade-into-view";
+import React from "react";
 
 const sectionSwitch = (section: any) => {
   switch (section.__typename) {
@@ -104,10 +106,31 @@ const sectionSwitch = (section: any) => {
   }
 };
 
-export const SectionConductor = ({ sections }: { sections: any }) => {
+export const SectionConductor = ({
+  sections,
+  indexToFadeIn,
+}: {
+  sections: any;
+  indexToFadeIn?: number;
+}) => {
   return (
     <main id="main-content">
-      {sections.map((section: any) => sectionSwitch(section))}
+      {sections.map((section: any, index: number) => {
+        const Component =
+          index === indexToFadeIn && section.__typename !== "SpacerRecord" ? (
+            <FadeIntoView duration={0.6} delay={0.5}>
+              {sectionSwitch(section)}
+            </FadeIntoView>
+          ) : (
+            sectionSwitch(section)
+          );
+
+        return (
+          <React.Fragment key={section.id || nanoid()}>
+            {Component}
+          </React.Fragment>
+        );
+      })}
     </main>
   );
 };
