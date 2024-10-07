@@ -19,6 +19,15 @@ export const TeaserNewsGrid = ({
   const [visibleCount, setVisibleCount] = useState(6);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [typesOfNews, setTypesOfNews] = useState<string[]>([]);
+  const [applyFilterActiveFade, setApplyFilterActiveFade] = useState(false);
+
+  useEffect(() => {
+    setApplyFilterActiveFade(false);
+    const timer = setTimeout(() => {
+      setApplyFilterActiveFade(true);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [selectedFilter]);
 
   useEffect(() => {
     if (urlFilter) {
@@ -41,6 +50,7 @@ export const TeaserNewsGrid = ({
   const teaserNewsGridClass = classNames({
     [styles.teaserNewsGrid]: true,
     container: true,
+    // [styles.filterActiveFade]: applyFilterActiveFade,
   });
 
   const filteredNewsCards = selectedFilter
@@ -60,7 +70,11 @@ export const TeaserNewsGrid = ({
       )}
       <section className={teaserNewsGridClass}>
         {visibleNewsCards?.map((newsCard) => (
-          <NewsCard key={newsCard.id} {...newsCard} />
+          <NewsCard
+            key={newsCard.id}
+            {...newsCard}
+            applyFilterActiveFade={applyFilterActiveFade}
+          />
         ))}
         {newsCards.length > visibleCount && (
           <div className={styles.button}>

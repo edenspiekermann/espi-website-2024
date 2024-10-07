@@ -10,6 +10,7 @@
   text-decoration: none;
   color: var(--color-espi-black);
   margin-bottom: 32px;
+  opacity: 1;
 
   @include mq("tablet") {
     grid-column: span 4;
@@ -61,4 +62,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@keyframes fadeOutIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.filterActiveFade {
+  animation: fadeOutIn var(--animation-soft-curve-400ms);
 }
