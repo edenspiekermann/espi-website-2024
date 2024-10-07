@@ -10,6 +10,7 @@ export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
   links,
   socialLinks,
   cta,
+  setIsOpen,
 }) => {
   const classNameList = classNames({
     [styles.mobileNav]: true,
@@ -27,21 +28,22 @@ export const MobileNavigation: React.FC<MobileNavigationProperties> = ({
                   <Link
                     href={`/${link.slug}`}
                     className={`${styles.navLinks} ${styles.navLink}`}
+                    onClick={() => setIsOpen(false)}
                   >
                     {link.label}
                   </Link>
                 </li>
               );
             })}
-          <li>
-            <Button
-              text={cta?.text!}
-              url={cta?.url || ""}
-              slug={cta?.pageLink?.slug}
-              isInverted
-            />
-          </li>
         </ul>
+        <div className={styles.mobileNavButton}>
+          <Button
+            text={cta?.text!}
+            url={cta?.url || ""}
+            slug={cta?.pageLink?.slug}
+            isInverted
+          />
+        </div>
         <ul
           className={`${styles.mobileNavList} ${styles.navLinks} ${styles.socialLinks}`}
         >

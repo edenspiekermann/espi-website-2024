@@ -53,7 +53,7 @@ export const Navigation: React.FC<NavigationProperties> = ({
       setIsTransparent(true);
     }
 
-    setLastScrollY(latest);
+    setLastScrollY((prev) => latest);
   });
 
   useEffect(() => {
@@ -86,6 +86,7 @@ export const Navigation: React.FC<NavigationProperties> = ({
           <MobileNavigation
             links={links}
             isOpen={isOpen}
+            setIsOpen={setIsOpen}
             socialLinks={socialLinks}
             cta={cta}
           />
