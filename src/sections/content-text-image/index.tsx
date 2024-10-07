@@ -19,11 +19,16 @@ export const ContentTextImage = ({
   });
 
   const leftContentFilter = (
-    content: ContentTextImageFragment["leftContent"],
+    content: ContentTextImageFragment["leftContent"]
   ) => {
     switch (content.__typename) {
       case "SidebarNewsRecord":
-        return <SidebarNews {...content} />;
+        return (
+          <SidebarNews
+            {...content}
+            greyBackground={backgroundColor === "white"}
+          />
+        );
       case "SidebarGenericRecord":
         return <SidebarGeneric {...content} />;
       default:
