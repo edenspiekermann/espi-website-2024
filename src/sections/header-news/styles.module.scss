@@ -2,6 +2,7 @@
 
 .headerNews {
   position: relative;
+  column-gap: 0 !important;
   @include mqHelper(
     "padding",
     114px 24px 34px,
@@ -9,8 +10,6 @@
     134px 70px 40px
   );
   background-color: var(--color-extra-light-grey);
-  display: flex;
-  flex-direction: column;
 
   @include mq(desktop) {
     flex-direction: row;
@@ -23,6 +22,17 @@
   color: inherit;
 }
 
+.left,
+.image {
+  @include mqHelper("border-radius", 10px, 18px, 27px);
+  flex: 1;
+  grid-column: 1/-1;
+
+  @include mq(desktop) {
+    flex: auto;
+  }
+}
+
 .left {
   background-color: var(--color-white);
   display: flex;
@@ -30,17 +40,7 @@
   gap: 24px;
   @include mqHelper("padding", 24px, 40px);
   @include mq(desktop) {
-    max-width: 30%;
-  }
-}
-
-.left,
-.image {
-  @include mqHelper("border-radius", 10px, 18px, 27px);
-  flex: 1;
-
-  @include mq(desktop) {
-    flex: auto;
+    grid-column: 1/6;
   }
 }
 
@@ -55,6 +55,6 @@
   overflow: hidden;
 
   @include mq(desktop) {
-    width: 62%;
+    grid-column: 6/13;
   }
 }

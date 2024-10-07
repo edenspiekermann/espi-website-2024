@@ -14,6 +14,7 @@ export const HeaderNews = ({
 }: HeaderNewsProperties) => {
   const headerNewsClass = classNames({
     [styles.headerNews]: true,
+    container: true,
   });
   return (
     <section className={headerNewsClass}>
