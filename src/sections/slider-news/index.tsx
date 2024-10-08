@@ -28,9 +28,7 @@ export const SliderNews = ({
   const cardSwitch = (card: any) => {
     switch (card.__typename) {
       case "NewsArticleRecord":
-        return (
-          <ArticleCard key={card.id} {...card} slug={`/news/${card.slug}`} />
-        );
+        return <ArticleCard key={card.id} {...card} />;
       case "SocialMediaPostRecord":
         return <SocialMediaCard key={card.id} {...card} />;
       default:
