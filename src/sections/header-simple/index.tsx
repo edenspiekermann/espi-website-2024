@@ -48,16 +48,18 @@ export const HeaderSimple = ({
         </div>
       </FadeIntoView>
       {showInquiryInfo && inquiryInfo && (
-        <div className={styles.inquiryInfo}>
-          <FadeIntoView duration={0.6} delay={0.8}>
-            <p className={styles.inquiryTitle}>{inquiryInfo.title}</p>
-            {inquiryInfo.subtext && (
-              <div
-                className={styles.inquiryInfoBottom}
-                dangerouslySetInnerHTML={{ __html: inquiryInfo.subtext }}
-              />
-            )}
-          </FadeIntoView>
+        <div className="container">
+          <div className={styles.inquiryInfo}>
+            <FadeIntoView duration={0.6} delay={0.8}>
+              <p className={styles.inquiryTitle}>{inquiryInfo.title}</p>
+              {inquiryInfo.subtext && (
+                <div
+                  className={styles.inquiryInfoBottom}
+                  dangerouslySetInnerHTML={{ __html: inquiryInfo.subtext }}
+                />
+              )}
+            </FadeIntoView>
+          </div>
         </div>
       )}
     </section>
