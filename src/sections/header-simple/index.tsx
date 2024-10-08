@@ -28,29 +28,38 @@ export const HeaderSimple = ({
           tag="h2"
           className={styles.featuredText}
         />
-        {subtext && <p className={styles.subtext}>{subtext}</p>}
-        {showCta && cta && (
-          <Button
-            text={cta?.text!}
-            url={cta?.url || ""}
-            slug={cta?.pageLink?.slug}
-            type={cta?.buttonType}
-          />
-        )}
-        {showInquiryInfo && inquiryInfo && (
-          <div className={styles.inquiryInfo}>
-            <FadeIntoView duration={0.6} delay={0.75}>
-              <p className={styles.inquiryTitle}>{inquiryInfo.title}</p>
-              {inquiryInfo.subtext && (
-                <div
-                  className={styles.inquiryInfoBottom}
-                  dangerouslySetInnerHTML={{ __html: inquiryInfo.subtext }}
-                />
-              )}
-            </FadeIntoView>
-          </div>
-        )}
       </div>
+
+      <FadeIntoView duration={0.5} delay={0.8}>
+        <div className="container">
+          {subtext && (
+            <div className={styles.subtext}>
+              <p>{subtext}</p>
+            </div>
+          )}
+          {showCta && cta && (
+            <Button
+              text={cta?.text!}
+              url={cta?.url || ""}
+              slug={cta?.pageLink?.slug}
+              type={cta?.buttonType}
+            />
+          )}
+        </div>
+      </FadeIntoView>
+      {showInquiryInfo && inquiryInfo && (
+        <div className={styles.inquiryInfo}>
+          <FadeIntoView duration={0.6} delay={0.8}>
+            <p className={styles.inquiryTitle}>{inquiryInfo.title}</p>
+            {inquiryInfo.subtext && (
+              <div
+                className={styles.inquiryInfoBottom}
+                dangerouslySetInnerHTML={{ __html: inquiryInfo.subtext }}
+              />
+            )}
+          </FadeIntoView>
+        </div>
+      )}
     </section>
   );
 };
