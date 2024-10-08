@@ -1,11 +1,12 @@
 @use "../../app/styles/base.scss" as *;
 
 .carouselContainer {
-  overflow-x: hidden; // Changed from 'auto' to 'hidden' to prevent native scrollbars
+  overflow-x: auto;
   white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   width: 100vw;
   cursor: grab;
-  touch-action: pan-y; // Allow vertical scrolling on touch devices
 
   &::-webkit-scrollbar {
     display: none;
