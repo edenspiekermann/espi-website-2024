@@ -21,7 +21,7 @@ export const ContentTextImage = ({
   const leftContentFilter = (
     content: ContentTextImageFragment["leftContent"],
   ) => {
-    switch (content.__typename) {
+    switch (content?.__typename) {
       case "SidebarNewsRecord":
         return (
           <SidebarNews

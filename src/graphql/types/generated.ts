@@ -705,7 +705,7 @@ export type ContentTextImageRecord = RecordInterface & {
   backgroundColor?: Maybe<Scalars["String"]["output"]>;
   content: ContentTextImageModelContentField;
   id: Scalars["ItemId"]["output"];
-  leftContent: ContentTextImageModelLeftContentField;
+  leftContent?: Maybe<ContentTextImageModelLeftContentField>;
 };
 
 /** Record of type Content Text Image (content_text_image) */
@@ -8723,7 +8723,7 @@ export type NewsArticleQuery = {
                 }
             >;
           };
-          leftContent:
+          leftContent?:
             | {
                 __typename: "SidebarGenericRecord";
                 id: string;
@@ -8754,7 +8754,8 @@ export type NewsArticleQuery = {
                     } | null;
                   } | null;
                 };
-              };
+              }
+            | null;
         }
       | {
           __typename: "TeaserNewsGridRecord";
@@ -8855,7 +8856,7 @@ export type PageQuery = {
                 }
             >;
           };
-          leftContent:
+          leftContent?:
             | {
                 __typename: "SidebarGenericRecord";
                 id: string;
@@ -8877,6 +8878,7 @@ export type PageQuery = {
                   __typename?: "PersonRecord";
                   name: string;
                   role: string;
+                  slug: string;
                   smallImage?: {
                     __typename?: "FileField";
                     responsiveImage?: {
@@ -8885,7 +8887,8 @@ export type PageQuery = {
                     } | null;
                   } | null;
                 };
-              };
+              }
+            | null;
         }
       | {
           __typename: "DrawerRecord";
@@ -9675,7 +9678,7 @@ export type PersonQuery = {
                 }
             >;
           };
-          leftContent:
+          leftContent?:
             | {
                 __typename: "SidebarGenericRecord";
                 id: string;
@@ -9706,7 +9709,8 @@ export type PersonQuery = {
                     } | null;
                   } | null;
                 };
-              };
+              }
+            | null;
         }
       | { __typename: "SpacerRecord" }
       | {
@@ -9821,7 +9825,7 @@ export type ContentTextImageFragment = {
         }
     >;
   };
-  leftContent:
+  leftContent?:
     | {
         __typename: "SidebarGenericRecord";
         id: string;
@@ -9852,7 +9856,8 @@ export type ContentTextImageFragment = {
             } | null;
           } | null;
         };
-      };
+      }
+    | null;
 };
 
 export type DrawersFragment = {
@@ -17701,6 +17706,7 @@ export const PageDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "smallImage" },
