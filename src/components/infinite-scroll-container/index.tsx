@@ -15,13 +15,12 @@ export const InfiniteScrollContainer = ({
 }: InfiniteScrollContainerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
   const isInView = useInView(containerRef, { once: true, amount: 0.65 });
   const [isGrabbing, setIsGrabbing] = useState(false);
-  const [startX, setStartX] = useState(0); // Initial mouse click position
+  const [startX, setStartX] = useState(0); // Initial pointer down position
   const [scrollLeft, setScrollLeft] = useState(0); // Initial scroll position
   const [velocity, setVelocity] = useState(0); // Track velocity
-  const lastX = useRef(0); // For tracking the mouse position change
+  const lastX = useRef(0); // For tracking the pointer position change
   const lastTime = useRef(0); // For tracking the time between movements
   const [wasDragging, setWasDragging] = useState(false);
 
@@ -38,7 +37,7 @@ export const InfiniteScrollContainer = ({
 
     const smoothScroll = () => {
       if (itemsRef.current) {
-        if (!isHovered && !isGrabbing) {
+        if (!isGrabbing) {
           setScrollPosition((prevPosition) => {
             const newPosition = prevPosition + scrollSpeed;
             const maxScrollLeft =
@@ -59,33 +58,21 @@ export const InfiniteScrollContainer = ({
     smoothScroll(); // Start the loop
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isHovered, isGrabbing]);
+  }, [isGrabbing]);
 
-  const handleScroll = () => {
-    if (containerRef.current) {
-      const maxScrollLeft = containerRef.current.scrollWidth / 3; // Since we duplicate the content
-
-      if (containerRef.current.scrollLeft >= maxScrollLeft) {
-        containerRef.current.scrollLeft -= maxScrollLeft;
-      } else if (containerRef.current.scrollLeft <= 0) {
-        containerRef.current.scrollLeft += maxScrollLeft;
-      }
-    }
-  };
-
-  const handlePointerDown = (e: React.MouseEvent) => {
+  const handlePointerDown = (e: React.PointerEvent) => {
     e.preventDefault(); // Prevent text selection while dragging
     setIsGrabbing(true);
     setWasDragging(false);
     if (containerRef.current) {
-      setStartX(e.pageX - containerRef.current.offsetLeft); // Track initial mouse click
+      setStartX(e.pageX - containerRef.current.offsetLeft); // Track initial pointer down position
       setScrollLeft(containerRef.current.scrollLeft); // Track initial scroll position
     }
     lastX.current = e.pageX; // Reset for velocity tracking
     lastTime.current = Date.now();
   };
 
-  const handlePointerMove = (e: React.MouseEvent) => {
+  const handlePointerMove = (e: React.PointerEvent) => {
     if (!isGrabbing || !containerRef.current) return;
 
     const x = e.pageX - containerRef.current.offsetLeft;
@@ -118,22 +105,21 @@ export const InfiniteScrollContainer = ({
 
   const handlePointerLeave = () => {
     setIsGrabbing(false);
-    setIsHovered(false);
   };
 
   const applyInertia = (initialVelocity: number) => {
-    let velocity = -initialVelocity; // Invert the direction of the velocity
+    let currentVelocity = -initialVelocity; // Invert the direction of the velocity
     const friction = 0.95; // Friction to slow down the scrolling
 
     const scrollInertia = () => {
       if (!containerRef.current) return;
 
-      containerRef.current.scrollLeft += velocity * 20; // Multiply for noticeable inertia
+      containerRef.current.scrollLeft += currentVelocity * 20; // Multiply for noticeable inertia
 
       // Apply friction to gradually slow down
-      velocity *= friction;
+      currentVelocity *= friction;
 
-      if (Math.abs(velocity) > 0.1) {
+      if (Math.abs(currentVelocity) > 0.1) {
         requestAnimationFrame(scrollInertia); // Continue until velocity is low
       }
     };
@@ -146,12 +132,10 @@ export const InfiniteScrollContainer = ({
       <div
         className={carouselContainerStyles}
         ref={containerRef}
-        onScroll={handleScroll}
-        onMouseEnter={() => setIsHovered(true)}
-        onPointerLeave={handlePointerLeave}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerLeave}
       >
         <ScrollIntoView isInView={isInView} scrollAmount={50} duration={0.3}>
           <div
