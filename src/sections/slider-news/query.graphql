@@ -8,9 +8,13 @@ fragment SliderNews on SliderNewsRecord {
   articles {
     ...SliderNewsCard
   }
+  posts {
+    ...Post
+  }
 }
 
 fragment SliderNewsCard on NewsArticleRecord {
+  __typename
   id
   title
   shortDescription
@@ -22,4 +26,18 @@ fragment SliderNewsCard on NewsArticleRecord {
     }
   }
   publishedDate
+}
+
+fragment Post on SocialMediaPostRecord {
+  __typename
+  id
+  title
+  publishedDate
+  shortDescription
+  postUrl
+  thumbnailImage {
+    responsiveImage {
+      src
+    }
+  }
 }
