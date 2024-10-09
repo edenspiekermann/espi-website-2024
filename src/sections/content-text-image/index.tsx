@@ -7,11 +7,14 @@ import classNames from "classnames";
 import { InlineContentImage } from "@/components/inline-content-image";
 import { SidebarGeneric } from "@/components/sidebar-generic";
 import { ContentQuote } from "@/components/content-quote";
+import { Divider } from "@/components/divider/divider";
 
 export const ContentTextImage = ({
   content,
   leftContent,
   backgroundColor = "white",
+  showDivider,
+  divider,
 }: ContentTextImageFragment) => {
   const contentTextImageClass = classNames({
     [styles.contentTextImage]: true,
@@ -49,6 +52,7 @@ export const ContentTextImage = ({
 
   return (
     <section className={contentTextImageClass}>
+      {showDivider && divider && <Divider {...divider} />}
       <div className="container">
         <div className={styles.left}>{leftContentFilter(leftContent)}</div>
         <div className={styles.right}>

@@ -14,4 +14,9 @@ fragment ContentTextImage on ContentTextImageRecord {
     ...SidebarGeneric
   }
   backgroundColor
+  showDivider
+  divider {
+    text
+    invertColor
+  }
 }

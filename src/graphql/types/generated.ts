@@ -657,6 +657,7 @@ export type ContentTextImageModelFilter = {
   content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
   leftContent?: InputMaybe<LinkFilter>;
+  showDivider?: InputMaybe<BooleanFilter>;
 };
 
 export type ContentTextImageModelLeftContentField =
@@ -684,6 +685,8 @@ export enum ContentTextImageModelOrderBy {
   BackgroundColorDesc = "backgroundColor_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  ShowDividerAsc = "showDivider_ASC",
+  ShowDividerDesc = "showDivider_DESC",
 }
 
 /** Record of type Content Text Image (content_text_image) */
@@ -704,8 +707,10 @@ export type ContentTextImageRecord = RecordInterface & {
   _updatedAt: Scalars["DateTime"]["output"];
   backgroundColor?: Maybe<Scalars["String"]["output"]>;
   content: ContentTextImageModelContentField;
+  divider?: Maybe<DividerRecord>;
   id: Scalars["ItemId"]["output"];
   leftContent?: Maybe<ContentTextImageModelLeftContentField>;
+  showDivider: Scalars["BooleanType"]["output"];
 };
 
 /** Record of type Content Text Image (content_text_image) */
@@ -8725,6 +8730,7 @@ export type NewsArticleQuery = {
           __typename: "ContentTextImageRecord";
           id: string;
           backgroundColor?: string | null;
+          showDivider: boolean;
           content: {
             __typename?: "ContentTextImageModelContentField";
             value: unknown;
@@ -8787,6 +8793,11 @@ export type NewsArticleQuery = {
                 };
               }
             | null;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
         }
       | {
           __typename: "TeaserNewsGridRecord";
@@ -8858,6 +8869,7 @@ export type PageQuery = {
           __typename: "ContentTextImageRecord";
           id: string;
           backgroundColor?: string | null;
+          showDivider: boolean;
           content: {
             __typename?: "ContentTextImageModelContentField";
             value: unknown;
@@ -8920,6 +8932,11 @@ export type PageQuery = {
                 };
               }
             | null;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
         }
       | {
           __typename: "DrawerRecord";
@@ -9696,6 +9713,7 @@ export type PersonQuery = {
           __typename: "ContentTextImageRecord";
           id: string;
           backgroundColor?: string | null;
+          showDivider: boolean;
           content: {
             __typename?: "ContentTextImageModelContentField";
             value: unknown;
@@ -9758,6 +9776,11 @@ export type PersonQuery = {
                 };
               }
             | null;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
         }
       | { __typename: "SpacerRecord" }
       | {
@@ -9843,6 +9866,7 @@ export type ContentTextImageFragment = {
   __typename: "ContentTextImageRecord";
   id: string;
   backgroundColor?: string | null;
+  showDivider: boolean;
   content: {
     __typename?: "ContentTextImageModelContentField";
     value: unknown;
@@ -9905,6 +9929,11 @@ export type ContentTextImageFragment = {
         };
       }
     | null;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
 };
 
 export type DrawersFragment = {
@@ -11341,6 +11370,18 @@ export const ContentTextImageFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -16767,6 +16808,18 @@ export const NewsArticleDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -19517,6 +19570,18 @@ export const PageDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -19900,6 +19965,18 @@ export const PersonDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+              ],
+            },
+          },
         ],
       },
     },
