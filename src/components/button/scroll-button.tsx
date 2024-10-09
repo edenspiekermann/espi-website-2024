@@ -14,10 +14,23 @@ export const ScrollButton = ({
   const buttonClass = classNames({
     [styles.button]: true,
     [styles.inverted]: isInverted,
+    [styles.scrollButton]: true,
   });
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent the default anchor behavior
+    if (onClick) {
+      onClick();
+    }
+    const targetId = url?.startsWith("#") ? url.substring(1) : url;
+    const targetElement = document.getElementById(targetId!);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <Link href={url || ""} className={buttonClass} onClick={onClick}>
+    <Link href={url || ""} className={buttonClass} onClick={handleClick}>
       <span className={styles.text}>{text}</span>
       <ButtonArrowDown />
     </Link>
