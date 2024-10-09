@@ -11,6 +11,7 @@ export const SocialMediaCard = ({
   thumbnailImage,
   publishedDate,
   postUrl,
+  openInSameTab = false,
 }: SocialMediaPostRecord) => {
   const { wasDragging } = useContext(ScrollContext);
   const handleClick = (e: React.MouseEvent) => {
@@ -28,7 +29,12 @@ export const SocialMediaCard = ({
   });
 
   return (
-    <a className={styles.articleCard} href={postUrl} onClick={handleClick}>
+    <a
+      className={styles.articleCard}
+      href={postUrl}
+      onClick={handleClick}
+      target={openInSameTab ? "_self" : "_blank"}
+    >
       <div className={styles.media}>
         <Media {...(thumbnailImage as MediaProperties)} />
       </div>
