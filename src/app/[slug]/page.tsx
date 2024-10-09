@@ -37,7 +37,16 @@ export default async function Page({ params }: PageProps) {
         <title>{title || "Not Found"}</title>
       </Head>
       <UpdateNavState isInverted={invertNavColor} />
-      <SectionConductor sections={sections} />
+      <SectionConductor
+        sections={sections}
+        indexToFadeIn={title === "News" ? 2 : 1}
+        style={{
+          backgroundColor:
+            title === "News"
+              ? "var(--color-extra-light-grey)"
+              : "var(--color-white)",
+        }}
+      />
       {cookieConsentForm && <CookieConsentForm {...cookieConsentForm} />}
     </>
   );
