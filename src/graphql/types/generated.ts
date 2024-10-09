@@ -657,6 +657,7 @@ export type ContentTextImageModelFilter = {
   content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
   leftContent?: InputMaybe<LinkFilter>;
+  showDivider?: InputMaybe<BooleanFilter>;
 };
 
 export type ContentTextImageModelLeftContentField =
@@ -684,6 +685,8 @@ export enum ContentTextImageModelOrderBy {
   BackgroundColorDesc = "backgroundColor_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  ShowDividerAsc = "showDivider_ASC",
+  ShowDividerDesc = "showDivider_DESC",
 }
 
 /** Record of type Content Text Image (content_text_image) */
@@ -704,8 +707,10 @@ export type ContentTextImageRecord = RecordInterface & {
   _updatedAt: Scalars["DateTime"]["output"];
   backgroundColor?: Maybe<Scalars["String"]["output"]>;
   content: ContentTextImageModelContentField;
+  divider?: Maybe<DividerRecord>;
   id: Scalars["ItemId"]["output"];
-  leftContent: ContentTextImageModelLeftContentField;
+  leftContent?: Maybe<ContentTextImageModelLeftContentField>;
+  showDivider: Scalars["BooleanType"]["output"];
 };
 
 /** Record of type Content Text Image (content_text_image) */
@@ -6693,6 +6698,7 @@ export type SliderNewsRecord = RecordInterface & {
   articles: Array<NewsArticleRecord>;
   divider?: Maybe<DividerRecord>;
   id: Scalars["ItemId"]["output"];
+  posts: Array<SocialMediaPostRecord>;
   showDivider: Scalars["BooleanType"]["output"];
 };
 
@@ -6779,6 +6785,36 @@ export type SocialLinkRecord = RecordInterface & {
 
 /** Record of type Social Link (social_link) */
 export type SocialLinkRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Social Media Post (social_media_post) */
+export type SocialMediaPostRecord = RecordInterface & {
+  __typename?: "SocialMediaPostRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  openInSameTab: Scalars["BooleanType"]["output"];
+  postUrl: Scalars["String"]["output"];
+  publishedDate: Scalars["Date"]["output"];
+  shortDescription?: Maybe<Scalars["String"]["output"]>;
+  thumbnailImage: FileField;
+  title: Scalars["String"]["output"];
+};
+
+/** Block of type Social Media Post (social_media_post) */
+export type SocialMediaPostRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -8694,6 +8730,7 @@ export type NewsArticleQuery = {
           __typename: "ContentTextImageRecord";
           id: string;
           backgroundColor?: string | null;
+          showDivider: boolean;
           content: {
             __typename?: "ContentTextImageModelContentField";
             value: unknown;
@@ -8723,7 +8760,7 @@ export type NewsArticleQuery = {
                 }
             >;
           };
-          leftContent:
+          leftContent?:
             | {
                 __typename: "SidebarGenericRecord";
                 id: string;
@@ -8754,7 +8791,13 @@ export type NewsArticleQuery = {
                     } | null;
                   } | null;
                 };
-              };
+              }
+            | null;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
         }
       | {
           __typename: "TeaserNewsGridRecord";
@@ -8826,6 +8869,7 @@ export type PageQuery = {
           __typename: "ContentTextImageRecord";
           id: string;
           backgroundColor?: string | null;
+          showDivider: boolean;
           content: {
             __typename?: "ContentTextImageModelContentField";
             value: unknown;
@@ -8855,7 +8899,7 @@ export type PageQuery = {
                 }
             >;
           };
-          leftContent:
+          leftContent?:
             | {
                 __typename: "SidebarGenericRecord";
                 id: string;
@@ -8877,6 +8921,7 @@ export type PageQuery = {
                   __typename?: "PersonRecord";
                   name: string;
                   role: string;
+                  slug: string;
                   smallImage?: {
                     __typename?: "FileField";
                     responsiveImage?: {
@@ -8885,7 +8930,13 @@ export type PageQuery = {
                     } | null;
                   } | null;
                 };
-              };
+              }
+            | null;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
         }
       | {
           __typename: "DrawerRecord";
@@ -9234,7 +9285,7 @@ export type PageQuery = {
             invertColor: boolean;
           } | null;
           articles: Array<{
-            __typename?: "NewsArticleRecord";
+            __typename: "NewsArticleRecord";
             id: string;
             title: string;
             shortDescription?: string | null;
@@ -9246,6 +9297,22 @@ export type PageQuery = {
                 __typename?: "ResponsiveImage";
                 src: string;
                 alt?: string | null;
+              } | null;
+            };
+          }>;
+          posts: Array<{
+            __typename: "SocialMediaPostRecord";
+            id: string;
+            title: string;
+            publishedDate: string;
+            shortDescription?: string | null;
+            postUrl: string;
+            openInSameTab: boolean;
+            thumbnailImage: {
+              __typename?: "FileField";
+              responsiveImage?: {
+                __typename?: "ResponsiveImage";
+                src: string;
               } | null;
             };
           }>;
@@ -9646,6 +9713,7 @@ export type PersonQuery = {
           __typename: "ContentTextImageRecord";
           id: string;
           backgroundColor?: string | null;
+          showDivider: boolean;
           content: {
             __typename?: "ContentTextImageModelContentField";
             value: unknown;
@@ -9675,7 +9743,7 @@ export type PersonQuery = {
                 }
             >;
           };
-          leftContent:
+          leftContent?:
             | {
                 __typename: "SidebarGenericRecord";
                 id: string;
@@ -9706,7 +9774,13 @@ export type PersonQuery = {
                     } | null;
                   } | null;
                 };
-              };
+              }
+            | null;
+          divider?: {
+            __typename?: "DividerRecord";
+            text?: string | null;
+            invertColor: boolean;
+          } | null;
         }
       | { __typename: "SpacerRecord" }
       | {
@@ -9792,6 +9866,7 @@ export type ContentTextImageFragment = {
   __typename: "ContentTextImageRecord";
   id: string;
   backgroundColor?: string | null;
+  showDivider: boolean;
   content: {
     __typename?: "ContentTextImageModelContentField";
     value: unknown;
@@ -9821,7 +9896,7 @@ export type ContentTextImageFragment = {
         }
     >;
   };
-  leftContent:
+  leftContent?:
     | {
         __typename: "SidebarGenericRecord";
         id: string;
@@ -9852,7 +9927,13 @@ export type ContentTextImageFragment = {
             } | null;
           } | null;
         };
-      };
+      }
+    | null;
+  divider?: {
+    __typename?: "DividerRecord";
+    text?: string | null;
+    invertColor: boolean;
+  } | null;
 };
 
 export type DrawersFragment = {
@@ -10283,7 +10364,7 @@ export type SliderNewsFragment = {
     invertColor: boolean;
   } | null;
   articles: Array<{
-    __typename?: "NewsArticleRecord";
+    __typename: "NewsArticleRecord";
     id: string;
     title: string;
     shortDescription?: string | null;
@@ -10298,10 +10379,23 @@ export type SliderNewsFragment = {
       } | null;
     };
   }>;
+  posts: Array<{
+    __typename: "SocialMediaPostRecord";
+    id: string;
+    title: string;
+    publishedDate: string;
+    shortDescription?: string | null;
+    postUrl: string;
+    openInSameTab: boolean;
+    thumbnailImage: {
+      __typename?: "FileField";
+      responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
+    };
+  }>;
 };
 
 export type SliderNewsCardFragment = {
-  __typename?: "NewsArticleRecord";
+  __typename: "NewsArticleRecord";
   id: string;
   title: string;
   shortDescription?: string | null;
@@ -10314,6 +10408,20 @@ export type SliderNewsCardFragment = {
       src: string;
       alt?: string | null;
     } | null;
+  };
+};
+
+export type PostFragment = {
+  __typename: "SocialMediaPostRecord";
+  id: string;
+  title: string;
+  publishedDate: string;
+  shortDescription?: string | null;
+  postUrl: string;
+  openInSameTab: boolean;
+  thumbnailImage: {
+    __typename?: "FileField";
+    responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
   };
 };
 
@@ -11262,6 +11370,18 @@ export const ContentTextImageFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -13012,6 +13132,7 @@ export const SliderNewsCardFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
@@ -13042,6 +13163,50 @@ export const SliderNewsCardFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<SliderNewsCardFragment, unknown>;
+export const PostFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Post" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SocialMediaPostRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "postUrl" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "thumbnailImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "openInSameTab" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PostFragment, unknown>;
 export const SliderNewsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -13084,6 +13249,19 @@ export const SliderNewsFragmentDoc = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "posts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Post" },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -13112,6 +13290,7 @@ export const SliderNewsFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
@@ -13137,6 +13316,45 @@ export const SliderNewsFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Post" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SocialMediaPostRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "postUrl" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "thumbnailImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "openInSameTab" } },
         ],
       },
     },
@@ -16590,6 +16808,18 @@ export const NewsArticleDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -17548,6 +17778,7 @@ export const PageDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
@@ -17573,6 +17804,45 @@ export const PageDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Post" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SocialMediaPostRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
+          { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+          { kind: "Field", name: { kind: "Name", value: "postUrl" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "thumbnailImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "responsiveImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "src" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "openInSameTab" } },
         ],
       },
     },
@@ -17701,6 +17971,7 @@ export const PageDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "role" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "smallImage" },
@@ -18951,6 +19222,19 @@ export const PageDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "posts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Post" },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -19286,6 +19570,18 @@ export const PageDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -19669,6 +19965,18 @@ export const PersonDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "showDivider" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "divider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "invertColor" } },
+              ],
+            },
+          },
         ],
       },
     },
