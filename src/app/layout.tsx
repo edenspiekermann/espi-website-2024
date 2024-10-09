@@ -15,7 +15,6 @@ import { request } from "@/lib/request";
 import { NavigationProvider } from "@/context/navigation-context";
 import { NavigationWrapper } from "@/components/navigation/navigation-wrapper";
 import { Footer } from "@/sections/footer/footer";
-import { ButtonProperties } from "@/components/button/interfaces";
 import { CookieConsentProvider } from "@/context/cookie-consent-context";
 import { ScrollToTopProvider } from "@/components/scroll-to-top";
 

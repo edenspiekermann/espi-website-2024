@@ -26,17 +26,17 @@ export const HeaderCaseStudy = ({
           text={title}
           tag="h1"
           inline
-          duration={0.2}
+          duration={0.7}
           backgroundColor={backgroundColor}
           className={styles.title}
         />
 
         <h2 className={styles.subtitle}>
-          <FadeIntoView delay={0.2}>{subtitle}</FadeIntoView>
+          <FadeIntoView delay={0.7}>{subtitle}</FadeIntoView>
         </h2>
         <ScrollIntoViewMedia
           fade
-          delay={0.4}
+          delay={0.8}
           className={styles.media}
           scrollAmount={100}
         >

@@ -9,6 +9,7 @@
   padding: 23px 0px;
   transition: transform 1.2s ease-in-out;
   background-color: var(--color-white);
+  will-change: transform, opacity, background-color;
 }
 
 .logo {

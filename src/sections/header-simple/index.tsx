@@ -28,18 +28,29 @@ export const HeaderSimple = ({
           tag="h2"
           className={styles.featuredText}
         />
-        {subtext && <p className={styles.subtext}>{subtext}</p>}
-        {showCta && cta && (
-          <Button
-            text={cta?.text!}
-            url={cta?.url || ""}
-            slug={cta?.pageLink?.slug}
-            type={cta?.buttonType}
-          />
-        )}
-        {showInquiryInfo && inquiryInfo && (
+      </div>
+
+      <FadeIntoView duration={0.5} delay={0.8}>
+        <div className="container">
+          {subtext && (
+            <div className={styles.subtext}>
+              <p>{subtext}</p>
+            </div>
+          )}
+          {showCta && cta && (
+            <Button
+              text={cta?.text!}
+              url={cta?.url || ""}
+              slug={cta?.pageLink?.slug}
+              type={cta?.buttonType}
+            />
+          )}
+        </div>
+      </FadeIntoView>
+      {showInquiryInfo && inquiryInfo && (
+        <div className="container">
           <div className={styles.inquiryInfo}>
-            <FadeIntoView duration={0.6} delay={0.75}>
+            <FadeIntoView duration={0.6} delay={0.8}>
               <p className={styles.inquiryTitle}>{inquiryInfo.title}</p>
               {inquiryInfo.subtext && (
                 <div
@@ -49,8 +60,8 @@ export const HeaderSimple = ({
               )}
             </FadeIntoView>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 };

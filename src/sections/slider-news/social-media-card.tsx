@@ -1,18 +1,17 @@
-import { SliderNewsCardFragment } from "@/graphql/types/generated";
+import { SocialMediaPostRecord } from "@/graphql/types/generated";
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
 import { Media } from "@/components/media";
 import { MediaProperties } from "@/components/media/interfaces";
-import Link from "next/link";
 import { ScrollContext } from "@/components/infinite-scroll-container";
 
-export const ArticleCard = ({
+export const SocialMediaCard = ({
   title,
   shortDescription,
-  cardImage,
+  thumbnailImage,
   publishedDate,
-  slug,
-}: SliderNewsCardFragment) => {
+  postUrl,
+}: SocialMediaPostRecord) => {
   const { wasDragging } = useContext(ScrollContext);
   const handleClick = (e: React.MouseEvent) => {
     if (wasDragging) {
@@ -29,13 +28,9 @@ export const ArticleCard = ({
   });
 
   return (
-    <Link
-      className={styles.articleCard}
-      href={`/news/${slug}`}
-      onClick={handleClick}
-    >
+    <a className={styles.articleCard} href={postUrl} onClick={handleClick}>
       <div className={styles.media}>
-        <Media {...(cardImage as MediaProperties)} />
+        <Media {...(thumbnailImage as MediaProperties)} />
       </div>
       <div className={styles.textContent}>
         <p className={styles.publishedDate}>{publishedDateFormatted}</p>
@@ -44,6 +39,6 @@ export const ArticleCard = ({
           <span className={styles.shortDescription}>{shortDescription}</span>
         </p>
       </div>
-    </Link>
+    </a>
   );
 };
