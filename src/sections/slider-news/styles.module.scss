@@ -30,12 +30,12 @@
   position: relative;
   overflow: hidden;
   border-radius: 20px;
-  object-fit: cover;
-  object-position: center;
-  aspect-ratio: 3/4;
+  aspect-ratio: 3/2;
   transition: border-radius var(--animation-soft-curve-200ms);
 
   > * {
+    object-position: center;
+    object-fit: cover;
     transform: scale(1.05);
     transition: transform var(--animation-soft-curve-200ms);
   }
