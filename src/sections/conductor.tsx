@@ -109,12 +109,14 @@ const sectionSwitch = (section: any) => {
 export const SectionConductor = ({
   sections,
   indexToFadeIn,
+  style,
 }: {
   sections: any;
   indexToFadeIn?: number;
+  style?: React.CSSProperties;
 }) => {
   return (
-    <main id="main-content">
+    <main id="main-content" style={style}>
       {sections.map((section: any, index: number) => {
         const Component =
           index === indexToFadeIn && section.__typename !== "SpacerRecord" ? (
