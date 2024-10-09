@@ -40,4 +40,5 @@ fragment Post on SocialMediaPostRecord {
       src
     }
   }
+  openInSameTab
 }

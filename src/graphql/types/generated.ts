@@ -6800,6 +6800,7 @@ export type SocialMediaPostRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
+  openInSameTab: Scalars["BooleanType"]["output"];
   postUrl: Scalars["String"]["output"];
   publishedDate: Scalars["Date"]["output"];
   shortDescription?: Maybe<Scalars["String"]["output"]>;
@@ -9289,6 +9290,7 @@ export type PageQuery = {
             publishedDate: string;
             shortDescription?: string | null;
             postUrl: string;
+            openInSameTab: boolean;
             thumbnailImage: {
               __typename?: "FileField";
               responsiveImage?: {
@@ -10355,6 +10357,7 @@ export type SliderNewsFragment = {
     publishedDate: string;
     shortDescription?: string | null;
     postUrl: string;
+    openInSameTab: boolean;
     thumbnailImage: {
       __typename?: "FileField";
       responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
@@ -10386,6 +10389,7 @@ export type PostFragment = {
   publishedDate: string;
   shortDescription?: string | null;
   postUrl: string;
+  openInSameTab: boolean;
   thumbnailImage: {
     __typename?: "FileField";
     responsiveImage?: { __typename?: "ResponsiveImage"; src: string } | null;
@@ -13156,6 +13160,7 @@ export const PostFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "openInSameTab" } },
         ],
       },
     },
@@ -13308,6 +13313,7 @@ export const SliderNewsFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "openInSameTab" } },
         ],
       },
     },
@@ -17783,6 +17789,7 @@ export const PageDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "openInSameTab" } },
         ],
       },
     },
