@@ -29,7 +29,6 @@ export const TeaserCaseStaggered = ({
   useEffect(() => {
     const updateAmount = () => {
       if (window.innerWidth < 720) {
-        console.log("less than 720");
         setAmount(0.2);
       } else {
         setAmount(0.5);

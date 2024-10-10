@@ -73,7 +73,7 @@ export const InfiniteScrollContainer = ({
     }
   };
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     e.preventDefault(); // Prevent text selection while dragging
     setIsGrabbing(true);
     setWasDragging(false);
@@ -85,7 +85,7 @@ export const InfiniteScrollContainer = ({
     lastTime.current = Date.now();
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!isGrabbing || !containerRef.current) return;
 
     const x = e.pageX - containerRef.current.offsetLeft;
@@ -106,7 +106,7 @@ export const InfiniteScrollContainer = ({
     lastTime.current = currentTime;
   };
 
-  const handleMouseUp = () => {
+  const handlePointerUp = () => {
     setIsGrabbing(false);
     if (velocity !== 0) {
       applyInertia(velocity); // Apply inertia after letting go
@@ -116,7 +116,7 @@ export const InfiniteScrollContainer = ({
     }, 0);
   };
 
-  const handleMouseLeave = () => {
+  const handlePointerLeave = () => {
     setIsGrabbing(false);
     setIsHovered(false);
   };
@@ -147,17 +147,19 @@ export const InfiniteScrollContainer = ({
         className={carouselContainerStyles}
         ref={containerRef}
         onScroll={handleScroll}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={handleMouseLeave}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
+        onPointerEnter={() => setIsHovered(true)}
+        onPointerLeave={handlePointerLeave}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
       >
         <ScrollIntoView isInView={isInView} scrollAmount={50} duration={0.3}>
           <div
             className={styles.items}
             ref={itemsRef}
-            style={{ transform: `translateX(-${scrollPosition}px)` }}
+            style={{
+              transform: `translateX(-${scrollPosition}px)`,
+            }}
           >
             {children}
             {children}
