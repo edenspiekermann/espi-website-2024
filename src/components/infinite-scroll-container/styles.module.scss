@@ -7,7 +7,7 @@
   -ms-overflow-style: none;
   width: 100vw;
   cursor: grab;
-  touch-action: pan-x;
+  touch-action: none;
 
   &::-webkit-scrollbar {
     display: none;

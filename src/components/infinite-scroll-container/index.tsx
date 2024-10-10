@@ -73,7 +73,7 @@ export const InfiniteScrollContainer = ({
     }
   };
 
-  const handlePointerDown = (e: React.MouseEvent) => {
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     e.preventDefault(); // Prevent text selection while dragging
     setIsGrabbing(true);
     setWasDragging(false);
@@ -85,7 +85,7 @@ export const InfiniteScrollContainer = ({
     lastTime.current = Date.now();
   };
 
-  const handlePointerMove = (e: React.MouseEvent) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!isGrabbing || !containerRef.current) return;
 
     const x = e.pageX - containerRef.current.offsetLeft;
@@ -157,7 +157,9 @@ export const InfiniteScrollContainer = ({
           <div
             className={styles.items}
             ref={itemsRef}
-            // style={{ transform: `translateX(-${scrollPosition}px)` }}
+            style={{
+              transform: `translateX(-${scrollPosition}px)`,
+            }}
           >
             {children}
             {children}
