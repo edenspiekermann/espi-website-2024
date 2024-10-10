@@ -147,7 +147,7 @@ export const InfiniteScrollContainer = ({
         className={carouselContainerStyles}
         ref={containerRef}
         onScroll={handleScroll}
-        onMouseEnter={() => setIsHovered(true)}
+        onPointerEnter={() => setIsHovered(true)}
         onPointerLeave={handlePointerLeave}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
@@ -157,7 +157,7 @@ export const InfiniteScrollContainer = ({
           <div
             className={styles.items}
             ref={itemsRef}
-            style={{ transform: `translateX(-${scrollPosition}px)` }}
+            // style={{ transform: `translateX(-${scrollPosition}px)` }}
           >
             {children}
             {children}
