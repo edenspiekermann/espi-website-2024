@@ -12,16 +12,37 @@ export const NewsLetterSignupForm = () => {
 
   async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    //TODO: Implement form submission
+
     if (!validateEmail(email)) {
-      setMessage("Invalid email address");
+      setMessage("Please enter a valid email address");
       return;
     }
-    const formData = new FormData(event.currentTarget);
-    console.log("Form submitted", formData);
-    setMessage("");
-    setSubmitted(true);
-    setEmail("");
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        body: JSON.stringify({ email }),
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        setMessage("There was an error. Please try again.");
+        return;
+      }
+
+      const { data } = await response.json();
+
+      if (data && data.status === "subscribed") {
+        setSubmitted(true);
+      } else {
+        setMessage("There was an error. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form: ", error);
+      setMessage("There was an error. Please try again.");
+    }
   }
 
   return (
