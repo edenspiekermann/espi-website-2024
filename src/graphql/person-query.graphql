@@ -24,6 +24,7 @@ query Person($slug: String) {
       __typename
       ...ContentTextImage
       ...StatementCta
+      ...Spacer
     }
   }
 }

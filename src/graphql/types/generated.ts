@@ -9782,7 +9782,14 @@ export type PersonQuery = {
             invertColor: boolean;
           } | null;
         }
-      | { __typename: "SpacerRecord" }
+      | {
+          __typename: "SpacerRecord";
+          id: string;
+          desktopSpaceAmount: number;
+          tabletSpaceAmount?: number | null;
+          mobileSpaceAmount?: number | null;
+          backgroundColor?: string | null;
+        }
       | {
           __typename: "StatementCtaRecord";
           id: string;
@@ -19724,6 +19731,10 @@ export const PersonDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "StatementCta" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Spacer" },
+                      },
                     ],
                   },
                 },
@@ -20031,6 +20042,28 @@ export const PersonDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Spacer" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SpacerRecord" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "desktopSpaceAmount" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "tabletSpaceAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "mobileSpaceAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
         ],
       },
     },
