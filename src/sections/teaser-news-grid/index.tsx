@@ -16,7 +16,7 @@ export const TeaserNewsGrid = ({
   const searchParams = useSearchParams();
   const urlFilter = searchParams.get("filter");
 
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCount, setVisibleCount] = useState(18);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [typesOfNews, setTypesOfNews] = useState<string[]>([]);
   const [applyFilterActiveFade, setApplyFilterActiveFade] = useState(false);
@@ -36,7 +36,7 @@ export const TeaserNewsGrid = ({
   }, [urlFilter]);
 
   const handleLoadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 6);
+    setVisibleCount((prevCount) => prevCount + 18);
   };
 
   useEffect(() => {
