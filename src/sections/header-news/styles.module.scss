@@ -40,7 +40,7 @@
   gap: 24px;
   @include mqHelper("padding", 24px, 40px);
   @include mq(desktop) {
-    grid-column: 1/6;
+    grid-column: 1/5;
   }
 }
 
@@ -55,6 +55,6 @@
   overflow: hidden;
 
   @include mq(desktop) {
-    grid-column: 6/13;
+    grid-column: 5/13;
   }
 }
