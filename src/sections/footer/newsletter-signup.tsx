@@ -29,7 +29,13 @@ export const NewsLetterSignupForm = () => {
       });
 
       if (!response.ok) {
-        setMessage("There was an error. Please try again.");
+        const error = await response.json();
+        const errorText = JSON.parse(error.error.response.text);
+        if (errorText.title === "Member Exists") {
+          setMessage("Member already exists");
+        } else {
+          setMessage("There was an error. Please try again.");
+        }
         return;
       }
 
@@ -38,7 +44,9 @@ export const NewsLetterSignupForm = () => {
       if (data && data.status === "subscribed") {
         setSubmitted(true);
       } else {
-        setMessage("There was an error. Please try again.");
+        const errorText = await response.text();
+        const errorData = JSON.parse(errorText);
+        setMessage(errorData.detail);
       }
     } catch (error) {
       console.error("Error submitting form: ", error);
