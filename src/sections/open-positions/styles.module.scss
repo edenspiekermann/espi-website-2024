@@ -18,7 +18,7 @@
     width: 93px;
     height: 93px;
     margin-bottom: 24px;
-    animation: spin 10s linear infinite;
+    animation: spin 20s linear infinite;
 
     @include mq("tablet") {
       margin-bottom: 0;
