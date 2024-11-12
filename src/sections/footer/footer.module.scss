@@ -43,7 +43,7 @@
   @include as-s-text;
   display: flex;
   flex-direction: column;
-  @include mqHelper("grid-column", span 2, span 3, span 4);
+  @include mqHelper("grid-column", span 2, span 3, span 3);
   text-align: left;
   margin-bottom: 32px;
 
