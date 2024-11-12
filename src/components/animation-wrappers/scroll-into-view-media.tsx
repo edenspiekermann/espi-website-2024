@@ -13,6 +13,7 @@ export const ScrollIntoViewMedia = ({
   fade = false,
   backgroundColor,
   amount = 0,
+  showCurtain = true,
 }: ScrollIntoViewProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: amount });
@@ -67,13 +68,15 @@ export const ScrollIntoViewMedia = ({
       className={className}
       ref={ref}
     >
-      <motion.span
-        initial={curtainInitial}
-        animate={isInView && curtainAnimate}
-        style={{
-          position: "absolute",
-        }}
-      />
+      {showCurtain && (
+        <motion.span
+          initial={curtainInitial}
+          animate={isInView && curtainAnimate}
+          style={{
+            position: "absolute",
+          }}
+        />
+      )}
       {children}
     </motion.span>
   );
