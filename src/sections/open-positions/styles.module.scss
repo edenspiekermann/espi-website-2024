@@ -12,7 +12,7 @@
 .openPositions {
   display: flex;
   flex-wrap: wrap;
-  @include mqHelper("padding", 48px 24px 64px, 64px 40px, 80px 70px);
+  @include mqHelper("padding", 48px 0px 64px, 64px 0px, 80px 0px);
 
   svg {
     width: 93px;
