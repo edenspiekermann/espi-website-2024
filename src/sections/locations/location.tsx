@@ -43,6 +43,10 @@ export const Location = ({
     };
   }, [timeZone]);
 
+  const plainAddress =
+    new DOMParser().parseFromString(address, "text/html").body.textContent ||
+    "";
+
   return (
     <div className={locationClass}>
       <div className={styles.left}>
@@ -64,7 +68,7 @@ export const Location = ({
         <div className={styles.address}>
           <div dangerouslySetInnerHTML={{ __html: address }} />
           <a
-            href={`https://www.google.com/maps/dir/?api=1&destination=${address}`}
+            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(plainAddress)}`}
             target="_blank"
           >
             Get directions
