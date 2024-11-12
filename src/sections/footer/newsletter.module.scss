@@ -64,6 +64,11 @@
   p:last-child {
     @include as-xs-text;
     opacity: 0.5;
+
+    a {
+      @include as-link;
+      color: inherit;
+    }
   }
 }
 

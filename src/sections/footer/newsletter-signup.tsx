@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styles from "./newsletter.module.scss";
 import { FormSubmitButton } from "./form-submit-button";
 import { validateEmail } from "@/utils/validate-email";
+import Link from "next/link";
 
 export const NewsLetterSignupForm = () => {
   const [email, setEmail] = useState("");
@@ -68,7 +69,10 @@ export const NewsLetterSignupForm = () => {
         </form>
       )}
       {message && <p className={styles.message}>{message}</p>}
-      <p>By submitting this form, you are agreeing to our Privacy Policy</p>
+      <p>
+        By submitting this form, you are agreeing to our{" "}
+        <Link href="/privacy-policy">Privacy Policy</Link>
+      </p>
     </div>
   );
 };
