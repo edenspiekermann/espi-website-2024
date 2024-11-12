@@ -120,7 +120,7 @@ export const SectionConductor = ({
       {sections.map((section: any, index: number) => {
         const Component =
           index === indexToFadeIn && section.__typename !== "SpacerRecord" ? (
-            <FadeIntoView duration={0.6} delay={0.5}>
+            <FadeIntoView duration={0.6} delay={0.7}>
               {sectionSwitch(section)}
             </FadeIntoView>
           ) : (
