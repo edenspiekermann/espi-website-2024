@@ -1,6 +1,7 @@
 import React from "react";
 import { MediaProperties } from "./interfaces";
 import Image from "next/image";
+import { Video } from "./video";
 
 export const Media = ({ responsiveImage, video }: MediaProperties) => {
   if (responsiveImage?.src) {
@@ -9,11 +10,7 @@ export const Media = ({ responsiveImage, video }: MediaProperties) => {
     );
   }
   if (video?.mp4Url) {
-    return (
-      <video autoPlay muted playsInline loop>
-        <source src={video?.mp4Url} type="video/mp4" />
-      </video>
-    );
+    return <Video video={video} />;
   }
   return <></>;
 };

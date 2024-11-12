@@ -1,0 +1,30 @@
+@use "../../app/styles/base.scss" as *;
+
+.controls {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  @include mqHelper("bottom", 82px, 111px, 149px, 193px);
+  @include mqHelper("right", 24px, 40px, 70px);
+  height: 40px;
+  width: 40px;
+}
+
+.control {
+  height: 100%;
+  width: 100%;
+  &:hover {
+    cursor: pointer;
+    circle {
+      fill: var(--color-espi-black);
+      opacity: 0.7;
+    }
+  }
+
+  > * {
+    height: 100%;
+    width: 100%;
+  }
+}
