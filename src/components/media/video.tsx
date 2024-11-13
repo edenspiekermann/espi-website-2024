@@ -5,6 +5,7 @@ import { VideoPause } from "./video-pause";
 import { VideoPlay } from "./video-play";
 import styles from "./styles.module.scss";
 import { MediaProperties } from "./interfaces";
+import classNames from "classnames";
 
 export const Video = ({ video }: { video: MediaProperties["video"] }) => {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -20,9 +21,21 @@ export const Video = ({ video }: { video: MediaProperties["video"] }) => {
     videoRef.current?.pause();
   };
 
+  const controlsClass = classNames({
+    [styles.controls]: true,
+    [styles.homePageHeader]: video?.isHomePageHeader,
+  });
+
   return (
     <>
-      <video ref={videoRef} autoPlay muted playsInline loop>
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        playsInline
+        loop
+        className={styles.video}
+      >
         <source src={video?.mp4Url} type="video/mp4" />
       </video>
       <div className={styles.controls}>
