@@ -45,6 +45,7 @@ export const Button = ({
         replace={replace}
         onClick={onClick || undefined}
       >
+        {iconSwitch(type)}
         <span className={styles.text}>{text}</span>
         {iconSwitch(type)}
       </Link>
@@ -58,6 +59,7 @@ export const Button = ({
         className={buttonClass}
         aria-label="Navigate to website"
       >
+        {iconSwitch(type)}
         <span className={styles.text}>{text}</span>
         {iconSwitch(type)}
       </button>
@@ -77,6 +79,7 @@ export const Button = ({
 
   return (
     <a href={url} className={buttonClass} aria-label={text} target="_blank">
+      {iconSwitch(type)}
       <span className={styles.text}>{text}</span>
       {iconSwitch(type)}
     </a>
