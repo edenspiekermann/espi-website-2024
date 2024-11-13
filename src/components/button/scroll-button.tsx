@@ -31,6 +31,7 @@ export const ScrollButton = ({
 
   return (
     <Link href={url || ""} className={buttonClass} onClick={handleClick}>
+      <ButtonArrowDown />
       <span className={styles.text}>{text}</span>
       <ButtonArrowDown />
     </Link>
