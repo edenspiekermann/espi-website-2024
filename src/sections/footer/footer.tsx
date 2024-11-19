@@ -42,7 +42,7 @@ export function Footer({
           <ul>
             {pageLinks.map((pageLink) => (
               <li key={pageLink.id}>
-                <Link href={pageLink.slug} className={styles.link}>
+                <Link href={`/${pageLink.slug}`} className={styles.link}>
                   {pageLink.title}
                 </Link>
               </li>
