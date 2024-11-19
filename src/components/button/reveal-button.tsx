@@ -16,6 +16,7 @@ export const RevealButton = ({
 
   return (
     <button className={buttonClass} onClick={onClick}>
+      <ButtonPlusSign />
       <span className={styles.text}>{text}</span>
       <ButtonPlusSign />
     </button>
