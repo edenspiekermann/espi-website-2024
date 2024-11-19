@@ -30,6 +30,10 @@ export const TeaserNewsGrid = ({
   }, [selectedFilter]);
 
   useEffect(() => {
+    setVisibleCount(18);
+  }, [selectedFilter]);
+
+  useEffect(() => {
     if (urlFilter) {
       setSelectedFilter(urlFilter);
     }
@@ -50,7 +54,6 @@ export const TeaserNewsGrid = ({
   const teaserNewsGridClass = classNames({
     [styles.teaserNewsGrid]: true,
     container: true,
-    // [styles.filterActiveFade]: applyFilterActiveFade,
   });
 
   const filteredNewsCards = selectedFilter
@@ -76,7 +79,7 @@ export const TeaserNewsGrid = ({
             applyFilterActiveFade={applyFilterActiveFade}
           />
         ))}
-        {newsCards.length > visibleCount && (
+        {filteredNewsCards.length > visibleCount && (
           <div className={styles.button}>
             <RevealButton text="Load more" onClick={handleLoadMore} />
           </div>
