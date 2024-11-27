@@ -32,7 +32,7 @@ export const NewsLetterSignupForm = () => {
         const error = await response.json();
         const errorText = JSON.parse(error.error.response.text);
         if (errorText.title === "Member Exists") {
-          setMessage("Member already exists");
+          setMessage("This email address is already registered.");
         } else {
           setMessage("There was an error. Please try again.");
         }

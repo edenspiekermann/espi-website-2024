@@ -32,6 +32,9 @@
     padding-bottom: 16px;
     padding-left: 22px;
     width: -webkit-fill-available;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &::placeholder {
       @include as-s-text;
     }
@@ -45,9 +48,9 @@
   button {
     aspect-ratio: 1/1;
     position: absolute;
-    right: 3px;
-    top: 3px;
-    bottom: 3px;
+    right: 7px;
+    top: 50%; // Center vertically
+    transform: translateY(calc(-50% + 2px));
     appearance: none;
     background: none;
     color: inherit;
