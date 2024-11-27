@@ -11,4 +11,5 @@ export interface ScrollIntoViewProps extends AnimationWrapperProps {
   className?: string;
   fade?: boolean;
   backgroundColor?: string;
+  showCurtain?: boolean;
 }

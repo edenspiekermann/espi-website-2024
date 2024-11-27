@@ -39,6 +39,7 @@ export const HeaderCaseStudy = ({
           delay={0.8}
           className={styles.media}
           scrollAmount={100}
+          showCurtain={false}
         >
           <Media {...featuredMedia} />
         </ScrollIntoViewMedia>
