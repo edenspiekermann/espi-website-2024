@@ -5,5 +5,6 @@ export interface MediaProperties {
   };
   video?: {
     mp4Url: string;
+    isHomePageHeader?: boolean;
   };
 }
