@@ -3,14 +3,14 @@
 .contentQuote {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  @include mqHelper("width", 100%, 100%, calc(71% - 40px));
   @include mqHelper("gap", 16px, 24px);
   @include mqHelper("padding-left", 24px, 40px);
   border-left: 4px solid var(--color-espi-black);
-}
 
-.quote {
-  @include as-xl-text;
+  p.quote {
+    @include as-l-text; // needed to override the default text size of the StructuredText component
+  }
 }
 
 .author {
