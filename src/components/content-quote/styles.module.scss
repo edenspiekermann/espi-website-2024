@@ -9,7 +9,7 @@
   border-left: 4px solid var(--color-espi-black);
 
   p.quote {
-    @include as-l-text; // needed to override the default text size of the StructuredText component
+    @include as-xl-text; // needed to override the default text size of the StructuredText component
   }
 }
 
