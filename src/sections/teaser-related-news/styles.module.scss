@@ -14,6 +14,18 @@
   @include mq("tablet") {
     grid-column: span 4;
   }
+
+  &:hover {
+    .content {
+      border-radius: 40px;
+    }
+    .media {
+      border-radius: 80px;
+      > * {
+        transform: scale(1);
+      }
+    }
+  }
 }
 
 .media {
@@ -22,6 +34,12 @@
   aspect-ratio: 3/2;
   @include mqHelper("border-radius", 23px, 13px, 40px);
   overflow: hidden;
+  transition: border-radius var(--animation-soft-curve-200ms);
+
+  > * {
+    transform: scale(1.05);
+    transition: transform var(--animation-soft-curve-200ms);
+  }
 }
 
 .content {
@@ -31,6 +49,7 @@
   flex-direction: column;
   gap: 24px;
   background-color: var(--color-white);
+  transition: border-radius var(--animation-soft-curve-200ms);
 }
 
 .title {
