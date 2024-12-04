@@ -35,7 +35,7 @@ export const CaseStudyRelatedCard = ({
       className={cardClass}
       fade
     >
-      <Link href={`case-studies/${slug}`}>
+      <Link href={`/case-studies/${slug}`}>
         <div className={styles.media}>
           <Media {...(cardMedia3x2 as MediaProperties)} />
         </div>
