@@ -47,7 +47,10 @@ export const CaseIntro = ({
           ))}
         </div>
         <div className={styles.right}>
-          <p className={styles.text}>{text}</p>
+          <div
+            className={styles.text}
+            dangerouslySetInnerHTML={{ __html: text }}
+          />
           <div className={styles.subContent}>
             <p className={styles.subtitle}>Problem</p>
             <p className={styles.subtext}>{problemText}</p>
