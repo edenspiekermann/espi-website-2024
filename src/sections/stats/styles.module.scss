@@ -12,6 +12,7 @@
   text-align: center;
   gap: 8px;
   margin-bottom: 32px;
+  font-variant-numeric: lining-nums tabular-nums;
 
   @include mq(tablet) {
     grid-column: span 4;
