@@ -21,6 +21,7 @@
   gap: 8px;
   grid-column: 1/-1;
   margin-bottom: 32px;
+  font-variant-numeric: lining-nums tabular-nums;
 
   @include mq(tablet) {
     grid-column: span 4;
