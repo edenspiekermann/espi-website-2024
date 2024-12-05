@@ -12,6 +12,7 @@
   text-align: center;
   gap: 8px;
   margin-bottom: 32px;
+  font-variant-numeric: lining-nums tabular-nums;
 
   @include mq(tablet) {
     grid-column: span 4;
@@ -19,6 +20,15 @@
   }
   @include mq(desktop) {
     gap: 16px;
+
+    .twoStats & {
+      &:nth-child(1) {
+        grid-column: 3/7;
+      }
+      &:nth-child(2) {
+        grid-column: 7/11;
+      }
+    }
   }
 }
 
