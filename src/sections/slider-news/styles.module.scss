@@ -1,6 +1,10 @@
 @use "../../app/styles/base.scss" as *;
 
 .sliderNews {
+  background-color: var(--color-extra-light-grey);
+}
+
+.slider {
   @include mqHelper("padding", 24px 0px, 20px 0px, 32px 0px);
 }
 
@@ -47,7 +51,7 @@
 
 .textContent {
   padding: 24px;
-  background-color: var(--color-espi-black);
+  background-color: var(--color-white);
   border-radius: 20px;
   transition: border-radius var(--animation-soft-curve-200ms);
 
@@ -58,7 +62,7 @@
 
 .publishedDate {
   @include as-xs-text;
-  color: var(--color-white);
+  color: var(--color-espi-black);
   opacity: 0.5;
   margin-bottom: 8px;
 }
@@ -68,10 +72,10 @@
 }
 
 .title {
-  color: var(--color-white);
+  color: var(--color-espi-black);
 }
 
 .shortDescription {
-  color: var(--color-white);
+  color: var(--color-espi-black);
   opacity: 0.5;
 }

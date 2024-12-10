@@ -15,9 +15,6 @@ export const SliderNews = ({
   articles,
   posts,
 }: SliderNewsFragment) => {
-  const containerClass = classNames({
-    [styles.sliderNews]: true,
-  });
   const cards = [...articles, ...posts].sort((a, b) => {
     const dateA = a.publishedDate ? new Date(a.publishedDate).getTime() : 0;
     const dateB = b.publishedDate ? new Date(b.publishedDate).getTime() : 0;
@@ -37,9 +34,9 @@ export const SliderNews = ({
   };
 
   return (
-    <section>
+    <section className={styles.sliderNews}>
       {showDivider && divider && <Divider {...divider} />}
-      <div className={containerClass}>
+      <div className={styles.slider}>
         <InfiniteScrollContainer>
           {cards?.map((article) => cardSwitch(article))}
         </InfiniteScrollContainer>
