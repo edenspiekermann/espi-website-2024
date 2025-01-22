@@ -4,6 +4,7 @@ import { MediaProperties } from "@/components/media/interfaces";
 import { NewsArticleDocument } from "@/graphql/types/generated";
 import React from "react";
 import { notFound } from "next/navigation";
+import UpdateNavState from "@/components/navigation/update-nav-state";
 
 type PageProps = { params: { slug: string }; children: React.ReactNode };
 
@@ -31,6 +32,7 @@ export default async function NewsArticleLayout({
 
   return (
     <>
+      <UpdateNavState isInverted={false} isFixed />
       <HeaderNews
         title={title}
         typeOfArticle={typeOfArticle}
