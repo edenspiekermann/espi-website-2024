@@ -4,4 +4,9 @@ fragment CaseIntro on CaseIntroRecord {
   text
   problemText
   solutionText
+  callToAction {
+    text
+    url
+    buttonType
+  }
 }

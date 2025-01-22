@@ -8,6 +8,7 @@ import { ButtonArrowRight } from "./button-arrow-right";
 import Link from "next/link";
 import { ButtonArrowDownload } from "./button-arrow-download";
 import { ScrollButton } from "./scroll-button";
+import { ButtonArrowLinkOut } from "./button-arrow-link-out";
 
 export const Button = ({
   text,
@@ -29,6 +30,8 @@ export const Button = ({
         return <ButtonArrowRight />;
       case "download":
         return <ButtonArrowDownload />;
+      case "external":
+        return <ButtonArrowLinkOut />;
       default:
         return <ButtonArrowRight />;
     }
