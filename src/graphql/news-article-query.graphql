@@ -10,6 +10,7 @@ query NewsArticle($slug: String) {
     slug
     title
     typeOfArticle
+    publishedDate
     featuredMedia {
       responsiveImage {
         src
