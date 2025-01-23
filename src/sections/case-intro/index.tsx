@@ -6,11 +6,13 @@ import React, { useContext } from "react";
 import styles from "./styles.module.scss";
 import { CaseStudyContext } from "@/context/case-study-context";
 import Link from "next/link";
+import { Button } from "@/components/button/button";
 
 export const CaseIntro = ({
   text,
   problemText,
   solutionText,
+  callToAction,
 }: CaseIntroFragment) => {
   const { caseStudyState } = useContext(CaseStudyContext);
   const { relatedIndustries, relatedServices } = caseStudyState;
@@ -26,25 +28,34 @@ export const CaseIntro = ({
     <section className={styles.caseIntro}>
       <div className="container">
         <div className={styles.left}>
-          {tags?.map((tag) => (
-            <Link
-              key={tag}
-              href={{
-                pathname: "/work",
-                query: {
-                  filter: relatedIndustries.includes(tag)
-                    ? "industries"
-                    : relatedServices.includes(tag)
-                      ? "services"
-                      : null,
-                  ...getTagFilter(tag),
-                },
-              }}
-              className={styles.tag}
-            >
-              <Tag key={tag} text={tag} isLargeTag />
-            </Link>
-          ))}
+          <div className={styles.tagContainer}>
+            {tags?.map((tag) => (
+              <Link
+                key={tag}
+                href={{
+                  pathname: "/work",
+                  query: {
+                    filter: relatedIndustries.includes(tag)
+                      ? "industries"
+                      : relatedServices.includes(tag)
+                        ? "services"
+                        : null,
+                    ...getTagFilter(tag),
+                  },
+                }}
+                className={styles.tag}
+              >
+                <Tag key={tag} text={tag} isLargeTag />
+              </Link>
+            ))}
+          </div>
+          {callToAction && callToAction.url && (
+            <Button
+              text={callToAction.text}
+              url={callToAction.url}
+              type={callToAction.buttonType}
+            />
+          )}
         </div>
         <div className={styles.right}>
           <div

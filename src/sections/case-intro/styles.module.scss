@@ -7,15 +7,18 @@
 .left {
   grid-column: 1/-1;
   margin-bottom: 32px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-
   @include mq(desktop) {
     grid-column: 1/5;
     margin-bottom: 0;
     height: fit-content;
   }
+}
+
+.tagContainer {
+  margin-bottom: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .right {

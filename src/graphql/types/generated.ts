@@ -426,6 +426,7 @@ export type CaseIntroRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  callToAction?: Maybe<CallToActionRecord>;
   id: Scalars["ItemId"]["output"];
   problemText: Scalars["String"]["output"];
   solutionText: Scalars["String"]["output"];
@@ -8539,6 +8540,12 @@ export type CaseStudyQuery = {
           text: string;
           problemText: string;
           solutionText: string;
+          callToAction?: {
+            __typename?: "CallToActionRecord";
+            text: string;
+            url?: string | null;
+            buttonType: string;
+          } | null;
         }
       | {
           __typename: "PurposeRecord";
@@ -9867,6 +9874,12 @@ export type CaseIntroFragment = {
   text: string;
   problemText: string;
   solutionText: string;
+  callToAction?: {
+    __typename?: "CallToActionRecord";
+    text: string;
+    url?: string | null;
+    buttonType: string;
+  } | null;
 };
 
 export type ContentTextImageFragment = {
@@ -11208,6 +11221,18 @@ export const CaseIntroFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "text" } },
           { kind: "Field", name: { kind: "Name", value: "problemText" } },
           { kind: "Field", name: { kind: "Name", value: "solutionText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "callToAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "buttonType" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -16058,6 +16083,18 @@ export const CaseStudyDocument = {
           { kind: "Field", name: { kind: "Name", value: "text" } },
           { kind: "Field", name: { kind: "Name", value: "problemText" } },
           { kind: "Field", name: { kind: "Name", value: "solutionText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "callToAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "text" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "buttonType" } },
+              ],
+            },
+          },
         ],
       },
     },
