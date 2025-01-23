@@ -6497,7 +6497,6 @@ export type SidebarNewsModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   author?: InputMaybe<LinkFilter>;
-  date?: InputMaybe<DateFilter>;
   greyBackground?: InputMaybe<BooleanFilter>;
   id?: InputMaybe<ItemIdFilter>;
   text?: InputMaybe<StringFilter>;
@@ -6520,8 +6519,6 @@ export enum SidebarNewsModelOrderBy {
   UnpublishingScheduledAtDesc = "_unpublishingScheduledAt_DESC",
   UpdatedAtAsc = "_updatedAt_ASC",
   UpdatedAtDesc = "_updatedAt_DESC",
-  DateAsc = "date_ASC",
-  DateDesc = "date_DESC",
   GreyBackgroundAsc = "greyBackground_ASC",
   GreyBackgroundDesc = "greyBackground_DESC",
   IdAsc = "id_ASC",
@@ -6547,7 +6544,6 @@ export type SidebarNewsRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   author: PersonRecord;
-  date: Scalars["Date"]["output"];
   greyBackground: Scalars["BooleanType"]["output"];
   id: Scalars["ItemId"]["output"];
   text: Scalars["String"]["output"];
