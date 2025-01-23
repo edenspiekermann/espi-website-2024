@@ -10,7 +10,10 @@ export default async function NewsArticlePage({ params }: PageProps) {
   });
   return (
     <>
-      <SectionConductor sections={newsArticle?.sections} />
+      <SectionConductor
+        sections={newsArticle?.sections}
+        publishedDate={newsArticle?.publishedDate || ""}
+      />
     </>
   );
 }

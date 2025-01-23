@@ -9,13 +9,18 @@ import { SidebarGeneric } from "@/components/sidebar-generic";
 import { ContentQuote } from "@/components/content-quote";
 import { Divider } from "@/components/divider/divider";
 
+interface ContentTextImageProps extends ContentTextImageFragment {
+  publishedDate?: string;
+}
+
 export const ContentTextImage = ({
   content,
   leftContent,
   backgroundColor = "white",
   showDivider,
   divider,
-}: ContentTextImageFragment) => {
+  publishedDate,
+}: ContentTextImageProps) => {
   const contentTextImageClass = classNames({
     [styles.contentTextImage]: true,
     [styles[backgroundColor!]]: !!backgroundColor,
@@ -30,6 +35,7 @@ export const ContentTextImage = ({
           <SidebarNews
             {...content}
             greyBackground={backgroundColor === "white"}
+            date={publishedDate || ""}
           />
         );
       case "SidebarGenericRecord":

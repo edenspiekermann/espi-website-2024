@@ -7,12 +7,16 @@ import { formateDate } from "@/utils/format-date";
 import classNames from "classnames";
 import Link from "next/link";
 
+interface SidebarNewsProps extends SidebarNewsFragment {
+  date: string;
+}
+
 export const SidebarNews = ({
   date,
   text,
   author,
   greyBackground = false,
-}: SidebarNewsFragment) => {
+}: SidebarNewsProps) => {
   const formattedDate = formateDate(date);
   const authorInfoClass = classNames({
     [styles.authorInfo]: true,

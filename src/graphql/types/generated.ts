@@ -8418,7 +8418,6 @@ export type SidebarGenericFragment = {
 export type SidebarNewsFragment = {
   __typename: "SidebarNewsRecord";
   id: string;
-  date: string;
   text: string;
   greyBackground: boolean;
   author: {
@@ -8714,6 +8713,7 @@ export type NewsArticleQuery = {
     slug: string;
     title: string;
     typeOfArticle: string;
+    publishedDate?: string | null;
     seo: Array<{
       __typename?: "Tag";
       attributes?: Record<string, string> | null;
@@ -8782,7 +8782,6 @@ export type NewsArticleQuery = {
             | {
                 __typename: "SidebarNewsRecord";
                 id: string;
-                date: string;
                 text: string;
                 greyBackground: boolean;
                 author: {
@@ -8921,7 +8920,6 @@ export type PageQuery = {
             | {
                 __typename: "SidebarNewsRecord";
                 id: string;
-                date: string;
                 text: string;
                 greyBackground: boolean;
                 author: {
@@ -9765,7 +9763,6 @@ export type PersonQuery = {
             | {
                 __typename: "SidebarNewsRecord";
                 id: string;
-                date: string;
                 text: string;
                 greyBackground: boolean;
                 author: {
@@ -9931,7 +9928,6 @@ export type ContentTextImageFragment = {
     | {
         __typename: "SidebarNewsRecord";
         id: string;
-        date: string;
         text: string;
         greyBackground: boolean;
         author: {
@@ -11253,7 +11249,6 @@ export const SidebarNewsFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "date" } },
           { kind: "Field", name: { kind: "Name", value: "text" } },
           {
             kind: "Field",
@@ -11495,7 +11490,6 @@ export const ContentTextImageFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "date" } },
           { kind: "Field", name: { kind: "Name", value: "text" } },
           {
             kind: "Field",
@@ -16444,6 +16438,10 @@ export const NewsArticleDocument = {
                 },
                 {
                   kind: "Field",
+                  name: { kind: "Name", value: "publishedDate" },
+                },
+                {
+                  kind: "Field",
                   name: { kind: "Name", value: "featuredMedia" },
                   selectionSet: {
                     kind: "SelectionSet",
@@ -16642,7 +16640,6 @@ export const NewsArticleDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "date" } },
           { kind: "Field", name: { kind: "Name", value: "text" } },
           {
             kind: "Field",
@@ -18005,7 +18002,6 @@ export const PageDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "date" } },
           { kind: "Field", name: { kind: "Name", value: "text" } },
           {
             kind: "Field",
@@ -19859,7 +19855,6 @@ export const PersonDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "date" } },
           { kind: "Field", name: { kind: "Name", value: "text" } },
           {
             kind: "Field",

@@ -35,7 +35,7 @@ import { Spacer } from "@/components/spacer";
 import { FadeIntoView } from "@/components/animation-wrappers/fade-into-view";
 import React from "react";
 
-const sectionSwitch = (section: any) => {
+const sectionSwitch = (section: any, publishedDate?: string) => {
   switch (section.__typename) {
     case "HomepageHeroRecord":
       return <HomePageHero key={section.id} {...section} />;
@@ -92,7 +92,13 @@ const sectionSwitch = (section: any) => {
     case "TeaserLeadershipRecord":
       return <TeaserLeadership key={section.id} {...section} />;
     case "ContentTextImageRecord":
-      return <ContentTextImage key={section.id} {...section} />;
+      return (
+        <ContentTextImage
+          key={section.id}
+          {...section}
+          publishedDate={publishedDate}
+        />
+      );
     case "StaggeredRecord":
       return <Staggered key={section.id} {...section} />;
     case "HeaderWithTagRecord":
@@ -110,10 +116,12 @@ export const SectionConductor = ({
   sections,
   indexToFadeIn,
   style,
+  publishedDate,
 }: {
   sections: any;
   indexToFadeIn?: number;
   style?: React.CSSProperties;
+  publishedDate?: string;
 }) => {
   return (
     <main id="main-content" style={style}>
@@ -121,10 +129,10 @@ export const SectionConductor = ({
         const Component =
           index === indexToFadeIn && section.__typename !== "SpacerRecord" ? (
             <FadeIntoView duration={0.6} delay={0.7}>
-              {sectionSwitch(section)}
+              {sectionSwitch(section, publishedDate)}
             </FadeIntoView>
           ) : (
-            sectionSwitch(section)
+            sectionSwitch(section, publishedDate)
           );
 
         return (
