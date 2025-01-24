@@ -24,6 +24,7 @@ interface CookieConsentContextType {
   isFormVisible: boolean;
   hideForm: () => void;
   submitted: boolean;
+  setIsFormVisible: (isFormVisible: boolean) => void;
 }
 
 const defaultConsent: CookieConsentState = {
@@ -103,15 +104,11 @@ export const CookieConsentProvider = ({
     }
   }, [consent, submitted, isLoaded]);
 
-  const updateConsent = (updatedConsent: Partial<CookieConsentState>) => {
+  const updateConsent = (updatedConsent: CookieConsentState) => {
     setConsent((prevConsent) => {
       const newConsent: CookieConsentState = {
         ...prevConsent,
         ...updatedConsent,
-        necessary: prevConsent.necessary || updatedConsent.necessary || false,
-        analytics: prevConsent.analytics || updatedConsent.analytics || false,
-        marketing: prevConsent.marketing || updatedConsent.marketing || false,
-        contents: prevConsent.contents || updatedConsent.contents || false,
       };
       saveConsentToLocalStorage(newConsent, submitted);
       return newConsent;
@@ -128,6 +125,7 @@ export const CookieConsentProvider = ({
     setConsent(newConsent);
     setSubmitted(true);
     setIsFormVisible(false);
+    saveConsentToLocalStorage(newConsent, true);
   };
 
   const hideForm = () => {
@@ -138,11 +136,13 @@ export const CookieConsentProvider = ({
     <CookieConsentContext.Provider
       value={{
         consent,
-        updateConsent,
+        updateConsent: (updatedConsent: Partial<CookieConsentState>) =>
+          updateConsent(updatedConsent as CookieConsentState),
         allowAll,
         isFormVisible: isLoaded && isFormVisible,
         hideForm,
         submitted,
+        setIsFormVisible,
       }}
     >
       {children}
