@@ -40,7 +40,7 @@ export const Button = ({
   if (slug) {
     return (
       <Link
-        href={slug}
+        href={slug.startsWith("/") ? slug : `/${slug}`}
         scroll={true}
         title={text}
         className={buttonClass}
