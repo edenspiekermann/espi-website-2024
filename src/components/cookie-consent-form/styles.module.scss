@@ -37,6 +37,11 @@
   pointer-events: none;
 }
 
+.changeCookieSettings {
+  animation: slideUp 0.5s forwards;
+  pointer-events: all;
+}
+
 .hidden {
   pointer-events: none;
   display: none;

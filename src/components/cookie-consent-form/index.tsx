@@ -23,6 +23,7 @@ export const CookieConsentForm = ({
     [styles.cookieConsentForm]: true,
     [styles.hidden]: !isFormVisible,
     [styles.submitted]: submitted,
+    [styles.changeCookieSettings]: submitted && isFormVisible,
   });
 
   return (

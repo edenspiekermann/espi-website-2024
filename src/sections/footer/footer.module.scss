@@ -74,6 +74,15 @@
   }
 }
 
+.buttonLink {
+  @include as-s-text;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 .bottom {
   display: flex;
   flex-direction: column;

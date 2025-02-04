@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import styles from "./footer.module.scss";
 import Link from "next/link";
@@ -6,7 +8,7 @@ import { EspiLogo } from "../../assets/icons/espi-logo";
 import { Button } from "@/components/button/button";
 import { AnimatedFooterTitle } from "./animated-footer-title";
 import { FooterProperties } from "./interfaces";
-import { FooterRecord } from "@/graphql/types/generated";
+import { useCookieConsent } from "@/context/cookie-consent-context";
 
 export function Footer({
   title,
@@ -17,6 +19,8 @@ export function Footer({
   legalLinks,
   copyrightText,
 }: FooterProperties) {
+  const { setIsFormVisible } = useCookieConsent();
+
   const copyRightTextWithYear = `${copyrightText} ${new Date().getFullYear()}`;
 
   return (
@@ -87,6 +91,14 @@ export function Footer({
                   </a>
                 </li>
               ))}
+            <li>
+              <button
+                className={`${styles.link} ${styles.buttonLink}`}
+                onClick={() => setIsFormVisible(true)}
+              >
+                Change cookie settings
+              </button>
+            </li>
             <li>{copyRightTextWithYear}</li>
           </ul>
         </div>

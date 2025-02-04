@@ -20,9 +20,10 @@ export const CookieConsentItem = ({
 
   const handleClick = () => setIsExpanded(!isExpanded);
 
-  const handleCheckboxChange = () => {
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const key = item.label.toLowerCase() as keyof CookieConsentState;
-    updateConsent({ [key]: !consent[key] });
+    const newValue = event.target.checked;
+    updateConsent({ [key]: newValue });
   };
 
   const isChecked = () => {
