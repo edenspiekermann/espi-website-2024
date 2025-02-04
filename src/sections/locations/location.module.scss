@@ -48,7 +48,10 @@
   position: relative;
   @include mqHelper("width", 82px, 154px, 217px);
   @include mqHelper("height", 72px, 135px, 191px);
-  object-fit: contain;
+
+  > img {
+    object-fit: contain;
+  }
 }
 
 .center {
