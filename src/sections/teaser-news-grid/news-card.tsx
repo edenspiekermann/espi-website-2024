@@ -16,12 +16,21 @@ export const NewsCard = ({
   cardImage,
   slug,
   typeOfArticle,
+  publishedDate,
   applyFilterActiveFade,
 }: CardProperties) => {
   const cardClass = classNames({
     [styles.card]: true,
     [styles.filterActiveFade]: applyFilterActiveFade,
   });
+
+  const formattedDate = publishedDate
+    ? new Date(publishedDate).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+      })
+    : "";
+
   return (
     <Link href={`/news/${slug}`} title={title} className={cardClass}>
       <div className={styles.media}>
@@ -29,6 +38,7 @@ export const NewsCard = ({
       </div>
       <div className={styles.content}>
         <p className={styles.title}>{title}</p>
+        <p className={styles.date}>{formattedDate}</p>
         <Tag text={typeOfArticle} />
       </div>
     </Link>

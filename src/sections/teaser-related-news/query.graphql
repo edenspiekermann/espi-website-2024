@@ -15,6 +15,7 @@ fragment NewsArticle on NewsArticleRecord {
   typeOfArticle
   title
   slug
+  publishedDate
   cardImage {
     responsiveImage {
       src

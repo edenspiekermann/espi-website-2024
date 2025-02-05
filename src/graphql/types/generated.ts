@@ -8811,6 +8811,7 @@ export type NewsArticleQuery = {
             typeOfArticle: string;
             title: string;
             slug: string;
+            publishedDate?: string | null;
             cardImage: {
               __typename?: "FileField";
               responsiveImage?: {
@@ -8836,6 +8837,7 @@ export type NewsArticleQuery = {
             typeOfArticle: string;
             title: string;
             slug: string;
+            publishedDate?: string | null;
             cardImage: {
               __typename?: "FileField";
               responsiveImage?: {
@@ -9603,6 +9605,7 @@ export type PageQuery = {
             typeOfArticle: string;
             title: string;
             slug: string;
+            publishedDate?: string | null;
             cardImage: {
               __typename?: "FileField";
               responsiveImage?: {
@@ -9669,6 +9672,7 @@ export type PageQuery = {
             typeOfArticle: string;
             title: string;
             slug: string;
+            publishedDate?: string | null;
             cardImage: {
               __typename?: "FileField";
               responsiveImage?: {
@@ -10816,6 +10820,7 @@ export type TeaserNewsGridFragment = {
     typeOfArticle: string;
     title: string;
     slug: string;
+    publishedDate?: string | null;
     cardImage: {
       __typename?: "FileField";
       responsiveImage?: {
@@ -10833,6 +10838,7 @@ export type NewsArticleFragment = {
   typeOfArticle: string;
   title: string;
   slug: string;
+  publishedDate?: string | null;
   cardImage: {
     __typename?: "FileField";
     responsiveImage?: {
@@ -10929,6 +10935,7 @@ export type TeaserRelatedNewsFragment = {
     typeOfArticle: string;
     title: string;
     slug: string;
+    publishedDate?: string | null;
     cardImage: {
       __typename?: "FileField";
       responsiveImage?: {
@@ -14799,6 +14806,7 @@ export const NewsArticleFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "typeOfArticle" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "cardImage" },
@@ -14870,6 +14878,7 @@ export const TeaserNewsGridFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "typeOfArticle" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "cardImage" },
@@ -15272,6 +15281,7 @@ export const TeaserRelatedNewsFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "typeOfArticle" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "cardImage" },
@@ -16535,6 +16545,7 @@ export const NewsArticleDocument = {
           { kind: "Field", name: { kind: "Name", value: "typeOfArticle" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "cardImage" },
@@ -17337,6 +17348,7 @@ export const PageDocument = {
           { kind: "Field", name: { kind: "Name", value: "typeOfArticle" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "publishedDate" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "cardImage" },

@@ -64,6 +64,11 @@
   justify-content: center;
 }
 
+.date {
+  @include as-xxs-sans;
+  color: var(--color-dark-grey);
+}
+
 @keyframes fadeOutIn {
   0% {
     opacity: 0;
