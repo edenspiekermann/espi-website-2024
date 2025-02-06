@@ -1,5 +1,5 @@
-query Page($slug: String) {
-  page(filter: { slug: { eq: $slug } }) {
+query LocalizedPage($slug: String, $region: String) {
+  page(filter: { slug: { eq: $slug }, region: { eq: $region } }) {
     seo: _seoMetaTags {
       attributes
       content
