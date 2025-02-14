@@ -32,6 +32,10 @@
   @include mq("desktop") {
     grid-column: span 10;
   }
+
+  @include mq("xl") {
+    grid-column: span 11;
+  }
 }
 
 .button {
