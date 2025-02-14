@@ -4,12 +4,14 @@ import Link from "next/link";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
 import { Button } from "../button/button";
+import { usePathname } from "next/navigation";
 
 export const DesktopNavigation: React.FC<DesktopNavigationProperties> = ({
   links,
   cta,
   isInverted,
 }) => {
+  const pathname = usePathname();
   const classNameList = classNames({
     [styles.desktop]: true,
   });
@@ -20,9 +22,14 @@ export const DesktopNavigation: React.FC<DesktopNavigationProperties> = ({
         <ul className={styles.navLinks}>
           {links &&
             links.map((link) => {
+              const isActive = pathname.includes(link.slug);
               return (
                 <li key={link.id}>
-                  <Link href={`/${link.slug}`} className={styles.navLink}>
+                  <Link
+                    href={`/${link.slug}`}
+                    className={styles.navLink}
+                    aria-current={isActive ? "page" : undefined}
+                  >
                     {link.label}
                   </Link>
                 </li>
