@@ -60,6 +60,7 @@
   margin-bottom: 32px;
   @include mq("desktop") {
     margin-bottom: 48px;
+    font-size: 58px;
   }
 }
 
@@ -82,6 +83,6 @@
     grid-column: 9/13;
   }
   @include mq("desktop") {
-    grid-column: 8/13;
+    grid-column: 7/13;
   }
 }
