@@ -31,7 +31,7 @@ export const CaseStudyGridCard = ({
   const cardMedia = index % 3 === 0 ? cardMedia2x1 : cardMedia3x2;
 
   return (
-    <Link href={`case-studies/${slug}`} className={cardClass} scroll={true}>
+    <Link href={`/case-studies/${slug}`} className={cardClass} scroll={true}>
       <div className={styles.media}>
         <Media {...(cardMedia as MediaProperties)} />
       </div>

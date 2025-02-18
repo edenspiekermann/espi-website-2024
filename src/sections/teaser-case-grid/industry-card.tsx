@@ -23,7 +23,7 @@ export const IndustryGridCard = ({
   });
 
   return (
-    <Link href={`industries/${slug}`} className={cardClass}>
+    <Link href={`/industries/${slug}`} className={cardClass}>
       <div className={styles.media}>
         <Media {...(teaserMedia as MediaProperties)} />
       </div>
