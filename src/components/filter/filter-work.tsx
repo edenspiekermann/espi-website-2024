@@ -24,10 +24,11 @@ export const FilterWork = ({
   const toggleCategory = (category: string) => {
     if (activeCategory === category) {
       setActiveCategory(null);
-      setSelectedFilter(null);
     } else {
+      if (selectedFilter) {
+        setSelectedFilter(null);
+      }
       setActiveCategory(category);
-      setSelectedFilter(null);
     }
   };
 
@@ -39,11 +40,6 @@ export const FilterWork = ({
     }
   };
 
-  const toggleAll = () => {
-    setActiveCategory(null);
-    setSelectedFilter(null);
-  };
-
   const filterOptionsClass = classNames({
     [styles.filterOptions]: true,
     [styles.activeFilter]: activeCategory !== null,
@@ -53,35 +49,46 @@ export const FilterWork = ({
     <div className={styles.filter}>
       <div className="container">
         <div className={styles.filterCategories}>
-          <button
-            className={!activeCategory && !selectedFilter ? styles.active : ""}
-            onClick={() => toggleAll()}
-          >
-            All
-          </button>
-          <button
-            onClick={() => toggleCategory("industries")}
-            className={activeCategory === "industries" ? styles.active : ""}
-          >
-            Industries
-          </button>
-          <button
-            onClick={() => toggleCategory("services")}
-            className={activeCategory === "services" ? styles.active : ""}
-          >
-            Services
-          </button>
-          {selectedFilter && (
-            <div className={styles.selectedRow}>
+          <div className={styles.industryButton}>
+            {selectedFilter && activeCategory === "industries" ? (
               <div
                 className={styles.selected}
-                onClick={() => selectFilter(selectedFilter)}
+                onClick={() => {
+                  setSelectedFilter(null);
+                }}
               >
                 {selectedFilter}
                 <CloseFilter />
               </div>
-            </div>
-          )}
+            ) : (
+              <button
+                onClick={() => toggleCategory("industries")}
+                className={activeCategory === "industries" ? styles.active : ""}
+              >
+                Industries
+              </button>
+            )}
+          </div>
+          <div className={styles.serviceButton}>
+            {selectedFilter && activeCategory === "services" ? (
+              <div
+                className={styles.selected}
+                onClick={() => {
+                  setSelectedFilter(null);
+                }}
+              >
+                {selectedFilter}
+                <CloseFilter />
+              </div>
+            ) : (
+              <button
+                onClick={() => toggleCategory("services")}
+                className={activeCategory === "services" ? styles.active : ""}
+              >
+                Services
+              </button>
+            )}
+          </div>
         </div>
 
         {activeCategory === "industries" && !selectedFilter && (
