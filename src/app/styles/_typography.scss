@@ -13,7 +13,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
   letter-spacing: -0.02em;
   font-family: "ff-meta-serif-web-pro", serif;
 
-  @include mqHelper("font-size", 48px, 64px, $scaling-font-size-xl-desktop);
+  @include mqHelper("font-size", 48px, 64px, 90px);
 }
 
 // XL Sans
@@ -23,7 +23,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
   letter-spacing: -0.04em;
   font-family: "ff-real-text-pro", sans-serif;
 
-  @include mqHelper("font-size", 48px, 64px, $scaling-font-size-xl-desktop);
+  @include mqHelper("font-size", 48px, 64px, 90px);
 }
 
 // XL Sans - Bold
@@ -34,7 +34,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
   font-weight: 500;
   font-family: "ff-real-text-pro", sans-serif;
 
-  @include mqHelper("font-size", 48px, 64px, $scaling-font-size-xl-desktop);
+  @include mqHelper("font-size", 48px, 64px, 90px);
 }
 
 // L Serif
