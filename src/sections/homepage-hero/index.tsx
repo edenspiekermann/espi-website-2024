@@ -8,7 +8,6 @@ import classNames from "classnames";
 export const HomePageHero = ({ media }: HomepageHeroFragment) => {
   const logoContainerClass = classNames({
     [styles.logo]: true,
-    container: true,
   });
   return (
     <section className={styles.homepageHero}>

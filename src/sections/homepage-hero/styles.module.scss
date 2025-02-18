@@ -22,8 +22,8 @@
   position: absolute;
   left: 50%;
   bottom: 24px;
-  max-width: max-content !important;
   transform: translateX(-50%);
+  max-width: 1300px;
   @include mqHelper(
     "width",
     calc(100% - 48px),
