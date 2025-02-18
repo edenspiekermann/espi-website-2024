@@ -192,7 +192,8 @@
     margin-right: 40px;
     color: var(--color-espi-black);
 
-    &:hover::after {
+    &:hover::after,
+    &[aria-current="page"]::after {
       transform: scaleX(1);
       transform-origin: left;
     }
