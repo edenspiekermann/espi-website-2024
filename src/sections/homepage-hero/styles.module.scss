@@ -21,13 +21,13 @@
 .logo {
   position: absolute;
   left: 50%;
-  transform: translate(-50%, -50%);
-  bottom: 0;
+  bottom: 24px;
+  transform: translateX(-50%);
   @include mqHelper(
     "width",
-    calc(100% - 48px),
-    calc(100% - 80px),
-    calc(100% - 140px)
+    calc(100% - 48px) !important,
+    calc(100% - 80px) !important,
+    calc(100% - 140px) !important
   );
 
   svg {
