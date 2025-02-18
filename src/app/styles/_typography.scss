@@ -44,7 +44,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
   letter-spacing: -0.01em;
   line-height: 110%;
 
-  @include mqHelper("font-size", 36px, 40px, $scaling-font-size-l-desktop);
+  @include mqHelper("font-size", 36px, 40px, 51px);
 }
 
 // L Sans
@@ -54,7 +54,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
   letter-spacing: -0.03em;
   line-height: 110%;
 
-  @include mqHelper("font-size", 36px, 40px, $scaling-font-size-l-desktop);
+  @include mqHelper("font-size", 36px, 40px, 51px);
 }
 
 // L Sans - Bold
@@ -64,7 +64,7 @@ $scaling-font-size-l-desktop: calc(2.25rem + ((1vw - 10.24px) * 3.6058));
   letter-spacing: -0.03em;
   line-height: 110%;
 
-  @include mqHelper("font-size", 36px, 40px, $scaling-font-size-l-desktop);
+  @include mqHelper("font-size", 36px, 40px, 51px);
 }
 
 // M Serif
