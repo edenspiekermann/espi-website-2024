@@ -2,6 +2,10 @@
 
 .headerNews {
   position: relative;
+  background-color: var(--color-extra-light-grey);
+}
+
+.headerNewsInner {
   column-gap: 0 !important;
   @include mqHelper(
     "padding",
@@ -9,7 +13,6 @@
     114px 40px 32px,
     134px 70px 40px
   );
-  background-color: var(--color-extra-light-grey);
 
   @include mq(desktop) {
     flex-direction: row;

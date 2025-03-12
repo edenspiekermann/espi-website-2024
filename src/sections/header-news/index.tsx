@@ -12,26 +12,28 @@ export const HeaderNews = ({
   typeOfArticle,
   featuredMedia,
 }: HeaderNewsProperties) => {
-  const headerNewsClass = classNames({
-    [styles.headerNews]: true,
+  const headerNewsInnerClass = classNames({
+    [styles.headerNewsInner]: true,
     container: true,
   });
   return (
-    <section className={headerNewsClass}>
-      <div className={styles.left}>
-        <Link
-          href={{ pathname: "/news", query: { filter: typeOfArticle } }}
-          className={styles.tag}
-        >
-          <Tag text={typeOfArticle} />
-        </Link>
-        <h1 className={styles.title}>{title}</h1>
-      </div>
-      {featuredMedia && (
-        <div className={styles.image}>
-          <Media {...(featuredMedia as MediaProperties)} />
+    <section className={styles.headerNews}>
+      <div className={headerNewsInnerClass}>
+        <div className={styles.left}>
+          <Link
+            href={{ pathname: "/news", query: { filter: typeOfArticle } }}
+            className={styles.tag}
+          >
+            <Tag text={typeOfArticle} />
+          </Link>
+          <h1 className={styles.title}>{title}</h1>
         </div>
-      )}
+        {featuredMedia && (
+          <div className={styles.image}>
+            <Media {...(featuredMedia as MediaProperties)} />
+          </div>
+        )}
+      </div>
     </section>
   );
 };
