@@ -41,7 +41,7 @@ export const HeaderCaseStudy = ({
           scrollAmount={100}
           showCurtain={false}
         >
-          <Media {...featuredMedia} />
+          <Media {...featuredMedia} priority={true} />
         </ScrollIntoViewMedia>
       </div>
     </div>
