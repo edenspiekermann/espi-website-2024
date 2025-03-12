@@ -7,4 +7,6 @@ export interface MediaProperties {
     mp4Url: string;
     isHomePageHeader?: boolean;
   };
+  priority?: boolean;
+  sizes?: string;
 }
